@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://messsagepassing.github.io/</loc>
+    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://messsagepassing.github.io/001-bug/04-karino2/</loc>
+    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://messsagepassing.github.io/001-bug/03-jmuk/</loc>
+    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://messsagepassing.github.io/001-bug/02-kzys/</loc>
+    <lastmod>2020-12-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://messsagepassing.github.io/001-bug/01-morrita/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://messsagepassing.github.io/001-bug/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://messsagepassing.github.io/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>http://messsagepassing.github.io/tags/</loc>
+  </url>
+  
+</urlset>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Re: バグのはなし - Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='Hatena::Bookmark' content='nocomment'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='http://messsagepassing.github.io/001-bug/02-kzys/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Re: バグのはなし - Message Passing' />
+    <meta property="og:description"        content='最近であった興味深いバグや、興味深いバグに出会わない興味深さのこと。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    </head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='http://messsagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり </p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Re: バグのはなし</td></tr>
+        <tr><th>From</th><td>kzys</td></tr>
+        <tr><th>Date</th><td>2020-12-16</td></tr>
+      </table>
+      <article class='content'><blockquote>
+<p>他人にバグ修正を頼むのはよくないという反省から、このあと森田は OS ツリーのビルド、インストール方法を調べ 手元で OS のコードをいじれるようにしたのだった。ただしその成果を発揮する日は今の所きていない。来なくていいです</p>
+<p>サーバサイドのかっこいいバグの話なんかないですか &gt; 和良</p>
+</blockquote>
+<p>よくなくまでいうと語弊があるけれど、自分で直したほうが楽ですよね。そう思って軽い気持ちで手を出すと大事になったりするんですが&hellip;</p>
+<p>というわけで、1行変更するだけのつもりが大事になった話をひとつ。</p>
+<h2 id="seccomp">seccomp</h2>
+<p>Firecracker では Linux の seccomp という仕組みを使って、Firecracker プロセスが呼び出せるシステムコールについて許可リストをもっている。Firecracker のなかで動くゲストの Linux は様々なシステムコールを自由に発行できるけれど、Firecracker プロセスがホストの Linux に対して呼び出すシステムコールは厳選されている。</p>
+<p>実際の許可リストは、<a href="https://github.com/firecracker-microvm/firecracker/blob/v0.23.1/src/vmm/src/default_syscalls/filters.rs">src/vmm/src/default_syscalls/filters.rs</a> にある。この仕組みは、本来なら libc やライブラリが隠蔽してくるはずの実装の詳細であるシステムコールを細かく列挙しなくてはいけないので、結構きびしい。</p>
+<p><a href="https://github.com/firecracker-microvm/firecracker/issues/1456">このとき直したかったバグ</a>では</p>
+<blockquote>
+<p>After more digging, looks like the <code>rt_sigprocmask</code> is unescapable. It&rsquo;s also called from <code>__block_all_sigs</code>, which is in turn called by <code>pthread_exit</code>. Basically <code>musl</code> took every precaution and blocks signals whenever something signal-unsafe is underway.</p>
+</blockquote>
+<p>Firecracker がスレッドを終了すると、<a href="https://musl.libc.org/">musl libc</a> 経由で pthread_exit が呼ばれて、そこから rt_sigprocmask というシステムコールが呼ばれてしまうので、結果として seccomp 違反で Firecracker が殺されてしまう、という話だった。</p>
+<h2 id="スレッドを終了させるのをやめてみよう">スレッドを終了させるのをやめてみよう</h2>
+<p>rt_sigprocmask なんて別に悪いことできるシステムコールでもないんだし、許可リストに1行足せばいいんじゃないの? と手元でやってみるとちゃんと動く。これでいけるかな、と聞いてみると、Firecracker 側の人から「そもそもスレッドが終了する必要は無いよね」と修正案を提案される。</p>
+<p>問題のスレッドは Firecracker が vCPU と 1:1 で割り当てるスレッドなので、Firecracker の実行中に数が減ったりはしない。そもそもの問題は Firecracker のプロセス自体が終了するときにしか発生しないので、スレッド自体は止めておいて、プロセス全体が死ぬのを待てばいい、というわけ。</p>
+<p>なんか大事になってきたなあと思いつつも、まあ乗り掛かった船なので<a href="https://github.com/firecracker-microvm/firecracker/pull/1586">プルリクエスト</a>を出してみる。</p>
+<h2 id="x86_64-と-aarch64-で終了イベントの扱いが違うのを直そう">x86_64 と aarch64 で終了イベントの扱いが違うのを直そう</h2>
+<p>Firecracker は x86_64 だけではなく aarch64、いわゆる ARM もサポートしている。自分が出したプルリクエストでは Rust の <code>#ifdef</code> 相当にあたる <code>#[cfg(target_arch = ...)]</code> を使って、x86_64 と aarch64 を書き分けていた。x86_64 では i8042 をエミュレーションする部分から、ファイルディスクリプタを取り出して、それで終了イベントを扱うようになっていたんだけど、i8042 はすなわち &ldquo;Intel 8042&rdquo; なので、aarch64 には存在しないのだった。</p>
+<p>「エミュレーション部分は無くていいから、終了イベントを扱うためのファイルディスクリプタは、aarch64 にも欲しいよね」という話になったので、それも実装して<a href="https://github.com/firecracker-microvm/firecracker/pull/1598">プルリクエスト</a>を出してみる。なぜ私がリファクタリングを&hellip;</p>
+<h2 id="ところでスレッドを終了させない変更は">ところでスレッドを終了させない変更は&hellip;</h2>
+<p>なんてやっているうちに、もともとの「スレッドをどうやって終了させずにおくか」という問題は進展して、Firecracker 側の人が、<a href="https://github.com/firecracker-microvm/firecracker/pull/1603">別のプルリクエスト</a>を出して、無事マージされた。</p>
+<p>というわけで、1行変更で終わるはずが、なぜかリファクタリングにまきこまれ、本題のバグは相手に直してもらった話でした。まあ Rust が書けたしバグも直ったのでめでたしめでたし。</p>
+<p>じゃあ次は jmuk さんで。</p>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>バグのはなし</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='http://messsagepassing.github.io/001-bug/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='http://messsagepassing.github.io/001-bug/03-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='http://messsagepassing.github.io/001-bug/04-karino2/'>karino2</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='http://messsagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html><head>
+    <title>バグのはなし - Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='Hatena::Bookmark' content='nocomment'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='http://messsagepassing.github.io/001-bug/01-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='バグのはなし - Message Passing' />
+    <meta property="og:description"        content='最近であった興味深いバグや、興味深いバグに出会わない興味深さのこと。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    </head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='http://messsagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり </p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>バグのはなし</td></tr>
+        <tr><th>From</th><td>morrita</td></tr>
+        <tr><th>Date</th><td>2020-12-14</td></tr>
+      </table>
+      <article class='content'><p>なにか話すことはないかと Hacker News をみていたら（ろくでもない）、
+<a href="https://news.ycombinator.com/item?id=25415989">Youtube や Gmail など Google のサービスが一時間落ちていた</a>というニュースで
+盛り上がっていた。担当者の想像するだけで胃が痛い。</p>
+<p>森田はクライアントサイドで仕事をしているので、この手の outage は起きない。
+けれど自分のところに担当したくないイヤなバグが回ってくることはたまにある。
+そういうのを精神衛生を害さない程度で思い出してみたい。</p>
+<h2 id="a-ship-blocker">A Ship Blocker</h2>
+<p>何年か前にカメラアプリのチームに入った直後、ハカソンでカメラのビューファインダに OpenGL のシェーダで簡単なエフェクトをかけるコードを書いた。</p>
+<p>ハカソン最終日のデモで成果を紹介すると、より洗練されたリアルタイムエフェクトを近隣のアルゴリズムチームが長いこと構想していたことがわかった。
+そこで彼らが開発していたエフェクトのフレームワークを森田がカメラアプリにインテグレートすることになった。
+とはいえアルゴリズムの開発は始まったばかりで出荷するのはまだ先になりそうな雰囲気。
+アルゴリズムチームがアプリ内で試行錯誤できるよう、早速ハカソンのコードをベースに最低限のインテグレーションを済ませた。</p>
+<p>その仕事のことをすっかり忘れていたある日、アルゴリズムチームの人が「そろそろ出荷に向けて準備したいのでバグなおしてくれない？」とやってきた。
+改めて自分のインテグレーションを見直すと・・・バグだらけじゃん。特に電話機の向きを縦から横にかえた時に描画が壊れる。
+やれやれ・・・と直そうとするも、API が期待通りに動かない。</p>
+<p>一週間以上たってもなぜ動かないのかわからないので途方にくれ、
+小さな再現ケースをつくって、
+正しくうごくケースすなわちエフェクトなしのコードパスと挙動を比べてみると・・・。</p>
+<p>これ OS のバグじゃね？という結論に至った。
+一般に OS のバグを疑うときは自分が間違っているものだが、Android に限るとその限りでない。
+先に書いた再現ケースを片手にバグ報告をする。</p>
+<p>が、まったく相手にされる様子がない。
+しびれを切らしたアルゴリズムチームのプログラマがやってきた。「担当者に直談判しましょう」という。
+仕方ないので質問ドキュメントを事前に送付の上ミーティング。「ああわかったきがする。すぐ直すよ」と担当者。</p>
+<p>しかしコードがチェックインされたのはそこから一ヶ月後だった。しかも直ってない！どうなってんた！
+アルゴリズムチームにつつかれ、ふたたびミーティング。前回は問題だけ伝えたのがよくなかっという反省から、
+もう少し要求を細かく伝える。このあとようやく修正が通り、デモが動くようになった。</p>
+<p>しかし OS のバグはトランクでのみ修正されており、気がつくとリリースブランチはとっくの昔に切られていた。
+そして cherry-pick の締切も過ぎていた。この OS のバグにブロックされ、リアルタイムエフェクトの出荷は一年先送りとなった。</p>
+<h2 id="二年目">二年目</h2>
+<p>一年後に向けてアルゴリズムチームはエフェクト実装の改善を進めていた。
+具体的には消費電力の改善に取り組んでいた。（つまり OS のバグがあろうがなかろうが出荷できなかったのだね・・・。）
+試行錯誤の過程で、彼らはアプリとのインテグレーションも大きくデザインを変えていた。つまり森田がハカソンで書いたコードは姿を消していた。</p>
+<p>その仕事のことをすっかり忘れていたある日、アルゴリズム班の人がやってきて「エフェクトが動かないのでなんとかしてほしい」という。
+久しぶりに見ると見慣れないコードばかり。インテグレーションに使う OS の API も
+<a href="https://developer.android.com/reference/android/view/SurfaceView">SurfaceView</a> から
+<a href="https://developer.android.com/reference/android/media/ImageReader">ImageReader</a>  へ、ずいぶん変わっている。
+そしてこれが動かないのは・・・ OS のバグなのでは？
+嫌な既視感に襲われつつバグを報告するも、やはり直らないバグ。またしびれを切らして直談判。</p>
+<p>今年もダメかな・・・と思っていたら、最近 OS のチームに入ったプログラマが颯爽とあらわれ、さっとコードを直してしまった。
+あれ？なにそれ？ことしは出荷できちゃう？</p>
+<h2 id="225-年目">2.25 年目</h2>
+<p>と喜んだのも束の間、アルゴリズムチームは再びインテグレーションを書き換えはじめた。
+チームの偉い人の推薦に従い、新しい内製フレームワークの流儀にあわせることにしたのだという。
+フレームワークに乗せるだけで OS とのインテグレーション方法は変わらないからそんなリスクないでしょ、ということらしい。
+なぜそれを今やるんだ！</p>
+<p>そんなことを知らない森田がいつもようにアプリをつついていると、
+起動時にビューファインダーの画像がコマ落ちし、カクついていることに気づいた。
+嫌な予感がしたのでエフェクトのフラグを切ると、カクつきが消える。
+仕方なく調査をすると、チームの偉い人が勧めるフレームワークに性能問題があることがわかった。
+リアルタイムエフェクトによって今まで使われていいなかったコードパスを通過するようになり、隠れた問題が露呈した次第。</p>
+<p>仕方ないのでプロファイルをとりつつフレームワークを直したのは良いが・・・まったくコードがレビューされん！
+というのも、そのフレームワークを書いたエンジニアは出世してマネージメントとかもするようになり、
+手を動かす仕事はあまりやらなくなっていたのだった。本来ならマネージされているチームメイトにレビューを頼むところ、
+スレッドの使い方など繊細なコードをいじった手前、義理を立てたのが裏目に出た。</p>
+<p>結局締切までにレビューが間に合わず、リアルアイムエフェクトの出荷は三ヶ月先送りとなった。
+OS と違い三ヶ月で済んで良かったですねー・・・。</p>
+<p>さすがに今はもう出荷されている。</p>
+<hr>
+<p>初回だというのに随分長くなってしまった。けれどこの長さこそがこのバグのイヤなところなので仕方ない:
+つまり、自分の知らないところで起こった問題を締め切り前に押し付けられ、結果として誰かの新機能が出荷できないバグ。イヤすぎる！</p>
+<p>他人にバグ修正を頼むのはよくないという反省から、このあと森田は OS ツリーのビルド、インストール方法を調べ
+手元で OS のコードをいじれるようにしたのだった。ただしその成果を発揮する日は今の所きていない。来なくていいです</p>
+<p>サーバサイドのかっこいいバグの話なんかないですか &gt; 和良</p>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>バグのはなし</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='http://messsagepassing.github.io/001-bug/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='http://messsagepassing.github.io/001-bug/03-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='http://messsagepassing.github.io/001-bug/04-karino2/'>karino2</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='http://messsagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+</div></footer>
+</body>
+</html>

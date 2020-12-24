@@ -1,0 +1,52 @@
+/* Picking from https://colorhunt.co/palette/226680 */
+html, tr {
+    background-color: #fcf8ec;
+}
+
+.site-title {
+    background-color:#456268;
+}
+
+.site-title .title {
+    color: #d0e8f2;
+}
+
+.site-title .subtitle {
+    color: #79a3b1;
+}
+
+.menu-item a.is-active {
+    background-color: #79a3b1;
+}
+
+.footer a:link,
+.footer a:visited {
+    color: inherit;
+}
+
+@media screen and (max-width: 1023px) {
+  .article-container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.article-container {
+    line-height: 1.8em;
+}
+
+/* Sticky, thin footer */
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.non-footer {
+  flex: 1;
+}
+
+.footer {
+    padding: 1em;
+}
