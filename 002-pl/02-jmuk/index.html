@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Re: 言語のはなし - Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='Hatena::Bookmark' content='nocomment'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/002-pl/02-jmuk/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Re: 言語のはなし - Message Passing' />
+    <meta property="og:description"        content='最近あつい関数型言語 (F#) や、(Scala に)あつくなれない気持ちのこと。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Re: 言語のはなし - Message Passing' />
+    <meta property="twitter:description" content='最近あつい関数型言語 (F#) や、(Scala に)あつくなれない気持ちのこと。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Re: 言語のはなし</td></tr>
+        <tr><th>From</th><td>jmuk</td></tr>
+        <tr><th>Date</th><td>2020-12-20</td></tr>
+      </table>
+      <article class='content'><p>話をふられてなんなんだけど、最近あんまりML系の言語を使ってみたりしていないんだよな。最後になにかやったのは、<a href="https://github.com/esumii/min-caml">min-caml</a>がwasmを吐けるようにしたことで、あれはOCamlで書いたのだったか（min-camlはセルフホストではなく、OCamlで書かれている）。公開もしていない……自分で書いた部分がかなりmessyで気が滅入る感じになってしまったので放置している。</p>
+<h2 id="haskellの型クラス">Haskellの型クラス</h2>
+<p>そういえばポッドキャストで最近、<a href="https://misreading.chat/2020/10/27/88-a-history-of-haskell-being-lazy-with-class/">Haskellの歴史の論文を読んだのを紹介した</a>。2カラムで50ページ以上という長大なる論文なので仕方なくかなりの部分を割愛したが、なかでも型クラスの話はほとんど触れずに飛ばしたように思う。ところがあの論文は &ldquo;being lazy with class&rdquo; という副題がついてるくらい、なにかと型クラスの話をする論文なのだった。論文著者の気持ちとしては、型クラスこそがHaskellの最大の発明であり、特徴であるという気持ちなのかもしれない。</p>
+<p>これはポッドキャストでは言及したとおもうが、そもそも型クラスというのは、もともとは数値型と演算子をどうするか、というのが発端だったようだ。プログラミング言語ではたいてい整数型と浮動小数点型があり、+とかみたいな演算子を2引数の関数とみなしたとき、その型が問題になる。たとえば <code>let add x y = x + y</code> のような関数の型はどうあるべきなのか。この解決策として「数値という型クラス」が導入され、型クラスの仕様をみたせばどんな型でもよいことがキレイに表現できる。やったぜ。</p>
+<p>しかしこれ、比較的どうでもよい問題について大げさなツールで解決した感は否めない。ほとんどの言語は数値型は特別扱いして、それで大きな問題は起きていない。複数の型を受け入れるためのジェネリクスはよさそうだけど、型クラスというものはなんだか大げさにも思える。</p>
+<p>面白いのは、Haskellはこの素朴な型クラスの成功を受けて、それを発展・深化させていったところだった。たとえばモナドができたときも、モナドってつまり型クラスだよね、という話になった。ところが既存の素朴な型クラスの話とモナドは、実はうまくマッチしない。たとえばIntがNumですよ、というのとIOがMonadですよ、というのは話が違う。IOは処理結果を返す型コンストラクタにすぎないから（StringがやってくるIO Stringとか、意味のある値のないIO ()とかが、個別具体的な型になる）。だから、型クラスを拡張して、型コンストラクタも指定できるようにした。さらに、型コンストラクタが複数の型パラメータをもつとき、その型パラメータ間の関係にどんな制約をつけられるだろうか、みたいな方向性にも発展した。</p>
+<p>こうやって、型クラスという基礎から始まり、いろいろ複雑な論理関係を表現できるようになった。型クラスというのは出発点の動機は素朴でわりとどうでもいいものだったが、その先にはいろんな発展が見込まれる、豊かな領域の基礎になるものだった（数学者みたいな物言いだけど）。そのことがHaskellまわりの人達を魅了してきたのだろう。</p>
+<h2 id="言語のよさとエコシステムのよさ">言語のよさと、エコシステムのよさ</h2>
+<p>話は少しそれるが、あるプログラミング言語のよさみたいなものがあるとして、それってエコシステムに大いに影響されるものだよな、などとこのごろは強く思う。昔はそうでもなかったから、これは自分の年齢が関係するんだろうな。はー歳はとりたくないものだ。でもこれが間違っているというふうにも思いづらい。</p>
+<p>エコシステムというのは周辺ツール、ライブラリなどの話であり、言語仕様そのものとは直接的な関係はないといってもいい。どちらかといえば、人がどれだけたくさん寄り付いたかとか、サポートしてくれる企業がどれだけいたか、といった話にもなりがち。でもエコシステムってやっぱり大事なんじゃないか。エコシステムの発達は新しいニーズを生み、それが言語仕様を豊かにしていくという面もある。直接的な関係がないからといって、無関係というわけではない。</p>
+<p>Haskellにエコシステムがない……というつもりはない。そんなことを言うと多方面から怒られそう。十分に実用されているとすらいえる。でも他の人気の言語よりはエコシステムはどうしたって薄いだろう。Haskellみたいな言語の型システムは、長年研究者たちを魅了してきたし、それによって豊かに発達したわけだが、でもたとえばtypescriptが急激に発達していろいろわけのわからない型表現を生み出し取り入れているのを眺めるに、エコシステムの発達が生み出す言語仕様の発展ということについても思い馳せるところがないでもない。</p>
+<p>F#なんだか面白そうだな、よさそうだな、という感じも、.NETというエコシステムの上によって立つところがあるんじゃないか、というふうに思う。そしてたぶん、その基盤ゆえに独自に発達した言語仕様とかもあるんじゃないかな。そうだとすると面白いな。……と思う一方、いろいろあるJVM系言語については自分は懐疑的な視点を崩せてない（Kotlinはよさそうですけどね）。自分のJava系の経験のうすさゆえだろうか。どうですかね＞<a href="/002-pl/03-kzys/">和良さん</a>とか？</p>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>言語のはなし</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/002-pl/01-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/002-pl/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/002-pl/04-morrita/'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+          <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      
+          <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

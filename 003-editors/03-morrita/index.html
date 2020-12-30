@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Re: Re: テキストエディタのはなし - Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='Hatena::Bookmark' content='nocomment'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/003-editors/03-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Re: Re: テキストエディタのはなし - Message Passing' />
+    <meta property="og:description"        content='Emacs 世代だったわたしたちが今なにを使っているかというと、わりとみんな違う。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Re: Re: テキストエディタのはなし - Message Passing' />
+    <meta property="twitter:description" content='Emacs 世代だったわたしたちが今なにを使っているかというと、わりとみんな違う。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Re: Re: テキストエディタのはなし</td></tr>
+        <tr><th>From</th><td>morrita</td></tr>
+        <tr><th>Date</th><td>2020-12-29</td></tr>
+      </table>
+      <article class='content'><p>自分の状況は <a href="/003-editors/02-jmuk/">向井さんと似てる</a>。つまり Emacs は使ってない。
+ただ VS Code もそんなに使ってない。VS Code は他のものがないときの fallback というかんじ。カスタマイズもしてない。
+仕事が Andoid アプリなのでそこは必然的に Android Studio. 一時期サーバ側の C++ を書いていた頃は CLion に金を払っていた。
+これらは今はリモートデスクトップ越しに使っている。きびしい。</p>
+<p>Git のコミットログとかは vim だけれど、それはエディタというより Git の機能みたいな気分で使ってる。まったく使いこなしてない。
+2020 になってようやくコピーアンドペーストのキーバインドを覚えた。なにこれ革命的に便利。</p>
+<p>仕事だと他に社内の Web-based のエディタがあって、最近は Java 以外だとだいたいそれを使っている。</p>
+<h2 id="web-based-なエディタ">Web-based なエディタ</h2>
+<p>その内製 Web-based エディタ、所詮は内製ツールなので VS code みたいな出来のよさには遠く及ばない。補完もなんとなくされるかな程度。
+イメージとしては Jupyter Notebook/Lab くらいの編集力。ただレポジトリとくっついてるのでブラウザ上でブランチつくってコミットもとかできるし、ビルドもテストもできる。
+コードレビューも出せる、のみならず、レビューコメントがエディタから見えたりもする。</p>
+<p>あとコードは <a href="https://cacm.acm.org/magazines/2016/7/204032-why-google-stores-billions-of-lines-of-code-in-a-single-repository/fulltext">CITC</a> という仕組みで
+ブラウザ上での編集がなぜか手元にも反映されるので、ブラウザでできないこと (ビルドされたアプリを <code>adb install</code> するとか)はローカル環境でできる。</p>
+<p>サーバ側のプログラマにはこれだけで暮らしている人も割といる。ほんまいかなと思うけど、
+いわゆる「コード」だけでなく謎の設定ファイルをいじる仕事が大量にある場合はウェブエディタでも大差ないのかもしれない。
+SQL や Python みたいにどのみち IDE の強力な支援が期待できない言語にも同じことがいる。
+リモートデスクトップと比べるとキータイプ単位でレイテンシが無いのも良い。不毛な比較だけれど。</p>
+<p>Web-based なエディタが存在できる理由の一つは「ローカルの設定」を必要としない monorepo と hermetic build の力かもしれない。
+エディタからのビルドは要するに CI をトリガするようなものだけれど、ビルドのたびに環境をつくったら時間がかかって仕方がないし、
+状態のキャッシュとかも下手にやるとビルドの安定性を損ねる。そのへんの問題が解決済なので Web-based エディタでもなんとかなる。</p>
+<p>あとデフォルトが分散ビルドなので、手元でコマンドを動かしてもクラウドから呼んでも違いがないのはシームレスさに繋がっている。</p>
+<h3 id="github-codespaces">Github Codespaces</h3>
+<p>手元に環境をつくらなくていい Web-based エディタの気楽さが仕事の外にもあればと探していた頃、
+ちょうど <a href="https://github.com/features/codespaces">Github Codespaces</a> がリリースされたので試してみた。
+けっこう良い。ただ結局ブラウザ上のターミナルで色々やる前提があり、目に見えない状態に依存せざるを得ない。
+特に裏で VM を動かす前提なのが残念。</p>
+<p>ただそれは Github Codepaces の問題というよりは編集しているプロジェクトの制限に思える。
+ビルド作業がより宣言的になり、かつ Github Actions のようなコード実行環境がコミットなしに使えるようになればビルドやテストが severless になる。
+そうすれば Serverless Codespaces を実現できるはずで、VM はいらなくなる、かもしれない。今後の進歩を見守りたい。</p>
+<p>なおこのブログも Codespaces で書けないかと試したが、ベータ期間中は organization の repo を編集できないらしい。
+submodule なり fork なりワークアラウンドはあるんだろうけれど、めんどくさいので保留。</p>
+<h2 id="web-based-なエディタ-1">Web-based な「エディタ」</h2>
+<p>コードはさておき、人々は自然言語もテキストエディタで書いてるのだろうか？
+Emacs にべったりな暮らしをしていた 20 年前はメモをとるのもメールを書くのもチャットをするのも全部 Emacs だった。
+いまはそういうのは全部ブラウザでやっている。このブログは例外だけど、でも下書きはエディタより Gist でやることが多い。</p>
+<p>仕事だとメモをとるのは（セキュリティがうるさいので社外のサービスは使えず) Google Docs.
+タイプ量が多いメール、チャットやバグトラッカーもウェブベースだし、ローカルのファイルに何か書く機会がない。
+個人でも Notion なり Wordpress なりが主要なテキスト入力環境なのでやはりローカルのファイルはさわらない。
+このテキストは例外的に VS code で書いてるけど、我ながらショートカットとか全然覚えてなさすぎてぎこちなさがすごい。</p>
+<p>20 年前に Firefox でテキストフィールドを外部エディタで編集する add-on を使いながら脱 Emacs を夢想していた頃は、
+そのうちブラウザのテキストフィールドが進化してガチガチにカスタマイズできる日が来るとか思っていたけれど、
+そういうことは一ミリも起きなかった。やや残念。
+ただ Google Docs にしろ Notion にしろ WYSIWYG な環境はテキストフィールドですらないので、
+カスタマイズ可能なテキストフィールドというアイデアはあまりにプレインテキスト至上主義すぎた。</p>
+<hr>
+<p>テキストエディタ愛は kzys &gt; jmuk &gt; morrita というかんじであることが判明。
+我々この話題を書くべきだったのが疑問が湧いてきた・・・。
+一時期テキストエディタ自作勢だった <a href="/003-editors/04-karino2/">karino2</a> はきっともうちょっとなんかいうことあることでしょう。</p>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>テキストエディタのはなし</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/003-editors/01-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/003-editors/02-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/003-editors/04-karino2/'>karino2</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+          <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

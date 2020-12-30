@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html><head>
+    <title>言語のはなし - Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='Hatena::Bookmark' content='nocomment'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/002-pl/01-karino2/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='言語のはなし - Message Passing' />
+    <meta property="og:description"        content='最近あつい関数型言語 (F#) や、(Scala に)あつくなれない気持ちのこと。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='言語のはなし - Message Passing' />
+    <meta property="twitter:description" content='最近あつい関数型言語 (F#) や、(Scala に)あつくなれない気持ちのこと。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>言語のはなし</td></tr>
+        <tr><th>From</th><td>karino2</td></tr>
+        <tr><th>Date</th><td>2020-12-19</td></tr>
+      </table>
+      <article class='content'><h2 id="fとかml系言語の話">F#とかML系言語の話</h2>
+<p>最近どこでも<a href="https://fsharp.org/">F#</a>いいよしか言ってない気もするけれど、なかなかいいですよ、F#。
+Microsoftエコシステムの外の人間の方が使いみちが多いというのが面白いところに思う。
+Windows使ってる人じゃなくてMacとかLinux上でコマンドラインでなにかやりたい人にマッチしているのが盲点になりがち。
+自分がまさにその盲点にはまってたんですが。</p>
+<p>MacとかUnixでも動いて、ファイルのmoveとかcopyとかのシステム周りが一通り揃っていて、
+新しい圧縮だとか通信だとかにもちゃんと大企業が対応してくれて（.NETがだけど）、
+VSCodeのextentionも良く出来ていて、なおかつML系言語。
+Unix系コンソールでのML系言語の時代来たな！</p>
+<p>とか思っていたら、和良さんに <a href="https://blog.darklang.com/new-backend-fsharp/">DarkもOcamlからF#の時代ですよ！</a> とか教えてもらって、
+リンク先を読んでたら<a href="https://reasonml.github.io/">ReasonML</a> とか <a href="https://elm-lang.org/">Elm</a> を知る。
+以前AltJSとしてどっかで見かけた事はあった気がするが、
+その時は好きものがやってるだけのマイナープロジェクトくらいに思っていたけれど、
+F#もそんな風に思っていたのに使ってみると意外と使える感じだった。
+こいつらも結構いいんじゃないか？とか思い始める。</p>
+<p>この辺のAltJS系、それなりに流行ってるんですかね？
+自分が知らなかっただけで意外とML系言語の時代来ていた？</p>
+<h2 id="fが普通のプログラマにどのくらい受け入れられるか的な話">F#が普通のプログラマにどのくらい受け入れられるか的な話</h2>
+<p>流行るといえばどの位一般のプログラマに受けいられるのかが課題。という事で言語的な学習のしやすさを。</p>
+<p>F#（というかML）は、表面上はPythonとかとそんなに変わらなくて、見様見真似でもちょっとは書ける。
+一方で、いい感じにF#の良さを活かそうとすると、これまでのスタイルとは大きく変えてプログラミングをしないといけない。
+例えばF#のパイプ演算子をうまく使うためには関数はカリー化したものを基本としてプログラムしてる方が良くて、
+そうするとクラスやオブジェクトでは無くValueを基本にプログラミングをしないといけない。</p>
+<p>このプログラムの構成の仕方の変更はそれなりに難しさ、関数型言語の素養を必要とす。
+入り口は普通のプログラム言語っぽくても、結局は関数型言語として接する必要はある。
+この「関数型言語としてのプログラム構成の仕方を学んで従う」のは、どのくらい普通のプログラマに受け入れられるのか？</p>
+<p>あと、F#は割と基本的な所でモナドが出てくる。Option型を扱うのにDSLを作るのが推奨されてるっぽい感じ。
+専用の構文があればいいはずなのにそういうのは無くて、
+computation expressionという<a href="https://fsharpforfunandprofit.com/posts/computation-expressions-bind/">bind系の関数</a>を幾つか実装すると使えるDSLを作る枠組みがあって、それを勧られる。
+それにしたって最初からOption用のcomputation expressionで使えるビルダを用意しておいてくれれば、理解しなくてもしばらくは使えると思うのだが、
+F#には何故かビルドインではOption用のcomputation expressionのビルダが無いので自分で書かないといけない（6行くらいで書けるけど）。</p>
+<p>自分で書くためにはbindってなんだよ、というのを学ぶ必要があり、これはお決まりのモナド入門をやらないといけない。
+提供してくれているのを使うだけならもうちょっと後回しに出来るのだけど、
+提供してくれてないので言語の入門の割と初期でどうしてもbindの話が出てきてしまう。</p>
+<p>教育的配慮もあってそうなってるのかもしれないが、
+大多数の人には不要な壁になってしまっている。
+F#を使う時の期待値として関数型言語の勉強という側面も持っている気がするので、
+初期にbindの必要性に当たるのは悪いとも言い切れないのだけれど。</p>
+<h2 id="そもそもbindのシンタックスシュガーってどうなのか">そもそもbindのシンタックスシュガーってどうなのか？</h2>
+<p>Bindって今どきのプログラマはどこかでは乗り越え済みなんですかね？</p>
+<p>C#はLINQが入った時にみんな頑張ったし、F#も.NET勢なので.NET界隈はなぜかこの辺を普通のプログラマもやる、
+という良く分からん風習があった。
+でもふと冷静になって外の世界を見渡すと、なんだかんだでモバイルの2大主流言語であるKotlinにもSwiftにもない。
+機械学習で主流のPythonにも、Webのフロントエンドで使うJSにもない。</p>
+<p>パーサーコンビネータはみんな使ってると思うのだけど、別にbindとか知らんでも使える。</p>
+<p>こうして考えると、普通にプログラム言語を使っているとbindのシンタックスシュガーのある言語を触る機会は今でも意外と無さそう。</p>
+<p>そもそもF#で初期にbindの例で出てくるOption、先程も言ったとおりちゃんと専用のシンタックスシュガーを導入すればbindのシンタックスシュガーなんて要らないんですよね。
+実際KotlinはOption(Nullable)周りに<a href="https://kotlinlang.org/docs/reference/null-safety.html">専用のシンタックスシュガーがいろいろ入っていて</a>、
+bindのシンタックスシュガーなんて無くてもむしろF#より快適に書ける。</p>
+<p>Computation expressionの枠組みでいろいろな物を汎用的に美しく書けるとは言っても、良く出てくるケースはだいたい決まってて、
+それ独自のシンタックスシュガーを入れれば特に問題は無い。
+Asyncとawaitもcomputation expressionで美しく書けます、と言われても、別に<a href="https://kotlinlang.org/docs/reference/coroutines-overview.html">suspend関数</a>で問題が無い。
+専用の構文を入れるのはダサいかもしれないけれど、どうせ似たような仕組みに落ち着くのだから使う側的に違いは無い。
+理論的に美しくないだけで学習コストを大きく下げられるのだから、そっちの方が良いのでは？という気もする。</p>
+<p>Computation expressionは新たにDSLを作りたい時には強力な仕組みとなる訳だけど、
+if elseのショートカットとかをちゃんと実現しようとすれば遅延評価みたいな仕組みも必要になってきて（F#ではDelayというのでこれを行う）、
+そんなにシンプルで美しいという訳でも無い。
+でもそうしたフルな機能が要らないなら別にKotlinのようにインライン周りの工夫が入っているだけで十分だったりする。
+むしろreturn周りなんかはKotlinの方がシンプルに書ける事も多い。</p>
+<p>いろいろなDSLをしょっちゅう作って、それがかなり汎用な言語機能を要求するならbindのシンタックスシュガーがある方がいい。
+でもそういうのって一部の人だけがやればいい気もするんですよねぇ。
+一方でF#とかの良さを享受出来る人というのはもっとたくさん要る訳で、
+もっとそういう多数派に向けてシンタックスシュガーいろいろ入れてbindに触れずに済む範囲を増やした方が流行るんじゃないか。</p>
+<p>Kotlinとかってまさにそういう言語で、algebraic typeの良さとかは受け入れつつ、
+汎用だが全てを含めると複雑になるbindのシンタックスシュガーでいろいろ統一せず必要に応じたシンタックスシュガーを入れて便利に書ける。
+これでいいというのが現在の答えなのかね。</p>
+<p>一方でKotlinみたいな言語だとオブジェクトが多くなりがちで、algebraic typeをガンガン使ったモデリングというF#の教義（というかたぶんML系言語の教義なんでしょうが）に従わない事も多い。
+そもそもAndroidはActivityとかViewがオブジェクトで作られていて、
+それらとの相互作用がプログラムの多くの部分を占めるので、そうなるもっともな理由もある。</p>
+<p>ただそういう日々をすごしているとfunctionalなスタイルを学ぶ事は難しくて、
+いろいろ切り離してpureなドメインモデルの世界を構築してML的に書ける時でもそれを行わない事が多く、
+関数型言語の教育的側面としてはよろしく無い部分もある気もする。</p>
+<p>などととりとめも無く書いてきたけど、以前<a href="https://misreading.chat/2018/12/25/episode-41-idris-systems-programming-meets-full-dependent-types/">Idrisの話をしたり</a>
+Mini OCaml動かしたりしていた<a href="/002-pl/02-jmuk/">jmuk</a>的にはなにかコメントはありませんかね？</p>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>言語のはなし</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/002-pl/02-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/002-pl/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/002-pl/04-morrita/'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+          <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      
+          <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

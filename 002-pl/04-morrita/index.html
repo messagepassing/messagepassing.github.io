@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Re: Re: Re: 言語のはなし - Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='Hatena::Bookmark' content='nocomment'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/002-pl/04-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Re: Re: Re: 言語のはなし - Message Passing' />
+    <meta property="og:description"        content='最近あつい関数型言語 (F#) や、(Scala に)あつくなれない気持ちのこと。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Re: Re: Re: 言語のはなし - Message Passing' />
+    <meta property="twitter:description" content='最近あつい関数型言語 (F#) や、(Scala に)あつくなれない気持ちのこと。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Re: Re: Re: 言語のはなし</td></tr>
+        <tr><th>From</th><td>morrita</td></tr>
+        <tr><th>Date</th><td>2020-12-22</td></tr>
+      </table>
+      <article class='content'><p><a href="https://github.com/karino2/uit">F# を日用する</a> karino2,
+<a href="https://github.com/scala/scala/commits?author=kzys">Scala にパッチを書いていた</a> kzys,
+<a href="https://www.amazon.co.jp/dp/4839919623">Haskell の本を書いてしまった</a> jmuk のあとに
+日々 <code>for</code> 文を書いて暮らしている自分になにか言うことがあるのか疑問だが、賑やかし程度になんか書く。</p>
+<h2 id="arrow">Arrow</h2>
+<p>まず冒頭に出てきた <a href="https://fsharpforfunandprofit.com/posts/computation-expressions-bind/">F# の bind</a> に相当するのは Kotlin には無いという話。
+Kotlin には <a href="https://arrow-kt.io/docs/patterns/monad_comprehensions/">Arrow</a> という FP 愛好家向けのマイナーライブラリがある。
+そして Kotlin には coroutine がある。その二つは一緒に使われて <a href="https://arrow-kt.io/docs/patterns/monad_comprehensions/">Monad Comprehension</a>
+という機能になっている。（らしい。）これがどのくらい F# の bind に近いのか自分はよくわからないけれど、そういうのが好きな人はいることはわかる。</p>
+<p>一方で、仮にこれがまあまあ monad してるとしても、こうした流儀が Kotlin コミュニティの中心にあるとは思えない。
+端的にいうと Android プログラマは(近似的には)誰も仕事で Arrow 使ってないよね。
+同じ JVM 言語でも、Scala なら <a href="https://github.com/scalaz/scalaz">scalaz</a> なり <a href="https://typelevel.org/cats/">cats</a> なりは
+もうちょっと受け入れられているように外野からは見える。
+(なお森田の Scala FP 力は<a href="https://www.manning.com/books/functional-programming-in-scala">この本</a> を途中で投げ出したくらい。つまり雑魚。あまり真に受けないでいただきたく。)
+F# は、よくしらないけどたぶんもうちょっと Haskell に近く functional first なのではなかろうか。</p>
+<h2 id="一級市民への道">一級市民への道</h2>
+<p>別の言い方をすると Haskell なり F# なりの monad は言語仕様を超えて一級市民である。Kotlin ではそうでない。</p>
+<p>Monad の話をこれ以上続けるのは心苦しいのでもうちょっと身近なところに話を持ってくると、
+データ分析言語の R では DataFrame というオブジェクトが一級市民である。
+一方データ解析もできる Python にとって DataFrame は単なるライブラリの一つ (<a href="https://pandas.pydata.org/">Pandas</a>) である。
+R のエコシステムではなにかと DataFrame を使う。
+JavaScript では何かと JSON を使うみたいな雰囲気を想像すると近い。
+一方で Python は DataFrame が出てこない世界の方がずっと広い。
+なので R と比べると Python の DataFrame はいまいちしっくりこない。
+ここでは jmuk や kzys がいうところのエコシステムが、逆の向きで問題になる。
+つまり DSL として特化するが故に強い R のエコシステムが強さになっている。</p>
+<p>・・・のかというと、どうだろう。自分は主に Python (Pandas) で DataFrame を使っているけれど、そんなに困っていない。
+むかし R をかじってみたことがあるけれど、結局板につかず Python に戻ってきてしまった。
+そして今や Python DataFrame 周辺のエコシステムは（分野によっては） R と戦える感じになっている。
+汎用言語としての Python エコシステムの強さが R のニッチを侵略している。</p>
+<p>つまり、一級市民として特定のアイデアを後押しできるニッチ言語の優位もあるし、
+メインストリームの強さがそれをうわ塗るケースもある。
+Monad が DataFrame くらい良い抽象なのだとしたら、
+non-FP 言語で async 用途以外の monad が普及する日が来るかもしれない。
+そんなに重要ではないかもと karino2 はいう。自分にはわからない。</p>
+<p>それはさておき NumPy と Pandas の躍進はミラクルじみているとも思っていて、
+イノベーションの話をするとき iPhone を引き合いに出すのに似た心苦しさもある。
+一般化するにはちょっと飛躍あるんじゃないの？
+あとはベースの言語自体の versatality は無視できない。
+Python は DataFrame をホストできるくらいには強力な文法をもっていた(添字アクセスをフックできるとか)。
+でも Kotlin やその他のメインストリーム言語の型システムや構文機能がどれくらい
+Monad-capable なのか自分にはわからない。言語の懐の深さあってのエコシステムだろうから。</p>
+<p>結論としては Android/JetBrains の中の人が勢い余って Arrow やそれ相応の何かを
+フレームワーク/言語の下の方につっこむようなミラクルを期待しつつ
+しばらく <code>for</code> (Stream ですらない)と <code>throw new RuntieException()</code> (Kotlin ですらない)
+を書いて僕は生きていきていきますよ・・・</p>
+<p>自分がわかってないから難しく感じる面はあると思う。
+F# や Scala をやる気にもならないので、せめてそのうち Arrow に入門したい。
+中の人は Manning から本を出してほしいもんです。</p>
+<hr>
+<div class='message'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>Arrowどうなんですかね。何度か眺めた事あるんだけど、良く分からなかったんですよね。
+なんか以下のように書いちゃダメで（これは当たり前）、</p>
+<pre><code>IO.fx {
+  val a = IO.invoke { 1 }
+  a + 1
+}.fix().unsafeRunSync()
+</code></pre><p>でもaの所にカッコをつけるとOKなんですよね。</p>
+<pre><code>  val (a) = IO.invoke { 1 }
+</code></pre><p>このカッコの意味が良くわかってない。
+これで以下と同じ意味になるらしいけど、</p>
+<pre><code>  val a = IO.invoke { 1 }.bind()
+</code></pre><p>同じになるメカニズムがわかって無くて、ちょっと理解しようとしたけれどどこ見たらいいのか分からなかった。</p>
+<p>それは置いといて、kotlinにはDSLを作る他のメカニズムがある。
+それで十分なんじゃないの、というのがコアにはこういうのが入っていない理由と思うのだけど、どうなんですかね。
+SwiftとKotlinの両方が同じ姿勢だと、なんか正しそうな気もするのだけど（<a href="http://www.paulgraham.com/avg.html">beatされるaverage</a>な見解）。</p>
+
+</div>
+</div>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>言語のはなし</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/002-pl/01-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/002-pl/02-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/002-pl/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+          <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      
+          <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
