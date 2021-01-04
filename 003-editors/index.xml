@@ -70,12 +70,12 @@ Chromium規模のC++だと標準のモードはけっきょくあまり役に立
       <pubDate>Sat, 26 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://messagepassing.github.io/003-editors/01-kzys/</guid>
-      <description>morrita 我々みな Emacs 世代だと思うけど、最近つかってるエディタなんかあります？ (内輪のスレッドより引用)   GoLand 仕事で IntelliJ を使っていたこともあって、仕事の Go は GoLand で書いています。定義元に飛ぶとか、シンボルのリネームとか、IDE っぽい機能が一通り動いて便利。
-IDE を使うのは Emacs に無い機能が嬉しいからで、つまり Emacs のキーボードショートカットと IDE のそれは一対一対応にならないので、それなら IDE のキーボードショートカットをちゃんと覚えたほうがいいのでは、と思っているんですが、結局カーソルを動かすとかは Emacs の C-f/n/b/p に慣れすぎていて変えられず、デフォルトのものをちょっとだけ Emacs 風にして過ごしています。
-範囲選択とか、Emacs じゃない人々は、Shift ずっと押しながらカーソルキーで動かしたりしてるんでしょうか? C-space して C-s してジャンプとかしないの? まじで?
-Visual Studio Code 自分のブログの Markdown とか、IDE 使わないときは Visual Studio Code 使っています。Visual Studio Code の Emacs 風の拡張はたくさんあるんですが、作者の VSCodeのキーバインド拡張を作ったので、その勘所を紹介 を読んでからは、Awesome Emacs Keymap を使っています。
+      <description>morrita 我々みな Emacs 世代だと思うけど、最近つかってるエディタなんかあります？ (内輪のスレッドより引用)   GoLand 仕事で IntelliJ を使っていたこともあって、仕事の Go は GoLand で書いている。定義元に飛ぶとか、シンボルのリネームとか、IDE っぽい機能が一通り動いて便利。
+IDE を使うのは Emacs に無い機能が嬉しいからで、つまり Emacs のキーボードショートカットと IDE のそれは一対一対応にならないので、それなら IDE のキーボードショートカットをちゃんと覚えたほうがいいのでは、と思っているけれど、結局カーソルを動かすとかは Emacs の C-f/n/b/p に慣れすぎていて変えられず、デフォルトのものをちょっとだけ Emacs 風にしている。
+Visual Studio Code 自分のブログの Markdown とか、IDE を使わないときは Visual Studio Code を使うことが多い。Visual Studio Code の Emacs 風の拡張はたくさんあるけれど、私は作者の VSCodeのキーバインド拡張を作ったので、その勘所を紹介 に説得 (?) されて、Awesome Emacs Keymap を使っている。
 Remote Development が結構よかったのと、edamagit という Magit クローンが気になっていて、この二つをちゃんと自分が使えるようになったら、Emacs 使わなくても良くなるかもしれない。
-Emacs でも Emacs もまだ使ってます。最近は Spacemacs とか Doom Emacs も流行っているけど、自分は普通の Emacs です。</description>
+Emacs でも Emacs もまだ使っている。用途は、Magit:ファイル1枚くらいで完結するスクリプト:複数のプロジェクトを行き来する必要があるとき = 8:1:1 くらいで、昔に比べるとだいぶ減った。
+これをここからゼロにするかというと、うーん、どうなんだろう。私は Linux 使いはじめるまえに Meadow (というのは Windows で動く Emacs の一種です) を使っていたりして、Emacs とか Unix っぽいツール群がスッと動くことが Linux 使い出したときの感動のひとつだったりしたので、結構 Emacs 愛があるような気がする。</description>
     </item>
     
   </channel>
