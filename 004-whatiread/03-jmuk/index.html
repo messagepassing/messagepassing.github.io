@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Re: Re: 今年読んだもの - Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='Hatena::Bookmark' content='nocomment'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/004-whatiread/03-jmuk/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Re: Re: 今年読んだもの - Message Passing' />
+    <meta property="og:description"        content='ブログ、本、論文、雑誌。みんな何読んだ？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Re: Re: 今年読んだもの - Message Passing' />
+    <meta property="twitter:description" content='ブログ、本、論文、雑誌。みんな何読んだ？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Re: Re: 今年読んだもの</td></tr>
+        <tr><th>From</th><td>jmuk</td></tr>
+        <tr><th>Date</th><td>2021-01-03</td></tr>
+      </table>
+      <article class='content'><p>いろいろ忙しかったのと、私事などもあり、2020年はあんまりいろいろ読んだりはしない年になった。のであんまり書くことなかったりするんだよなぁ。</p>
+<h2 id="remarkable2httpsremarkablecom"><a href="https://remarkable.com/">reMarkable2</a></h2>
+<p>話をふられたのでまずそこから書くと、reMarkable2を買った。e-inkのタブレットデバイス。なかみは独自のOSで、基本的には文書や本を読むためのものというくくり。見かけてすぐ予約したけど、パンデミックの影響もあり、入手したのは10月。まだそんなに使いこなしているわけでもない。</p>
+<p>もともとの動機として、論文を読むのに向いてるe-inkタブレットがほしかったのだった。reMarkable2は基本的にはPDFとepubリーダになっていて、PDFとかebookはアプリ・拡張機能からクラウド経由でデバイスに送り込んで読める。その用途なら、Amazon Kindleデバイス＋instapaperでもまぁいいんだけどね……（まあそれなりの大きさがあるのは良い）。</p>
+<p>e-inkリーダとしての性能は、まあそこそこかな。やっぱり画面遷移が遅いし、前後のページにしか遷移できないので、いきなり前の方にジャンプしたりできなくて、ちょっと不便。でもやっぱり読みやすい。それと、専用のスタイラスがあって、PDFでもebookでも好き勝手にメモを書き込めるのが面白い。というわけで、論文読みデバイスとしてはなかなか優秀だと思う。でもまあ、向いている人が必ずしも多いわけではないニッチ製品かなぁ。いちおうウェブページも同じ仕組みで（ebookに変換して転送して）読むことはできる。けどまあウェブ閲覧としてはイマイチ。やってみたら日本語ウェブページも読めなかったし（日本語PDFは読めるようだ。フォント埋め込みしてるからかな）。</p>
+<h2 id="lets-encrypt-an-automated-certificate-authority-to-encrypt-the-entire-webhttpsjhaldermcompubpapersletsencrypt-ccs19pdf"><a href="https://jhalderm.com/pub/papers/letsencrypt-ccs19.pdf">Let&rsquo;s Encrypt: An Automated Certificate Authority to Encrypt the Entire Web</a></h2>
+<p>というわけで、reMarkable2で読むのはもっぱら論文なんだけど、読んだ論文は基本的にはポッドキャストで紹介するつもりなので、ここで紹介するものがあんまりない。ただそういえば、このLet&rsquo;s Encryptの論文はおもしろかったけどポッドキャスト向きじゃあないかも。あんまりアカデミックな内容じゃないんだよね。</p>
+<p>Let&rsquo;s Encryptのことのおこり、組織構成、資金、クライアントツールのデモグラフィック、成功の要因などが詳しく書かれている。技術面だとLet&rsquo;s Encryptのプロトコルが解説されていて、これでようやくどういうものか理解できたっていうのはある。完全に自動化されていて間に人間がいっさい介在しない（できない）っていうのはやっぱり面白いね。</p>
+<p>そういえばLet&rsquo;s Encryptの証明書は有効期限が短く3ヶ月しかない。それはまあちょっと不便なんだけど、なぜそうなっているのか。なんとなく勝手に、完全自動化で無料である意味でほかのCAのような信頼性の担保がないからだとずっと思っていたが、この論文を読んだらぜんぜんそういう理由じゃなかったので、そこは読んでて思わず声が出た。有効期限が短くなれば人間としても手作業で更新するのが手間になるから、ユーザ側も更新をcronなどで完全自動化するモチベーションが出てくる。そうなるようにわざと短い有効期限にしているのだそうだ。そうだったのかよ！？</p>
+<h2 id="bpf-performance-toolshttpwwwbrendangreggcombpf-performance-tools-bookhtml"><a href="http://www.brendangregg.com/bpf-performance-tools-book.html">BPF Performance Tools</a></h2>
+<p>さて、本でいえばBPF Performance Toolsを2020年初に買っていた。BPFまわりで活発に活動しているBrendan Gregg氏の本だ。めちゃくちゃ分厚い。あと残念な告白をすると、通読はできていません。</p>
+<p>買って読んでみてわかったのだが、ある意味では膨大なレシピブックという側面があり、こういうことをしたいならこうする、といったコードサンプル、事例がふんだんに盛り込まれていて、扱われているネタは広範なんだけど、悪くいえば散漫でもあり、なんか読みづらい。序盤の数章は読んで面白かったんだけどね。karinoさんも、Brendan Greggの他の本への感想に似たようなことを書いていたので、これはこの人の方向性ということなんだろう。悪い本ではぜんぜんないというか、持っていて良い本だとは思うけれど。</p>
+<h2 id="並列コンピュータ----非定量的アプローチhttpswwwohmshacojpbook9784274225710"><a href="https://www.ohmsha.co.jp/book/9784274225710/">並列コンピュータ &ndash; 非定量的アプローチ</a></h2>
+<p>出身大学の天野英晴先生が書いた日本語の本。これは面白く読んだ。並列コンピュータの構成方法についての細かい話がいろいろわかりやすくまとまっている。たとえばキャッシュコヒーレンシや共有メモリモデル、クラスタマシンなどなど。まえがきによれば過去あった本の再編とのことだけど、最後にGPUなどのアクセラレータを扱った章も書き足されている。こういう分野は普段の仕事と縁遠いから、それゆえに読んでいて面白い。</p>
+<p>なお、タイトルはヘネパタ（『コンピュータ・アーキテクチャ　定量的アプローチ』）をもじったものだけど、そんなヘネパタみたいなことは普通はできないし、複雑化したコンピュータを定量的に理解するのもだんだん難しくなってきているから……といった話がまえがきに書いてあるのがわりと面白い。これは出版社のサイトの「試し読み」から一読できるので興味があればどうぞ。</p>
+<h2 id="reverse-engineering-the-source-code-of-the-biontechpfizer-sars-cov-2-vaccinehttpsberthubeuarticlespostsreverse-engineering-source-code-of-the-biontech-pfizer-vaccine"><a href="https://berthub.eu/articles/posts/reverse-engineering-source-code-of-the-biontech-pfizer-vaccine/">Reverse Engineering the source code of the BioNTech/Pfizer SARS-CoV-2 Vaccine</a></h2>
+<p>そういえば年末に読んだこれはけっこう面白かった。新型コロナウィルスのワクチンの「ソースコード」を解説する記事。DNAの各パートについて、それぞれがどういう意味なのかを説明してくれている。この記事にかぎらず解説記事というのはいくつもあるものだと思うけれど、この記事はプログラマによる解説記事なのでプログラマが読んでわかりやすいたとえが入っているのが特徴。これを読んだ後にほかの解説記事を読んだら理解しやすくなったように感じた（気のせいだと思うけど）。日本語翻訳も上がっていて、そちらも良いけれどこのプログラマ向けっぽい感じが少し薄れている気がする。</p>
+<hr>
+<div class='message'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+自分も BPF Performance Tools 読みました。
+Systems Performance もそうですが、
+この人の「持っている知識の確かさ」と「著者としてのいまいちさ」のギャップはなんなんでしょうね・・・。
+</div>
+</div>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>今年読んだもの</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/004-whatiread/02-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/004-whatiread/04-kzys/'>kzys</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+          <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

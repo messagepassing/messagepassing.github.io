@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>今年読んだもの on Message Passing</title>
+    <link>https://messagepassing.github.io/004-whatiread/</link>
+    <description>Recent content in 今年読んだもの on Message Passing</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://messagepassing.github.io/004-whatiread/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Re: Re: Re: 今年読んだもの</title>
+      <link>https://messagepassing.github.io/004-whatiread/04-kzys/</link>
+      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/004-whatiread/04-kzys/</guid>
+      <description>ここ数年ずっと技術書は O&amp;rsquo;Reilly Online Learning (もう Safari と呼ばないんですね) で読んでいる。ACM の年会費を払うだけで、ちょっとだけ興味があるトピックに関してでも、本を複数冊パラパラと読めるし、O&amp;rsquo;Reilly の本だけではないので、本屋気分で新着を冷やかすのも楽しい。
+ただ、高い技術書を買って値段分の価値をとるべく読み切る、という動機が弱くなるという問題があって、ここまでが長い言い訳なんですが、2020年は通読して印象に残っている技術書がありません。2021年はがんばります。
+BPF Performance Tools jmuk さんと同じく &amp;ldquo;BPF Performance Tools&amp;rdquo; は途中まで読んだ。構成にはあまり不満はなくて「BPF すごいなあ。便利だなあ。なんでもできるなあ。」という印象。
+BPF そのものは、bpftrace で色々書くのも DTrace みたいでかっこいいけれど、BCC に入っている小物スクリプトを使うだけでも結構良くて、昔だったらあたりをつけて strace したり、lsof を連打するような局面で「このホストの全ての open を tail -F 風にずっと流す」みたいなことができて便利。containerd/cgroup のこのバグを直したときにも使ったはず。
+Practical TLA+ AWS 社員たるもの PlusCal 経由でいいので TLA+ くらい書けなくては、と思って読み出した。これはまだ本当に冒頭までしか読めていなくて、語るべきことなし。
+著者の Hillel Wayne は TLA+ や Alloy など形式手法のコンサルティングやワークショップなどを仕事にしている人で、ブログもある。
+Why the Sorbet typechecker is fast Sorbet は Stripe の開発している Ruby むけの静的型チェッカ。初期開発メンバーの一人である Nelson Elhage は、この他にも Sorbet の開発上の工夫について色々と書いていて、どれも面白い。
+ Record/Replay testing in Sorbet Reflections on software performance  以前は Scala のコンパイラを書いていた Dmitry Petrashko も Sorbet には関わっていて、Software Engineering Daily ポッドキャストの Sorbet: Typed Ruby with Dmitry Petrashko で話している。</description>
+    </item>
+    
+    <item>
+      <title>Re: Re: 今年読んだもの</title>
+      <link>https://messagepassing.github.io/004-whatiread/03-jmuk/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/004-whatiread/03-jmuk/</guid>
+      <description>いろいろ忙しかったのと、私事などもあり、2020年はあんまりいろいろ読んだりはしない年になった。のであんまり書くことなかったりするんだよなぁ。
+reMarkable2 話をふられたのでまずそこから書くと、reMarkable2を買った。e-inkのタブレットデバイス。なかみは独自のOSで、基本的には文書や本を読むためのものというくくり。見かけてすぐ予約したけど、パンデミックの影響もあり、入手したのは10月。まだそんなに使いこなしているわけでもない。
+もともとの動機として、論文を読むのに向いてるe-inkタブレットがほしかったのだった。reMarkable2は基本的にはPDFとepubリーダになっていて、PDFとかebookはアプリ・拡張機能からクラウド経由でデバイスに送り込んで読める。その用途なら、Amazon Kindleデバイス＋instapaperでもまぁいいんだけどね……（まあそれなりの大きさがあるのは良い）。
+e-inkリーダとしての性能は、まあそこそこかな。やっぱり画面遷移が遅いし、前後のページにしか遷移できないので、いきなり前の方にジャンプしたりできなくて、ちょっと不便。でもやっぱり読みやすい。それと、専用のスタイラスがあって、PDFでもebookでも好き勝手にメモを書き込めるのが面白い。というわけで、論文読みデバイスとしてはなかなか優秀だと思う。でもまあ、向いている人が必ずしも多いわけではないニッチ製品かなぁ。いちおうウェブページも同じ仕組みで（ebookに変換して転送して）読むことはできる。けどまあウェブ閲覧としてはイマイチ。やってみたら日本語ウェブページも読めなかったし（日本語PDFは読めるようだ。フォント埋め込みしてるからかな）。
+Let&amp;rsquo;s Encrypt: An Automated Certificate Authority to Encrypt the Entire Web というわけで、reMarkable2で読むのはもっぱら論文なんだけど、読んだ論文は基本的にはポッドキャストで紹介するつもりなので、ここで紹介するものがあんまりない。ただそういえば、このLet&amp;rsquo;s Encryptの論文はおもしろかったけどポッドキャスト向きじゃあないかも。あんまりアカデミックな内容じゃないんだよね。
+Let&amp;rsquo;s Encryptのことのおこり、組織構成、資金、クライアントツールのデモグラフィック、成功の要因などが詳しく書かれている。技術面だとLet&amp;rsquo;s Encryptのプロトコルが解説されていて、これでようやくどういうものか理解できたっていうのはある。完全に自動化されていて間に人間がいっさい介在しない（できない）っていうのはやっぱり面白いね。
+そういえばLet&amp;rsquo;s Encryptの証明書は有効期限が短く3ヶ月しかない。それはまあちょっと不便なんだけど、なぜそうなっているのか。なんとなく勝手に、完全自動化で無料である意味でほかのCAのような信頼性の担保がないからだとずっと思っていたが、この論文を読んだらぜんぜんそういう理由じゃなかったので、そこは読んでて思わず声が出た。有効期限が短くなれば人間としても手作業で更新するのが手間になるから、ユーザ側も更新をcronなどで完全自動化するモチベーションが出てくる。そうなるようにわざと短い有効期限にしているのだそうだ。そうだったのかよ！？
+BPF Performance Tools さて、本でいえばBPF Performance Toolsを2020年初に買っていた。BPFまわりで活発に活動しているBrendan Gregg氏の本だ。めちゃくちゃ分厚い。あと残念な告白をすると、通読はできていません。
+買って読んでみてわかったのだが、ある意味では膨大なレシピブックという側面があり、こういうことをしたいならこうする、といったコードサンプル、事例がふんだんに盛り込まれていて、扱われているネタは広範なんだけど、悪くいえば散漫でもあり、なんか読みづらい。序盤の数章は読んで面白かったんだけどね。karinoさんも、Brendan Greggの他の本への感想に似たようなことを書いていたので、これはこの人の方向性ということなんだろう。悪い本ではぜんぜんないというか、持っていて良い本だとは思うけれど。
+並列コンピュータ &amp;ndash; 非定量的アプローチ 出身大学の天野英晴先生が書いた日本語の本。これは面白く読んだ。並列コンピュータの構成方法についての細かい話がいろいろわかりやすくまとまっている。たとえばキャッシュコヒーレンシや共有メモリモデル、クラスタマシンなどなど。まえがきによれば過去あった本の再編とのことだけど、最後にGPUなどのアクセラレータを扱った章も書き足されている。こういう分野は普段の仕事と縁遠いから、それゆえに読んでいて面白い。
+なお、タイトルはヘネパタ（『コンピュータ・アーキテクチャ　定量的アプローチ』）をもじったものだけど、そんなヘネパタみたいなことは普通はできないし、複雑化したコンピュータを定量的に理解するのもだんだん難しくなってきているから……といった話がまえがきに書いてあるのがわりと面白い。これは出版社のサイトの「試し読み」から一読できるので興味があればどうぞ。
+Reverse Engineering the source code of the BioNTech/Pfizer SARS-CoV-2 Vaccine そういえば年末に読んだこれはけっこう面白かった。新型コロナウィルスのワクチンの「ソースコード」を解説する記事。DNAの各パートについて、それぞれがどういう意味なのかを説明してくれている。この記事にかぎらず解説記事というのはいくつもあるものだと思うけれど、この記事はプログラマによる解説記事なのでプログラマが読んでわかりやすいたとえが入っているのが特徴。これを読んだ後にほかの解説記事を読んだら理解しやすくなったように感じた（気のせいだと思うけど）。日本語翻訳も上がっていて、そちらも良いけれどこのプログラマ向けっぽい感じが少し薄れている気がする。
+ morrita 自分も BPF Performance Tools 読みました。 Systems Performance もそうですが、 この人の「持っている知識の確かさ」と「著者としてのいまいちさ」のギャップはなんなんでしょうね・・・。   </description>
+    </item>
+    
+    <item>
+      <title>Re: 今年読んだもの</title>
+      <link>https://messagepassing.github.io/004-whatiread/02-karino2/</link>
+      <pubDate>Wed, 30 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/004-whatiread/02-karino2/</guid>
+      <description>今年はあんまり読んでないかと思っていたが、見直してみると数は多いので代表的なのだけ。
+System Performance Brendan Greggの本、これは仕事をはじめる前の無職の頃に買って読んでいた本。 森田さんが良くBrendan Greggの言及をするので自分もdtraceって奴をちゃんと勉強しておくか〜、と思って買った。能書きが多くて同じようなことを延々と繰り返してて辛い本だが、レシピ集的には素晴らしい、という二面性のある、評価の難しい本。当時の読書記録はこちら。 読書記録: System Performance
+なお、パフォーマンスつながりでiOSの事情を知る為に iOS and macOS Performance Tuning: Cocoa, Cocoa Touch, Objective-C, and Swift も読んだ。 そんなに深い話では無いが、普通にiOS上で使えるツール等が書いてあってiOSの基本的な話題もあって悪くはない。 ちなみにiOSではdtraceを使えそうな事が書いてあったが、たぶん使えないのでは？でもiOSにトレーシング系のプロファイラが無いというのも信じがたい？知っている人居たら教えて下さい。
+C++の本 今年はC++の本をいろいろ読んだ。
+ The C++ Programming Language 4th edition Effective Modern C++  上記２冊の当時の感想 最近読んだC++の本2冊の感想   Modern C++ Programming Cookbook  この本はいまいち。当時の感想 書籍: Modern C++ Programming Cookbook    一番上のStroustrup本は業務でも日常的に（一日に数回くらい）参照するくらいには良く使ってる。 でもこの本がC++ 11までしか扱っていない、というのが、 現状のC++を学ぶ時の困った状況を表している気がする。せめてC++14に対応した版が欲しいなぁ… 上２冊は良い本だとは思うけれど、これだけでは言語をとりまく状況の複雑さを思うと、全然足りないなぁ、とも思ってしまう。 Stroustrup本は1279ページ（！）もあるのに足りないとか言われても…という気もするが。
+* OS Internals iOSとOS Xのインターナルの本。何故か物理本でしか売ってない上に上記のサイトがどう買ったらいいか謎が多く、Paypalでお金を振り込んでメールをする、みたいな不安のあるフローで、HTTPSじゃないし怪しさ爆裂。でもちゃんと届いた。
+期待よりもOS Xの話が多くてちょっとがっかりだが、InternalはOS Xの方がわかるんだろうねぇ。 やっぱコアの部分はAndroidの方が良く分かるので勉強し甲斐は向こうの方があるよなぁ。</description>
+    </item>
+    
+    <item>
+      <title>今年読んだもの</title>
+      <link>https://messagepassing.github.io/004-whatiread/01-morrita/</link>
+      <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/004-whatiread/01-morrita/</guid>
+      <description>年の瀬なので振り返りもかねて今年読んだものでも紹介してみたい。 (草稿を書いたのは年末だけど、ぼんやりしてるうちに年が明けてしまった！)
+といっても森田は今年は他人に勧められるほど良い読み物との出会いはなかった。 世が不作なわけではなく、パンデミックのせいで可処分時間や心の余裕がなかった。 なので他の人のおすすめに従って失われた一年をちょっとでも取り戻したい下心がある。
+それでもブックマークなどを発掘したら少しはものを読んでいた（あるいは audiobook で聴いていた）ので、 その範囲で面白かったものを紹介したい。
+まず書籍 3 冊。
+Remote: Office Not Required Rails の開発者 DHH がつくったウェブ企業 Basecamp (当時は 37signals) がリモートワークについて書いた本。2013 年出版だが、 パンデミックの今年読むと趣深い。いいこと言ってる。7 年の月日を経てテクノロジーの問題はだいたい解決した感があるけれど、 文化的には企業間の差は大きいように思う。この本は動きの鈍い大企業に先んじてリモート化を進め差をつけろと謳う。 自分は差をつけられる側だと思うと複雑な心境。
+リモート勤務、企業の個体差だけでなく我々従業員の個人差も大きいと思う。 たとえば長い通勤と引き換えに広い家を選んだ人はリモートが嬉しいだろうし、 通勤を縮めるために狭い家、高い家賃を選んだ自分のような人に嬉しさは薄い。 パンデミックはさておくと自由度の高い独身者はリモートワークの柔軟性を目一杯活かせる一方、 自分のように妻子があったり、更に子が就学していたりすると、 学校という時間的・地理的自由ゼロの活動に縛られてリモートがもたらすはずの生活の柔軟性は生かせない。
+Basecamp 書籍は読むたびに我が身とくらべしょんぼりするが、そのしょんぼりが顕著な一冊だった。リモート欲を高めたい人にはおすすめ。
+Facebook: The Inside Story Steven Levy による Facebook 読み物。 In the Plex や The Everything Store が好きだった人にはおすすめだし、それだけでなくゼロ年代のウェブの盛り上がりを生きてきた自分と同世代のひと（おっさん）も楽しく読めると思う。 今は色々言われている Facebook だけど、「ウェブでクールなサービスを出してゲットリッチ」というその世代の夢の頂点なのもまた事実なので。
+電話機の OS を開発していた（が途中でやめた）話など、それなりに目新しいインサイダーストーリーも多い。
+Google BigQuery: The Definitive Guide: Data Warehousing, Analytics, and Machine Learning at Scale 自分は仕事でよく BigQuery (の祖先の Dremel) の SQL を書いているが、いかんせん SQL 素人すぎていつも辛い。ちょっと付け焼き刃でなんとかしたいと思っても、世の SQL 入門書は OLTP 系の用途に偏っていて分析/OLAP 向けの入門に良いやつがない。しかも BigQuery/Dremel の SQL はネストしたデータがバンバンでてくるなど特殊な面も多い。助けてくれ・・・とおもってこの本を眺めたら、そういう「SQL 素人が BigQuery でやっつけ仕事をする」のに必要な SQL がちょうどよく紹介されていて救われた。ユーザ分析とかしたいけど SQL わからん・・・と腰が重いモバイル開発者におすすめ。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Re: Re: Re: 今年読んだもの - Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='Hatena::Bookmark' content='nocomment'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/004-whatiread/04-kzys/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Re: Re: Re: 今年読んだもの - Message Passing' />
+    <meta property="og:description"        content='ブログ、本、論文、雑誌。みんな何読んだ？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Re: Re: Re: 今年読んだもの - Message Passing' />
+    <meta property="twitter:description" content='ブログ、本、論文、雑誌。みんな何読んだ？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Re: Re: Re: 今年読んだもの</td></tr>
+        <tr><th>From</th><td>kzys</td></tr>
+        <tr><th>Date</th><td>2021-01-05</td></tr>
+      </table>
+      <article class='content'><p>ここ数年ずっと技術書は <a href="https://www.oreilly.com/online-learning/">O&rsquo;Reilly Online Learning</a> (もう Safari と呼ばないんですね) で読んでいる。ACM の年会費を払うだけで、ちょっとだけ興味があるトピックに関してでも、本を複数冊パラパラと読めるし、O&rsquo;Reilly の本だけではないので、本屋気分で新着を冷やかすのも楽しい。</p>
+<p>ただ、高い技術書を買って値段分の価値をとるべく読み切る、という動機が弱くなるという問題があって、ここまでが長い言い訳なんですが、2020年は通読して印象に残っている技術書がありません。2021年はがんばります。</p>
+<h3 id="bpf-performance-toolshttpwwwbrendangreggcombpf-performance-tools-bookhtml"><a href="http://www.brendangregg.com/bpf-performance-tools-book.html">BPF Performance Tools</a></h3>
+<p>jmuk さんと同じく &ldquo;BPF Performance Tools&rdquo; は途中まで読んだ。構成にはあまり不満はなくて「BPF すごいなあ。便利だなあ。なんでもできるなあ。」という印象。</p>
+<p>BPF そのものは、bpftrace で色々書くのも DTrace みたいでかっこいいけれど、<a href="https://github.com/iovisor/bcc">BCC</a> に入っている小物スクリプトを使うだけでも結構良くて、昔だったらあたりをつけて strace したり、lsof を連打するような局面で「このホストの全ての open を tail -F 風にずっと流す」みたいなことができて便利。<a href="https://github.com/containerd/cgroups/pull/147">containerd/cgroup のこのバグ</a>を直したときにも使ったはず。</p>
+<h3 id="practical-tlahttpswwwapresscomgpbook9781484238288"><a href="https://www.apress.com/gp/book/9781484238288">Practical TLA+</a></h3>
+<p><a href="https://blog.acolyer.org/2014/11/24/use-of-formal-methods-at-amazon-web-services/">AWS 社員たるもの PlusCal 経由でいいので TLA+ くらい書けなくては</a>、と思って読み出した。これはまだ本当に冒頭までしか読めていなくて、語るべきことなし。</p>
+<p>著者の <a href="https://www.hillelwayne.com/">Hillel Wayne</a> は TLA+ や Alloy など形式手法のコンサルティングやワークショップなどを仕事にしている人で、ブログもある。</p>
+<h3 id="why-the-sorbet-typechecker-is-fasthttpsblognelhagecompostwhy-sorbet-is-fast"><a href="https://blog.nelhage.com/post/why-sorbet-is-fast/">Why the Sorbet typechecker is fast</a></h3>
+<p>Sorbet は Stripe の開発している Ruby むけの静的型チェッカ。初期開発メンバーの一人である Nelson Elhage は、この他にも Sorbet の開発上の工夫について色々と書いていて、どれも面白い。</p>
+<ul>
+<li><a href="https://blog.nelhage.com/post/record-replay-in-sorbet/">Record/Replay testing in Sorbet</a></li>
+<li><a href="https://blog.nelhage.com/post/reflections-on-performance/">Reflections on software performance</a></li>
+</ul>
+<p>以前は Scala のコンパイラを書いていた Dmitry Petrashko も Sorbet には関わっていて、Software Engineering Daily ポッドキャストの <a href="https://softwareengineeringdaily.com/2020/03/25/sorbet-typed-ruby-with-dmitry-petrashko/">Sorbet: Typed Ruby with Dmitry Petrashko</a> で話している。</p>
+<h3 id="i-want-off-mr-golangs-wild-ridehttpsfasterthanlimearticlesi-want-off-mr-golangs-wild-ride"><a href="https://fasterthanli.me/articles/i-want-off-mr-golangs-wild-ride">I want off Mr. Golang&rsquo;s Wild Ride</a></h3>
+<p>Go は現実問題の複雑さ、例えば Unix のパスは必ずしも UTF-8 として妥当なバイト列ではないとか、モノトニック時刻とカレンダ時刻の違いとか、Windows とかを「シンプルさ」の名のもとに隠蔽しようとしているけど、それはいかがなものか、という批判。</p>
+<p>著者が比較しているのは Rust で、それは結局 Rust は C++ で、Go は Java なのだから仕方がないのでは、と思わなくもないけれど、書きぶりが良いし、熊がかわいい。</p>
+<h3 id="node-vol-02-manifesting-realityhttpsn-o-d-enetzineindexhtml"><a href="https://n-o-d-e.net/zine/index.html">NODE VOL 02: MANIFESTING REALITY</a></h3>
+<p>NODE は Raspberry Pi ベースのハードウェアとかを自作している (売っているわけではない) 謎のウェブサイトで、その同人誌 (zine)。自分は PDF を iPad で読んだ。<a href="https://makezine.com/">Make Magazine</a> みたいな感じだけど、よりハッカー/カウンターカルチャー色が強い。</p>
+<p>オンライン雑誌でいうと Stripe の　<a href="https://increment.com/">Increment</a> も良いけれど、あまり読めていない。紙で買うといいのかもしれないけれど、節約を美徳とする身としては紙はちょっと&hellip;</p>
+<h3 id="ところでブックマークってどうしてます">ところでブックマークってどうしてます?</h3>
+<p>みなさんがするすると読んだものを列挙できるのにちょっとびっくりしているんですが、ブックマークというか、PDF もふくんだ読んだものの管理ってどうしてます?</p>
+<hr>
+<div class='message'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+さっそく Sorbet の話を読みました。面白い。そしてこの人が <a href="https://accidentallyquadratic.tumblr.com/">Accidentally Quadratic</a> を集めていたのか！
+Stripe やめてヒマしてそうだし、また更新してほしいなあ。
+</div>
+</div>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>今年読んだもの</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/004-whatiread/02-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/004-whatiread/03-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>kzys</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+          <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
