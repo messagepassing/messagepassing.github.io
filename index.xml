@@ -6,7 +6,60 @@
     <description>Recent content on Message Passing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://messagepassing.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 09 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://messagepassing.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ブックマークしたい</title>
+      <link>https://messagepassing.github.io/005-bookmark/04-kzys/</link>
+      <pubDate>Sat, 09 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/005-bookmark/04-kzys/</guid>
+      <description>みなさんありがとうございます。
+自分も jmuk さんと同じ「虚無」に落ち着いてしまったのですが、昔はもうちょっとちゃんとしてたんですよね。どこからこうなったんだっけ。
+虚無への道 最初に、ブラウザのブックマークの後に使っていたのは、今は亡き del.icio.us だった。その後に、はてなブックマーク に移ったのは、なんでだったっけ?
+でも、しばらく使って思ったのが
+ Go についてブックマークしたページに &amp;ldquo;go&amp;rdquo; とタグをつけるのは間違っていて、全文検索で解決するべき 言いたいことがあったらブログに書くなりメールを送るべきで、ブックマークでワイワイするべきではない  で、タグをつけるというアイデアと、ソーシャルなブックマークというアイデア両方になんとなくしっくりこなくなってしまって、現在に至る。
+karino2 さんと morrita さんと同じように、仕事だと雑多なノート兼 TODO リストみたいなものを Quip に作っていて、そこにブックマークも行きがち。
+仕事の外でもそうしたらいいかなと思って Evernote にノートを作ったりしているけど、いまひとつ定着しない。これは morrita さんの
+ 昔は Evernote とか org-mode のいわゆる journal に記録をつけていた時期もあったけれど、定着しなかった。Fragments は「友達に送る」という口実が少しは支えになってる気がする。
+ これと同じ問題そう。一方で、結婚して子供ができてから、公開したくない/する必要がない情報がだんだん増えてきているので、公開することで何かを担保するのもなあ。Sharenting したくない。
+とりあえず今年は Evernote か Scrapbox でやってみます。</description>
+    </item>
+    
+    <item>
+      <title>読んだ本はBlog、Webの記事は適当</title>
+      <link>https://messagepassing.github.io/005-bookmark/03-karino2/</link>
+      <pubDate>Fri, 08 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/005-bookmark/03-karino2/</guid>
+      <description>向井さんのお察しの通り、全公開上等でブログですね。 ブログせずに読んだ本も少しはあるけれど。
+このトピックの元だった2020年に読んだ本の話を書いた時は、過去のブログを眺めて、 あとはKindleアプリで他に買ったの無いかなぁ、と軽く確認したぐらいですね。 そういう点ではmorritaさんと似ている。
+技術記事の場合、仕事で調査している時は社内のWikiを基本に、 Wikiに書くほどの事でも無い場合はSlackの分報に書いています。 仕事で読む物は記録は必ず残している。
+仕事では無く、すぐ読んで終わりのつもりの技術ブログなどは、あまりちゃんと管理してないですね。 だいたいスマホで見かけてBOOXで読む、というパターンが多いので、 スマホからBOOXへはGoogle Driveのテキストファイル(自作メモアプリを使っている)経由か、 Pocket経由で送っています。Pocketは一応あとで以前読んだのを探す事は出来るので、ブックマークも兼ねて使っている。 使い分けには特にルールは無いけど、たくさん送る時はPocket、ちょっとSNSとかで流れてきたのが気になった、くらいだと自作メモアプリですね。
+すぐに読む気は無いけど記録として残しておきたいwebの記事には、Google Bookmarksを使ってます。 いつサービス終了するかドキドキしながら使ってますが…必要十分でいいサービスだと思うんだけどなぁ。
+論文は必ずGoogle Driveの特定フォルダ下に置く事にして、ちゃんと読んだ物は基本的にはブログを書く、というルールで管理していますね。
+たぶん皆もそうだと思うけれど、全体的に昔よりも雑になってますねぇ。 前はもうちょっとちゃんと管理していたのだけれど。
+あと誰も興味無いだろうけれど、なろう小説は、なろう公式のブックマーク機能を使っています。最新話を追っかけているものはカテゴリ1、読み終わったものや読むのを止めたものはカテゴリ2、 そのうち読もうと思っているものや読んでいる途中でまだ最新話には追いついていない物はカテゴリ3にしている。
+morrita Google Bookmarks! まだあったのか!! しかも Maps 上で Like した場所のサイトが勝手に追加されている&amp;hellip;
+自分も仕事関係で読んだものは、バグトラッカーなり作業記録なりからリンクしてます。あるいはコードのコメントとか、関連ドキュメントとか。 必要性があって読むものは文脈があるから、その文脈に埋め込めばよいよね。
+  </description>
+    </item>
+    
+    <item>
+      <title>ブックマークはしない</title>
+      <link>https://messagepassing.github.io/005-bookmark/02-jmuk/</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/005-bookmark/02-jmuk/</guid>
+      <description>みんな記録とかどうしてるんだろうっていうのは私も疑問に思ってたところがある（笑）。管理、一切してないというのが一番近いな。管理したほうがいいんだけど……。
+紙の本については、書棚の量が今のところたかが知れているので眺めるぐらいでだいたいわかるようになっている。内容についてはだいたい見れば思い出す……というか思い出せないぐらいの本は自分にとって重要ではないっていうことだと思う。
+電子書籍は、Amazon Kindleについては提供されているライブラリで事足りる。それ以外のものは、Google Driveにつっこんだりしているけれど、未読管理であるとか、いつ読んだかとか、感想とかは、なんにもしてない。基本的に買ったはしから読み、それで読まなかったものは埋もれていってしまっている気がする。PDFも同様で基本的には散逸しまくっていると思う。ポッドキャストで扱うであろう論文についてはそれだと立ち行かないので、Dropbox paperで読みたいPDFのリストをまとめているけれど、それぐらい。
+インターネットの記事のブックマークとかは一層の虚無であり、読み終わったらそれで終わりということが一番多い気がする。あとで読む記事とかは、ブラウザのタブを開きっぱなしにしておいて後日見る、みたいな運用にしている。
+という次第で、端的に要約すると、無。読んだものの管理はしていません。自分の記憶力と印象に頼りきりでボーッと生きている。さすがに何らかのものは記録したほうがいい気がしないでもない、と思いつつ、でも面倒だしな、というのを繰り返している。タスク管理もいろいろ試してみたがあんまりうまくいってないし。
+基本的なソリューションはブログに書いておくことなんじゃないかと思うけれど、ブログはやっぱりなんか気合が必要になってしまった感がある。そんなにちゃんとした感想を書きたいわけでもないときもある。あと別に公開したくないときもある。というわけでうだう悩んでいる。
+twitterはヘビーに使っているけれど、こういう用途には使っていないし向いていない気がするな。twitterをどう使ったとしても記録は簡単に散逸してしまう気がするので。
+という本当に虚無みたいな回答になっちゃうんだよな。有野さんは全公開上等でブログっていうスタイルですか？</description>
+    </item>
+    
     <item>
       <title>Re: Re: Re: 今年読んだもの</title>
       <link>https://messagepassing.github.io/004-whatiread/04-kzys/</link>
@@ -21,6 +74,23 @@ Practical TLA+ AWS 社員たるもの PlusCal 経由でいいので TLA+ くら�
 著者の Hillel Wayne は TLA+ や Alloy など形式手法のコンサルティングやワークショップなどを仕事にしている人で、ブログもある。
 Why the Sorbet typechecker is fast Sorbet は Stripe の開発している Ruby むけの静的型チェッカ。初期開発メンバーの一人である Nelson Elhage は、この他にも Sorbet の開発上の工夫について色々と書いていて、どれも面白い。
  Record/Replay testing in Sorbet Reflections on software performance  以前は Scala のコンパイラを書いていた Dmitry Petrashko も Sorbet には関わっていて、Software Engineering Daily ポッドキャストの Sorbet: Typed Ruby with Dmitry Petrashko で話している。</description>
+    </item>
+    
+    <item>
+      <title>ブックマークのはなし</title>
+      <link>https://messagepassing.github.io/005-bookmark/01-morrita/</link>
+      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/005-bookmark/01-morrita/</guid>
+      <description>From kzys:
+ みなさんがするすると読んだものを列挙できるのにちょっとびっくりしているんですが、 ブックマークというか、PDF もふくんだ読んだものの管理ってどうしてます?
+ そこそこのインターネット中毒者であるところのわたくしから・・・。 といっても家事子守とかがあると管理が必要なほど沢山のテキストを読めないので、今はそんなにがんばってない。
+近況ニュースレター ここ二年くらい簡易 journal として Twitter の代わりに Notion や WordPress で箇条書き公開日記みたいな記録を つけてる。一週間で 1 ページ。 Fragments と読んでいる。
+この Fragments の中に読んだものへのリンクと感想を並べ、ブックマークがわりにしてる。 これは世間の一部の人が Twitter にリンクを蓄積しているのと似たようなものだと思う。 公開する意義があるのか怪しい内容だが自分にとってはソーシャルメディアなので、 ページを更新するタイミングで友達数人に近況ニュースレターとして送りつけている。 （頼まれもしないのに送ってるのでニュースレターというよりは迷惑メールだけど。）
+それとは別に古き良きブックマークサービスの Pinboard もつかっているけれど、 こっちは読んで「ない」ものと純粋に資料的価値のあるものをファイルしておくかんじ。 プライバシー優先のため Pinboard は公開していない。 日本の人だと「はてなブックマーク」とかを使うところだと思う。 Pinboard は特段優れた機能を持つわけではないが、 ソーシャルメディアではなく単なるツールなのでうっかり嫌な気持ちにならない点は良い。
+Podcast のために読む論文の管理には Paperpile を使っているが、 自分は別にアカデミアではないので書誌管理機能は活用していない。 付属の PDF ビューアの出来の良さと、論文特化の Chrome extension とかが割と良い。 ただアカデミアみたいに大量に読んでしかも引用するとかで限り Pinboard のような普通のブックマークでダメな理由は無い気がする。
+電子書籍類は大して量がないので電子書籍アプリの書棚で足りている。 あと先の Fragments やブログに感想文を書いたりもしている。
+こうしてみると純粋に時系列に読んだ記録としては Fragments が一番機能しているかな。こないだの記事を書くのにも見返した。 昔は Evernote とか org-mode のいわゆる journal に記録をつけていた時期もあったけれど、定着しなかった。 Fragments は「友達に送る」という口実が少しは支えになってる気がする。 Twitter や Facebook でダメなのかは個人によると思うけれど、自分は気が散りすぎて無理。</description>
     </item>
     
     <item>
