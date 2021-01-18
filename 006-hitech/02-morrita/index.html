@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Re: ハイテクしごと&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/006-hitech/02-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Re: ハイテクしごと&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='仕事でかっこいいコード書いた自慢と、かっこよくない言い訳とか。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Re: ハイテクしごと&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='仕事でかっこいいコード書いた自慢と、かっこよくない言い訳とか。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Re: ハイテクしごと</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-01-03</td></tr>
+      </table>
+      <article class='content'><h2 id="大企業におけるハイテク私感">大企業におけるハイテク私感</h2>
+<p>大企業下っ端なので全然ハイテクとかしてない。
+ここでいうハイテクは、それなりに (CS 的な) 難しさのある、それなりの規模のコードという風に解釈している。</p>
+<p>ある程度成熟した大企業だと、インフラ部門とかリサーチ部門とかがあってハイテクなものを専業で作っている。
+なのでハイテク指向な人はそういう部門ではたらく傾向がある。</p>
+<p>一方のアプリやサービス部門の人は、実製品開発が好きだからそういうチームにいる。
+だから個人の性向としてハイテクより仕事を片付けるのを優先しがち。
+それを退屈に感じたこともあったけれど、最近は締切を守ってモノを出す姿勢も大事だなと考えるようになった。
+なぜならちゃんとモノが出ていくから。大企業、野心的すぎて完成する前にお蔵入りしてしまうプロジェクトもよくあるね。</p>
+<p>専業のインフラ部門とは別に、巨大製品チームはインフラ部門やリサーチ部門相当を内部で抱えている。
+たとえば YouTube は <a href="https://research.google/pubs/pub48388/">Procella</a>
+というデータベースを内製しているらしい。わけがわからない。
+製品内ハイテクはインフラやリサーチ発のテクノロジよりドメイン依存で、身近な面もある。
+とはいえ巨大製品のハイテクは黎明期の発明の二周目三周目なことが多く、個人作品というより組織戦の色が濃い。</p>
+<p>そんなアプリ・サービス部門でもバーンと一周目のハイテクをキメる人はたまにいて、
+そういう野心がある人はだいたい出世して TL とかになる。そして二周目三周目の製品内ハイテクプロジェクトを主導していく。</p>
+<p>つまり実勢品でハイテクをキメられるくらいならもっと出世してるっつーの！（突然の八つ当たり。）
+下っ端の実力は推して知るべし。</p>
+<p>傍から見ていると、小さいチームより成功してある程度規模のあるチームの方がハイテクの機会は多いように見える。
+というのも小さいチームは技術的障壁以前に product-market fit みたいので苦戦することが多いので、
+よくいえばスタートアップ的に動くものを優先しがちだから。成功して、はじめてハイテクの必要性が生まれるのではないか。
+あと勢い良く伸びている製品の方が予算の融通が効く面もある気がする。やんちゃする余裕がある。</p>
+<p>テクノロジーありきの製品も<a href="https://techcrunch.com/2019/12/05/googles-a-i-powered-voice-recorder-and-transcription-app-comes-to-older-pixel-phones/">色々</a>あるけど、
+というか自分が仕事で手伝っているのもそうした製品の一つだけれど、コアテクノロジは先に書いたようなリサーチ部門や、
+リサーチ部門ではないにせよリサーチ的な性格のチームとから出てくることが多い。
+たとえば<a href="https://fuchsia.dev/">実験的な OS</a> を作ってしまうチームとか。</p>
+<h2 id="零細企業でのハイテク">零細企業でのハイテク</h2>
+<p>自分が零細企業勤務だった十年前のことを考えると、その会社はなぜか自社ミドルウェア用に公開鍵暗号を実装していた。
+細かいことは忘れたが他にも似たレベルの再発明ハイテクがもう一つ二つあったと思う。
+再発明に見合う品質やユニークさはなかったと思うが、組織の未熟さゆえにこれらのハイテクは生まれることができた。
+要するに良くない判断を止める人がいなかったからやんちゃできた。こういうのは零細、中小企業だと割とよくある話だと思う。</p>
+<p>製品の要請から意味のあるハイテクが生まれることは、小さい企業でもあるだろう。
+インフラ部門やリサーチ部門がないぶん製品チームが腕まくりしてハイテクに挑む。
+karino2 はきっとこのケースに近いのでしょう。</p>
+<p>企業規模とは無関係に、ハイテク自作の文脈でオープンソースの影響は無視できないと思う。
+よいニッチを見つけないとオープンソースの既存実装に勝てない。
+自分で何か書くと言い張るのは、昔よりやや難しい。
+オープンソースの隆盛にあわせ、世の中全体としてハイテクを自作する割合は減っているんじゃないかな。
+ソフトウェア産業は拡大してるから絶対数は増えてるかもしれないけれど。</p>
+<h2 id="ベテランの気晴らしハイテク">ベテランの気晴らしハイテク</h2>
+<p>権力のある古株のエンジニアが、仕事に飽きて気晴らしにハイテクをはじめてしまうことがある。
+そんなハイテクは難しくて新しいことをすること自体が動機になりがちで、製品の要請に基づかないことが多い。
+その一方で権力者の仕事だけに割と影響範囲もでかくなりがち。</p>
+<p>森田は過去に何度もこの気晴らしハイテクを目撃しており、そのせいで迷惑したことも一度ではない。
+そのせいかこうしたプロジェクトには強い嫌悪があり、
+反動でなるべく地味に堅実な成果を出したいバイアスがある。</p>
+<p>とはいえ退屈していたベテランが考え事をしていたら製品の隠れた要請に気づいてしまうこともあるわけで、
+あるハイテクプロジェクトが製品の要請なのか単なる気晴らしなのかは、最初ははっきりしない。
+自分が「それ趣味プロジェクトでしょ」と斜に構えていたらいい成果を出したベテラン発のハイテクも何度か目にしてきた。</p>
+<h2 id="小粒な気晴らし">小粒な気晴らし</h2>
+<p>自分も今のチームに異動して三年。社歴に至っては十年。だいぶ飽きている。
+あーなんか気の利いたコードを書きたいなーと思いつつ地味にバグをなおして暮らしている。</p>
+<p>が、ふとした思いつきから年末に仕事でプログラミング言語を実装した。
+三日で書いて二千行みたいな超小粒言語で、仕様も大学生の宿題みたいに素朴なもの。
+GC も Java まかせで、ハイテクとは程遠い。
+ただ「仕事でプログラミング言語を書く」というハッタリじみた響きが気に入っている。</p>
+<p>これは性能試験のためにアプリの動作を自動化するミニ言語で、Android アプリの中で動く。
+テスト用なので出荷バージョンには入っていない。</p>
+<p>Android アプリの自動化は <a href="https://source.android.com/compatibility/tests/development/instrumentation">instrumentation</a>
+という仕組みを使うのが定番だけど、性能テストの目的だと侵入的すぎて都合が悪い。
+自分のいるチームではかわりにホスト側で動く Python のフレームワーク <a href="https://github.com/google/mobly">Mobly</a> を使っている。
+つまり ADB 越しに自動化をする。</p>
+<p>これは悪くはないが、際どいタイミングの操作を書くのが難しい、というかできない。
+たとえばアプリを起動してビューファインダーが表示された瞬間にシャッターボタンを押す、みたいなコードは書けない。
+ADB 越しでは「ビューファインダーが表示された瞬間」を検知できないし、なんとかして polling するにしても負荷やレイテンシが犠牲になる。</p>
+<p>自分はもともと自動化のロジックを Java でハードコードすれば良いと思っていたが、別の同僚が「(組み込み言語であるところの) <a href="http://www.lua.org/">Lua</a> を使えばよくね？」と言い出した。自分も Lua はさわったことがあり、悪くないアイデアに思えた。
+とはいえ Java で書かれたアプリの自動化のために C で書かれた Lua を使うのはインテグレーションが億劫そうだ。
+世の中には <a href="https://github.com/luaj/luaj">luaj</a> という Lua の Java 実装があるのでこれを使えばいいとも思ったが、
+社内のアーカイブを検索すると過去に他の製品で行われた同じ試みが安定性の問題から頓挫した事例が見つかった。</p>
+<p>一歩さがると、自分の目的には Lua すら大げさすぎる。ちょっとした制御構造があればいい。
+自動化スクリプトの長さもせいせい 10 行くらいなので、性能も必要ない。
+奇しくも年末にチームの hakcathon があり、良い機会だからと書いてみたら割とあっさり動くものが出来た。
+コードサイズも 2000 行。Luaj の数万行と比べ一桁小さい。
+え、言語とか作っちゃうの・・・と釘を刺す（まっとうな）同僚もいたけれど、コードサイズを見せたら納得してくれた。</p>
+<p>さっそくいくつかのシナリオを自動化してみると早速アプリのバグが見つかった。手応えあり。</p>
+<p>三ヶ月かけて書いた一万行のデータフロー DSL とくらべると格段にしょぼいけれども、
+先に書いた大企業アプリ部門したっぱ勤めの現実を踏まえると自分の「ハイテク」はこんなもんかなと思う。
+すくなくとも有閑ベテランの迷惑ハイテクではない・・・とおもってる。
+なおこんなしょぼい成果だと迷惑もないけど出世の足しにもならない。残念。</p>
+<p>そういえば一昨年くらいにやった <a href="https://notes.dodgson.org/android/ioopts-01-pinninig/">profile guided pinning</a> も自分の水準ではギリギリハイテクかな・・・
+とおもったけど一週間くらいでやった雑な仕事なうえに Python と C++ それぞれ 100 行みたいな規模。ぱっとしない・・・。
+いちおう自分なりにがんばった仕事なのでひっそり自慢させていただきます。</p>
+<p>ハイテク企業で組織戦を先導してそうな<a href="/006-hitech/03-shinh/">はまじさん</a>どうですか。</p>
+<p><div class='message'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>そういえばふと思い出した、森田が karino2 と同じ職場で働いていた大昔のこと。
+隣のチームにいた karino2 は C 言語で書かれた自社製品コードをパースしてへぼいツールチェイン向けのコードに書き換える C の transpiler を Ruby 実装し、それがちゃんと動く前に転職してしまった。
+その保守を押し付けられた森田はメモリ不足や実行速度の遅さや挙動の不完全さをに苦しめられ、しかし直し方もわからず、
+残業とかをする羽目になったのだった。</p>
+<p>今思えばあれは一種の気晴らしハイテクだった気がするが、書いたのは若者（当時）だった。
+気晴らしの文脈でベテランだけを責めるのはフェアでないかもしれない。
+森田のアンチハイテクバイアスが芽生えた瞬間だったのは間違いない。</p>
+
+</div>
+</div>
+<div class='message'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>くっ、これだから官僚的大企業社員は…嘘です、ごめんなさい。
+まさか20代のやらかしを15年越しに問われるとは(^^;</p>
+<p>もはや全く意味の無い言い訳をさせてもらうと、あれは普通に実現出来る事を趣味に走って複雑にした、
+というよりは、もともとあの環境への移植は無理だと断るべき所を無理やり力づくで実現してしまった筋の悪さが根底にあると思う。
+当時の自分のトランスパイラの実装力の低さがそこに重なって負の遺産にしてしまっていた気がする。</p>
+<p>ハイテクに舵を切る時に、やらかしなのか素晴らしい何かが生まれるかの違いは難しいよなぁ。
+Linusなら山にこもってgitが出来る訳だが、なかなかLinusにはなれないやね。</p>
+
+</div>
+</div>
+<div class='message'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+<p>そうそう、はしゃいだルーキーの背伸び気味オーバーエンジニアリングみたいなハイテクもありますよね。実際タイミングが合致すれば大成功したりもするので悪いとも限らないんじゃないですかね。あまり知らずに書きますけど、例えば <a href="https://msgpack.org/">MessagePack</a> とかそういう側面あるんじゃないかな……？（当時 RPC のシリアライズフォーマット作りたい、って目を輝かせてる作者と <a href="https://developers.google.com/protocol-buffers">protobuf</a> について話した思い出があるので、そこからの想像）</p>
+<p>自分も相対的な基準で見ると一番ハイテクを指向していたのはバイトの時で、知ってるものはなんでも使おうという気概で、迷惑なヤツでしたね……他の人にわけわからないものを作ればジョブセキュリティが保てるという理解を得ることになったので結果オーライ。</p>
+
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>ハイテクしごと</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/006-hitech/03-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/006-hitech/04-kzys/'>kzys</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+      
+          <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

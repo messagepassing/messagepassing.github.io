@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html><head>
+    <title>ハイテクしごと&nbsp;/ karino2&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/006-hitech/01-karino2/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='ハイテクしごと&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="og:description"        content='仕事でかっこいいコード書いた自慢と、かっこよくない言い訳とか。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='ハイテクしごと&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='仕事でかっこいいコード書いた自慢と、かっこよくない言い訳とか。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>ハイテクしごと</td></tr>
+        <tr><th>From</th><td><a href="https://karino2.github.io/">karino2</a></td></tr>
+        <tr><th>Date</th><td>2021-01-02</td></tr>
+      </table>
+      <article class='content'><h2 id="お仕事で計算グラフなコードを書いた">お仕事で計算グラフなコードを書いた</h2>
+<p>先日、仕事で計算グラフを構築して変形して実行するようなコードを書く必要があって、
+そんな類のライブラリを書いて機能を実装した。コアの部分で1万行くらい。まぁまぁ大変で三ヶ月くらい掛かった。</p>
+<p>DSLで計算グラフを構築し、
+それをいろいろと操作し、最後に生成されたIRをなんらかの形で実行する。
+ここ数年、こうした形で新しいものがいろいろ生まれているように思う。
+古くはLINQ、より最近だとTensorFlowとかHalideとか。
+あまり詳しくないが分散ビルドなどもこうした形式だとか。</p>
+<p>そういう訳で近年この手の、実際にコードと実行の間に一旦シンボリックなグラフを置いて、
+それをいろいろ操作する事で、そのまま実行するのでは得られない付加機能をつけるのは一般的になっている気はしていた。</p>
+<p>でもそれを自分で実装するのは今回初めてで、おぉ、これが噂のあれかという気分。</p>
+<h2 id="ハイテクな物を実装するレア度とチャンス">ハイテクな物を実装するレア度とチャンス</h2>
+<p>こういう流行りのハイテク技術を仕事で実装する機会というのはどの位レアなものだろうか？
+バグを修正したり普通の機能を足すような「日常のタスク」よりはだいぶレアな気がする。
+でも、ハイテクなプロダクトを売りにしていこうと思えば一つや二つは含まれる事もままある訳で、
+それを実現するのが我らであることを思えばそこまでレアでも無いのでは無いか。
+仕事をしていれば2〜3年に一回くらいは実装して良いような機会に出会う程度のレアさな気もする。（本当だろうか？）</p>
+<p>一方で実装しても良い機会にあっても、別に実装せず見過ごす事も出来る。
+仕事のタスクとして現れるハイテクな可能性には、だいたい迂回してもっと普通に泥臭く実装できる方法がある。
+LevelDBを新しく作らずにSQLiteを使う事も出来る。
+TensorFlowを実装せずにOpenMPとCUDAで手書き実装していく事だって出来る。
+機会がある事と、その機会に直面した時にハイテクの実装に踏み切る事はイコールでは無い、というか見送る事も多い気はする。
+踏み切るかかどうかは立場や環境にも依る。</p>
+<h2 id="チームの規模とか会社の規模とか">チームの規模とか会社の規模とか</h2>
+<p>大規模チームだと、本当に一握りの中心に居るエースしかそういうのにチャレンジしない気がする。
+別に末端のプログラマもガンガンチャレンジしていっても良い気もするが、あんまり見かけない。</p>
+<p>大規模チームでは一部の人だけかもしれないが、大企業という枠ならどうだろう？
+大企業でも小さなプロジェクトの立ち上げなら割と自分でいろいろ実装する機会はあるので、
+普通のプログラマでもそれなりにハイテク実装する機会もあるのかしら？「普通のプログラマ」の定義も難しい所だが。</p>
+<p>小規模のスタートアップなら、テクノロジーを売りにするならそういうのには挑みそうな気もするが、、、挑むかな？
+口先だけではやってるとは言うだろうが、本当にやってるのがどのくらいいるかは良く分からない。
+失敗するとそこで会社は終わりなので、結構勇気はいる。
+今回自分が実装に踏み切る時も、頓挫したらごめんなさいねと説明した上で始めた。
+気軽に失敗させてくれるのはCTOの器かもしれない。</p>
+<h2 id="何がハイテクなのか">何がハイテクなのか</h2>
+<p>完全に主観の話になりますが。</p>
+<p>例えばコンビネータ型のライブラリを自分で作るくらいなら、目新しい応用例なら自分的には日常からはずれたハイテクの範囲に入る気がする。
+でも、本質的にパーサーだが微妙にテキストじゃない、みたいな、既存のパーサーコンビネータそのまんまの用途の場合はハイテクという気もしない。
+割と新しい用途にコンビネータ型の解決を見出す所にハイテク感を感じる訳だ。
+余談だが、今回自分はコンビネータ型のライブラリでクールに作れる所を気づかずに手実装してしまい、後で気づいた。悔しい。
+みんなはどのくらいコンビネータ型のライブラリを仕事で自作する機会ありますか？＞all</p>
+<p>FollyのFutureを参考に自分らの環境でFuture-Promiseを実装するくらいではハイテクとは認めない。
+C++だとそれなりにenable_ifとか必要だけれど。
+通常のタスクの中の普通のライブラリ作成くらいだとハイテク感は感じないよなぁ。FutureをAtomicだけで実装するとかかなり大変だけどね。
+大変さとハイテク感はまたちょっと違うんだろうな。かっこよさが無いとダメな気がする。
+Futureにハイテク感を感じないのはいまさらに感じるからかもしれない。</p>
+<p>なんとなくだが、自分の中ではBerkeleyDBのような物を再実装するのはハイテク枠に入っている。
+再実装自体はどうという事も無いのだけど、わざわざそんな物を再実装するくらいの何かを作っているというのはハイテクな気がする。どうだろう？</p>
+<p>仕事でハイテクな何か実装する機会とか、ハイテクとはそもそもどんなものかとか、その辺どうっすか？＞ハイテクに一家言ありそうな<a href="/006-hitech/02-morrita/">morritaさん</a></p>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>ハイテクしごと</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/006-hitech/02-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/006-hitech/03-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/006-hitech/04-kzys/'>kzys</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+      
+          <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

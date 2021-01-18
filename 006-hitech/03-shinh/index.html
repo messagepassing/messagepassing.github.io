@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html><head>
+    <title>案外やってないなという感じ&nbsp;/ shinh&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/006-hitech/03-shinh/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='案外やってないなという感じ&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="og:description"        content='仕事でかっこいいコード書いた自慢と、かっこよくない言い訳とか。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='案外やってないなという感じ&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='仕事でかっこいいコード書いた自慢と、かっこよくない言い訳とか。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>案外やってないなという感じ</td></tr>
+        <tr><th>From</th><td><a href="http://shinh.hatenablog.com/">shinh</a></td></tr>
+        <tr><th>Date</th><td>2021-01-14</td></tr>
+      </table>
+      <article class='content'><h2 id="ハイテク-google">ハイテク @Google</h2>
+<p>ハイテク、グーグルにいた時の感覚は <a href="/006-hitech/02-morrita/">morrita さん</a>に近い。「面接の時はアルゴリズム問題とか聞くけど、実際仕事で難しいアルゴリズムとか書いてないよね、簡単な再帰すら書かねーよな」みたいな雑談をよくしていた。11年くらい勤めて、あれはハイテクだったなーと思う自分の作業は 2,3 くらいで、期間としては合計半年から一年くらいじゃないかな。</p>
+<p>割と、それで良いのだと思っている。5割の力で、余力を残して働くのがプロじゃないかと。余力があるくらいでできたプロダクトの方が、完成度が高い。持てる技術ギリギリを使って書いたコードは、たぶんバグってるか、開発に時間を使いすぎているか、悪いとその両方。</p>
+<p>いざとなれば難しいデータ構造を使いこなすことも、超絶技巧の高速化もできるかもしれないけど、別に困ってないのに導入されたハイテクは単にメンテ性を落とすだけ。普通のコードで要件を満たせるのであればそれでいい。いざとなった時にハイテクができる牙を研ぐのは家でやればいい。その牙を使う日が来るのかは知らないけど。</p>
+<h2 id="ハイテク-pfn">ハイテク @PFN</h2>
+<p>PFN に転職して、 PFN は零細企業や小規模スタートアップというほど小さい会社ではないけどなんだかやたらと多角的に色々やってるので、一人当たりの守備範囲は零細と大差ないんじゃないだろうか。入社して言われたことを要約すると「<a href="https://www.tensorflow.org/xla">TensorFlow XLA</a> の汎用性増やしたみたいなの作ってね、人員は一名。あ、インターンが一人いるよ」みたいな感じ。さあ大変だ、というか、できるわけないだろ！</p>
+<p>できるかはともかくとして、これは楽しい。でも「ハイテクを一人占めするベテランはもういない、ハイテク祭りだ！」となってるかというと、あまりなっていない。自明にやるべきこと、ハリボテでいいから存在しないと話にならないコンポーネントが多すぎて、何を作っても「とりあえずここはこれで動くには動く……あとでもっとかっこよくしたいけど、もっとやるべきことがあるので、次に行こう」となる。それはそれで楽しくはある。</p>
+<h3 id="ベースライン">ベースライン</h3>
+<p>最近では「落ちついたらここは僕のハイテクですごくするんだ！楽しみだなあ。論文とかも参考にしちゃうぞ」と思っていたところを人に譲るというのが何度も起きている。いくつか例があったんだけど、 <a href="/006-hitech/01-karino2/">karino さんが最初に計算グラフの話をしていた</a>ので、それ系の話をしてみる。</p>
+<p>計算グラフのスケジューラは topological order を満たしていれば計算順序を自由に変えていいのでなるべく速くなるように並べましょう、という問題。 DRAM が相対的に遅いので SRAM にあるデータをなるべく使いまわせる計算順が良くて、使い回せない時にどれを spill するかを賢く選びたい。最終的にはメタヒューリスティクスでも導入しましょ、という話をしてたんだけど(これはかなりハイテクぽくない？)高速に動作する貪欲のベースラインは欲しいので、とりあえず適当なのをでっちあげた。</p>
+<p>計算順序はテキトーなヒューリスティクスで決めて、 SRAM が足りなくなったら spill する感じ。 DRAM と SRAM とか言うとソフトウェアエンジニアは構えてしまうけど、キャッシュから何捨てる？みたいな話なので、まあ LRU でしょとテキトーに最近使ってないのを捨てるつもりのコードを書いた。そのあとハイテクメタヒューリスティクスやるぞ、てことまで手が回らないうちに他のことやった方が良い雰囲気になってたので、アルゴリズム強いってウワサの人に譲ることにした。（強いってどんくらいなんだろ、と後から競プロサイトで検索してみたら、なんかちょっとドン引きするくらい強かった。）</p>
+<p>その競プロすごい人は、なんだかすごい速度で僕の実装を改良再実装して、そこからさらに進めて当初予定していたメタヒューリスティクスまで実装してくれて、実際に高速化を達成、さらなる改良に従事している。ついでに「LRU は未来がわからない時に有効なオンラインアルゴリズムであって、<a href="https://en.wikipedia.org/wiki/Page_replacement_algorithm#The_theoretically_optimal_page_replacement_algorithm">将来の計算が静的にわかってる状況では単に最も遠い未来で使うやつ捨てれば良い</a>ことが知られてますよ」と指摘してくれたし、さらに言うと僕が LRU だと思っていたものはそもそも LRU になってなかった。</p>
+<p>「後で自分でやろうと思って、それを楽しみにそこまでの道の整備をしたのにな」という気持ちも少しある。でも他の人にやってもらってみると、スケジューラの例のように、正直自分でやってたらここまで良くならなかったなと思うことがほとんどだし、労せず成果物ができているのだからまあいっか、となっている。</p>
+<p>大企業を出て、今一緒に作業してる中ではたぶん僕が一番ベテランだし、ハイテクをやる権利も機会もあるのだけど、案外やってないなという感じ。立場とか環境とか機会とかもあるんでしょうけど、人に依存するする面も多いんでないかな、と。</p>
+<hr>
+<p><div class='message'>
+<div class='message-header'>morrirta</div>
+<div class='message-body'>
+<p>ここでいうベースラインは自分からみるとだいぶハイテクなので、
+ハイテクの期待値は個人差がありそうですね。
+プログラマにとってハイテクなコードとは「背伸びしたコード」なのかもしれない。</p>
+<p>それはさておき難しいコードを競プロ勢に任せるの、すごいわかる。
+ただ東京にいた頃は競プロ勢いっぱいいた気がするけれど転勤したあとすっかり見なくなりました。
+気づいてないだけでみなやってるのかもしれませんが。</p>
+
+</div>
+</div>
+<div class='message'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+日本、 OSS とかに参加するには英語のバリアが厳しいので競プロが流行る、みたいな仮説を持っています。もちろん公平な評価と明確な得点を好むとか、他の要因も色々考えられますが……
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>ハイテクしごと</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/006-hitech/02-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/006-hitech/04-kzys/'>kzys</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+      
+          <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
