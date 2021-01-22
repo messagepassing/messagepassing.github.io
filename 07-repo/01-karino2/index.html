@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html><head>
+    <title>モノレポのはなし&nbsp;/ karino2&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/07-repo/01-karino2/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='モノレポのはなし&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="og:description"        content='大企業自慢のモノレポ、真似したい？近づきたくない？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='モノレポのはなし&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='大企業自慢のモノレポ、真似したい？近づきたくない？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>モノレポのはなし</td></tr>
+        <tr><th>From</th><td><a href="https://karino2.github.io/">karino2</a></td></tr>
+        <tr><th>Date</th><td>2021-01-10</td></tr>
+      </table>
+      <article class='content'><p>モノレポについて経験豊富そうな皆さんの話を聞きたい。
+まずはその背景から。</p>
+<h2 id="会社で分かれるレポジトリ">会社で分かれるレポジトリ</h2>
+<p>フリーランスをやっていると、たまにいろんな零細企業を集めて一つのサービスを作る場に遭遇する。
+人を集める時に、一つの会社だけじゃなくて複数の会社が集まることがよくある。
+たとえばマーケティングが強みの会社が自社ではエンジニアを持っていなくて、開発は外部の人たちを集めてやるみたいな。
+しかもそれぞれの会社からは一人とか二人だけしか来ないので、
+6人の小規模なチームなのに会社は4つあるとかいう状況になったりもする。</p>
+<p>そうすると何が起こるかというと、レポジトリが会社ごとに分かれたりする。
+「クラウドとフロントの間はAPIを決めましょう、
+それでクラウド側がバイナリをリリースして、フロント側がたまにそれをマージしましょう」みたいなフローになる。フロントとバックエンドなんて関わっているのは3人しか居なくて、コードの規模も凄く小さいのに。</p>
+<p>酷い時にはフロントはバックエンドのコードが読めないとか変更出来ないとか、そんな事態になったりする事もある。
+そこまで行かなくてもレポジトリは触らせてくれないくらいは良くある。</p>
+<p>ログや履歴が見れないデメリットは説明するまでも無い。
+あとはAPIの変更が無駄に難しくなるし、お互いソースが読めないと継ぎ目の所ですぐバグったりするし、バグを追うのが無駄に大変だったり。</p>
+<p>しかもレポジトリが分かれていると、手動でコードを持っていってマージするみたいなのをえんえんやる人が発生したりもする。
+お前6人しか居ないプロジェクトで一人それかよっ！（この物語はフィクションです）。</p>
+<h2 id="レポジトリを一つにしようという意思">レポジトリを一つにしようという意思</h2>
+<p>この手の開発でレポジトリが分かれるのは、実に些細な理由である事が多い。
+ソースコードを見せない理由も実際はほとんど無くて、ちゃんとその辺を話し合って決める人が居なかったので念の為（？）見せない事にしたとか、その程度。
+もともと寄せ集めで開発するケースでは、力関係的にプロジェクトを立ち上げる会社がだいたい凄く強いので、ちゃんとその会社が望めばレポジトリは一つでソースコードも全員が見える状態に出来る。
+でも、プロジェクトを立ち上げる会社が開発以外の所に強みを持つ会社だと、そうした方針について強い意思を持っていなかったりする。そうすると些細な理由でなんとなくレポジトリが分かれてしまうのを防げない。</p>
+<p>分かれる理由が些細であっても分かれた影響はでかい。
+レポジトリが一つかどうかとかソースにアクセス出来るとか、開発効率には大きな影響を与える。
+少し話し合いを頑張れば劇的に改善出来るのだから、頑張った方がいいのは間違いない。
+だけれども些細な障害を乗り越えてレポジトリを一つにする為には確固とした意思を必要とする。
+そうした強い意思を持つためにはしっかりとした「あるべき姿」が見えている必要があると思う。
+でもフリーランスになってTech企業の外に出てみると、
+そうした姿は意外と知られていないと感じた。</p>
+<p>自分はどこでそうした「あるべき姿」を学んだのだろう？
+自分の場合を思うと、自分はモノレポ的な経験から学んだ気がする。</p>
+<h2 id="自分のモノレポ的な体験">自分のモノレポ的な体験</h2>
+<p>自分の経験は厳密な意味ではモノレポでは無くて、その辺が今回皆さまに見解を聞きたいと思った所でもある。
+でもまぁまぁモノレポと言っても良い経験はあるので、その辺の話を。</p>
+<p>自分が一番モノレポに近い環境だったのは、MSでOfficeのチームだった時。
+OfficeはOffice全体で一つのレポジトリだった。会社にはOfficeの他に（雑にいえば）WindowsとVisualStudioがあって、それらは別のレポジトリだった。厳密な意味ではモノレポでは無い。
+（10年くらい前の話で、モノレポという概念もまだ無かったと思うし。）
+ただ、Officeの中にはWordやExcelなどの他にも、OutlookとかSharePointのようなサーバーサイドなどだいぶ他とは毛色の違う物も混じっていて、
+それらが一つのレポジトリで開発されているのは当時それなりに衝撃だった。</p>
+<p>ローカルに無い状態で全部syncすると３日くらい掛かるとかいう世界だったので、それなりに巨大なコードベースでもあった。
+ローカルにある状態でもsyncはめっちゃ時間掛かるので、家に帰る前にsyncする風習になっていた。syncのコマンドを実行すると最初にネットワークなどのエラーが無い事を確認して、ここからは時間がかかるという所まで行ったら「もう家に帰ってもいいですよ」とビープ音が鳴ったりする。</p>
+<p>当時の環境がモノレポ的だと自分が思う事の一つに、独自のツールが充実していた事が挙げられる。
+例えばレポジトリの検索ツールがあって、
+ローカルにコードが無いプロジェクトも、コマンドラインからローカルにあるかのように一括検索が出来た。
+新しいAPIの使い方や言語機能の使い方はとりあえずレポジトリを検索してみて他のプロジェクトを参考にしたりしていた。</p>
+<p>また依存が他のチームにまで及ぶ場合、自分が他のチームまで含めて全部を変える事が出来た。
+もちろんレビューとかは必要だけれど、皆が同じレポジトリを使っているので、
+チームごとの別々のツリーに入れなくてはいけないみたいな作業は無かった。
+関係無いチームも全部コードにアクセス出来るのはモノレポ的だと思う所だ。</p>
+<p>あれだけのレポジトリのでかさを維持する為には、凄まじいエンジニアリングコストが掛かっていた。
+そんな膨大なコストというのはまさにモノレポの欠点でもあるのだけど、
+プロジェクトのいろいろな事を決める人たちがそれだけのコストを払ってでも維持するだけのメリットがあると思ってくれていた訳だ。</p>
+<p>実際欠点もあるにせよ、当時あの規模の開発を行う為にはレポジトリを一つにするしか無かったと思う。
+ツリーが別だったら、あっという間に置いていかれてしまって永遠にマージが終わらないに違いない。
+実際ツリーが一つでもcommitは凄い大変だったし。</p>
+<h2 id="モノレポってどうなんでしょう">モノレポってどうなんでしょう？</h2>
+<p>冒頭に述べたようなプロジェクトだと、
+何故か自分がレポジトリやブランチマネージメントの基本的な事をレクチャーしたりする事もあるのだけど、
+この手の事は実体験が無いとうまく伝えるのは意外と難しい。</p>
+<p>一般的には、モノレポの功罪とかって、
+最近だとGoogleとかFacebookのモノレポなどの議論で学ぶ事だと思う。
+でもその辺の話が好きなのはその辺の経験をすでに持っている人ばかりで、
+意外とその辺の常識が共有されているのは、狭い世界だけだった。
+そんな事にフリーランスになって初めて気づいたりした。</p>
+<p>そうした時にFacebookとか<a href="https://cacm.acm.org/magazines/2016/7/204032-why-google-stores-billions-of-lines-of-code-in-a-single-repository/fulltext">Googleのモノレポの記事</a>にリンクを貼ってもいいのだけど、
+記事は記事なのでやっぱり一面的というか、説得力が微妙。
+もうちょっと実体験に基づいた話がある方が良い。</p>
+<p>さらに、Googleのモノレポはおそらく当時のOfficeよりは遥かにでかくなっているはずなので、
+ヤバさもずっと上になっているはずだ。
+そうした経験があると自分とは違った見解もありそうで、自分個人としても聞いてみたい気がした。</p>
+<p>という事で他の人にも聞いてみたい。とりあえず検索で世界最大規模のモノレポの仕事の経験がありつつ小さなオープンソースの仕事での非モノレポの経験もあって、
+さらにChromeとAndroidという見るからにやばそうなコードと深いつながりのあるChrome OSの仕事をしている<a href="/07-repo/02-jmuk/">jmuk</a>にまず聞いてみたい。
+モノレポってどうなんですか？</p>
+<hr>
+<div class='message'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+Microsoft の Windows は 2017 年に <a href="https://devblogs.microsoft.com/bharry/the-largest-git-repo-on-the-planet/">Git へ移行</a>し、
+<a href="https://github.com/microsoft/VFSForGit">GVFS</a> という仮想ファイルシステムまで作ってロックだなと思いました。
+Linux のためのバージョン管理ツールを Windows がつかっているこのロック感、ゼロ年代育ちにしかわかるまい。
+</div>
+</div>
+<div class='message'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+MSはたまに謎のフットワークの軽さを見せる事ありますよねぇ。自分の頃はPerforceのカスタム版っぽい奴（source depotという名前だった）だったけど、きっと今は全然違う世界になってるのだろうなぁ。
+MSもGoogleもFacebookも何か作っていてみんなバラバラってちょっと面白い状況ですね。
+</div>
+</div>
+</article>
+    </div>
+  </div>
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>モノレポのはなし</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/07-repo/02-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/07-repo/03-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/07-repo/04-kzys/'>kzys</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+    <div class='card'><div class='card-content'><aside class='menu'>
+        <p class='menu-label'>他のはなし</p>
+        <ul class='menu-list'>
+      
+      
+          <li>
+  <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>ハイテクしごと</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+          <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+        </ul>
+    </aside></div></div>
+</div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
