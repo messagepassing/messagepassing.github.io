@@ -54,7 +54,8 @@
 <p>結果として何がおこるかというと、あるサービスのデプロイと、それを呼び出す別のサービスのデプロイを揃えるのは難しくなる。最初のほうのリージョンでは揃うかもしれないけれど、後半のリージョンではそろわないかもしれない。揃っていたと思ったら、どこかで片側だけロールバックされるかもしれない。ひとつのリージョン、ひとつのロードバランサーだけをみても、デプロイ中は新旧のバージョンが混在することもある。</p>
 <p>こうなってくると、全てのサービスがひとつのレポジトリに入っていて、アトミックな変更が出来たとしても、そのアトミシティはデプロイ中にバラバラになってしまう。我々の世界にビルドナンバーは存在しないのだ。</p>
 <p>もしかしたら Google や Facebook には、そういうアトミシティを担保する何かハイテクがあるのかもしれないけれど、でもまあ、無くてもいいハイテクは無いままでもいいかなあ。</p>
-<div class='message'>
+<hr>
+<div class='message is-medium'>
 <div class='message-header'>karino2</div>
 <div class='message-body'>
 無駄にレポジトリが分かれたり不適切にソースが読めなくなったりという間違った方向に進む圧力に抗する為の拠り所としてモノレポという同意で進めるというスタイルがある、
@@ -62,7 +63,7 @@
 皆がそもそもに適切に管理されるという前提で良し悪しを語るのはなかなか興味深いですね。
 </div>
 </div>
-<div class='message'>
+<div class='message is-medium'>
 <div class='message-header'>kzys</div>
 <div class='message-body'>
 <p>最初に Office の話なんてするからみんなも話の規模がインフレして&hellip;</p>
@@ -70,13 +71,13 @@
 
 </div>
 </div>
-<div class='message'>
+<div class='message is-medium'>
 <div class='message-header'>shinh</div>
 <div class='message-body'>
 グーグルの話だと、 protobuf とかあからさまに古い IDL で作ったメッセージをハンドルできることからわかる通り、デプロイされたら各バージョンはバラバラですね。アトミックにデプロイ、は現実的に不可能と考えてるんじゃないでしょうか。話それてますが、 <a href="https://developers.google.com/protocol-buffers/docs/proto3#unknowns">proto3 で 未知のフィールドをパース時に捨てる設計が大失敗だった</a> とされてるのは面白いなと思っています。 RPC を素通しするはずのロードバランサみたいなやつがメッセージの中身を減らしてしまうという。
 </div>
 </div>
-<div class='message'>
+<div class='message is-medium'>
 <div class='message-header'>morrita</div>
 <div class='message-body'>
 Monorepo を褒めるのに atomic change を持ち出すやつはモグリだ！というのはあおりすぎだけど、
