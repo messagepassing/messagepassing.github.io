@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html><head>
+    <title>ちょうどよさのはなし&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/008-justright/01-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='ちょうどよさのはなし&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='Markdown や JSON や、あとはなにがちょうどいい？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='ちょうどよさのはなし&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='Markdown や JSON や、あとはなにがちょうどいい？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>ちょうどよさのはなし</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-01-14</td></tr>
+      </table>
+      <article class='content'><p>その「ちょうどよさ」ゆえに普及したテクノロジ - アイデアや標準があると思う。
+そういうのは、科学や工学でなく匠としてのプログラミングを表している気がして成功が嬉しい。</p>
+<p>自分にとって「ちょうどいいテクノロジ」の代表は JSON (2002) と Markdown (2004).
+どちらも技術的にはさほど大したことはないけれど、どちらも広く使われている。</p>
+<p>「ちょうどいいテクノロジ」はこれ以前にも色々あった。UNIX(1969) や HTTP/REST (1991) なんかが思い当たる。
+ただ同時代性がないせいか成功が華やかすぎるせいか、まいち親近感がない。
+ついでにいうと、自分はもはやこれらに「ちょうどよさ」を感じない。
+UNIX の代表 Linux は超巨大ソフトウェアだし、HTTP の最新版 HTTP/3 は随分複雑なプロトコルに見える。
+JSON と Markdown は、今のところ当初の「ちょうどよさ」を留めている、気がする。
+UNIX と Markdown を並べると怒られちゃいそうだけど、別に UNIX がだめって話じゃないんだよ。
+自分にとって「ちょうどよさ」の範疇にないだけで。</p>
+<p>「ちょうどよい」テクノロジの成功はよく <a href="https://www.jwz.org/doc/worse-is-better.html">Worse Is Better</a> として説明される。
+間違ってはいないだろうけれど、テクノロジの市場が scarcity から abundance にシフトする中でこの説明が十分な力を持っているとも思えない。
+たとえば JSON 的なものは YAML なり TOML なりいくつかあった。Markdown にもライバルは沢山いた。
+（自分は当時 <a href="https://textile-lang.com/">Textile</a> に肩入れしていた。<a href="https://docutils.sourceforge.io/rst.html">RST</a> は今でも現役だ。)
+これらはどれもまあまあちょうどよかったはずだけれど、JSON や Markdown の成功には及ばなかった。</p>
+<p>何が違ったのだろう。たとえば Markdown の発明者が <a href="https://daringfireball.net/">John Gruber</a> や <a href="http://www.aaronsw.com/">Aaron Swartz</a>
+のようなインターネット有名人だった事実は、どのくらい成功を助けたのだろう。
+あるいは JSON が JS のサブセットなのはどれくらい重要だったろう。
+そういえば JSON の <a href="https://www.crockford.com/">Douglas Crockford</a> も有名人だ。</p>
+<h2 id="最近のちょうどいいテクノロジはどこに">最近のちょうどいいテクノロジはどこに</h2>
+<p>それはさておき　JSON も Markdown も 15 年以上前の話で、UNIX や HTTP と比べたら若いとはいえだいぶベテラン。
+もっと最近のちょうどよさに親しんでソフトウェアの匠を見直したい。でも流行りに疎くてこれという例がぱっと思い浮かばない。</p>
+<p>ちょっと敷居を下げてみると、たとえば AWS Lambda に並ぶ FaaS たちははなかなかちょうどいい気がしている。
+Heroku や App Engine と比べてだいぶ素朴でいい。だんだん複雑化してそうだけれど。</p>
+<p>R の DataFrame もちょうどいいデータ表現として成功を収めた気がしている。
+Python(Pandas) や Scala(Spark) に移植されているし、<a href="https://arrow.apache.org/use_cases/">Apache Arrow</a> なんてのもあるし。</p>
+<p>おきにいりのちょうどいいテクノロジ、なにかないですか。
+<a href="/008-justright/02-kzys/">かずよしさん</a>、<a href="/008-justright/03-karino2/">ありのさん</a>、<a href="/008-justright/04-jmuk/">向井さん</a>、
+<a href="/008-justright/05-shinh/">はまじさん</a>？</p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>ちょうどよさのはなし</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/03-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/04-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/05-shinh/'>shinh</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>他のはなし</p>
+      <ul class='menu-list'>
+      
+      
+        <li>
+  <a href='https://messagepassing.github.io/007-repo/01-karino2/'>モノレポのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>ハイテクしごと</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

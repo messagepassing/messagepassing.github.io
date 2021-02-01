@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html><head>
+    <title>ちょうどいいシリアライザ、FlatBuffers&nbsp;/ karino2&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/008-justright/03-karino2/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='ちょうどいいシリアライザ、FlatBuffers&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="og:description"        content='Markdown や JSON や、あとはなにがちょうどいい？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='ちょうどいいシリアライザ、FlatBuffers&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='Markdown や JSON や、あとはなにがちょうどいい？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>ちょうどいいシリアライザ、FlatBuffers</td></tr>
+        <tr><th>From</th><td><a href="https://karino2.github.io/">karino2</a></td></tr>
+        <tr><th>Date</th><td>2021-01-20</td></tr>
+      </table>
+      <article class='content'><p>ちょうどいいテクノロジ、というのは確かにあって、誰でもぱっとJSON、Markdownまでは思いつくと思うのだけど、その次が意外と難しい。
+morritaさんはdataframeを挙げていて、これは確かに何かの基盤になっているとは思うのだけれど、なんとなく自分的にはjsonと並べるとしっくり来ない。</p>
+<p>ちょうど良いでしばらく考えて思いついたものとしては、SQLiteがある。PostgreSQLやMySQLがすでにある所で登場したSQLiteは、
+そのちょうど良さゆえに普及した気がする。だけれど、そこから特に語る所が無い。ふーむ。</p>
+<p>と考えていて、そういえば最近「これはちょうど良い！」って思ったものがあった気がするな〜と考えていたら、
+<a href="https://google.github.io/flatbuffers/">FlatBuffers</a>がそれだったのを思い出した。</p>
+<h3 id="ちょうどいいシリアライザflatbuffers">ちょうどいいシリアライザ、FlatBuffers</h3>
+<p>FlatBuffersはProtocol Buffersのようなもの。
+ようなものってことはどこが違うの？という話になるけれど、自分はProtocol Buffersそんな詳しくないので違いを説明するのは難しい。
+ということでFlatBuffersの話だけをする。なお、FlatBuffersとは何か、みたいなことはそんなに語らないので公式ドキュメントでも見てください。</p>
+<p>FlatBuffersは凄くシンプルで、大したことをしない。そこが良い。
+IDLっぽいものからヘッダファイルが生成されて、FlatBuffersのヘッダと一緒にincludeすれば良い。
+リンクしなくて良い。いろいろなIDEのプロジェクトファイルと付き合わなくてはいけない自分の環境では大変うれしい。
+生成されるファイルも単純で（比較的）小さい。読めばだいたい理解出来る。</p>
+<p>メモリ上にすでにデータがあれば、そこからunpackして二重に持ったりしたくない、
+オフセット指定してアラインとかエンディアンとか気にせず読み書き出来るくらいのに毛がはえたくらいでいいんだよなぁ、
+生成されるenumとかはそのままenum classとしてC++で使えてさぁ、
+フォーマットもそんなにかっちりしすぎず、フィールド足すくらいならデフォルト値で読めるくらいで昔のもそのまま読めて、
+適当に手作業で必要な所だけ読んだりしたい、
+でも配列とかは使いたいし文字列はいい感じに読めてほしい、
+でも変な不定長とか要らないので読み飛ばしは簡単に出来てほしい、
+みたいな、「こんなもんでいいんだよ」という思いに、ちょうど答えてくれるくらいの複雑さ。</p>
+<p>使い方もそれなりにシリアライズの都合に合わせて出来ないこともあるのだけれど、
+変にドキュメントできっちり仕様とか説明せずに、都合が悪いような使い方をするとassertで落ちる。そこをデバッガで見ると長々とコメントで何故ダメなのかが書かれていたりする。
+そうそう、こんなもんでいいんですよ。</p>
+<h3 id="すでにある物を小さくして作るカッコよさ">すでにある物を小さくして作るカッコよさ</h3>
+<p>PostgreSQLやMySQLがある所でSQLiteを作る、とか、Protocol Buffersのある所でFlatBuffersを作る、
+というのは、難しいですよねぇ。
+あとから小さい物で市民権を得るのは、「より労力を集めた」では無く、センスで勝負している感じがかっこいい。
+どうやったらそれが出来るのか？はちょっと難しすぎる気がするので、代わりになぜFlatBuffersを使う気になるのか？を、半歩離れて見るくらいをしてみたい。</p>
+<p>FlatBuffersが凄くいろいろな所で使う気になるポイントの一つに、手書きで書いてもだいたい同じ感じになるだろうな、という気がするというのが挙げられると思う。
+手書きとの差分としてのゼロオーバーヘッド感というか（FlatBuffersは厳密にはゼロでは無いけれど）。
+手書きで書いてもたぶんあんまり変わらないので、手書きの所は全部これでいいか、と思える。
+だからちょっとしたものでも少し大きいものでも、なんでもかんでもFlatBuffersにしよう、となる。
+最近自分はバイナリフォーマットは全部これでいいんじゃないか、と思って積極的に使っている。</p>
+<p>ライブラリにはゼロコストで出来る範囲のことをする、という生き残りの道が一つあるよなぁ。
+それでは、ある種の「良くあるがいつもでは無いユースケース」でサポート出来ない物が出てくるのだけれど、
+それはライバルのライブラリに任せれば良い。ゼロコストの範囲にとどまる事で必ず一定の需要はあるし、ライバルと差別化出来る。
+ゼロコストの範囲で出来る事は限られているのでどんどん機能が複雑になる事も無い。</p>
+<p>といっても、こういうのは実際に作って市民権を得る所まで行かないと、作るという選択の正しさを証明は出来ない気がする。
+すでにあるのを使わずにダメに再発明しているのとの区別は結果でしか出来ないよなぁ。</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>FlatBuffers は Protobuf に比べて小さいだけでなく速いという明確な利点があるのが強いですね。
+それがつまりゼロコストということなのだろうけれど。
+Apache Arrows が<a href="https://arrow.apache.org/faq/#how-does-arrow-relate-to-flatbuffers">採用している</a>のを見た時はちょっとびっくりした。</p>
+<p>ただ X より速い X の代替品 Y は沢山あるけれど必ずしも流行るわけではないから、そこには crack すべき code があるのだろうなあ。</p>
+
+</div>
+</div>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>ちょうどよさのはなし</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/04-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/05-shinh/'>shinh</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>他のはなし</p>
+      <ul class='menu-list'>
+      
+      
+        <li>
+  <a href='https://messagepassing.github.io/007-repo/01-karino2/'>モノレポのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>ハイテクしごと</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html><head>
+    <title>ちょうどいいインターネット、Gemini&nbsp;/ kzys&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/008-justright/02-kzys/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='ちょうどいいインターネット、Gemini&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="og:description"        content='Markdown や JSON や、あとはなにがちょうどいい？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='ちょうどいいインターネット、Gemini&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='Markdown や JSON や、あとはなにがちょうどいい？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>ちょうどいいインターネット、Gemini</td></tr>
+        <tr><th>From</th><td><a href="https://8-p.info/">kzys</a></td></tr>
+        <tr><th>Date</th><td>2021-01-19</td></tr>
+      </table>
+      <article class='content'><p>個人的には TOML は「ちょうどいい」かなあ。<a href="https://noyaml.com/">YAML の大変さ</a>がなくて、<a href="https://dhall-lang.org/">Dhall</a> ほど野心的ではない。言われてみると、TOML の作者も GitHub の共同創業者の一人なので、だいぶ有名人ですね。</p>
+<h3 id="ちょうどいいインターネットgemini">ちょうどいいインターネット、Gemini</h3>
+<p>私がここ一年くらい気になっているプロジェクトに <a href="https://gemini.circumlunar.space/">Gemini</a> がある。Gemini は Gopher と Web (HTML + HTTP) のいいとこどりを目指すプロジェクトで、行志向のワイヤープロトコルと、その上にのる、これまた行志向の <code>text/gemini</code> フォーマットで構成されている。</p>
+<p>ここでいう Gopher は、<a href="https://blog.golang.org/gopher">Go のマスコット</a>ではなくて、1993年発行の <a href="https://tools.ietf.org/html/rfc1436">RFC 1436</a> で定義されている、Gopher プロトコルのこと。世の中は広いもので、2021年の今現在も Gopher を使っていたり、それでブログのようなことをしている (ブログは Web + Log の略称なので、Gopher 上のブログは Gopher + Log を略して Phlog と呼ばれる) コミュニティが存在している。その中の一人 solderpunk が、Gopher の欠点を克服しつつも、Web よりもずっとシンプルなプロトコルとして設計したのが Gemini だ。</p>
+<p>Web の複雑さがなぜ問題なのか? <a href="https://gemini.circumlunar.space/docs/faq.html">Project Gemini FAQ</a> では、こう説明されている。</p>
+<blockquote>
+<p>Modern web browsers are so complicated that they can only be developed by very large and expensive projects. This naturally leads to a very small number of near-monopoly browsers, which stifles innovation and diversity and allows the developers of these browsers to dictate the direction in which the web evolves.</p>
+</blockquote>
+<p>実際のところ、2021年の Web ブラウザ、とりわけレンダリングエンジンで、最近の仕様を一通りサポートしていて、いまも開発が続いているものは</p>
+<ol>
+<li>Apple の WebKit</li>
+<li>Google の Blink (2013年に WebKit からフォーク)</li>
+<li>Mozilla の Gecko</li>
+</ol>
+<p>の3つしかない。ここにマーケットシェアを加味すると、WebKit と Blink の二強状態といっても過言ではないだろう。私は Microsoft や Opera が自前のレンダリングエンジンを開発していた時代を知っているので、この現状には一抹の不安を感じる。</p>
+<p>FAQ では Gemini のシンプルさについて、こうも説明されている。</p>
+<blockquote>
+<p>Early Gemini discussion included three clear goals with regard to simplicity:</p>
+<ul>
+<li>It should be possible for somebody who had no part in designing the protocol to accurately hold the entire protocol spec in their head after reading a well-written description of it once or twice.</li>
+<li>A basic but usable (not ultra-spartan) client should fit comfortably within 50 or so lines of code in a modern high-level language. Certainly not more than 100.</li>
+<li>A client comfortable for daily use which implements every single protocol feature should be a feasible weekend programming project for a single developer.</li>
+</ul>
+</blockquote>
+<p>プロジェクトがはじまった2019年の6月から1年半ほどたった2021年の1月現在で、<a href="https://portal.mozz.us/gemini/gemini.circumlunar.space/software/">クライアント、サーバーともに10を超える実装がある</a>現状は、Gemini がこれらのゴールを満たせているのを示していると思う。</p>
+<h3 id="ちょうどよさの射程">ちょうどよさの射程</h3>
+<p>Gemini が本当にちょうどいいというと、ほとんどの人にとってはミニマルすぎてちょうどよくはないと思う。なんせ画像のインライン表示すらサポートされていない。FAQ でも、Gemini は Web も Gopher も置き換えない、共存するものである、というのは明言されている。</p>
+<p>一方で、前述のようにクライアントやサーバーは沢山あるし、はてなアンテナのような更新時間順リンク集である <a href="https://portal.mozz.us/gemini/gemini.circumlunar.space/capcom/">CAPCOM</a> を見ると、毎日誰かが何かを更新していたりもする。検索エンジンも2つある。Gemini がちょうどいい人は、多くはないけどゼロでもない。</p>
+<p>多数派にもなれないし、何かをディスラプトするわけでもない、でも同好の士を引きつけるだけのちょうどよさってのも悪くないと思う今日この頃です。</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+すごく流行りはしないけれどニッチの間でカルト的に好かれるものは、別の軸のちょうど良さがあるのかもしれない。
+自分の中では Emacs の <a href="https://orgmode.org/">org-mode</a> とかそういうかんじだな。
+そういうニッチツールは個人向けには結構あるけれど、Gemini はソーシャル要素があるのが新しいというか、特殊ですねえ。
+</div>
+</div>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>ちょうどよさのはなし</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/03-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/04-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/05-shinh/'>shinh</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>他のはなし</p>
+      <ul class='menu-list'>
+      
+      
+        <li>
+  <a href='https://messagepassing.github.io/007-repo/01-karino2/'>モノレポのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>ハイテクしごと</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

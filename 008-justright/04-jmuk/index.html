@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Go言語のちょうどよさ&nbsp;/ jmuk&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/008-justright/04-jmuk/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Go言語のちょうどよさ&nbsp;/ jmuk&nbsp;- Message Passing' />
+    <meta property="og:description"        content='Markdown や JSON や、あとはなにがちょうどいい？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Go言語のちょうどよさ&nbsp;/ jmuk&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='Markdown や JSON や、あとはなにがちょうどいい？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Go言語のちょうどよさ</td></tr>
+        <tr><th>From</th><td><a href="https://jmuk.org/">jmuk</a></td></tr>
+        <tr><th>Date</th><td>2021-01-27</td></tr>
+      </table>
+      <article class='content'><p>Go言語は、なんというか「ちょうどいい」言語だな、と思っている。異論は認める。</p>
+<p>Go言語の登場時、なんせGoogleが大々的に発表した新しいプログラミング言語であるし、Rob PikeやKen Thompsonといった有名人の関わりもあり、華々しかった。そして、その登場を眺めたプログラミング言語マニアは、そのダサい仕様にわりとすぐがっかりして、興味をなくした。ということがあったと思う。今はGoはけっこう広く使われていて人気もあるけど、ここに至るまでには紆余曲折があった。</p>
+<p>Go言語、なにせ2010年代にもなってなんせジェネリクスもない（そのわりにスライスや配列、ハッシュテーブルだけが標準にあり、特別扱いされている）。例外処理もない（これはまぁそのほうがいいだろうという人もいるだろうけど）。そこらじゅう <code>if err != nil</code> だらけ。テストにアサーションもなく、ひたすら地道にif文を書くべしとされている。いくつかのビルトインな関数（たとえば <code>make</code>など）は構文上も特別扱いされていて、直交性がかけらもない。</p>
+<p>オブジェクト指向的なことはできるが、C++やJavaのようなクラス志向ではない。継承が言語仕様にない。interfaceによるduck typingはできる。メタプログラミング的なことはやりづらい。オブジェクトは動的なところが一切ない。なんかデザインしづらそうだな、というふうに思った。</p>
+<p>というわけで、登場時は「なんだかぱっとしない」「かっこよさがない」といったイメージであったように思う。すくなくとも自分は。</p>
+<h1 id="go言語のちょうどよさ">Go言語の「ちょうどよさ」</h1>
+<p>結果的にはこういうマニア視点はまったくのお門違いだったといえるだろう。Go言語はおおいに流行っている。これをGoogleによるゴリ押しだという主張はきっとあるだろうけれど、それはたぶん違う……もちろん、会社の支援のもとで言語仕様の改善や標準ライブラリの拡充などの発展があって便利になっていったという側面はあるけど、それはまあ「ゴリ押し」とは言わないだろう。</p>
+<p>Goの独特のニッチにうまくハマったのだと思う。それはたとえばWebサーバやRPCサーバ、ちょっとしたユーティリティツールやサービスにあたる。GCがあって、並列処理ができ、標準ライブラリだけでもけっこういろんなことができて（http2サーバでJSONを返したりとが簡単にかける）、単純だけど静的型付けで単純な間違いは防げる。Goのインタフェース志向なduck typingは使ってみるとわかりやすく簡単だったし、実装の継承があると便利な場面というのも別になかった。こういう用途には便利だった。</p>
+<p>言語マニアが「ださい」と思ったところは、実用上はそんなに大きな問題になることが多くはなかった。多くのGoプログラマが証言するように、Goを書いていてジェネリクスが必要なのになくて困るという場面はほんとうに少ない。もちろんまったくゼロではないし、今後たぶんジェネリクス的な機能は入ることになるだろうから、それはそれでいいことなんだけど、でも、マニアの文句なんてそんなもんだという話でもある。標準組み込み型の特別扱いがわりとうまく機能してるとも言える。</p>
+<p>Goコマンドの導入によりツールチェインはわかりやすく使いやすくなったし、ビルドも速く、シングルバイナリでデプロイや配布が単純というのもよかった。こういうところは言語マニアはあんまり評価対象としないと思うけれど（言語そのものというよりは処理系の話だし）、そこには大きな意味があったと思う。Goは性能がよいというイメージ（実際のところ、最速でないにしろスクリプト言語よりは十分速い）も普及に一役買ったことだろう。</p>
+<h1 id="goはworse-is-betterか">Goはworse is betterか？</h1>
+<p>Goの「ちょうどよさ」というのはどういうものだろうか。先進的でかっこいい理論にもとづいた複雑な言語より、ダサいけど使いやすいのがいい、というのが端的な評価になるとおもう。これはworse is betterを思わせるところがある。ただ、読み直してみると、Goはworse is betterでいうところのNew Jerseyアプローチではないように思える。</p>
+<p>Worse is betterの結論というのはこうだ。実装が簡単で使うのも苦じゃないようなものは、みんなが勝手に再実装しやすい。そういう再実装は完璧じゃないにしてもまあまあ使えて同じぐらい使いやすい。そうやってウィルスのように広がっていく。MITアプローチで作られるものは、ぜんぜん完成しないか、完成しても使い物にならないかで流行らない。</p>
+<p>JSONはまさにworse is betterといえる。自作JSONパーサを作るのだってすごく大変じゃない（性能とかを気にしなければ）。コンパクトでミニマルである良さみたいなものがある。</p>
+<p>でもGoはランタイムも大きくてけっこういろんなことをしてくれる言語だ。GCもある。goroutineはカーネルスレッドの複雑さを隠蔽してくれる。再実装はぜんぜん簡単じゃない（実際、Goの再実装なんてllvm-goとか数えるほどしかない）。GoはいろんなOS、アーキテクチャに移植されてるけど、これはどっちかというとエンジニアリングリソースの投入量によるところが大きそうだ。それにまた、Goは裏側で意外といろいろ複雑なことをしてくれることがある。Goは間口の広さと取っ付きの良さ、仕様のわかりやすさによって普及したが、そのわかりやすさ、単純さのためには実装の複雑さを引き受けている面がある。かといってMITアプローチともいいがたい。</p>
+<p>これはたとえばTOMLのちょうどよさにも通じるところがあると思う。TOMLは書き手にはシンプルでいい言語なのだが、これまたnew jerseyスタイルではない。実際に再実装するのは意外と厄介。仕様は細かいところまでいろいろカバーされており、こういう場合はエラーになる、こういう場合はこうなる、といった仕様をすべて正しく実装するのはじゃっかん面倒くさい。そういうこまかい部分がありつつも、全体的には「なんとなく人間が書いてわかりやすいような挙動」が取られるようになっている。データ型も日付型とかがあったりしてミニマルな良さもない。</p>
+<p>まあいまさらworse is betterでもないだろうという話でもないのかもしれない。あるいは、MITとNew Jerseyの相克は、「ちょうどよさ」の新しい相を生み出したのかもしれない。これが今の時代のちょうどいい表現なのかもね。言い過ぎな気もするけれど。</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>Worse is betterはそのまま現在に語るにはどうなのか、とも思う反面、現在のコンテキストでうまい感じに翻訳して語れんもんかなぁ、という気もしている。
+YAGNIとかworse is betterとかってきっちりした主張ほどわかりやすく無いのだけど、割と重要なものを含んでいる気がするのだよなぁ。</p>
+<p><a href="https://www.youtube.com/watch?v=P_uCJ4zOABY">自分のGo言語評価</a>を聞きなおしたら、
+worse is betterとは言ってないが似たような事を言っている気がした。</p>
+<p>ちょうど良さというか、だいたいこんなもんでいいんだよ感というか。</p>
+
+</div>
+</div>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+<p>Manning から出ている <a href="https://www.manning.com/books/functional-programming-in-scala">Functional Programming in Scala</a> の著者の一人でもある Paul Chiusano が、<a href="http://pchiusano.github.io/2014-10-13/worseisworse.html">The problematic culture of &ldquo;Worse is Better&rdquo;</a> というのを2014年に書いていて、</p>
+<blockquote>
+<p>“Worse is Better”, in other words, asks us to accept a false dichotomy: either we write software that is ugly and full of hacks, or we are childish idealists who try to create software artifacts of beauty and elegance.</p>
+</blockquote>
+<p>元エッセイはそこまで言ってたっけ? と思わなくもないけれど、もうちょっと高みを目指してもいいだろうというのはそうだし、Go が MIT か New Jersey かの二択で語れないのは、我々がもっと良い何かを見つけられている証拠のような気もします。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+でもそれがよりにもよってScalaで、Worse is betterの対象をC++として批判しているのはWorse is better批判としては微妙では？
+2021年現在で当初のWorse is betterはなんだったのか、をあんまり真面目に議論するのは意味が無いとは思うけれど、それにしてもimplementationがシンプルであるのを過剰に追求するのがWorse is betterという話だったのにC++は無いだろう、と。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+<p>Go言語の「ほーこういうのでいいんだよ」感は完全に同意で、主題からそれたコメントなんですけど、コンピュータサイエンスを作ってきた人が作るのがコレかー、というガッカリ感もあるんですよね。 <a href="http://doc.cat-v.org/bell_labs/utah2000/utah2000.pdf">Systems Software Research is Irrelevant</a> と言った人ですからねぇ。引用すると Where is the Innovation? というページで</p>
+<blockquote>
+<p>If systems research was relevant, we&rsquo;d see new operating systems and new languages making inroads into the industry, the way we did in the &rsquo;70s and &rsquo;80s.</p>
+</blockquote>
+<p>と言ってるんだから何かすごい新しいもの作って欲しいところに、 <a href="https://en.wikipedia.org/wiki/Alef_(programming_language)">Alef</a> の焼きなおしみたいな言語かー。。。的な。</p>
+
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>ちょうどよさのはなし</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/03-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/008-justright/05-shinh/'>shinh</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>他のはなし</p>
+      <ul class='menu-list'>
+      
+      
+        <li>
+  <a href='https://messagepassing.github.io/007-repo/01-karino2/'>モノレポのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>ハイテクしごと</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

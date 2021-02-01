@@ -29,6 +29,11 @@ html, tr {
     padding-left: 0px;
     padding-right: 0px;
   }
+
+  .comment .message-body {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
 }
 
 .article-container {
