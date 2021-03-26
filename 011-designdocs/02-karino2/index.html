@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html><head>
+    <title>曖昧な立場&nbsp;/ karino2&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/011-designdocs/02-karino2/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='曖昧な立場&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="og:description"        content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='曖昧な立場&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>曖昧な立場</td></tr>
+        <tr><th>From</th><td><a href="https://karino2.github.io/">karino2</a></td></tr>
+        <tr><th>Date</th><td>2021-03-05</td></tr>
+      </table>
+      <article class='content'><p>Design Doc、自分は無駄なケースが多いと思っているけれど、書いて欲しい場合もある、
+という曖昧な立場で、読んでもスッキリしない感じになるかもしれないが、
+そういう立場の人も多いと思うので書いてみる。</p>
+<h2 id="コミュニケーションの手段としてのdesign-docの有用性は高い事がある">コミュニケーションの手段としてのDesign Docの有用性は高い（事がある）</h2>
+<p>設計について相手が考えている事を知りたい時に、Design Docを見せて欲しいと思う事がある。</p>
+<p>特にこれから作ろうとしている物に明らかに幾つかの選択肢があって、
+それぞれ長所短所があってどれが最善か良くわからない時、
+相手が選んだ選択の理由を知りたい。（当然その選択が自分に関係ある場合。）</p>
+<p>プロジェクトにはいろいろな背景事情があって、
+その結果そのデザインが選ばれたと思う。
+でも背景とかの事情には必要な事以外あまり興味が無く関係ある事だけ知りたい時、
+Design Docとそのレビュー結果を見たい。</p>
+<p>技術的にどちらが良いのかわからない重要な選択のうち、
+なぜ一方を選んだのか、その意思決定には多くの情報が含まれる。
+それを読む事で背後にあるいろいろな関連する事情も想像出来るようになる。
+そこから芋づる式に必要な事を追加で質問していくのは、
+最初から重要な所だけにフォーカス出来て効率が良い。</p>
+<p>またあまり背景知識が無い状態では、何の準備も無く顔をあわせて説明を受けたり質問をしたりするよりも、
+片方が考えている事を一通り書いてもらい、それを読んでから顔をあわせて質問したりする方がコミュニケーションの質が良い。
+そういう時に何を書いて欲しいかを示す時、良く知られているDesign Docの形式は便利だ。
+トレードオフや代替案などにフォーカスするスタイルは、良い切り口である事は多い。</p>
+<p>その結果として残る物にもそこそこ価値があるので、
+無駄なミーティングをへらす為のコミュニケーション手段としてもDesign Docはなかなか良いと思う事がある。</p>
+<h2 id="設計について話し合うテンプレートとしてのdesign-docのスタイル">設計について話し合うテンプレートとしてのDesign Docのスタイル</h2>
+<p>設計について考えて話し合いたいとき、とりあえずコードを書いてきただけの経験の浅い若手などは何を話していいかわからない事がある。
+特に入社からずっと１人チームとかで他のチームのベテランと話した事とか無いんですが・・・・みたいな人。
+ちょっとこれから作るものはベテランの意見をちゃんと取り入れて欲しい、みたいなときに困る。</p>
+<p>そういう時に「設計について考える」ことに期待される内容を伝える際、
+Design Docを書いてレビューをしてもらう形式は提示しやすい。
+それを元に議論してもらえば自然とやって欲しい事をやってもらえて、
+そのやり方にはそれなりに有効性もある気がしている。</p>
+<p>Design Docは形式が広く知られているし、書く時に気をつけるべき事なども良く語られていて、しかも比較的それらの説明は短い。自習もしやすい。
+だから企業文化の違う相手にとりあえずやってくれと要求しやすい。
+また相手がベテランなら、好き嫌いはおいといてだいたいは慣れ親しんでいるので、
+何をして欲しいのかを簡単に伝えられる。</p>
+<p>自分もそういう形式に慣れているおかげで、
+Design Docとレビューのフィードバックを見れば、
+どういう話し合いをしたかがだいたい後から分かる。
+もっと言うと、どういう話し合いを「していないのか」も分かり、こちらの情報が重要な事も多い。
+漫然とした打ち合わせと結論のよくわからないふにゃふにゃした議事録よりは、
+Design Docとレビューを中心とした議論の方が周りからも分かりやすい。</p>
+<h2 id="無駄なdesign-docが大量に書かれがち">無駄なDesign Docが大量に書かれがち</h2>
+<p>そんな訳で有用なことはあると思っていて、書いてほしいと依頼する事もあるのだけれど、一方で好きになれない事も多い。
+一番好きになれない所は、明らかに誰も読まないようなDesign Docが大量に量産されがちな所。</p>
+<p>morrita氏が最初にリンクを貼った<a href="https://www.industrialempathy.com/posts/design-docs-at-google/">Design Docs at Google</a>では「Design Docを書くべきでは無い時」という話が書かれているが、こういう時にもいかにも書かれがちに思う。
+また、上記ではdesign problemに曖昧性があれば書くのが有効に読めるけれど、そういう場合でも有効でない事はあると思う（後述）。</p>
+<p>Desig Docが有効で無いそういう状況でも、
+Design Docを書いてレビューをもらうスタイルが浸透すると、Design Docを書いてしまいがちだ。
+有効で無いDesign Docは負担が多く利益が少ない。</p>
+<p>だから有効でないケースを強調しないDesign Docの話（文書の書き方の話も）には、反発を覚えてしまう。</p>
+<p>morrita氏も「過剰な期待」という言葉を使っているのは、不適切な用途で書かれているケースがあるという感覚を共有しているんじゃないかなぁ、と思う。</p>
+<h2 id="design-docのdesign力が過大評価されがち">Design DocのDesign力が過大評価されがち</h2>
+<p>Design Docには「実際に実装をしてみるよりも前の段階でフィードバックを得て修正をする事が出来る」という前提がある気がする。
+一方で自分はこれが正しくない場合も多いと思っている。</p>
+<p>自分のデザインについての考えは、かなりの部分<a href="https://practical-scheme.net/trans/hp-j.html">ハッカーと画家</a>のデザインの話と一致している。
+コーディングはスケッチに近い物で、そこから着想を得てデザインができる。
+コーディングからのフィードバックはデザインを考える上で最重要であり、
+さらに言えばデザインプロセスの中心だと思っている。
+コーディングの前に文書でこれができるというのは間違った前提だと思っている。</p>
+<p>コーディングによる着想がどんなときでもすごく重要とは思ってないので、Design Docが有効に機能するケースはあると思う。
+でもそのケースは割と少なくて、その少ない有効なケースの時にだけDesign Docは使われるべき、と思っている。</p>
+<p>でもDesign Docのメリットの話はこの「デザインするという行為がそもそもにコーディングに根付いている」という前提を無視している事が多い。
+文書が有効で無いケースに誤って文書が書かれてしまうケースを十分に警戒していない。</p>
+<p>Design Docが有効でないけれど「デザインする」行為が必要なケースはすごく多く、
+そういう時まずDesign Docを書くのは「デザインする」行為を邪魔する。
+こういうときのDesign Docはコーディングを先にするよりも早く軌道を修正して正しい方向にコスト少なく導くものでは決して無い。
+そういうケースでDesign Docが最初に書かれてしまう事例をたくさん見てきた。
+morrita氏の欠点3の「不確実性の軽視」も同じような話に見えるので、似たような感覚を共有しているんじゃないか。</p>
+<p>よくわかってない事に関して、形だけ代替案を列挙して、ほとんど意味の無い形だけの検討を行ってもそれっぽい体裁は作れてしまうが、そんな物に全く意味は無い。
+でもそういう過ちは冒されやすい。</p>
+<p>デザインは重要であり、それはコーディングと不可分であり、それを前もって文書で検討する事は出来ない。
+我々はコーディングによるフィードバックという最大の武器を自分から捨ててはいけない。</p>
+<p>Design Docが有効でないケースは多いと思っている。それは強く強調していきたい。</p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>Design Docs の逡巡</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/04-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/05-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/06-morrita/'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>他のはなし</p>
+      <ul class='menu-list'>
+      
+      
+        <li>
+  <a href='https://messagepassing.github.io/010-wced/01-morrita/'>毎日コードを書く話</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/009-feed/01-morrita/'>読むものさがし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/008-justright/01-morrita/'>ちょうどよさのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/007-repo/01-karino2/'>モノレポのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>ハイテクしごと</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

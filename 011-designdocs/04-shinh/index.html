@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html><head>
+    <title>あまり感情を持ってない&nbsp;/ shinh&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/011-designdocs/04-shinh/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='あまり感情を持ってない&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="og:description"        content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='あまり感情を持ってない&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>あまり感情を持ってない</td></tr>
+        <tr><th>From</th><td><a href="http://shinh.hatenablog.com/">shinh</a></td></tr>
+        <tr><th>Date</th><td>2021-03-13</td></tr>
+      </table>
+      <article class='content'><p>僕は Design Doc に対して、あまり感情を持ってない。「Design Doc は最高です！」みたいな話を聞くと鼻白むものもあるけど、有用なケースもあると思う。ただ好悪は置いておいて、めんどくさいから書きたくない。実際のところ、ほぼ書いたことがない。</p>
+<h2 id="よりよい未来のため">よりよい未来のため</h2>
+<p>Design Doc は未来の失敗を回避するために有用なのはわかる。特にグーグルのサーバサイドの文化という気がするんだよなあ。グーグルは共有のインフラがすごく多くて、共有のライブラリもものすごく多くて、全てを把握してから開発に入るのは不可能。ひょっとしたら同じものあるかも、と思いつつも Design を書いたら、それは XX でできるよ、ということはありそう。</p>
+<p>あと、グーグルの Design Doc のテンプレートには privacy concerns や security concerns という項目があって、こういうのはプロダクトのデザインをひっくり返す可能性がある割に専門家が少なく、前もって相談しておくのは有用だろう。それと最初の方の Background とか Motivation も地味に重要な項目だと思っていて、「それってそもそもやる意味ある？」と実装してからなってしまうのを防ぐ効果もあるように思う。単に自分が解きたいから、解けるから、という理由で存在しない問題に取り組んでしまう人というのが、一定数存在すると思っている。（これはかなりブーメランである）</p>
+<p>というわけで、自分より特定領域を知ってる人がいる時に相談する手段としては、まあ割と良いのではないでしょうか。知らんけど……</p>
+<h2 id="過去を自分語りする楽しさと有益さ">過去を自分語りする楽しさと、有益さ</h2>
+<p>設計と言ってもハイレベルから細かいとこまで色々で、ハイレベルなところでは割と有用なんじゃないかな、というのが前段で言いたかったことかもしれない。例えば使うコンポーネント選択とか RPC の流れレベルのハイレベルな決定には有用そうな気がする。
+それより細かい話になってくると、 morita さんの「不確実性の軽視」や karino さんの「Design力が過大評価」の話になると思うんだけど、正直実装を書いてるうちにそのレベルの設計はガンガン変わってくるよね、となる気がする。
+どうせ実装やってる間に細かい設計はガンガン変わっていくのだから……という意味で、 kzys さんの「デザインの前にプロトタイプ作ります」とかすごく僕は好みの考え方。ホントそれでいいと思うなあ。やってみてわかることってやっぱり多いと思うし。前段で批判した「存在しない問題を解いたけど誰も困ってなかったらから誰も幸せにならなかった」的な状況でさえ、何もしてないよりは成長が得られるだろうし。その様子をハタで見てると「それ事前に相談しておいてくれればもう少し筋の良い提案ができたのに……」となることもあるだろうけど。</p>
+<p>グーグルでは一応 Design Doc を現状の design と一致するように更新することが推奨されていた……と思ってたけど、 morita さんがそう言っていないので、あまり自信はない。いずれにせよ多くの Design Doc は実装以降アップデートされてないので、 morita さんの「「古くなってるけどだいたい合ってるよね」という感じで読まれる想定がある」はそのとおりだったと思うし、そこらへんに読むのですらだるくなってしまう理由があるのだと思う。「なんで後で間違ってると判明したかもしれない設計を熱心に読まないとダメなんだ？」ってなりそう。
+そんな理由で、細かめの設計は、なんかむしろ事前に書くより後で書くのがよいのかもしれないな、と思った。 morita さんの言及していた ARCHITECTURE.md のように。事前に書くより実際のコードの設計と一致してる可能性が高いので後から参照された時の有用性も高そうだし。僕は割と自分語りが好きというか、ドヤりたい性分なので、そういうのは割と書いたりする。</p>
+<h2 id="僕の好みのスタイルと-kati-の例と">僕の好みのスタイルと、 kati の例と</h2>
+<p>というわけで、事前段階ではモチベーションの確認、他プロジェクトとの関連性、大枠のデザインに激しく影響する部分だけ必要なら Design Doc なりなんなりで議論して、さっさと実装して、うまくいったら ARCHITECTURE.md を書いてドヤる、というのが僕としては好みなのかな、と思った。ところで、この文章も特に考えをまとめてから書いてないので、この章を書き始めたあたりで、「僕は考えをまとめながら進めるのが好きなのだなあ」と自分の嗜好を自覚した状態。</p>
+<p>これを書く前の事前の相談で kati とか Design Doc とかどうしたの？と聞いてもらったのだけど、ちょうどそういう、あまり事前に相談せず後で説明を書くスタイルだった気がするので書いてみる。</p>
+<p><a href="https://github.com/google/kati">kati</a> というのは数年前に書いた、 GNU make の Android のための中途半端な別実装。 make がクッソ遅いというあからさまな問題があり、 motivation は明快だった。 drop-in-replacement を指向していたので、関連プロジェクトもない。というわけで Design Doc とかは一切書いてない。その前のプロジェクトの都合もあり、 Android.mk という GNU make の上で構築されたビルドシステムが何をしてるからはだいたいわかっていたので、なにかをキャッシュすれば速くなる、とは思っていたと思う。</p>
+<p>それ以上のことは何も設計してないし、まさに「デザインの前にプロトタイプ作ります、うまいこといったらそのまま本番ということで」スタイルの進行だった。 GNU make 、ユーザとしてはある程度知ってるつもりだったし、一緒にやっていた <a href="http://ukai.jp/">ukai さん</a>も僕も簡単な言語処理系くらいならサックリ書けるでしょ、くらいの自信はあった。でも、実装を書いてみると知らないことがたくさんあり、 ukai さんと二人で理解を深める手段として実装を書いていったような感じだったと思う。普通に考えてこういう処理してるでしょ、みたいな予想を GNU make が次々と外してくるので、激しくお互いのコードを書き直しまくってたいたように思う。関係ないけど、思い出すにこれも含めて ukai さんとの作業は楽しかったなあ。また機会があれば、と思う。</p>
+<p>「なにかをキャッシュする」ことにより劇的に速くなる予定だったので、たぶん Go でいいでしょ、と書いていて、そのまま本番で使うつもりで実装をしていた（ukai さんが Go ファンなので、リクルートする口実になるという事情もあった）。だけど、そのうちに、これでは速度的に気に入らないなあ、と C++ で書き直したので、事後的に最初に書いていた実装はプロトタイプだった、ということになった。 C++ の再実装も、 Go の経験があるぶんやり直しは少なかったけど、後になって判明した必要な機能で全体をいじったり、高速化のためのアレコレを入れたり、割と最後の方で make の drop-in-replacement という方針を放棄して ninja を生成する方針に切り替えたせいで設計が少し変わったり、割と有機的に変化を続けていた。</p>
+<p>このへんは Design Doc で事前相談してたら防げていた出戻りだったんだろうか。そんな気がする部分もあるけど、深く考えず実装を進めていったからこそ気付いた問題もある気がしている。このいきあたりばったりとしか言いようがないワチャワチャやってる時に、信頼してるのかダメ元なのか、とにもかくにも猶予をくれていた当時のマネージャの懐の広さには感謝している。僕なら止めるし、僕はマネージャの類になってはならない、と思う所以でもある。</p>
+<p>こんな感じでやけに長く経緯を書くことから分かる通り、僕は自分がうまくやったことを語りたいタイプであり、自分が面白い、ここは変だ、工夫した、頑張った、など書くのは楽しく、ポエムを書いた。日本語だと<a href="http://shinh.hatenablog.com/entry/2015/09/24/005803">これ</a> で英語だと<a href="https://github.com/google/kati/blob/master/INTERNALS.md">これ</a> 。これは割と ARCHITECTURE.md 的な役割を果たしたのかもしれない。 kati はその後 US の人がメンテしていてくれて、ごくまれにグーグル外の人も話題にしてくれているのを見るのだけど、ここに書いたようなことはわかっている前提で会話していてくれるような気がしていて、ひょっとしたら書いた意味があったのかなあ、などと思っている。まあでもおおむね自己満足という意味合いが強い気がする。</p>
+<p>逆に失敗談も書いておくと、 kati の直後にやった <a href="https://docs.google.com/document/d/1eRSNE352rA6ocyoFljHQW2ySdhg9oKN8CHj2ljrlKX0/edit">Dependency Sanitizer</a> というやつは、プロトタイプもよく動いていたし、
+名前もかっこいいし、自分が書いたドキュメントでは最も Design Doc に近い体裁だったと思っているんだけど、びっくりするほど全く人の興味を得られず、悲しい感じで立ち消えていってしまった。今でも良いコンセプトだったと思ってるので、何が悪かったんだろうなあ……と時々思い返している。</p>
+<hr>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+Ukai-san といえば、自分が Design doc という名前を初めて耳にしたのは Ukai-san の techtalk だった気がする。<a href="https://www.youtube.com/watch?v=pc-IQkVmOdI">これ</a>かな？
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+結局ninja生成するようになった、というあたりはいい話ですね。
+そういう事は多いと思うんだよなぁ。
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>Design Docs の逡巡</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/02-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/05-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/06-morrita/'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>他のはなし</p>
+      <ul class='menu-list'>
+      
+      
+        <li>
+  <a href='https://messagepassing.github.io/010-wced/01-morrita/'>毎日コードを書く話</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/009-feed/01-morrita/'>読むものさがし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/008-justright/01-morrita/'>ちょうどよさのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/007-repo/01-karino2/'>モノレポのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>ハイテクしごと</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

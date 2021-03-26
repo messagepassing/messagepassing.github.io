@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html><head>
+    <title>いけすかなさの出処&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/011-designdocs/06-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='いけすかなさの出処&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='いけすかなさの出処&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>いけすかなさの出処</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-03-24</td></tr>
+      </table>
+      <article class='content'><p>Design docs への温度感も、design docs といって想定するものも、けっこう個人差があるのがわかった。</p>
+<p>自分は Google がもてはやされていた時代に会社の外からさぞかし良いものに違いないと眺めていた時間が長く、
+そのときの印象を拭いきれていないのかもしれない。
+会社カルチャーの宣伝を真に受けない大人になったのは、もうちょっとあとなのだった。</p>
+<p>ただ design docs への高い期待値はテンプレートにも織り込まれている面がある。
+テンプレートを無視すればいいとかずよしさんは言う。じっさい自分は無視しているけれど、
+他の人が使う限り冗長で読みにくい design docs が回覧されてきてしまう事実は変わらないんじゃないかな。</p>
+<h2 id="writing-culture">Writing Culture</h2>
+<p>むかいさんのいう <a href="https://www.chromium.org/developers/design-documents">Chrome の design docs</a> は
+<a href="https://docs.google.com/document/d/14YBYKgk-uSfjfwpKFlp_omgUq5hwMVazy_M965s_1KA/edit">テンプレート</a>
+も含め社内のものとは独立して公開されており、これは Chrome 用でサーバサイドからのバイアスとかはない。それに比較的簡素。</p>
+<p>一歩さがってみると、チームはそれぞれが必要に応じ自分自身の documentation / writing の (sub)culture をきちんと育てていく必要があって、
+そうしないと外側の、自分たちには不似合いな mainstream に飲み込まれてしまう。あるいは文化不在の荒野になってしまう。
+自分の不満はそうした不在から来ているのかもしれない。</p>
+<p>そして他人が書くものをどうこうしたいと期待するのは不毛だし横柄。
+自分はべつに <a href="https://www.amazon.com/Fearless-Change-Patterns-Introducing-paperback/dp/0134395255">change agent</a>
+になりたいわけではない。現状は受け入れ、自分が書くものがどうあるべきかに考えを向ける。</p>
+<h2 id="説得としての-design-docs">説得としての Design Docs</h2>
+<p>かずよしさんやはまじさんのはなしを読んで振り返るに、この手の high-level writing は
+具体的なデザインの詳細より問題の分析や説明に労力を割くべきなのだろう。
+よく<a href="https://blog.codinghorror.com/code-tells-you-how-comments-tell-you-why/">コードのコメントは How ではなく Why を書け</a>とかいうけれど、
+それと似ている。自分が書いたものを振り返ると、その点がいまいちだった。</p>
+<p>こうした反省を踏まえて最近 push-back されてしまった自分の design docs を時間をかけて書き直し、計画も見直した。
+いざミーティング！事前に回覧する時間がなかったので口頭でさっと説明すると、いいんじゃない、みたいなかんじで素通し。
+あれ、がんばって書いた渾身の problem analsys とか読んでよ・・・とおもったが、
+計画をだいぶ scale down したため人々の警戒が解けたらしい。</p>
+<p>でも、そのほうが良い。Design docs で他人の説得が必要なくらい規模のある作業は、できればやりたくない。
+インクリメンタルにちまちま進められる仕事がしたい。
+むかいさんは design docs を各所との調整が求められる大規模開発の税金だという。
+言われてみればそのとおりで、自分は調整とかが全然得意でなく、
+その事実も design docs への怨嗟を高めていた気がする。</p>
+<h2 id="where-is-the-design">Where Is The Design?</h2>
+<p>Design docs が実際は説得 docs なのだと考えると、色々腑に落ちる。</p>
+<p>たとえば自分がこのごろ気になっている <a href="https://rahulramchandani.com/writing-culture-at-amazon/">Amazon Narrative</a> も、
+説得(すなわちミーティングで approval を得るため)のプロセスの話だった。
+これじゃあ使いみちは限られているとがっかりしてたけど、design docs も似たようなものだとしたら学べることは多い。</p>
+<p>ありのさんのいう design docs のデザイン力過信問題も、説得の方法によってはある程度は緩和できるのではないか。
+つまり合意を得る過程で重要なのはまず問題認識(Why)を揃えることで、デザインの細部には踏み込まない方が良い。
+雑な first sketch をいくつか示し「これがどのくらい上手く行きそうか試して、よさそうなら進めるしダメそうなら違うの試してまたアップデートしますね」
+くらいにしておく。</p>
+<p>逆にいうと、この段階で詳しいデザインを議論しなければいけないとしたら、
+それは戦略の失敗かもしれない。どうしても詳しい議論をしたいなら、試作で裏付けを取る。</p>
+<p>デザインの自由度をある程度担保しつつ説得 docs で問題認識を揃え協力をとりつける。
+細かいデザインは、仕事が進むなかでインクリメンタルにアップデートしていく。
+決まってない部分はムリに決まったフリをしない。きまった分は事後的に書く。
+世の中の多くの design doc がこう書かれているとは思わないし、
+これはもはや design doc と呼べるのかもわからない（というか呼べない）けれど、
+自分の仕事はそうやって進めるべきな気がしてきた。
+Design docs は、もういいです。みんなすきにしてちょうだい。</p>
+<p>これだとバーンと大きくなにかを変える仕事はできない。
+それは別に design docs や writing culture の問題ではなく、
+どちらかというと今の自分の限界なのだろうな。
+組織圧に負けず、
+プログラマの筋肉をつけて仕事のインクリメントの歩幅を増やし、
+視力を高めて調整のいらない道筋を見つけ出し、
+バーンとせずとも遠くへ行けるようになりたいものです。
+勤務先で楽しく働いているのはそういう人たちな気がする。</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>jmuk</div>
+<div class='message-body'>
+コードのコメントにはwhyを書け、という話でいうと、design docに求められているのはwhyよりはwhy notだと思うんですよね。alternatives consideredは自分はけっこう大事だなーと思っています。
+</div>
+</div>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>Design Docs の逡巡</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/02-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/04-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/05-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>他のはなし</p>
+      <ul class='menu-list'>
+      
+      
+        <li>
+  <a href='https://messagepassing.github.io/010-wced/01-morrita/'>毎日コードを書く話</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/009-feed/01-morrita/'>読むものさがし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/008-justright/01-morrita/'>ちょうどよさのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/007-repo/01-karino2/'>モノレポのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>ハイテクしごと</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

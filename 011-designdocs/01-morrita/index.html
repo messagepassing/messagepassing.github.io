@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Design Docs のいけすかなさ&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/011-designdocs/01-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Design Docs のいけすかなさ&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Design Docs のいけすかなさ&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Design Docs のいけすかなさ</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-03-04</td></tr>
+      </table>
+      <article class='content'><p>Design docs というのが昔からあまり好きでない。読むのも書くのも好きでない。
+仕事で文書を書くのはやぶさかではないけど Design docs はなんとなくいや。
+せっかくなのでこのイヤさを言語化してみたい。</p>
+<h2 id="design-docs-とはなにか">Design Docs とはなにか</h2>
+<p>自分が想定している Design docs は
+<a href="https://www.industrialempathy.com/posts/design-docs-at-google/">この文章</a>が説明しているようなものだ。
+なにかそれなりの規模があるものを作る時に設計やそのトレードオフをざっと文書化する文書。
+もっというと一般名詞の design docs ではなく、リンク先に書いてあるような自分の勤務先固有の The Design Docs 文化が好きでない。</p>
+<p>「設計やそのトレードオフをざっと文書化する。」
+それだけ聞くと割と良いもののような気がして、自分もある時期までは良いものだと思っていた。
+「ドキュメンテーション」というのは、プログラミングのポップカルチャーにおいては伝統的に嫌われものである。
+そんななか Design docs は旧来のドキュメンテーションが持つ官僚的、形式的なイメージを覆し、
+必要最低限の情報をインフォーマルに伝える手段として新風を吹き込んだ・・・気がしていた。十年以上前、具体的な実装を見るまでは。</p>
+<p>しかし実際に仕事で Design docs を読んだり書いたりしてみると色々と欠点も見えてくる。</p>
+<h2 id="欠点-1-想定されている問題領域の狭さ">欠点 1: 想定されている問題領域の狭さ</h2>
+<p>Design docs は、ある規模のものを「新規に」開発する暗の想定がある。
+ついでにそこで想定されているのはサーバサイドのシステムみたいなやつである。
+社内に用意されているテンプレートはこうした想定を強く織り込んでいる。
+けれどモバイルアプリのコードをリファクタリングをしたり UI を増改築したり性能改善をしたり奇妙なバグを直したりに
+大半の時間を費やしているしている自分にとって、この想定は他人事。</p>
+<p>先にリンクした文書では、インクリメンタルで比較的規模の小さい仕事には “mini design doc” を書くと良いといってるけど、
+その書き方については特に論じず、簡潔にしとけよ、オーバーヘッドでかいだろ、とかいうだけ。この無関心さが暗黙の想定を裏付けている。
+実際、あたらしいシステムをバンバン設計なさっている立派な皆様ほど Design docs を好まれる。</p>
+<h2 id="欠点-2-期待されている守備範囲の広さ">欠点 2: 期待されている守備範囲の広さ</h2>
+<p>Design docs の主目的はなにか大きなものをつくる前に重要な意思決定 (アーキテクチャといってもよい) をレビューすることである。
+つまりレビューが済んだら基本的には用済みだ。にも関わらず、
+Design docs は部外者や新参者が既存のソフトウェアのデザインを読み解くための文書としても使われている。
+「古くなってるけどだいたい合ってるよね」という感じで読まれる想定がある。</p>
+<p>この想定は Design docs を冗長にするし、焦点を滲ませる。
+レビューをするであろうチームメイト相手なら共有しているコンテクストを頼りに「全体像はだいたいいつものかんじ」と省略して本題に入り
+議論すべき論点を絞れるはずなのに、読み手が知っている話をダラダラと書きがち。
+ミーティングでレビューされた日には眠くなってしまう。</p>
+<h2 id="欠点-3-不確実性の軽視">欠点 3: 不確実性の軽視</h2>
+<p>Design docs は、暗にデザインの確度の高さを期待している。つまり「これでできるはず」という態度をとりがちである。
+先にリンクした文書では, エンジニアリングの問題なんて多くは &ldquo;set of known problem&rdquo; でしょと書いているけれど、
+そうはいっても相対的と未知/不安な要素はあるはず。だからこそレビューしてもらうんじゃないの？</p>
+<p>それらの不安要素こそレビューを通じて議論したいポイントのはずなのだから強調されてしかるべきだが、
+そういう率直さを感じられる Design docs を見かけることは少ない。
+しいていえば問題のスコープや non-goal 語る際に風呂敷を小さめにすることで目配せを送るくらい。</p>
+<p>実際に巨大なコミットメントが発生し権力者の approval が必要な重要プロジェクトの初期デザインとかは
+現実問題としてある程度の確度は必要だろうし調査や試作にも時間をかけるだろう。
+Design doc も自信作ができるまで iterate すればよい。
+が、それを日常に持ち込まないでほしい。テンプレに draft/ready-to-review/approved とか入れないでくれ。
+書かれる文書の 90% は最後まで draft じゃん。</p>
+<h2 id="過剰な期待と後光">過剰な期待と後光</h2>
+<p>こうした Design docs の残念さは、現実には Design docs でないテキストの不在として理解する方が腑に落ちる気がする。
+Design docs が生まれた 15-20 年くらい前というのは agile movement が台頭しはじめた頃で、
+世の中ではまだ巨大な「仕様書」が幅を利かせていた。</p>
+<p>当時まだわりかしスタートアップだったであろう Google にはそういう官僚的ソフトウェア開発への反骨精神があり、
+一方で事前の設計や議論の必要性もあり、最低限必要このくらいはやろうね、と生まれたのが Design docs &hellip; なんじゃないかな。
+ついでにいうと開発されているソフトウェアも既存コードベースの拡張より新しいものをバンバンつくるフェーズだったに違いない。</p>
+<p>月日は流れ、会社はでかくなり、コードもでかくなり、コードベースの寿命も伸びた。
+同時に世の中はインターネット・ソフトウェアの開発に伴う様々な性質、たとえば連続的で、漸近的で、実験的で、運用と一体化していること、への理解を深めた。
+ソフトウェア開発の流儀もかわり、沢山のイノベーションがあって、
+<a href="https://research.swtch.com/vgo-eng">ソフトウェア・エンジニアリングはプログラミングの時間積分</a>になった。</p>
+<p>Design docs はそうした進歩を織り込めていない。</p>
+<p>別に Design docs 自体が進歩を織り込まなくてもいんだけど、その周辺にもあまり進歩がない&hellip;というのはちょっと言いすぎて、
+たとえば <a href="https://learning.oreilly.com/library/view/software-engineering-at/9781492082781/">Software Engineering at Google</a>
+という本では &ldquo;Design Docs&rdquo; の他に &ldquo;Reference Documentation&rdquo;, &ldquo;Tutorials&rdquo;, &ldquo;Conceptual Documentation&rdquo;, &ldquo;Landing Pages&rdquo;
+といった種別を議論している。世の中でもそうした議論は沢山あることだろう。
+けれどこういう最近のドキュメンテーションに関する議論は Design docs が一部の人に対して持っているマインドシェア/後光を上書きできていない。
+キャッチーさが足りない。</p>
+<h2 id="足りていないもの">足りていないもの</h2>
+<p>そんなわけで誰か Design docs をやっつける、というか肩の荷をおろしてあげる、
+キャッチーでモダーンなドキュメンテーションのやり方を考えてくれないかなあとぼんやり思いつつ早幾年。</p>
+<p>まず「ドキュメンテーション」というのは若干 stigmatized に思えるので「テキスト」とでも呼んでおこう。
+モダンなソフトウェア開発にテキストはどうあるべきか。大きな軸は二つあると思う。</p>
+<p>まず議論、意思決定のためのテキストと解説のためのテキストを分離。Design docs はこれを混同して簡潔さを欠きがちだと先に書いた。
+モダンテキストはそういう問題を乗り越えていってほしい。</p>
+<p>そして小規模化と高頻度化。長いのよくない。ソフトウェア開発はインクリメンタルになったんだから、テキストもそれを織り込んでほしい。
+かわりにもうちょっと頻繁に書いてほしい。というかメールとかバグトラッカーのコメントとかコードレビューのスレッドとかに書いている
+ランダムなテキスト、もうちょっと名前と構造と発見可能性を与えてくれ！もう Gmail の検索で探すとか嫌なんだ！！</p>
+<h2 id="目についたよさげな事例たち">目についたよさげな事例たち</h2>
+<p>実際のところモダンテキストの試みはそれなりにある。</p>
+<p>特にオープンソース・コミュニティの成熟化にともない「解説」の方は割と充実してきている。
+ぱっと良い資料がみつからないけれど、たとえばこの <a href="https://documentation.divio.com/">The documentation system</a> によれば
+Tutorials, HOW-TO Guides, Explanation, Reference という軸があるとしている。なるほど。</p>
+<p>最近だと <a href="https://matklad.github.io/2021/02/06/ARCHITECTURE.md.html">ARCHITECTURE.md というのを書くと良いよ</a>
+という話があって、これもなるほどなと思う。</p>
+<p>勢い余って悪口を書いてしまった Google にも良いアイデアはあって、たとえば Codelabs。
+要するにチュートリアルなんだけど、ステップバイステップで手を動かすのに特化したフォーマットを持つ。
+(<a href="https://developer.android.com/courses/fundamentals-training/toc-v2">Android の例</a>)
+こうやってフォーマットが構造化されていると書く方も迷いがないし、読む側の期待値もはっきりする。</p>
+<p>もうひとつは &ldquo;Life of X&rdquo; というフォーマットのレクチャー。
+目的は先の ARCHITECTURE.md に似ていて、プロジェクトの新入りがソフトウェアの概要を理解するために用意される。
+一番よく知られているのは &ldquo;Life of A Query&rdquo; というやつで、ウェブ検索でワードを入力すると
+そのクエリがどんなサーバに飛んでいってどこをどうたらい回された果てに結果が返ってくるのか、ロードバランサからフロントエンド、
+バックエンドまで含めウォークスルーする。視点を動かしながらデザインを描き出すところがよい。</p>
+<p>今はどうだか知らないけどその昔 Life of A Query は新入社員研修のヒトコマで、説明のわかりやすさとシステムの複雑さの両方に関心したのを覚えている。
+&ldquo;Life of X&rdquo; は Codelabs よりハイレベルで書き手/話し手に求められるクリエイティビティも高い。
+そのため残念ながら数はそれほど多くない。でもでかいチームには用意されている傾向。
+たとえば:
+Youtube が使っていた(まだ使ってるのかな?) MySQL クラスタマネージャ <a href="https://github.com/vitessio/vitess/blob/master/doc/LifeOfAQuery.md">Vittes の Life of A Query</a>,
+Chrome の <a href="http://bit.ly/lifeofapixel">Life of A Pixel</a> (<a href="https://www.youtube.com/watch?v=PwYxv-43iM4">ビデオ</a>).</p>
+<h2 id="あまり目につかないもの">あまり目につかないもの</h2>
+<p>一方で議論と意思決定のためのテキストは、仕事での必要性は高いわりに自分はあまり良いスタイルを見つけられていない。
+風のうわさに伝え聞く Amazon の narrative/6-pager というやつがよさそうだが、外からは実体がよくわからない。
+だから中の人が書いたブログなどを(<a href="https://blog.riywo.com/2021/01/how-to-write-high-quality-technical-doc/">こういうの</a>とか<a href="https://writingcooperative.com/the-anatomy-of-an-amazon-6-pager-fc79f31a41c9">こういうのとか</a>)目を皿のようにして読んじゃう。
+（<a href="https://www.amazon.com/Working-Backwards-Insights-Stories-Secrets/dp/1250267595">最近でたインサイダー本</a>も聴き始めました。)</p>
+<p>Design docs を倒す・・・じゃなくて弱体化するにはこの議論のためのテキストに発明が必要だと思うんだけど、
+なんかいいのないですかねえ。どうですか皆様。</p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>Design Docs の逡巡</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/02-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/04-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/05-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/06-morrita/'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>他のはなし</p>
+      <ul class='menu-list'>
+      
+      
+        <li>
+  <a href='https://messagepassing.github.io/010-wced/01-morrita/'>毎日コードを書く話</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/009-feed/01-morrita/'>読むものさがし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/008-justright/01-morrita/'>ちょうどよさのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/007-repo/01-karino2/'>モノレポのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>ハイテクしごと</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

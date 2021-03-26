@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html><head>
+    <title>半分くらいわかる&nbsp;/ kzys&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/011-designdocs/03-kzys/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='半分くらいわかる&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="og:description"        content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='半分くらいわかる&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>半分くらいわかる</td></tr>
+        <tr><th>From</th><td><a href="https://8-p.info/">kzys</a></td></tr>
+        <tr><th>Date</th><td>2021-03-11</td></tr>
+      </table>
+      <article class='content'><p>morrita さん、karino2 さんのいう嫌さは半分くらいわかるかなあ。</p>
+<p>「Design Doc 書いてください」というのが、設計が終わったあとに実装がはじまる直線的なソフトウェア開発や、設計が難しい/偉くて実装はそうでもないという、上流工程偏重な職業感を想起させるというのはわかる。無駄な Design Doc が書かれがちなのもわかる。文章がないことに文句を言う人は多いけれど、文章があることに文句を言う人は少ない。でもまあ、無駄な実装よりは無駄な Design Doc の方がマシかなあ。</p>
+<p>あと、Design Doc を書かなくてはいけないときは、それなりに大手術になってしまう変更を入れるときで、それは初期の設計のダメさであるとか、機能のつけすぎの現れじゃないか、と思うこともある。炎上プロジェクトには、それを消火してくれるヒーローが現れるように、柔軟性のない巨大ソフトウェアには、それを乗り切るための Design Doc が必要なんじゃないか。</p>
+<p>一方で、テンプレートが新規のサーバーサイドのシステムを開発するのを想定しているとか、将来に誰かに読まれそうな期待というのはよくわからない。あわないテンプレートは無視すればいいし、昔に書かれた Design Doc を参照するのは自己責任で、書き手がそれを意識する必要はなくない?</p>
+<h2 id="is-it-that-design-doc">Is it that Design Doc?</h2>
+<p>morrita さんのテンプレートの話や、karino2 さんの</p>
+<blockquote>
+<p>Design Docは形式が広く知られているし、書く時に気をつけるべき事なども良く語られていて、しかも比較的それらの説明は短い。</p>
+</blockquote>
+<p>あるいは、<a href="https://www.industrialempathy.com/posts/design-docs-at-google/">Design Docs at Google</a> の</p>
+<blockquote>
+<p>The sweet spot for a larger project seems to be around 10-20ish pages. If you get way beyond that, it might make sense to split up the problem into more manageable sub problems. It should also be noted that it is absolutely possible to write a 1-3 page “mini design doc”.</p>
+</blockquote>
+<p>とかを読むと、人々が Design Doc といって想起するものには結構ばらつきがある気がする。私が好んでいるものは、ここでいう mini design doc というか、もっというと単なる &ldquo;doc&rdquo; なのかもしれない。メール やSlackで五月雨式に質問したり、ミーティングで口頭で話したり、突然コードレビューで大作を送ってくるのはやめて、全体像を文章でまとめて送ってくれませんか?</p>
+<p>ここで私が読みたいのは、問題の背景、複数の実装案の良し悪しと、結果として著者が良いと思っている実装案くらい。そんなの実装みたらわかるじゃない、と思うこともあるけれど、実装し終わったものをコードレビューで「これはそもそもがダメなのでやめましょう」というのは気分的にも締め切り的にも難しいことが多く、手をつけるまえに全体像を見れたほうがいい。そのためのツールとして文章に一回まとめるのは良いですよ、という話。</p>
+<h2 id="プロトタイプ力">プロトタイプ力</h2>
+<p>というわけで、私は Design Doc に関してはそこまで問題意識がないのだった。私の周りの人々が私の書く Design Doc に問題意識を持っている可能性はなくもないので、今度聞いてみてもいいかもしれない。でもなー、初回のミーティングでみんなが納得、コメントなしとなると、それはそれで不安になりそう。</p>
+<p>ところで、Design Doc と同じような、実装まえにやると良いこととしてあげられがちなものに、プロトタイプ作りがある。個人的には、文章の説得力をあげていくよりは、プロトタイプをさっと作る方向に力を割きたいと思っている。Design Doc を書いてレビューしてみると良さそうだけど、作ってみるとダメなものってあるはずで、やっぱりちょっとはコードを書きながらデザインしたい。</p>
+<p>ただ、画面のあるもののプロトタイプ作りは、ペーパープロトタイピングから <a href="https://www.figma.com/prototyping/">Figma</a> や <a href="https://www.sketch.com/docs/prototyping/">Sketch</a> みたいなものまで色々と方法論やツールがあるけれど、画面のないもののプロトタイプを人々がどう作っているのか、というのはよくわからない。</p>
+<p>karino2 さんがリンクしている、Paul Graham の<a href="https://practical-scheme.net/trans/hp-j.html">ハッカーと画家</a>には、</p>
+<blockquote>
+<p>これはプログラミング言語は柔軟でなければならないということを意味する。 プログラミング言語はプログラムを考えるためのものであって、 既に考えたプログラムを書き下すためのものじゃない。 それはペンではなく鉛筆であるべきなんだ。 静的な型付けは、私が大学で教わったようにプログラムするなら良い考えだと 思う。でも私の知るハッカー達はそんなふうにはプログラムしない。 我々に必要なのは、落書きしたりぼかしたり塗りつぶしたりできる 言語であって、型の紅茶茶碗を膝に置きながら 厳しいコンパイラおばさんと丁寧な会話をするような言語じゃない。</p>
+</blockquote>
+<p>静的型に対する批判があるけれど、じゃあ最終的に静的型のついたプログラミング言語で書くものも、プロトタイプでは Ruby/Python で書くかというと、私はそこまで動的型に愛はないなあと思う。似た話に、遅い言語で書いてホットスポットだけ速くすればいいというのがあるけれど、これも <a href="https://blog.nelhage.com/post/reflections-on-performance/">Reflections on software performance</a> あたりを読むと、ちょっと楽観的すぎるんじゃないかと思う。</p>
+<p>あるいはコーナーケースをどれだけ無視するかとか、一番難しいユースケースから挑むべきなのか、一番簡単なユースケースから挑むべきなのかもよくわからない。気分的には簡単なところから挑みたいけれど、これは結果として簡単なことだけできる中途半端なソフトウェアが量産されがちで、一番に難しい問題が手付かずになりがちだとも思う。</p>
+<p>そもそも、プロトタイプじゃなくて本番向けの実装を最初から書けばいいじゃん、という気もするけれど「デザインの前に実装します」より「デザインの前にプロトタイプ作ります」のほうが角がたたない感じがしませんか。日和すぎ?</p>
+<hr>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+枝葉末節: ハッカーと画家は 2003 年に書かれたものなので、この頃の静的型付言語は現在とはだいぶ印象が違うんじゃないかな。REPL のできる静的型付言語とかなかったと思うし。
+いずれにせよ Paul Graham は<a href="http://paulgraham.com/worked.html">リタイアして Lisp を書いている</a> ガチ Lisper なので、そこは間引いて考えてよいのではないでしょうか。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+型のある無しみたいなさすがに何周目だよ、って話題はスルーして欲しい所だけど、「プログラミング言語はプログラムを考えるためのものであって、 既に考えたプログラムを書き下すためのものじゃない。」はなかなか古びていない新鮮さを保っていると思う。
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>Design Docs の逡巡</p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/02-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/04-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/05-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/011-designdocs/06-morrita/'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>他のはなし</p>
+      <ul class='menu-list'>
+      
+      
+        <li>
+  <a href='https://messagepassing.github.io/010-wced/01-morrita/'>毎日コードを書く話</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/009-feed/01-morrita/'>読むものさがし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/008-justright/01-morrita/'>ちょうどよさのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/007-repo/01-karino2/'>モノレポのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/006-hitech/01-karino2/'>ハイテクしごと</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/005-bookmark/01-morrita/'>ブックマークのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/004-whatiread/01-morrita/'>今年読んだもの</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/003-editors/01-kzys/'>テキストエディタのはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/002-pl/01-karino2/'>言語のはなし</a></li>
+      
+        <li>
+  <a href='https://messagepassing.github.io/001-bug/01-morrita/'>バグのはなし</a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
