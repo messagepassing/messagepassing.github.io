@@ -6,7 +6,23 @@
     <description>Recent content on Message Passing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://messagepassing.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://messagepassing.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>インターネットの声</title>
+      <link>https://messagepassing.github.io/011-designdocs/07-internet/</link>
+      <pubDate>Sat, 03 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/011-designdocs/07-internet/</guid>
+      <description>エゴサーチをしていたら反応を書いてくれた人がいたのでみつけた順に紹介します (morrita)
+ Message Passing 11 感想 - 2021/03/26 – kanejaku.org:
+ Design のセクションの有用性は半々かなという印象を持っている。このセクションは Proof of Concept なコードをまず書いて、ある程度動く見通しを立ててから文章に落とし込んでいる部分が多い。ただ、alternatives を列挙しているトピックについてはパッチを書く前に合意をとるのに役立ったし、事前にフィードバックをもらうことで解決した問題もあった。
+ Design doc所感 · osak.jp
+ 個人的には、半年くらい前まではDesign docに何を書けばいいのか今ひとつ分かっていなかったけど、最近になってこれらの事実に気が付いたので、BackgroundとMotivationの説明に時間をかけるようにして、他の部分は適当に済ませるような方針にしている。
+ Design Docs への思い
+ 考えを整理する中で、私は自分のために Design Docs を書いていることが多いことに気づきました。そのためか Design Docs に対して悪い印象は持っていません。一方で読み手に対する配慮が欠けがちであることにも気づきました。
+ </description>
+    </item>
+    
     <item>
       <title>いけすかなさの出処</title>
       <link>https://messagepassing.github.io/011-designdocs/06-morrita/</link>
