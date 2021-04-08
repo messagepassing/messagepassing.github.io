@@ -1914,7 +1914,7 @@ Why the Sorbet typechecker is fast Sorbet は Stripe の開発している Ruby 
 </ul>
 <p>以前は Scala のコンパイラを書いていた Dmitry Petrashko も Sorbet には関わっていて、Software Engineering Daily ポッドキャストの <a href="https://softwareengineeringdaily.com/2020/03/25/sorbet-typed-ruby-with-dmitry-petrashko/">Sorbet: Typed Ruby with Dmitry Petrashko</a> で話している。</p>
 <h3 id="i-want-off-mr-golangs-wild-ridehttpsfasterthanlimearticlesi-want-off-mr-golangs-wild-ride"><a href="https://fasterthanli.me/articles/i-want-off-mr-golangs-wild-ride">I want off Mr. Golang&rsquo;s Wild Ride</a></h3>
-<p>Go は現実問題の複雑さ、例えば Unix のパスは必ずしも UTF-8 として妥当なバイト列ではないとか、モノトニック時刻とカレンダ時刻の違いとか、Windows とかを「シンプルさ」の名のもとに隠蔽しようとしているけど、それはいかがなものか、という批判。</p>
+<p>Go は現実問題の複雑さ、例えば Unix のパスは必ずしも UTF-8 として妥当なバイト列ではないとか、モノトニック時刻とカレンダ時刻の違いとか、Windows とかを「シンプルさ」の名のもとに隠蔽しようとしているけど、それはいかがなものか、という批判。</p>
 <p>著者が比較しているのは Rust で、それは結局 Rust は C++ で、Go は Java なのだから仕方がないのでは、と思わなくもないけれど、書きぶりが良いし、熊がかわいい。</p>
 <h3 id="node-vol-02-manifesting-realityhttpsn-o-d-enetzineindexhtml"><a href="https://n-o-d-e.net/zine/index.html">NODE VOL 02: MANIFESTING REALITY</a></h3>
 <p>NODE は Raspberry Pi ベースのハードウェアとかを自作している (売っているわけではない) 謎のウェブサイトで、その同人誌 (zine)。自分は PDF を iPad で読んだ。<a href="https://makezine.com/">Make Magazine</a> みたいな感じだけど、よりハッカー/カウンターカルチャー色が強い。</p>
