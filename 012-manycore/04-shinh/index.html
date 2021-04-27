@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html><head>
+    <title>なんとかなってる&nbsp;/ shinh&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/012-manycore/04-shinh/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='なんとかなってる&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="og:description"        content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='なんとかなってる&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>なんとかなってる</td></tr>
+        <tr><th>From</th><td><a href="http://shinh.hatenablog.com/">shinh</a></td></tr>
+        <tr><th>Date</th><td>2021-03-30</td></tr>
+      </table>
+      <article class='content'><p>たぶん WebKit のミーティングに行った時に、 GPU rendering のトピックがとても盛り上がっていて、 morita さんが「GPUとか「ちょっとオレも一言言わせろ」って感じで盛り上がっちゃうテーマだよね」と言っていて、不思議なくらいなるほどーと思った記憶があります。何が言いたいかというと、並列とかそういうテーマですよね、と。ということで、一言というか、色々と言いたいことがあるのです。</p>
+<h2 id="バカパラサイコーという話">バカパラサイコーという話</h2>
+<p><a href="https://en.wikipedia.org/wiki/Embarrassingly_parallel">Embarassingly parallel</a> をバカパラと訳したの、どなたが考えたのか知らないけど、とても好き。ほぼ独立したタスク群であれば自明にコアを使い切れるし、その数だけ速度がスケールする、という話。 MapReduce の mapper 、ピクセルシェーダ、並列ビルド、深層学習モデルのデータパラレルもそう。普通同じタスクが違うデータに対して動く時にバカパラと言う気もするけど、独立しているから並列化可能、という意味で並列ビルドも同じ箱に入れて考えている。 kzys さんの話しているようなクラウドのケースも、そもそも物理 CPU を切り売りしていて、コンテナごとに完全に独立なので、これも僕はバカパラ、くらいの認識でいる。</p>
+<p>プログラムもとても簡単。プロセス並列でいいなら shell script で</p>
+<pre><code>for i in `seq 10`; do
+  ./my_command $i &amp;
+done
+wait
+</code></pre><p>とかで十分だし、 OpenMP 使うなら <code>#pragma omp parallel</code> つければいいし、適当なスレッドプールを使うのも、自分で作るのも、そんなに難しくない。</p>
+<h2 id="並列プログラムは難しいでもなんとかなってる気がする">並列プログラムは難しい、でもなんとかなってる気がする</h2>
+<p>バカパラ以外のケースは、並列 reduce などのよく知られたケースを除くと、なかなか大変なことが多いように思う。特に個々に別々の役割を持ったスレッド・プロセスが協調して動いてるようなやつ。サーバサイドだと、フロントエンドのリクエストを受けて、バックエンドにリクエスト投げたりキャッシュしたりゴチャゴチャやってからレスポンスを返す、ミドルエンド的なやつが大変だった記憶がある（<a href="https://chromium.googlesource.com/infra/goma/client/+/refs/heads/master/client/threadpool_http_server.cc">例</a>）。あとは Chrome もなんだかたくさんプロセスもスレッドもあって、大変なところはとても大変な印象だった。 Chrome はブラウザというよりはユーザランドで動いてるマイクロカーネルという認識をしているので、カーネルとかもそうなんだろうなーと思っている。</p>
+<p>ここで言う大変というのはバグっていないプログラムを書くのが大変ということで、この手のスレッドプログラミングは、書くのもレビューするのもデバッグするのも難しい。ただ、難しいんだけど、個人的には人類はなんとかなりそうな道具を揃えられたんじゃないかな、と思っている。</p>
+<p>morita さんや karino2 さんが紹介していた Future/Promise や、 Go のチャンネルのように、 mutex のような古いプリミティブよりバグりにくい、新しい抽象が出てきたのがひとつ。 Rust のように型レベルでスレッドのバグをコンパイルタイム時に検出する言語もあるし、よく使うロックフリーデータ構造とかのライブラリも整ってきているので、難しい atomic op を直接使う理由はあまり無いと思う。あと何より、その手のものを一切使ってなくても、 <a href="https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/35604.pdf">ThreadSanitizer</a> が割とバグを見つけてくれる。余談だけど、 <a href="https://github.com/google/sanitizers">sanitizer の類</a>は C++ という言語の寿命を延命させているように感じている。</p>
+<h2 id="苦労して書いたコードがスケールしない悲しさ">苦労して書いたコードがスケールしない悲しさ</h2>
+<p>ただ、それがスケールするかというと、別の話。別々の役割を持ったスレッドがたくさんあるようなプログラムは、理想的な状況でも役割の数以上にコアを使うことはない。クラウドだったら kzys さんのおっしゃる通り、確保する論理コアの数を必要な数程度に減らせばいいだけと思っているけど、クライアントサイドのプログラムでは、 karino2 さんの問題意識のように、単にコアを使いこなせてない、という状況になってしまう。</p>
+<p>実際、これは既に起きている問題だと思っている。ハイエンドスマホのコア数が 8 とか越えたのは、もう5年以上前だと思うけど、その後はずっと横這いだと思う。バカパラな用途があるハイエンドはともかく、ミドルエンド PC のコア数もそんなに増えていないと思う。アプリケーションが使わないから、リソースを他に回していると理解している。スマホのコア数競争の当事者であった Qualcomm の人が<a href="https://www.phonearena.com/news/Off-the-record-Qualcomm-sees-octa-core-chips-as-meaningless-marketing-play-committed-to-fewer-cores_id75804">「コア数増やすのって単に広告競争で、意味ないよねー」と言っていた</a>、という話もある。一方で最初から用途がバカパラのアクセラレータは際限なくコア数を増やしていっている。</p>
+<p>コアを使い切れていない時にどうすれば良いかというと、今シングルスレッドで動いている部分にバカパラ並列性を見出せるとてっとり早い。ただ、これができるなら既にやられているはずで、難しいから、意味がないからまだやられていないという可能性も高い。例としてコンパイラを考えてみると、パースに文脈依存がない言語であれば、ここは割と並列化できそうな気がするけど、その後の意味解析などはかなり難しそうだ。シングルスレッドの部分が残るのであれば、そこが律速するので部分的に並列化するうまみは少ない。</p>
+<p>別のアイデアとして、細粒度マルチタスクのようなものも考えられる。タスクの依存関係を実行していく、 make みたいなやつってすごくうまく並列化できるので、プロセス内に細かいタスクを大量に作って、依存が解決されたものからスレッドプールに投げ込めば綺麗に並列性を使い切れるのでは、という考えかた。これは頭で考えると、とてもうまくいきそうな気がするんだけど、実際にはあまりうまくいかないことが多いと思う。というのは、タスクを細かく切りすぎると、同期のコストが高くなるのと、データを別のコアに転送するコストがどうしても高くなってしまう。</p>
+<h2 id="メニーコア時代到来ってずっと言ってる気がするよね">メニーコア時代到来！ってずっと言ってる気がするよね</h2>
+<p>同期の方はさまざまな工夫で減らす余地があるのだけど、高速化したいプログラムって本質的にたくさんのデータを扱うものが多いわけで、 NUMA ノードを越えてデータを運ぶ方が計算そのものより時間がかかる、というケースは多い。僕個人としても、複数のスレッドがそれなりに忙しく動いているプログラムにも関わらず、 <code>taskset -c 0</code> で一つのコアにはりつけた方が速かった、とか、フェーズが複数あるプログラムの各フェーズを別スレッドにしてパイプラインにしてもたいして速くならなかった、みたいな経験はちょくちょくある。</p>
+<p>コア数が増えた時に遠いメモリが遅くなるのは、これは物理的にどうしようもない問題だと思うので（この世界に空間が5次元くらいあったらだいぶ伸びしろが残るんだろうけどなあ、とか考えるのは楽しい）、バカパラから遠い並列プログラムはメニーコアを使い切るのは不可能だし、今後コアが増えるとするとますます余っていくと思っている。例えば、ブラウザが 100 コアを効率良く使う未来を僕は想像できない。</p>
+<p>というわけで、この世にはバカパラで高速化できるアプリケーションと、あまりたくさんコアを使えないアプリケーションがあり、それに応じてコア数も二極化するんじゃないかな、と思っている。なんかメニーコア時代とか10年以上言ってるわりにはご家庭のコア数は増えてなくて、既にそうなっている気もするけど。なんにでも深層学習が使われている、みたいな状況になると少しは変わるかもしれないけど……なんかそれは CPU よりはアクセラレータにやらせる流れだとは思うし。</p>
+<p><a href="https://www.computerworld.com/article/2534312/the--640k--quote-won-t-go-away----but-did-gates-really-say-it-.html">ビルゲイツが「メインメモリは 640kB で十分だよ」と言った話</a>のように、 8 コアもあれば十分と言ってたアホがいる、と笑い話になるかもしれないけどね。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>8コアになったのは最近なのでは？と言ったら、<a href="https://www.itmedia.co.jp/mobile/articles/1502/04/news059.html">snapdragon 810は2015年だ</a>と教えてもらった。
+モバイルと一口にいってもiPad ProとAndroidのスマホでは大分状況は違うのかもしれないけれど、
+でもAndroidのスマホだってコア使い切る方がいいような気もするなぁ。
+自分はAndroidの8コア端末、未だに持っていないのだけれど。</p>
+<p>メニーコアが来る来る詐欺（？）というかずっと言っているのは自分もそう思っているのだけれど、
+一方で本当に自分が困ったのは去年が初めてなので、
+5年前と今では大分状況は変わってきた気はする。</p>
+<p>在野のアプリ屋としてはアクセラレータよりは自由に使えるコアが増えて欲しいなぁ、と思うのだけれど、
+iPad Proが16、32コアと増やしてくか、それともシリコンの面積をアクセラレータ系に割いていくだけでコアは増やさないのか、興味深い所ですね。自分はコアを増やすと思っているが、それほど自信は無い。</p>
+
+</div>
+</div>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/012-manycore/'>コアあまりのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/02-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/05-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/06-jmuk/'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/' class='is-active'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

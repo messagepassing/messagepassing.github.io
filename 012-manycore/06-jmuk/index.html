@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html><head>
+    <title>コアを使い切るとかあんまり考えたことない&nbsp;/ jmuk&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/012-manycore/06-jmuk/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='コアを使い切るとかあんまり考えたことない&nbsp;/ jmuk&nbsp;- Message Passing' />
+    <meta property="og:description"        content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='コアを使い切るとかあんまり考えたことない&nbsp;/ jmuk&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>コアを使い切るとかあんまり考えたことない</td></tr>
+        <tr><th>From</th><td><a href="https://jmuk.org/">jmuk</a></td></tr>
+        <tr><th>Date</th><td>2021-04-20</td></tr>
+      </table>
+      <article class='content'><p>コア、使い切るとか考えたことないなぁ。</p>
+<p>仕事ではOSのウィンドウマネージャとか、デスクトップUIとかを作る仕事をしているが、こういう部分のコードというのは、コアは使い切らないほうが良い。ユーザの主たる感心はアプリケーションであって、コアみたいなリソースはそっちに割り振られるべき。だから考えるべきなのは、所望するエフェクトを実現しつつ、きびきびと動作しつつコアのようなものは使わないようなやり方はどうなのか、っていうことだ。</p>
+<p>結果的に検討しないといけない条件や、導入するべきテクニックや方法論は似通ってる。たとえば、ブロッキングを避ける。コアを専有しないように、無駄な計算は避けて、コアが渋滞しないように気をつける。UIスレッドはひとつだけなので、重くなる処理は別のスレッドに移譲したり。でもその結果としてCPUがストールしてても、そこは比較的どうでもいい。というかそんな重たい処理はあるべきではない、というべきか。</p>
+<p>もちろんこれが全てではなく、コアを大量に使ってでもうまく動いてくれるとありがたい部分ていうのもあるだろうとは思う。たとえばログイン時とかはいろんな初期化が走るけど、こういうのはできるだけすぐ終わってほしいし、へんな初期化プロセスがコアを専有してそれがシステム全体を阻害してくれては困る。でもそこをすごくきちんと頑張ってコアを使い切る、といったことは意義がありそうだが（あんま詳しくないけど）ちゃんと達成できてはいない気もする。大量のサービスやプロセスが行き来して全体像は把握しづらいし。無駄にブロックしないとか、UIやアニメーションの足を引っ張るようなことはしない、ぐらいは気をつけているだろうけれど。</p>
+<p>あと、仕事のレイヤが変わってカーネルレベルになれば、アプリケーションが各種走ったときにきちんとコアが使い切れてくれるか、といったスケジューリング的な意味での興味とかも、あったりするのかもしれない。そのへんも詳しくないのでよくわからないけど。</p>
+<p>今はChromebookはたいがいしょぼいのでコアが少ないけど、今後どんどんコアが増えてきたら話はかわるだろうか？　そんな変わんないんじゃないか。どんなコアが増えても、シングルコア性能の伸びがサチっても、ウィンドウマネージャがマルチコアで複雑な計算をすることは、正直考えづらい。あとラップトップOSみたいな文脈では、単一のアプリケーションがコアを使い切れなくて余っても別にそんな困らないだろうという気がする。複数アプリが同時に動いても総合的にきびきび動くなら嬉しいし、仮にコアがあまったりしてもそれだけ消費電力が減り、利用時間が伸びるだけなので、それはそれでいいことのような気もする。かつまた、いつまでたってもローエンド機は居残り、ローエンドでもひどくならないような工夫は残るんじゃないかなあ。</p>
+<p>各種のアクセラレータが搭載されることで、別種のパラレリズムが要求されるようなことはありそう。アクセラレータを利用するようなOSサービス（たとえばローカルで動く音声アシスタント機能とか）が増えて、きちんとタスクを分配して無駄なく協調動作させるにはどうしたらいいだろうか、みたいな問題。モバイルでこの問題は起こりつつあるという認識だけど、ラップトップOSだとどうだろうか。そんな特殊なアクセラレータが入ったデバイスは多くないから、まだまだ未来の話かなあ。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+OS がコア、に限らず余計な資源を使うべきでないというのはほんとにそうですね。
+新品のデバイスでメモリやディスクの残量が妙にすくないのに気づいた時のがっかり感を思い出しました。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>Chromebookって今何コアくらいあるもんなんですか？ちらっとググったらMediaTekのが8コア、PixelBookなんかは2コア4HTくらいと引っかかったけれど、ユーザーの手元にあるのはだいたい幾つくらいと思っておくと丼が合うのかしら。</p>
+<p>OSの視点だと、コアをOSが使うというよりは、その上のアプリがちゃんと使えるような仕組みを提供出来ているのか？というのが本題のような気もするけれど、
+そもそものChromeOSのコンセプトに対してコアを使い切るようなアプリがユーザーに望まれているのか、というのは良く分からないなぁ。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>jmuk</div>
+<div class='message-body'>
+<blockquote>
+<p>OSの視点だと、コアをOSが使うというよりは、その上のアプリがちゃんと使えるような仕組みを提供出来ているのか？</p>
+</blockquote>
+<p>その話はちょっと考えたんですが、ChromeOSはそのへんはなにも提供してないので（基本はシングルスレッドなウェブアプリなので）、書くことが思い浮かびませんでした。ChromeOS上のAndroidやLinux appは仮想環境なので、vCPUがどう見えてるかとかいろいろ話がある気がしますが全然くわしくない。</p>
+<p>現実としてはウィンドウマネージャ＋デスクトップシステム＋各種OSサービスはけっこうリソースをくっていている気がしますが、具体的な数値はすぐは出てこないかな……。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+OS の話はコンテナランタイムの話に近いなあ。脇役/裏方仲間。
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/012-manycore/'>コアあまりのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/02-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/04-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/05-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/' class='is-active'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

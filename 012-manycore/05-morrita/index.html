@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html><head>
+    <title>誰かがどこかで使ってる&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/012-manycore/05-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='誰かがどこかで使ってる&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='誰かがどこかで使ってる&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>誰かがどこかで使ってる</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-04-01</td></tr>
+      </table>
+      <article class='content'><p>自分は仕事で電話機のカメラアプリ開発を手伝っている。
+なのでカメラアプリから見るとどうかを中心に議論してみたい。</p>
+<h2 id="電話機の-cpu-はどのくらい使われているのか">電話機の CPU はどのくらい使われているのか</h2>
+<p>電話機の CPU, 最近だと 8 コアくらいある。こいつらを活用したい。</p>
+<p>わけだけれど、まず現実にはどのくらい活用されているのか実例を眺めてみる。
+ちょっと前に自分のブログで Perfetto というトレーシングツール
+(プロファイラだと思ってください)を<a href="https://notes.dodgson.org/android/perfetto-minimum/">紹介</a>した。
+その中で実際にいくつかのアプリのトレースを集めた。手頃な実例になっている。</p>
+<h3 id="アプリの起動">アプリの起動</h3>
+<p><a href="https://storage.googleapis.com/morritanotes-files/perfetto-minimum/walleye_QQ3A200805001_20200923200328_tiktok.pftrace.gz">このデータ</a>
+をダウンロードして、<a href="https://ui.perfetto.dev/#!/viewer">ui.perfetto.dev</a> から開いてほしい。
+以下画面写真:</p>
+<p><img src="/images/manycore-05-morrita-01.png" alt="TikTok launch"></p>
+<p>このトレースは Pixel 2 という電話機の上で TikTok というアプリの起動直後 5 秒間をキャプチャしている。
+細かいところはわからなくていいけど、&ldquo;CPU 0&rdquo; から &ldquo;CPU 7&rdquo; までの行に細かい線が詰まっているのが見えると思う。</p>
+<p>ちょっとズームインすると何がおきているかもう少しわかる。
+これは起動 500ms 後くらい。</p>
+<p><img src="/images/manycore-05-morrita-02.png" alt="TikTok launch zoom"></p>
+<p>各 CPU がいつどのスレッドに使われているのか、時系列で可視化されているのがわかる。
+隙間の空白は CPU が何もしていない瞬間を示している。</p>
+<p>わかること: TikTok 起動の瞬間は CPU がそれなりに使われている。
+目一杯限界まで使われているとは言わないけれど、半分以上は埋まってる。
+自分は仕事でよく「起動が遅いのなんとかして」と送りつけられて来るトレースを睨む。
+そういう「遅い起動」のトレースは CPU のタスクがもっとびっちり詰まっているのも珍しくない。
+というかアプリの起動が遅い時、だいたい CPU は目一杯使われている。（みんな電話機酷使しすぎだよ・・・）</p>
+<p>一体だれが CPU を使っているのか。Perfetto はそれも簡単に調べられる。
+起動後二秒くらいを適当に切り出してプロセス単位の CPU 使用時間を眺めると&hellip;</p>
+<p><img src="/images/manycore-05-morrita-03.png" alt="TikTok launch CPU usage breakdown"></p>
+<p><code>com.zhiliaoapp.musically</code> が TikTok. たしかに一番 CPU を使っているけれど、
+他にも Android のサービスをまるごとホストしたデーモンの <code>system_server</code>, Out-Of-Process された WebView, <code>kthreadd</code>(Linux カーネル)
+などもわりと熱心に活動されている。直前まで開いていた NYTimes のアプリもいる。
+仕事でやっているカメラアプリだと、このほかに Camera HAL (ユーザランドのドライバみたいなものです) も コア 1-2 個分くらいなんかしてる。</p>
+<p>なおここでいう「アプリの起動」にはマルチタスクでのアプリ切り替えも含まれている。
+Android ではアプリ切り替えと launcher からのアプリ起動に大きな違いはない。
+Social media addict 気味の人が複数アプリを zap したりするの、電話機的には割と過酷。</p>
+<p>アプリの起動後しばらくすると背後の様々なノイズは収まって、
+メインのアプリ(と、そのアプリが使っているサブシステム)が 8 コアのうち 6-7 コアくらいは専有できるようになる。
+3-4 秒後くらいかな。</p>
+<p>ただし WiFi や Cellular のネットワークが切り替わったり (geofencing) サーバから push が降ってきたりするとまた騒がしくなる。
+電子書籍アプリの仕事をしていたときに「遅い」とよこされるトレースは、
+だいたいネットワークが切り替わるタイミングに背後でもぞもぞしている奴らのせいだった。
+(歩きスマホはご遠慮ください。)</p>
+<p>そんなかんじで、少なくともアプリ起動直後の CPU は割と忙しい。
+沢山のアプリを行ったり来たりするヘビーユーザーならコア数が倍になってもそれなりに使える気がする。
+逆に言うと long tail のアプリの起動を速くしたいなら現状だと並列化はそんなに効かない。
+背後の活動に押されて起動中のアプリ自体は CPU 2-3 個ぶんくらいしか使えないから。
+あと本題とは関係ないけど I/O 律速なことも多い。</p>
+<h3 id="レイテンシ重視と-heterogeneous-cores">レイテンシ重視と Heterogeneous Cores</h3>
+<p>Android での性能改善では起動および画面遷移の時間短縮と Jank-free すなわちコマ落ちしないことに重点がある。
+実際のアプリではネットワークリクエストのレイテンシ最適化が一番大切だろうけど、それはコアの話に直接関係ないので置いておく。</p>
+<p>起動ではまあまあコアを使い切れているのは先に書いたとおり。画面遷移は起動の小規模版という風情。</p>
+<p>Jank はどうか。というと、レンダリングのパイプラインはそれほど並列化されてない。
+もちろん「パイプライン」というくらいなのでステージへの分割は一定程度されている。
+たとえばレイアウトのち描画を指示するメインスレッドと、描画の指示に従って実際に GL の API を呼ぶ RenderThread はわかれているし、
+描画結果の画像を画面に合成する SurfaceFlinger も別プロセス。
+画面に貼り付ける JPEG のデコードもワーカーでやる。React Native とかだとレイアウトも別スレッド。
+ただこういうタスク並列には限度がある、並列化原理主義者の思い描く manycore 超並列の理想からは遠い。
+しかもパイプラインが深くなるとユーザの入力から画面表示までのレイテンシが長くなる上、同期にしくじって stall とかも起きやすい。
+速いコアの上で直列化されたクリティカルパスがピリっと動いてくれるに越したことはない。
+ぶっちゃけ今でもだいたい UI スレッドが支配的。</p>
+<p>実例として <a href="https://notes.dodgson.org/android/trace-processor/">Twitter と Instagram の UI スレッドを比較する記事</a>を前に書いたので参照されたし。
+以下はスクロールしている Twitter アプリのトレースから活発なスレッドを集めた様子:</p>
+<p><img src="/images/manycore-05-morrita-04.png" alt="Twitter scrolling"></p>
+<p>スレッド単位に行があり、緑色の部分で実際にスレッドが走っている。一番上が UI スレッド、一番下が RenderThread で、あとはそれ以外。
+わりとがんばって複数スレッド使ってるけど、UI スレッドが詰まり気味なのが見て取れる。次が RenderThread. あとはスカスカ。
+別に Twitter アプリの出来が特別悪いわけではなく、Android アプリというのは普通につくるとこうなる。</p>
+<p>電話機のアーキテクチャもそうした甘えた気持ちを反映している。
+最新のハイエンドチップセット <a href="https://www.anandtech.com/show/16271/qualcomm-snapdragon-888-deep-dive">Snapdragon 888</a> は
+すごい速い Cortex-X1 の &ldquo;prime core&rdquo; が一つ、 Cortex-A78 の &ldquo;big core&rdquo; が 3 つ、Cortex-A55 の &ldquo;little core&rdquo; が 4 つ。
+これらのコアは動作クロック数も違うし、パイプラインの構成もキャッシュサイズも違う。シリコン上での専有面積も全然違う。
+雑なイメージとして big と little は倍くらい性能が違う。
+Prime と big も、よくわかんないけどたぶん数割は速さに差がある気がする。</p>
+<p>つまり Snapdragon は 6+4 の 10 コアとかにするかわりに 1+3+4 = 8 コアの構成を選んだ。
+お前ら manycore 並列化とかできないだろうから割は悪いけどクロック上げてキャッシュ積んでやんよ、みたいな。
+なお iPhone は 2+4 の 6 コア。なのに速い。そういうことです。</p>
+<p>ソフトウェアも過激な並列化よりでかいコアをいかす方にがんばりがち。
+Android だと Linux の cpuset を使って手前のアプリ(とシステム)に<a href="https://source.android.com/devices/tech/power/performance#exclusive_core">速いコアを専有させている</a>。
+がんばって並列度を上げても余っているのはしょぼいコアばかり。しかも専有できないせいで混み合ってる。
+下手に並列化して CPU を使い切ってもスケジューラがコアの間でタスクをたらい回すせいでキャッシュミスして遅くなるだけ。
+盛り上がらない。</p>
+<p>この構成はプログラマの甘えだけが原因でなく、
+電話機のように画面がある個人向けデバイスがスループットではなくレイテンシを重視しているせいでもあると思う。
+サーバサイドでバッチ処理をするようなユースケースではレイテンシを犠牲にしてスループットを上げると嬉しいことも多い。
+そういうトレードオフが許されるなら並列化の選択肢も増える。
+でも電話機にスループットを上げたい場面、たとえば沢山のアプリを同時にレンダリングするみたいなの、あんまりない。画面も狭いし。
+スループット無視のレイテンシ重視だとタイミング調整の自由度が低く、できることが限られる。</p>
+<h3 id="並列化ヘビーな計算とバカパラ開拓">並列化ヘビーな計算とバカパラ開拓</h3>
+<p>カメラアプリでいちばん CPU を酷使するのは起動でも画面の表示でもなく、写真の現像。
+一例として <a href="https://research.google/pubs/pub45586/">HDR+ とよばれる現像アルゴリズム</a>は
+複数の RAW 画像を気の利いた方法でマージするみたいな計算をする。
+データ並列な画像処理を記述できる <a href="https://halide-lang.org/">Halide</a> という DSL を使うなど、CPU は全力で使う。
+アクセラレータも使う。</p>
+<p>ただこいつらも 8 コアを全部使ってきちんと速くなるのかというと、キャッシュとかの都合で微妙なラインっぽい。
+データ並列じゃないコードパスも結構ある。
+仮に 16 コアの電話機が登場しても、写真一枚の現像処理がそれを生かしきれるのかはあまり自明でない。
+自分はアルゴリズムの詳細は理解せず傍からプロファイラやトレースの出力を眺めてるだけなので実情はわからないけれど。</p>
+<p>一方、アプリの利用統計などからユーザはシャッターボタンを連打しがちであることが知られている。
+シャッターの連打によって複数の現像処理が並列に走ると CPU は簡単に埋め尽くされる。
+全てのユーザが連打をするわけではないとはいえ、
+ユーザに代わって連打相当の画像を用意してあげる <a href="https://www.youtube.com/watch?v=ZgB9dhxe9hI">TopShot</a> みたいな機能は
+コアが沢山あれば普通に嬉しい。今はすごい複雑なコードで無理やり実装している（のでよくバグって以下愚痴省略）ところを、
+もっと素朴、富豪的、あるいははまじさんのいう「バカパラ」的に実装できるようになる。</p>
+<p>これは示唆的な事例だと思う。
+つまり既存の機能を並列化して増えたコアを使い切ろうとするより、
+増えたコアでバカパラ的に実現できる新しい機能/UX を模索する方が有意義なのではないか。
+昔からあるソフトウェアの機能というのはそんなにコアがない時代に考えられたものなわけで、並列性がなくても仕方ない。
+新しいハードウェアには新しい使い方があるはずで、それを開拓した方が差別化や競争力に繋げやすいんじゃないかなあ。
+決められた問題を解くのって、パズルとしては exciting かもしれないけど縛りプレイっぽいとこないですか。</p>
+<h3 id="コア数増加の見通し">コア数増加の見通し</h3>
+<p>ところでコア数、増えるんですかね。ありのさんは 16 コアは現実で 32 コアあるかもと言っているけれど、
+モバイル機器に限るとそんなに増えないという説を自分は買っている。</p>
+<p>これは<a href="https://www.amazon.com/Computer-Architecture-Quantitative-Approach-Kaufmann-dp-0128119055/dp/0128119055/">ヘネパタ</a>に書いてある文字通り教科書的な見通しで、
+別にユニークな洞察ではない。
+ヘネパタでは <a href="https://en.wikipedia.org/wiki/Moore%27s_law">Moore&rsquo;s Law</a> が終わる前に <a href="https://en.wikipedia.org/wiki/Dennard_scaling">Dennard scaling</a> が
+終わってしまい困ったねという話をしている。要するに (Moore&rsquo;s Law の残りカスによって) 半導体の集積度はジリジリあがっていくが、
+昔は集積度によらず単位面積あたり一定だった消費電力が (Dennard scaling がおわったせいで) 集積度が増える分だけ増えていく。</p>
+<p>CPU, 電話機だと SoC は、チップは小さいままでもどんどん電力を使うようになっていく。
+でも電力予算はそんなに増えないので, チップのうちごく一部の回路しか同時に使われず、大半は寝かせて節電する。
+この寝ている回路を <a href="https://en.wikipedia.org/wiki/Dark_silicon">Dark silicon</a> という。
+沢山の回路を同時に使いたい時は動作周波数を下げて節電する。</p>
+<p>集積度アップにあわせて同一面積内の CPU のコア数を増やしかつ CPU を使い切ると、dark な部分がないため消費電力は増えてしまう。
+モバイルでこれは NG. 動作周波数を下げればある程度乗り切れる (Intel の CPU は過去にそれをやった) けど、
+先に書いたレイテンシ要件の厳しいモバイルで許さるだろうか。画面描画 120fps とかフレーム毎の deadline が半分になるわけで、いかにも CPU の単体性能に依存してるじゃん。</p>
+<p>こういう電力の縛りがあるせいで manycore はそんなにこさそうとヘネパタは書いている。
+かわりにどうするかというと、
+<a href="https://en.wikipedia.org/wiki/Tensor_Processing_Unit">TPU</a> みたいな特定用途向けのアクセラレータ
+(Domain Specific Architecture) を色々積むのが良いという。
+今やボトルネックは回路の集積度ではなく電力なのだから、そのぶんだぶつく回路を生かして節電しようや、みたいな話。
+じっさい電話機の SoC のうち CPU が占める面積は既にだいぶ小さい。 インターネットの分析を信じるなら 1/4 未満だと思う(<a href="https://semianalysis.com/apple-a14-die-annotation-and-analysis-terrifying-implications-for-the-industry/">A14 の例</a>)
+。</p>
+<p>こういう流れはモバイルだけかと思っていたら、
+ちょっと前に Google Cloud が <a href="https://cloud.google.com/blog/topics/systems/the-past-present-and-future-of-custom-compute-at-google">Intel から大物を引き抜いたから今後は SoC つくってくぞ</a> とアナウンスしており、サーバサイドも似たようなものなかもしれない。
+(自分はクラウド部門の内情は何も知らないので誤解かもしれない。)
+AWS も SoC は知らないけれど Nitro という名前で<a href="https://aws.amazon.com/ec2/nitro/">色々アクセラレータ</a>を作っている。</p>
+<p>というわけで、自分は電話機やタブレットはしばらくは 8 コアで、 10 年たってもせいぜい 12 コアくらいじゃないかなとおもってます。
+ラップトップも 16 コアが限度じゃないのかなあ。高い Macboook とかそのくらいあるけど、壁から電源とらないと使い物にならないよねきっと。
+壁に繋ぐ計算機向けのソフトウェアは、皆様がんばってください。この文章も壁の電源で書いてますので。</p>
+<p>CPU 屋でバイトしてたありのさんには釈迦に説法な気がしてけど、そんなかんじです。</p>
+<h2 id="android-は-reactive-なのか">Android は Reactive なのか</h2>
+<p>にわか業界通のしったかぶりみたいな話ばかり書いて心が痛んできた。
+以下ではもうちょっとプログラマっぽいことも書いて detox したい。</p>
+<p>Android は reactive なのか。スレッドプールに future で async でヒャッホイなのだろうか。
+<a href="https://kotlinlang.org/docs/flow.html">Kotlin の Flow</a> とかあるので表面的にはそういう雰囲気だけど、個人的には信じてない・・・というか、できたらいいけど道は遠いよねと思っている。</p>
+<p>Reactive な世界ではコア数にあわせてをスレッドつくると先に書いた。
+現実と照らし合わせるべく先の TikTok アプリのスレッド数を数えてみる。答えを見る前に予想した数字を思い浮かべてほしい。カンでいいです。 8? 16? 32?</p>
+<p>Perfetto UI の SQL コンソールから以下の SQL を実行する:</p>
+<pre><code>SELECT COUNT(*), process.name
+FROM thread, process
+WHERE thread.upid = process.upid
+  AND process.name = &quot;com.zhiliaoapp.musically&quot;
+</code></pre><p>答え: Drumroll タララララララララ&hellip;&hellip;.. &hellip;&hellip; &hellip;.. &hellip;. &hellip; .. . -&gt; 255</p>
+<p>これは別に TikTok が異常なわけではなく、たとえば今数えたら Twitter は 180 くらい、NYTimes は 280 くらいあった。
+(補足としてとしてこれは短命スレッドも数えている。でも短命スレッドとかさ、やめろ。)
+しかもサーバサイドと違ってこういうアプリが 10 とか 20 とか生きてるわけです。
+いくら Linux CFS が O(1) だからって現代人としていいのかこれは。8 コアしかないんだよ?</p>
+<p>この数字だけで試合終了したくなるけど、歯を食いしばり事情を説明して参ります。</p>
+<h3 id="ブロッキングコールの偏在">ブロッキングコールの偏在</h3>
+<p>Android, 色々なものがブロッキングコールである。</p>
+<p>まず IPC の <a href="https://source.android.com/devices/architecture/hidl/binder-ipc">Binder</a>.
+Android のプロセス間通信は基本ぜんぶこれです。でもね、ちょうブロックする。しかも勝手にプロセス内にスレッドプールをつくる。あなたのアプリにもこっそり binder スレッドができてます。
+そしてプロセス間通信なんてそんなにないと思っているかもしれないけれど、すごい沢山ある。
+たとえばちょっと画面の解像度を読もうかなと Plaform の API を呼ぶと息をするように IPC する。
+これは <a href="https://chromium.googlesource.com/chromium/src/+/master/mojo/README.md">Chrome の IPC</a> が基本ぜんぶ async なのとは対照的である。</p>
+<p>ただし Binder が遅いかと言われるとかならずしもそうとは言えず、
+<a href="https://android.googlesource.com/kernel/common.git/+/android-3.18/drivers/staging/android/binder.c">カーネルドライバ</a>とかでいろいろ小細工していて遅くはない。
+でもブロッキングが基本であることに代わりはない。<a href="https://source.android.com/devices/architecture/hidl/threading#oneway">oneway</a> という仕組みで非同期にできるが、
+名前のとおり一方通行で値を返せないため使用範囲は限定的。</p>
+<p>こういう platform の機能だけでなく、サードパーティのライブラリもブロックする。
+Android で一番広く使われている HTTP ライブラリ <a href="https://square.github.io/okhttp/">OkHttp</a> はブロッキングである。
+HTTP/2 みたいな多重化プロトコルをどうやってブロッキングで実装しているのかよくわからない(たぶんコネクション単位でスレッドがある)が、とにかくブロックする。
+つまりこの上に作られている REST の data binding みたいなライブラリたちは、たとえば表面的に非同期でもスタックのどこかではブロックしている。
+表面的にすら非同期でないものも多い。そんなのいくら Flow をつかってもすぐスレッドプール詰まっちゃうのでは・・・。</p>
+<p>Android で動くノンブロッキングの HTTP 実装は少ない。サーバサイドのデファクトである Netty が Android をサポートしたのは <a href="https://netty.io/wiki/new-and-noteworthy-in-4.1.html">4.1 以降</a>。しかもテストはないからよろしくとか書いてある。実際に使われてるのは見たことがない。
+Chrome の HTTP スタックを切り出した <a href="https://developer.android.com/guide/topics/connectivity/cronet">Cronet</a> もあり、
+これは Play Services についてくるので最近はそこそこ使いやすくなった。とはいえそれなりに覚悟を要する。
+<a href="https://envoy-mobile.github.io/">Envoy-Mobile</a> とかなおさら要覚悟。</p>
+<p>一応ちょっとだけ擁護すると、
+サーバサイドの人からするとネットワークスタックを非同期にできないなら一体何を非同期にするのか疑問に思うかもしれないけれど、まあそれなりにあります。
+画像のデコードみたいな重い計算がぼちぼちあるので。あと Binder IPC は HTTP の REST call に比べると当たり前だけど圧倒的に速い。
+空の呼び出しなら 1ms もしない。10us とかそういう雰囲気だった記憶。なので常に問題になるわけではない。とはいえすごく遅いものもあり、そういうのがブロックすると厳しい。</p>
+<h3 id="ネイティブコードと-java-コードの混在">ネイティブコードと Java コードの混在</h3>
+<p>Android はアプリは基本的に Java/Kotlin で書くが、platform の中は割と C++ が使われている。
+あと最近の AI 系のライブラリや、それ以外でも C/C++ の資産を持ってきて使うことが多い。</p>
+<p>最初の問題として、 C/C++ ネイティブコードは基本的に非同期とか気の利いたことしないのでブロッキングしがち。
+C++ の残念さからこのスレがはじまったのを思い出してほしい。</p>
+<p>スレッドプール分断の問題もある。
+Java には <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executor.html"><code>Executor</code></a> や
+<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ScheduledExecutorService.html"><code>ScheduledExecutorService</code></a> という
+標準スレッドプール API があるのでこれを使うことが多い。しかしこれは pure Java なので C/C++ から使えない。
+結果として C/C++ レイヤと Java レイヤで別々にスレッドプールをつくるという無駄が生まれる。</p>
+<p>Kotlin や RxJava などにも似た問題があり、こいつらは Java 標準とは別のスレッドプール API を持っている。
+がんばれば interop できるけど、現実的には誰も頑張らない。こうしてまた別のスレッドプールが作られる。</p>
+<h3 id="conways-law-of-thread-pool">Conway&rsquo;s Law of Thread Pool</h3>
+<p>先の RxJava  / Kotlin の独自 thread pool API は、より大きな問題の一角でしかない。
+より大きな問題: いくつものサードパーティライブラリたちがみな勝手に自分のスレッドプールを作る。
+しかもそれぞれが何も考えず CPU のコア数だけスレッドを作ったりする。
+CPU は! お前らだけのものじゃ!! ないんだぞ!!! わかってんのか!!!!
+ライブラリは <code>Executor</code> なりその factory なりを外からさせるようにしてほしい。ほんとに。</p>
+<p>これがサードパーティのライブラリだけならまだいいが、同一組織内でもスレッドプールを統一できてないケースがあり、
+というかわたくしめのところでございますが、よく性能部門の監査人に怒られてる。俺のせいじゃねー。</p>
+<p>先に挙げたブロッキングコールの偏在がこの解決を難しくしている: みな自分のスレッドプールを詰まらせたくない。
+だから得体のしれない他人とスレッドプールを共有したがらない。基盤の不在による信頼の欠如。つらい。
+ブロッキングコールが詰まる心配は杞憂ともいえず、森田はこれまでに二回 binder を介したデッドロックを報告のうえ直してもらったことがある。
+どちらのケースもプールから余剰スレッドが枯渇していた。</p>
+<h3 id="handler">Handler</h3>
+<p>Android platform の API はなにかと <a href="https://developer.android.com/reference/android/os/Handler"><code>Handler</code></a> オブジェクトを要求する。
+<code>Handler</code> というのはイベントループの抽象である。イベントループというのはスレッドプールのシングルスレッド版である(語弊あり)。
+だからある意味で <code>Handler</code> は <code>Executor</code> みたいなものだと言える。
+でもスレッドは一つだけ。そのせいで N スレッドを M (&gt;N) クライアントで共有するのがやりにくい。結果として人々は自分のコードでこっそり
+<a href="https://developer.android.com/reference/android/os/HandlerThread"><code>HandlerThread</code></a> をつくったりしがち。
+オレオレスレッドつくるのやめてくれませんかね・・・。</p>
+<h3 id="platform-の雑さ">Platform の雑さ</h3>
+<p>Platform の API を呼ぶと勝手に短命スレッドを作ることがよくある。なぜかというと昔からあるコードの実装が雑だからである。
+Sigh.</p>
+<h2 id="road-ahead">Road Ahead</h2>
+<p>こういうのほんとなんとかしてほしいんだけど、今の所なんともなってない。</p>
+<p>他人の実装は気にせず自分の書くコードでは Kotlin Flow なりなんなりをつかって小奇麗に書き、
+それで満足しておくのは一つの態度だと思う。たぶんその方が精神衛生に良い。
+でも自分はトレースをじっとみつめるお仕事をしている都合で、ランタイムの不都合な現実から文字通り目を逸らせない。
+なのでいらないスレッドをちまちま削る泥臭い仕事を、精神衛生とのバランスを鑑みつつしたりしなかったりしている。</p>
+<p>かずよしさんはそういうのはプログラマが頑張る<a href="https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/">のではなく</a>ランタイムに任せたほうがいいという。
+でも Android は Go 言語じゃないからねえ・・・とかおもっていたら、
+長期的には Android の問題も Go 的に解決されるかもしれないとおもわせるニュースがいくつかあった。</p>
+<p>一つは Java の <a href="https://blogs.oracle.com/javamagazine/going-inside-javas-project-loom-and-virtual-threads">Project Loom</a>:
+Java のスレッドを Go の軽量スレッド (fiber) みたいにしようという実験的なプロジェクトを Oracle が開発している。
+実験的すぎて OpenJDK にマージすらされておらず、そもそも Android の Java は OpenJDK ではなく別実装の ART なので
+Android ART のスレッドが fiber になる日がくる見込みはそんなにないが、Java エコシステムがそっちに舵を切ったら逆らえない気もして、
+長い目で淡い期待を抱いている。</p>
+<p>もう一つは <a href="https://www.scs.stanford.edu/~dm/blog/c++-coroutines.html">C++20 の coroutine</a>。
+Project Loom みたいなことが C++ にもおこる・・・というと雑すぎるけど Folly Future みたいのは諦めてユーザ空間に軽量な
+coopretive context switch を入れる。レガシー人材/コードの reactive 化という点で現実的かもしれない。</p>
+<p>どちらも先の話なのですぐさま影響はないけれど、人類に async は早すぎたのかもと自分の中の reactive 信仰をみつめなおすきっかけにはなった。</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+<p>このトレースはガーンと殴られた感じというか、自分の認識のずれを恥じる感じでした……！こんなにちゃんとマルチコア使ってるんですねえ。表に出てるアプリ以外のサービスやらなんやらもなんかやってるのはわかるんですが、こんなに見えるほど CPU 時間使っているのですね。 Perfetto 僕たちも使ってるんですが、こっちのはシンプルではるかに読みやすいですね</p>
+<p>Snapdragon は 855 から 1+3+4 の3段階構成で、 Pixel 4 とかも使っていて、ある程度の歴史があると思うんですが、なんかアプリ側でも明示的な使いわけをしている感じなのですかね？システムで affinity を調整するのはなるほどやはりそういうことするのね、という感じだったのですが、カメラアプリ的には特有の処理とかあるのかな？とか気になりました</p>
+<blockquote>
+<p>スケジューラがコアの間でタスクをたらい回す</p>
+</blockquote>
+<p>これ、数年前に<a href="https://github.com/google/kati/pull/112#issuecomment-282195635">linux kernel は意味もなく違う NUMA ノードに動かすけど Mac は動かないなあ</a>、と思った記憶があります。今もそうなんですねえ</p>
+<p>単なる感想文ですが、この文章は全体的に、とても楽しく読んだ文章でした。やっぱ並列は楽しいトピックですねえ。</p>
+<blockquote>
+<p>増えたコアでバカパラ的に実現できる新しい機能/UX を模索する方が有意義なのではないか</p>
+</blockquote>
+<p>とかとても良いと思いました。なんかあるかなあ</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>これは大量にコメントつけたくなるような面白い話が山盛りですねぇ。ぐっとこらえてタブレット周りの話だけ。</p>
+<p>iPadはGarage BandやPhotoshopといったアプリがiPad上でも既にかなりヘビーに使われている。
+一方でスマホの方でCPUインテンシブな作業というのは、、、ゲームくらい？そんなには無い気もする。
+すると「スマホでもコアを使い切ってパワフルなアプリを！」とはならないかも？</p>
+<p>でもそれだと、シングルスレッド性能を上げる方はそんなに先は無いので、新機種の新しさを見せるのはだんだん難しくなりそうだけど。<a href="https://android-developers.googleblog.com/2017/05/here-comes-treble-modular-base-for.html">プロジェクトTreble</a>みたいなのは既に難しくなっている事の裏返し…という訳でも無いか。
+そもそも自分のスマホはギャラノ3で4コア、LinageOS入れて使っていて、もう一年くらいこれでいいかなぁ、と思っているので、既に自分は新機種の新しさをあまり感じてないのかもしれない。</p>
+<p>Androidも、大きな画面のタブレットではCPUインテンシブな作業をいろいろやる方向に行くのが自然と思うのだけど、Androidタブレットのためだけにプロフェッショナルユースなアプリを作る気になるか？というのは問題としてあるかもしれない。
+Macbookに対応するものがなんか無いと。
+Chrome Bookはハイエンド路線では無いし、プロフェッショナルユースとしてCPUインテンシブなアプリが使われている訳では無い。
+まぁタブレットとハイエンドノートPCはAppleに譲ってAndroidはAppleとは違うタブレットの道を模索すれば良いのかもしれない。
+KotlinとJetpackComposeでバリバリアプリ書けるクールなノートPC環境出たら面白いとは思うけれど（流行らせるのは難しいだろうけれど）。</p>
+<p>以上から、自分はiPadのコアは増えると予想する。Androidのコアは分からない。数年後にこのエントリを見直してどう思うか、楽しみですね。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+<p>AWS だと機械学習専用チップに <a href="https://aws.amazon.com/machine-learning/inferentia/">AWS Inferentia</a> と <a href="https://aws.amazon.com/machine-learning/trainium/">AWS Trainium</a> というのがありますね。しかし Android 荒野すぎる&hellip;。</p>
+<blockquote>
+<p>ライブラリは Executor なりその factory なりを外からさせるようにしてほしい。ほんとに。</p>
+</blockquote>
+<p>サーバーだと、<a href="https://logging.apache.org/log4j/2.x/manual/thread-context.html">MDC</a> にリクエスト ID とかいれて取り回しているのが、ライブラリの中に隠れている ExecutorService を通ると消えてしまって、それで困った記憶があります。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>shinh: Perfetto 使ってるんですか。Perfetto チームの人に教えてあげると大変喜ぶとおもうので、ぜひブログの一つも書いてあげてください。
+データが見やすいのは、ひとつはアクセラレータの情報が全然ないからかもしれないですね。GPU とか HVX とか見えてほしいんだけど。</p>
+<p>アプリのレイヤで CPU を選ぶことはしてないです。考えたことはありますが、OS の中の人に「やめろ」と釘を刺されました。
+まあアプリ全体を固めてしまうリスクとかもあるので Android として公式にサポートしてもらえるまでは遠慮するとおもいます。</p>
+<p>karino2: 自分がコア数が増えないと思うのはユースケースよりフォームファクターに依存する電力予算の上限が理由です。
+ああかつての Intel のように Apple も資本主義の力で物理法則を歪めアカデミアの予想を打ち破る可能性は、あるかもですね。
+<a href="https://anemone.dodgson.org/2019/09/14/how-its-been-ending-1/">前に書いたブログ</a> をみると、
+Intel Macbook は 2006 年に 2 コア (4HT), 2019 年に 8 コア (16HT) だから 13 年で x4. だたしフォームファクタも 13 から 16 インチに増えてる。
+M1 Macbook は <a href="https://www.macworld.co.uk/news/m1x-mac-3801943/">M1X というチップで 12 コアになる</a> という噂記事がありました。</p>
+<p>kzys: Executor を挟むと trace とかの propagation が消えてしまうの、サーバサイドあるあるっぽい良い話。
+Java は伝統的にはブロッキング言語だというのをよく伝える事例だと思います。その点 JavaScript は偉かった。</p>
+
+</div>
+</div>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/012-manycore/'>コアあまりのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/02-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/04-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/06-jmuk/'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/' class='is-active'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

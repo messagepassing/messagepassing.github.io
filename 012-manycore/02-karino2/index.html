@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Coreを使い切る苦労&nbsp;/ karino2&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/012-manycore/02-karino2/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Coreを使い切る苦労&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="og:description"        content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Coreを使い切る苦労&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Coreを使い切る苦労</td></tr>
+        <tr><th>From</th><td><a href="https://karino2.github.io/">karino2</a></td></tr>
+        <tr><th>Date</th><td>2021-03-28</td></tr>
+      </table>
+      <article class='content'><p><a href="https://messagepassing.github.io/012-manycore/01-morrita/">前の記事</a>がめっちゃ良くまとまっていて、
+<a href="https://karino2.github.io/2021/03/05/future_for_parallel.html">自分の動画</a>（以後「並列プログラムの動画」と呼ぶ）なのに自分が語る資格があるのだろうか、とか考えてしまう。
+相対的に一発撮りで何も考えずに作った自分の動画の粗が目立ってしまったが、メッセージ自体には価値はあると思いたい所。
+なお、なんでいまさらC++？は、おっさんだからです…</p>
+<p>歴史的な事とかコンテキストの説明には特に訂正したり付け足す事も無いので、自身の話をしてみます。</p>
+<h3 id="目の前のターゲットはipad-proとmac-book">目の前のターゲットはiPad ProとMac Book</h3>
+<p>まず並列プログラムの動画を録っていた時、自分が頭で思い浮かべていた環境はなんだったのか。自分の目の前の開発のターゲットは、iPad ProとMacBook用アプリでした。特にメインはiPad Pro。</p>
+<p>iPadでは、既にプロフェッショナルユースの制作に使うような物をユーザーがいろいろ激しく使い込んでいて、もっと大きなデータでもっと速く動いてほしいと強く思われている。
+そうしたアプリはMac版もある場合が結構あって、iPadのアプリをMacBookでの動きと比較している。
+新しいiPadを買ったら、よりMacBookに近づいて欲しいという期待がある。</p>
+<p>そんなMacBookの方は16コアというか16HTで、プログラムから見れば16コア。
+iPadは8コア。4コア+遅い4コア を8と呼ぶのはどうなのか、という向きもあるだろうけれど、
+コーディングの難しさという視点では立派に8コア。</p>
+<p>そもそもそういう用途で使うなら 4コア+遅い4コアという構成はどうなの？とか言いたい事はあるのかもしれないけれど、
+ユーザーの期待は16HTにどこまで近づけるか、という事なので、アプリ開発者の我々は、与えられた物を最大限に使うしか無い、
+というか使っても足りていない。</p>
+<p>対応すべきコア数という観点では、現時点で8と16、近い将来にも動くと期待すると32コアも無いとは言えないくらいのゾーンに居ると思っているので、
+今からアプリを作る時にはそのくらいの範囲はadaptiveに対応出来るように作る必要がある、と思っている。</p>
+<h3 id="4コアと8コアの違い">4コアと8コアの違い</h3>
+<p>4コアまでは、Concurrentなプログラムの延長で書いても、それほどコアを無駄にしている感じは無かった。
+何かOSが1.5コアくらい使って、自分たちが２コアくらい使って、たまに1コア余る事もあるけれど、使っているのは3/4だ。まぁそんなもんだろう、みたいな。
+大きくあいた所をちょっと再構成してキュッキュッと重そうな物を裏にやれば、だいたい埋まっている感じにはなる。
+よくよく見るとまだ結構詰められるのだけど、見なかった事にしてまぁいいか、という気分でいた。
+morritaさんの普段の仕事の話を見ているともっと頑張って詰めてそうなので立場に依るのだろうけれど。</p>
+<p>4コア時代の主な関心は、いわゆる「ジャンク」を取る事、つまりフレームレートを出す事だったと言えると思う。
+実際2コアでジャンクを取り切るのは厳しかった事からも、4コア時代の関心事として割と妥当な所だった。</p>
+<p>でも「8コア使ってMacBookに近づいたパフォーマンスをプロフェッショナルに届けよ」とか言われるようになると、もうちょっとCPUインテンシブな事もやっていかないといけない。</p>
+<p>でも、8コア使い切るにはConcurrentにちょっと毛がはえたくらいでは厳しい。
+8個って結構多くて、コードの構成が最初からそういう前提じゃないとすぐやる事が無いコアが出てきてしまって、全然スケールしてくれない。
+リアルにアムダールの法則状態というか。</p>
+<p>「iPadが8コアになった」というのは、自分的には大きなニュースで、
+morritaさんが言ってた所のSEDA的にプログラムを変えなきゃいけない、
+という大きなジャンプを強制された訳です。</p>
+<p>この4コアと8コアのギャップみたいなのって、皆はどう思っていますかね？
+ビルドの時にninjaが全部使ってくれれば、他は気にしてないっすよ、とかそんな感じだったりします？</p>
+<h3 id="自分たちはどうしているか的な話">自分たちはどうしているか的な話</h3>
+<p>教科書的な話はまぁいいだろう、という事で、実際に自分がどうしているかの話も少し。</p>
+<p>まず、もともと簡単に並列化出来る所はスレッドで並列化してある所が結構ある。
+関数の外から見て区別無い形で並列化出来て、それなりにパフォーマンス的に重要な所は、結構頑張って並列化してある。
+内部はまぁまぁスレッド同士で依存があるような物を、いろいろと工夫してちゃんとパフォーマンスを出している。</p>
+<p>これまではそうやっていたのだけれど、最近は関数単位で閉じた形での並列化が難しい大物がだんだんと目立つようになってきて、
+これをどうにかしていかないとなぁ、というのがプロジェクトを始めた時に置かれていた状況。
+やはり8コア時代はもうちょっと真面目にやらないといけないと結論づけて、道具を頑張って揃える所から始めている。</p>
+<p>道具立ての基礎となるライブラリはfuture-promise。
+基本的には、follyのfuture-promiseを真似ているがもうちょっと単純化したものを自分たちでスクラッチから実装していて、これを基本に並列化を進めていっている。
+現在は他と依存が少ない新規コードでfuture化したコードを書いていって、ちゃんとパフォーマンスが出る事を確認していっている段階。</p>
+<p>下のスレッドプールはQtとかWindowsはシステムのものを、iOSはGCDを、それ以外はとりあえず現在はpthreadで自前実装した物につなげている。
+STLじゃなくてpthreadなのは完全に歴史的事情で、STLに直してもいいんだけどなぁ、と思いながらpthreadを使っている。
+スレッドプールのAPIはGCDを真似ているけれどもうちょっと単純な感じにしていて、コア数全部使うキューと、シリアルな事が保証されているキューがある感じにしている。
+この辺はいろんな環境のいろんなスレッドプール事情を調べて、どれにもつなげられるように作ったつもり。</p>
+<p>ちょっとモバイルが特殊なのはGUIスレッドが特別扱いな所。
+自分たちはfutureを最終的にGUIスレッドで待てるようにしていて、
+この待っている時にプログレスバーを回したり、イベントループに戻せるシステムでは戻したりしている。
+他のスレッドからもworkitem的な物をポスト出来るようにはなっていて、待っている時にwork itemが来た場合はGUIスレッドで処理出来るような仕組みはある。
+この辺はGUI環境ごとにいろいろあるので、うまくそれらに合わせらるように頑張ってはいる。</p>
+<p>Android以外はシステムのスレッドプールがあるのでいいのだけれど、Androidはどうするもんですかねぇ。
+AndroidもJava側には十分その辺の道具は揃っているのだけれど、JNI側ではどうするのがいいのだろうか。
+あんまりボトルネックになってないので自作の奴でこのまま行くのでもいいのだけれど、この令和の時代に自作のスレッドプール使うのもなぁ…</p>
+<h3 id="みんなって意外とみんなじゃなかった">みんなって意外とみんなじゃなかった</h3>
+<p>そんな訳でiPadとMacBookを頭に浮かべつつ「並列プログラムの動画」を作ったつもりなのだけれど、そうはいってもだいたい「みんな」が対象となるだろう、と思っていた。</p>
+<p>最近8コアになった、というのはモバイル特有の事情であって、
+サーバーなどでは8コアなんてはるか昔に通った所だ。
+morritaさんのポストの最初の方に挙がってるような例で、8コア時代をどうすべきかなんてとっくに結論も出ている。
+動画はモバイル向けに作ったものではあるけれど、基本的なアイデアはサーバー時代の結論を元にしているので、サーバーサイドの人でもそう違った事は考えていないんじゃないか、と。</p>
+<p>モバイルとサーバーサイド両方って言ったらもう「みんな」と言っていいんじゃないか？
+GPUを使いまくる機械学習とか一部の分野は違うだろうけれど、それらは例外という事で。こんな風に考えていた。</p>
+<p>でも、「Switch買ってよ！みんな持ってるよ！」とオカンに言うと、「みんなって誰よ！？」と問い詰められるものです。
+動画を挙げた時も「どこの環境向けの話？」というフィードバックを受けました。
+「そんなのみんなだろう」と思ったのだけれど、具体的に「みんな」とは誰かをまじめに考えてみると、
+実はそれほど「みんな」でも無い気がしてきた。</p>
+<p>パフォーマンスを突き詰めていけばサーバーサイドもモバイルもだいたい同じ話になる、
+という認識は今でも変わってないけれど、パフォーマンスを突き詰めていく、
+というのが、言われてみるとそれほど一般的では無い気もしてきた。
+その辺が重要になってくるのは勝負がついた後の話であって、
+一番重要なバリバリ競争をしているフェーズでは、まだProcessExecutorでお茶をにごしたりコンテナ増やして対応したりで凌いだりするよなぁ。</p>
+<p>クラウドなんかだとグルーコード的なのが多かったり、Dataflowとか…はそんな詳しくないけれど、
+自分の知ってるMapReduce世代を振り返るとシャッフルやReduceで詰まらないようにとかMapでなるべく各ノードで済ますとか、そういう頑張りの方が主で、そんなにコアを使い切るという話にはなってなかった気がする（突き詰めればなるはずだけれど）。</p>
+<p>また機械学習も、例外と切り捨てるほどマイナーな分野とも言い切れない。
+C++でクロスプラットフォームなライブラリ書いてアプリ作ってる人よりは多いかもしれない…</p>
+<p>一方でサーバーサイドでRustとか流行るのは意外とCPUリソースが希少なのでは？という気もするのでこの辺の感覚は全然わからないのだけど、どうなんですかね？</p>
+<p>なんにせよ、あまり対象外の分野を、どんどん「それは例外な分野だ」として切り離していくと、例外の方が多いんじゃないか、という気分になってきました。あんまりコアを使い切るのに悩むのは一般的では無いのかもしれない。</p>
+<p>という事で最初の動画の対象は、大規模アクセスをさばく複雑なロジックを持つサービスと、
+プロフェッショナル向けのiPad Proハイエンドアプリくらいなのかもしれない。</p>
+<h3 id="普通のプログラマ視点の-gpu-vs-cpu">普通のプログラマ視点の GPU vs CPU</h3>
+<p>Parallelな話というとすぐGPUの話になりがちに思うのだけれど、その辺には結構不満がある。
+熱とか電力とかも含めた計算能力という点では、GPUの勝利で勝負は随分昔に済んでいて、
+使えるならGPUを有効活用する方が、CPUコアを使い切るよりも断然良い、という事に異論は無いのですが。</p>
+<p>でも、一アプリプログラマとして見た時には、自分のアプリでGPUを活用するのは、なかなかに難しい。
+いろいろなデバイスで動く汎用のアプリで、ユーザーから様々なデータがやってくる状況で、
+GPUを有効活用する、というのは、
+業界全体のグランドチャレンジというか、出来たらいい夢の話ではあるが、自分の手には余る。
+なんとかしたいとは思っているのだけれど…</p>
+<p>一方で、CPUのコアは複雑なアプリであればだいたい使い切る余地があるし、
+自分程度の腕でも頑張ればちゃんと使い切れる。
+そういう点ではCPUコアを使い切るのは今目の前にある現実であって、
+日々の仕事の話と思っている。</p>
+<p>コンペとかベンチとかではGPUがメインになっちゃうけれど、ユーザーが使う実際のアプリではやっぱりCPUがメインなんじゃないの？
+と思ってしまう。
+GPUを有効活用出来ているゲームとか機械学習も、有効活用出来るまでにはいろいろな困難を乗り越えて来たのだろうけれど、
+それでもやはりそれらの分野限定なんじゃないか。まぁうまく解決した人が居ると、もともとそういう分野だったからに見えるものですが。</p>
+<p>とにかく、現状ではまずCPUコア使い切る方向で頑張るのが現実的なんじゃないか。
+だから僕ら普通のプログラマの現代的な課題として、もっと普段からこのトピックの話を見かけてもいいのになぁ、と思うのだけれど。</p>
+<p>その辺、皆はどう思いますかね？</p>
+<hr>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+余談だけれど Mac(book) も <a href="https://www.apple.com/mac/m1/">M1</a> とかがでて今後は iPad みたいなハードウェアアーキテクチャに近づいていきそうですねえ。
+クライアントサイドで Intel の存在感はどんどんなくなっていきそう。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+ソフトウェアもSwiftUIで結構統一されつつあるし、ハードウェアもiPadと近づいているし、
+iPadとMacBookがプロフェッショナルユース、
+という感じには、かなりうまく進められているんじゃないか。
+無理して一気にやらない所がうまいですよね、Apple。
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/012-manycore/'>コアあまりのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/04-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/05-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/06-jmuk/'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/' class='is-active'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html><head>
+    <title>非同期と並列&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/012-manycore/01-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='非同期と並列&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='非同期と並列&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>非同期と並列</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-03-26</td></tr>
+      </table>
+      <article class='content'><p>karino2 が
+<a href="https://karino2.github.io/2021/03/05/future_for_parallel.html">並列プログラムから見たFuture</a>
+というビデオを作って公開していたので、引っ越しの荷造りをしながら眺めた。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eaduJdlCamQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>長いのでここにざっくりとした主張をまとめると:</p>
+<ul>
+<li>Future/Promise (およびその後釜の async/await) は非同期プログラミングで callback hell にならない発明という見方をされているが、
+そもそもなぜ callback hell が必要だったかの時代背景が十分に理解されていない。</li>
+<li>背景の一つはブラウザ JavaScript のプログラミングモデルにシングルスレッド・ノンブロッキング(イベントループ)という制限があったから。
+これは(特にフロントエンド開発者の間では)よく理解されている。</li>
+<li>もう一つの視点は <a href="http://www.sosp.org/2001/papers/welsh.pdf">SEDA</a> みたいなマルチスレッド・ノンブロッキング環境の必要性で、
+こっちはいまいち広く理解されていないように思える。</li>
+<li>結果としてサーバやデスクトップなどで C++ (なんで?) を書いているプログラマに Fuure/Promise の重要性を説明する良い資料がない。
+なぜ Twitter が <a href="https://twitter.github.io/finagle/">Finable</a> を、
+Facebook が <a href="https://engineering.fb.com/2015/06/19/developer-tools/futures-for-c-11-at-facebook/">Folly Future</a> を、
+Netflix が <a href="http://reactivex.io/">ReactiveX</a> を、
+Apple が <a href="https://developer.apple.com/documentation/DISPATCH">Dispatch</a> を、
+Google が <a href="https://github.com/google/guava/wiki/ListenableFutureExplained">ListenableFuture</a> を (一個だけダサいのが混じってるぞ!)
+持っているのかが伝わらない。</li>
+</ul>
+<p>ので俺が説明してやんよ、という内容。</p>
+<p>いいたいことに大きな異論はないのだけれど、
+先のビデオは準備不足なのか色々わかりにくい部分もあって議論を続けるのが難しい。
+そこでまずは話を整理し、そのあと仕事のコードとかだと実際どうなんですかと人々に聞いてみる回です。</p>
+<h2 id="20-年前のデスクトップ-スレッドは雑に作るui-スレッドはブロックする">20 年前のデスクトップ: スレッドは雑に作る。UI スレッドはブロックする。</h2>
+<p>というわけでおっさんの昔話から始まるのだよ・・・。</p>
+<p>スレッドの使い方という点でいちばんしょうもない例を見るには、15-25 年くらい前のデスクトップアプリを見ると良い。
+この世界ではみんな基本的にシングルスレッドでコードを書いている。
+のみならず、UI スレッドをブロックしないという現代の常識すらあまり守られていない。
+容赦なくダイアログボックスとかを表示して UI スレッドを止める。
+厳密にいうと UI スレッド (イベントループ) は止まっておらず、かわりにネストしている。
+ただ細かいことなのでブロックしていると思っておけばだいあいあってる。</p>
+<p>非同期なはずの JavaScript の世界で <code>alert()</code> とかがブロックするのは、
+こういうプログラミングモデルを前提としたデスクトップ OS の API を使って実装されていたから。
+(逆にそういう前提を捨てたモダンブラウザの実装をみると <code>alert()</code> をはじめとする blocking call 周辺はかなりの mess になっている。)</p>
+<p>20 年くらいの PC も高いやつだと CPU は 2-4 コアくらいあったので、
+すごく時間のかかる計算はスレッドを作って並列化されていた。
+ただスレッドの使い方はアドホック。必要なときに新しいスレッドを欲しいだけ作って、タスクを動かして、おしまい。</p>
+<h2 id="同時代のサーバサイド-1-リクエスト-1-スレッド">同時代のサーバサイド: 1 リクエスト 1 スレッド</h2>
+<p>同じ時代、Web サーバのようなサーバサイドのソフトウェアも同じように素朴だった。
+クライアントのリクエストを <code>accept()</code> するスレッドがいて、そのスレッドがリクエストを受け取るたびに新しいスレッドを作り、
+ソケットを渡して処理を任せる。
+<a href="https://docs.python.org/3/howto/sockets.html">ソケット入門</a>みたいな記事は今でもそういう説明をすることが多いと思う。
+概念的にわかりやすいからね。</p>
+<p>ただ現実のサーバーでリクエスト単位に新しいスレッドを作るとオーバーヘッドがでかいなど色々と都合が悪いので、
+一度作ったスレッドは使いまわすのが普通。 スレッドプールというやつ。
+この「都合の悪さ」や「オーバーヘッド」は karino2 の議論で重要なトピックなのだけれど、
+今はスルーして先に進もう。</p>
+<h2 id="ノンブロッキングサーバ-シングルスレッド">ノンブロッキングサーバ: シングルスレッド</h2>
+<p>リクエスト単位でスレッドをつくるアプローチの対極に、一つのスレッドで全てのリクエストをさばくアプローチもある。
+こうしたサーバはノンブロッキング I/O の API, 古いところだと <code>select()</code> とか、を使って書かれている。
+これだとスレッドが一個しかないので、スレッドを沢山つくる「オーバーヘッド」がない。</p>
+<p>この「オーバーヘッド」がなんなのかはやはり議論の余地があるが、
+シングルスレッド・ノンブロッキングなサーバではそもそもスレッドが一つしかないので気にしなくていい。
+オーバーヘッドの少なさ、並列プログラミングの難しさ（ロックとか）を避けられるある種の単純さもあって、
+特にコネクションの寿命が長いチャットみたいなアプリのサーバとして伝統的に割と人気。</p>
+<p>一方でマルチコアの CPU では２つ目以降のコアを使い切れない欠点もあり、そのへんは工夫を要する。</p>
+<h2 id="がんばるサーバ-seda">がんばるサーバ: SEDA</h2>
+<p>リクエスト単位でスレッドを作るかシングルスレッドか。
+上で議論したこのトレードオフはどう考えても雑すぎで、
+実際はノンブロッキングだけどマルチスレッドにできるのが望ましい。
+そういう実装は色々あるが、中でも <a href="https://scholar.google.com/scholar?cluster=6145791245667108590">SEDA</a>
+という 2001 年の研究が有名だと思う。
+SEDA は I/O を待つメインスレッドもワーカーも全部ノンブロッキングにしてメッセージキューでやり取りする。
+具体的にはタスク (&ldquo;Stage&rdquo;) 毎にスレッドプールを作り、そのスレッドプール同士をメッセージキューで繋ぐ。
+ノンブロッキングにできない処理(Linux だとファイルの読み書きとか)は、ブロッキング専用のスレッドプールをつくって閉じ込める。</p>
+<p>ステージ間の通信に使うキューに小細工することで、従来なら OS のスケジューラががやっていた仕事の一部を
+アプリケーションで実装できるようになる。おかげで OS の制限、すなわちオーバーヘッドを避けられるし、
+スケジューリングにアプリの都合を加味できる。だから良い。
+それが SEDA の主張 (をかなり雑に解釈したもの) である。</p>
+<h2 id="スレッド数--コア数">スレッド数 = コア数</h2>
+<p>SEDA のデザインは、ある意味では現在でも割と生き延びている。
+つまり、用途に応じたスレッドプールを事前に用意し、アプリケーションのコードはみなでそれを使う。
+ブロッキングコールは遠慮する。</p>
+<p>SEDA では複数のスレッドプールをつくりスループットを調整していたが、そこまでがんばるケースは少ない。
+CPU のコア数ぶんだけスレッドがあるデフォルトのスレッドプールをひとつだけ用意するほうが普通。
+おまけでファイル操作のようなブロッキング IO 用のスレッドプールがついてくる場合もある。
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/index.html">Kotlin の Dispatchers</a>,
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/index.html">RxJava の Schedulers</a>,
+<a href="https://docs.rs/tokio/1.4.0/tokio/#cpu-bound-tasks-and-blocking-code">Tokio</a>,
+<a href="https://golang.org/pkg/runtime/#GOMAXPROCS">GOMAXPROCS</a>,
+などなど。</p>
+<h2 id="がんばるデスクトップアプリ">がんばるデスクトップアプリ</h2>
+<p>karino2 のビデオでは、二千ゼロ年代中盤の巨大な Windows アプリの開発が同様の問題（OS スレッドのスケーラビリティ不足）にぶつかり、
+同様の解決に至った経緯を紹介している。すなわちコア数にあわせたスレッドプールをつくってノンブロッキングにがんばる。</p>
+<p>ゼロ年代の世の中は割とウェブ全盛で、クライアントサイドというかフロントエンドの人々は
+多くがシングルスレッドなブラウザの JS で暮らしていた。けれどデスクトップネイティブ勢はがんばっていたらしい。
+言われてみると C# は async/await をメインストリームにもってきた最初の言語だし、
+<a href="https://github.com/dotnet/reactive">RX(Reactive Extension)</a> も Microsoft 生まれ。
+Windows は色々やっていたのだろう。</p>
+<h2 id="ノンブロッキングスレッドプールという合意">ノンブロッキング・スレッドプールという合意</h2>
+<p>こうしてマルチコア環境での高性能、高並列アプリケーションの実行モデルはだいたい合意ができた:
+OS のスレッドはコア数ぶんだけしかつくらず、スケジューリングとかはユーザ空間でがんばろうではないか。</p>
+<p>もちろん OS 自体も進化しており、昔の「オーバーヘッド」の常識は当てはまらない。
+たとえば SEDA の書かれた 2001 年に Linux CFS はなかった。
+(<a href="https://en.wikipedia.org/wiki/Completely_Fair_Scheduler">Wikipedia によれば 2010 年くらいに有効化されたらしい</a>。)
+そんなモダン実装 OS のスレッドに頼ってばんばんブロッキングコールをする作る人々もいる。
+たとえ Hadoop のようなバッチ分散コンピューティングはスレッドをじゃんじゃかつくる印象。
+伝統的なデータベースの実装も割と OS のスレッドだのみな気がする。
+ファイル I/O がブロックするときに非同期とか言われてもやりようがないせいだろうか。</p>
+<p>そんなわけで「ノンブロッキング・スレッドプール」が唯一の正解というわけではない。
+とはいえメインストリームの一つになったのは間違いない。
+プログラミング・ポップカルチャーでは &ldquo;Reactive&rdquo; という呼び名を獲得した。
+厳密に Reactive がなんなのかには色々<a href="https://www.reactivemanifesto.org/">議論の余地がある</a>けれど、近似としてはあってると思う。</p>
+<h2 id="よりよい抽象を求めて">よりよい抽象を求めて</h2>
+<p>ノンブロッキングのコード、高性能なのはいいけれど書くのがだいぶかったるい問題があった。
+かったるさの代表例としては JS の <a href="http://callbackhell.com/">calback hell</a> がよく知られている。
+でも JS のように first class function がある言語はまだマシで、lambda が入る前の Java や C++ とかマジだるかった。</p>
+<p>今でも相変わらずシングルスレッドな JS だけれど
+(<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers">Web Workers</a> とか他の言語からみたら冗談みたいなもんです)
+ノンブロッキング、非同期プログラミングのよりよいプログラミングモデルを幅広いプログラマに届けたのも JS だった。
+つまり <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">Promise</a> と
+<a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await">async/await</a> である。
+どちらも JS 以前からあったといえばあったとはいえ、さほどメジャーでなかった。
+一方 JS (というか ES6) 以降の世代の言語は、だいたい似たような仕組みをもっている。</p>
+<p>しかし&hellip; と karino2 は言う。こういう素敵な抽象の恩恵を受けそびれているプログラマがいる。
+それは、本来こういう素敵抽象の恩恵を一番うけてしかるべき高性能システム/アプリを書き続けてきた苦難の C++ プログラマたちである。</p>
+<p>C++ に限らず他の言語、たとえば Java とかでも非同期の世界に行きそびれてしまった人はそれなりにいる。
+とはいえ C++ はそもそも標準にスレッドプールすらないので、広く使われる抽象を作りようがない。
+一方で Facebook のように体力のある会社は独自に Future を実装している。なんたる格差社会。
+そうしたかわいそうな一部プログラマを啓蒙すべく karino2 は冒頭のビデオを作った。</p>
+<h2 id="where-is-the-free-lunch">Where Is The Free Lunch</h2>
+<p>ところでここまでの議論は問題領域が intrinsic な平行性をもっている前提だった。
+サーバなり大規模デスクトップなり、彼らは平行して処理するタスク(リクエストとか)が多すぎて困っていた。</p>
+<p>ゼロ年代の同じ頃、あまり平行でない世の中の別の場所で、人々が別の問題に頭を悩ませていた:
+最近の CPU はコアばかり増えてシングルスレッド性能が上がらない！なんとかコードを並列化して最新 CPU を活用しなければ！
+そうした声のなかでたぶん一番有名なのが 2005 年に書かれた
+&ldquo;<a href="http://www.gotw.ca/publications/concurrency-ddj.htm">The Free Lunch Is Over</a>&rdquo;
+という記事。当時はまだ割と元気だった C++ の有名人が世間を煽っている。</p>
+<p>この頃からなんとか手元のコードを並列化したい人々の努力が始まり、
+たとえば &hellip; 例をあげるとキリがないけど色々なライブラリ、フレームワーク、ツール、言語などなどがでてきた。
+わかりやすいところだと
+<a href="https://docs.scala-lang.org/overviews/parallel-collections/overview.html">Scala の Parallel Collection</a>
+とかね。<a href="https://www.erlang.org/">Erlang</a> がもてはやされはじめたのも同じ頃だった記憶。</p>
+<p>更に同じ頃別の場所で、手元にあるすごい速いチップ&hellip; つまり GPU &hellip;を持て余している人たちが <a href="https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units">GPGPU</a> というのをはじめた。
+GPU をうまくつかうのは CPU 以上に難しいが、上手く使うと CPU が足元にもおよばない速さで計算できる。
+そんなんじで CUDA が登場したのは 2007 年らしい (<a href="https://en.wikipedia.org/wiki/CUDA">Wikipedia</a> 調べ)。</p>
+<h2 id="で最近どうしてる">で、最近どうしてる?</h2>
+<p>というかんじで 10 年くらい前に並列や並列ってすごい活発に議論されてたのを、
+karino2 のビデオをみたおっさんである森田は思い出したのだった。</p>
+<p>今の計算機、たしかにまあまあマルチコアになってる。
+ラップトップも 4-16 論理コア/HT くらいあるし、スマホは 8 コア。
+クラウドのサーバとか仮想化されてて見えないけど bare-metal なら<a href="https://aws.amazon.com/ec2/instance-types/m5/">高いやつだと 96 vCPU</a> とかある。
+AI 人材は暗号通貨人材と GPU を奪い合っている。</p>
+<p>そんなコア余りっぽい昨今、みなさんちゃんとコア使ってる？余ってる？足りない？</p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/012-manycore/'>コアあまりのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/02-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/04-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/05-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/012-manycore/06-jmuk/'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/' class='is-active'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
