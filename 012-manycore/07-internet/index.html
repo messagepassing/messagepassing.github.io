@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html><head>
-    <title>意識したことない&nbsp;/ kzys&nbsp;- Message Passing</title>
+    <title>インターネットの声&nbsp;/ internet&nbsp;- Message Passing</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
     <link rel='stylesheet' href='/css/style.css'>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
 
-    <meta property="og:url"                content='https://messagepassing.github.io/012-manycore/03-kzys/' />
+    <meta property="og:url"                content='https://messagepassing.github.io/012-manycore/07-internet/' />
     <meta property="og:type"               content='article' />
-    <meta property="og:title"              content='意識したことない&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="og:title"              content='インターネットの声&nbsp;/ internet&nbsp;- Message Passing' />
     <meta property="og:description"        content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
 ' />
     <meta property="og:locale"             content='ja_JP' />
     <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
 
     <meta property="twitter:card"        content='summary' />
-    <meta property="twitter:title"       content='意識したことない&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="twitter:title"       content='インターネットの声&nbsp;/ internet&nbsp;- Message Passing' />
     <meta property="twitter:description" content='最近のハードウェアって割と CPU が沢山あるけど、みんなちゃんと使えてる？
 ' />
     <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
@@ -35,32 +35,28 @@
   <div class='column'>
     <div class='article-container section is-size-5 is-size-6-touch pt-0'>
       <table class="table">
-        <tr><th>Subject</th><td>意識したことない</td></tr>
-        <tr><th>From</th><td><a href="https://8-p.info/">kzys</a></td></tr>
-        <tr><th>Date</th><td>2021-03-29</td></tr>
+        <tr><th>Subject</th><td>インターネットの声</td></tr>
+        <tr><th>From</th><td><a href="">internet</a></td></tr>
+        <tr><th>Date</th><td>2021-05-07</td></tr>
       </table>
-      <article class='content'><p>私はあんまりコアを意識したことないなあ。</p>
-<p>これは、どのくらい CPU がボトルネックになる処理を行うかという、ソフトウェアの中身によるところと、karino2 さんが作っているような、デスクトップやモバイルで前面に出てくるようなソフトウェアと、私が作っているような、いわゆるサーバーサイドかつクラウド上のソフトウェアという環境の違いからきているところがあると思う。</p>
-<p>まず、ソフトウェアの中身として、ネットワークのどこかにあるサービスをコールをして、その結果を待つようなものだと、そこまで CPU がボトルネックになるようなことはない。</p>
-<p>それに加えて、</p>
-<ul>
-<li>リクエストは並列にやってくるし、リクエストの間で共有しつつ書き換えるデータはそこまでないので、1リクエストでたくさんのコアを使い切らなくても、他のリクエストが使ってくれる (はず)。</li>
-<li>新しい世代の XL なインスタンス、例えば t3.xlarge や t4g.xlarge でも4コアしかないので、そもそも8コアも存在しない。デスクトップ/モバイルと違って、サーバーのスペックは自分で選ぶものなので、コアを使いきれなかったら安いインスタンスに変えても良い。</li>
-<li>AZ (availability zone) 単位の障害に <a href="https://aws.amazon.com/builders-library/static-stability-using-availability-zones/">statically stable</a> に対応するために、サーバーの処理能力はは 1AZ が消失してもなんとかなるように余裕をもって用意する。全部のコアを文字通り 100% 使っていると負荷が高すぎ。</li>
-</ul>
-<p>という理由で、頼んでもいないのに8コア来た! 使いきれない! 困った! という気持ちになったことはあまり無い。</p>
-<p>もちろん、色々サービスコールをして、その結果を待つようなものでも、結果を待っている間はその処理をコアから下ろして&hellip;みたいな処理を、例えば Java だったら <a href="https://docs.oracle.com/javase/jp/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a> を使って頑張ることもできる。ただこれも、Go みたいなランタイムが代わりに頑張ってくれる言語を使えば、自分が書くコードからは追い出せる。</p>
-<p>私の関わっている仕事のうち、<a href="https://containerd.io/">containerd</a> とか <a href="https://github.com/firecracker-microvm/firecracker-containerd">firecracker-containerd</a> といったオープンソースソフトウェアは、クラウド上の自分達が管理するインスタンスではなくて、世界のどこかにあるメニーコアのマシンで運用されている可能性はある。ただ、これらはコンテナのランタイムという性格上、余っているコアはコンテナが使ってくれればいいので、これもまた自分でコアを使い切る必要はないのだった。オープンソースのリレーショナルデータベースエンジンを開発していたりすると違うのかなあ。でもこれも CPU よりは IO がボトルネックになりそう。</p>
-<div class='message is-medium  is-size-6-touch comment'>
-<div class='message-header'>karino2</div>
-<div class='message-body'>
-CPUをどれだけ有効活用するかとCPUリソースにどれくらい余裕をもたせるかは別の話なのでは…と思ったのだけれど、
-結果として現れる現象が運用費をもうちょっと安く出来るのか、
-ユーザーの手元の端末で遅いアプリを提供するハメになるのか、
-と大きく違うんだな、と理解した。
-運用費を下げるという点では別にCPUだけ特別扱いする理由も無いですしね。
-</div>
-</div>
+      <article class='content'><p>インターネットで反応してくれた声を紹介します (morrita)</p>
+<hr>
+<p><a href="https://kanejaku.org/posts/2021/05/2021-05-02/">OkHttp の HTTP/2 並列性 - 2021/05/02 – kanejaku.org</a></p>
+<blockquote>
+<p>Message Passing #12 で OkHttp がどうやって HTTP/2 の上にブロッキング API を作っているのか、という疑問が書いてあった。興味が出たので Android も Kotlin も分からないけれど少し調べてみた。
+最初はコードを読んでいたのだけど途中でしっかりした<a href="https://github.com/square/okhttp/blob/f8fd4d08decf697013008b05ad7d2be10a648358/docs/concurrency.md">説明</a>があることに気づいた。ここに知りたいことは書いてあった。
+&hellip;
+最近の趣味プロジェクトとして HTTP/2 サーバを自作している。</p>
+<p>自作 HTTP/2 サーバも OkHttp と似たアプローチを取っている: ソケットからの読み込みは専用のタスク (<a href="https://tokio.rs/">tokio</a> を使っているのでスレッドではなくタスク)を使う。</p>
+</blockquote>
+<p><a href="https://tl.hateblo.jp/entry/2021/04/30/154411">Massively Multi-Core in Supercomputer - 雛形書庫</a></p>
+<blockquote>
+<p>僕は普段High-Performance Computing (HPC) の文脈でコアを使い切る活動をしていて、さきのshinhさんのポストからは、この分野ではわりとembarassingly parallelの色合いが強いのだなという気づきがあった。</p>
+</blockquote>
+<p><a href="http://shinh.skr.jp/m/?date=20210506#p01">HPCぽい話と並列性の分類と</a></p>
+<blockquote>
+<p>HPC、とりあえず、スケールしない部分が足をひっぱらない程度にはバカパラに近くなってないと、なんともならないというのがあると思う。そこはなんか問題いじったりしてでもバカパラにするし、できないならスパコン使う必要とか無い、ということになるんだと思う</p>
+</blockquote>
 </article>
     </div>
   </div>
@@ -79,7 +75,7 @@ CPUをどれだけ有効活用するかとCPUリソースにどれくらい余�
         </li>
       
         <li class='menu-item'>
-            <a class='is-active'>kzys</a>
+            <a href='https://messagepassing.github.io/012-manycore/03-kzys/'>kzys</a>
         </li>
       
         <li class='menu-item'>
@@ -95,7 +91,7 @@ CPUをどれだけ有効活用するかとCPUリソースにどれくらい余�
         </li>
       
         <li class='menu-item'>
-            <a href='https://messagepassing.github.io/012-manycore/07-internet/'>internet</a>
+            <a class='is-active'>internet</a>
         </li>
       
     </ul>

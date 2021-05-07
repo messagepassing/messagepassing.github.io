@@ -8,6 +8,23 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 03 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://messagepassing.github.io/012-manycore/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>インターネットの声</title>
+      <link>https://messagepassing.github.io/012-manycore/07-internet/</link>
+      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/012-manycore/07-internet/</guid>
+      <description>インターネットで反応してくれた声を紹介します (morrita)
+ OkHttp の HTTP/2 並列性 - 2021/05/02 – kanejaku.org
+ Message Passing #12 で OkHttp がどうやって HTTP/2 の上にブロッキング API を作っているのか、という疑問が書いてあった。興味が出たので Android も Kotlin も分からないけれど少し調べてみた。 最初はコードを読んでいたのだけど途中でしっかりした説明があることに気づいた。ここに知りたいことは書いてあった。 &amp;hellip; 最近の趣味プロジェクトとして HTTP/2 サーバを自作している。
+自作 HTTP/2 サーバも OkHttp と似たアプローチを取っている: ソケットからの読み込みは専用のタスク (tokio を使っているのでスレッドではなくタスク)を使う。
+ Massively Multi-Core in Supercomputer - 雛形書庫
+ 僕は普段High-Performance Computing (HPC) の文脈でコアを使い切る活動をしていて、さきのshinhさんのポストからは、この分野ではわりとembarassingly parallelの色合いが強いのだなという気づきがあった。
+ HPCぽい話と並列性の分類と
+ HPC、とりあえず、スケールしない部分が足をひっぱらない程度にはバカパラに近くなってないと、なんともならないというのがあると思う。そこはなんか問題いじったりしてでもバカパラにするし、できないならスパコン使う必要とか無い、ということになるんだと思う
+ </description>
+    </item>
+    
+    <item>
       <title>コアを使い切るとかあんまり考えたことない</title>
       <link>https://messagepassing.github.io/012-manycore/06-jmuk/</link>
       <pubDate>Tue, 20 Apr 2021 00:00:00 +0000</pubDate>
