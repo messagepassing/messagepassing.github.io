@@ -1736,6 +1736,169 @@ Google のあれは今でも Discover でいいんじゃないかな。 自分�
     </item>
     
     <item>
+      <title>Facebok のハッカー的姿勢</title>
+      <link>https://messagepassing.github.io/013-fboss/02-karino2/</link>
+      <pubDate>Mon, 08 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/013-fboss/02-karino2/</guid>
+      <description>RE2JのFacebookからのissue Facebookのオープンソース活動で、最初にこいつらなかなかいい奴らだな、と自分が思ったのは、RE2Jで見かけた時の事だったと思う。 RE2Jでbyte array使えないかなぁ、と思ってissueを眺めていたら、 Sliceという別のライブラリに依存した形で同じような事をやっていた。
+Sliceはunsafeバリバリで低レベルにバイト列を効率的に扱うようなライブラリなので、 あまりJava的にお行儀が良い物では無い。 そんなものに依存したコード持っていっても取り込むのは嫌がる、というのはFacebookの人たちも分かっていたと思うけれど、 まず自分たちの問題を解決する事を優先したのだと思う。 そしてそれをどうやったか示すだけに留める、という姿勢。 手元の問題を解決する事を最優先とするハッカー気質を感じて、なかなかいいな、と思った。
+このissueでGoogle側がなんのかんのと理由をつけて取り込まないくせに代替案も実現せず、結局公式ではbyte列は扱えないままなのが対照的で面白い。
+なお自分は同じような機能が欲しかったが、AndroidにSlice持っていくのも大変だったので、このslice版をforkして機能削ってsliceとガワを揃えたbyte arrayの実装をでっちあげて使った。RE2Jのフルの機能は実現出来ないが、自分が使う分には問題無かったので、まぁいいか、と。Facebookとは友達になれそうなアプローチである。
+Facebookのオープンソースは、使ってみると、要らない所は手を抜きつつ頑張って欲しい所は頑張っていて、こいつら分かってるなぁ、と思った。 プログラマの為のライブラリって感じがするんですよね、素人のお客様の為じゃなくて。我々の為にコードを公開している、という仲間意識を感じる。
+そしてFacebookいいな、と思ったものでここで特に取り上げたいのはFollyです（今年読んだものでちょっと話しましたが)。
+FollyにみるFacebookのハッカー的姿勢 Follyとは何かというと、Facebookが公開しているC++の基礎ライブラリ、と言えるだろうか。 FutureやBatonなどのちゃんとした並列プリミティブや、Arenaなどのデータ構造とかが全部ごちゃっと入っている。
+一部だけ使うとかは出来なくて、全部入れる、という前提な所がモノレポカルチャーだなぁ、と思う。 また、例えばQtなどの他のフレームワークと混ぜよう、とかいうと、いろいろ困る所がある。 でも「サーバーサイドで使っている自分たちはそういう事は無かった」という姿勢なのだろう、と勝手に思っている。
+使う人の視点からすると一部だけ欲しい、という事は結構あるのだけれど、そういう対応はしない。 必要な物だけ切り出して、不要な依存は排除して、thread poolはプラットフォームのものも使えるようにして…とかそういう事はしない。 自分たちの問題に最短でアプローチして、解決して、そしてそのノウハウを分かる人には分かる形で共有する。 かっこいい。
+FacebookのFuture周辺の凄さ 現在C++以外の世界では、future-promiseという概念は広く使われていて、futureライブラリに期待される性質というのも、ほとんどコンセンサスが得られる段階にあると思う。（むしろちょっと今更感があるかもしれない）
+昨今の多数のコアを使い切るには、小さな粒度で大量のfutureを作るスタイルが望ましい。 だから、大量のfutureを作ってもスレッド数がHWスレッド数以上に増えてしまわず、適当なスレッドプールで個々のfutureは低コストに実行される必要がある。 スレッドプールを使う為、ブロッキングで待ってスレッドを消費するのはまずいから、 全てノンブロッキングに結果を受け取って次のタスクをつなげていくスタイルで書く必要がある。 そして必要な時には特定の、例えばGUIスレッドなどで結果を受け取る必要もある。
+信じがたい事だが、C++のfutureライブラリの多くは、この基本的な要求を満たしていない。 例えばSTLにはスレッドプールが無くて、executor的な概念も無いから、GUIスレッドで受け取る、みたいな事もうまく抽象化出来ていない。 futureが結果を受け取るのはwaitとか言ってブロックしてしまう。 当然スレッドを消費してしまうし、現代的なコア数がたくさんある環境でコア使い切るのにこれでは全然ダメだ。
+FollyのfutureはGUIスレッドという実装は無いけれど、Executorとスレッドプール自体はあって、 どのExecutorで動かすか、という事がちゃんと指定出来る。 だからGUIスレッドのある環境で動かしたいとなれば、GUIスレッドのExecutorを書けば、GUIスレッドで結果を受け取る事もたぶん問題無い。 ちゃんと結果はノンブロッキングで待てて、 受け取るExecutorもちゃんと選べる。 こいつらちゃんとコア全部使ってんなぁ、というのが伝わってくるAPIになっている。
+さらに実装を見るとスレッドプールもfutureも、 手抜きでロックしたくなるような所もatomicとかで頑張っていて、 メモリモデルの指定も細かい。 自分レベルでは全てが正しいのかは判断出来ないが、 すごい専門家っぽい人が頑張って書いたな〜って感じの実装になってて、いかにも早そう。 APIも分かっているが実装も分かっている。こいつら只者じゃない。 少なくとも私よりは大分腕が良い。やるなぁ。
+Batonなどの並列primitiveも現代的で、エラーが少なく効率良く使えるような物がいろいろ用意されている。 彼らは本当にモダンな言語での現代の並列プログラムを良く分かってて、それをただ持ってくるだけでは無く、C++ではこうすべき、というアレンジもしつつ書いているように見える。 現代的な便利な発明をいろいろ理解しつつ、専門的なメモリモデルとかも最適な物で実装している。 Follyの並列すごい。
+なお、並列以外も非常にC++14的な模範的なC++のコードになっていて勉強になるので、 C++を勉強するならFollyのコードを読むのは凄くオススメです。APIだけで無く実装も良い。 自分はまだ17使えない環境なので、14である事も嬉しい。
+ morrita これを読んで Folly の Future は Instagram のバックエンドも使っている というのを思い出しました。 なおこの話はまったく盛り上がらなかったため、これでおしまいです。   </description>
+      <content:encoded><![CDATA[<h3 id="re2jのfacebookからのissue">RE2JのFacebookからのissue</h3>
+<p>Facebookのオープンソース活動で、最初にこいつらなかなかいい奴らだな、と自分が思ったのは、<a href="https://github.com/google/re2j">RE2J</a>で見かけた時の事だったと思う。
+RE2Jでbyte array使えないかなぁ、と思ってissueを眺めていたら、
+<a href="https://github.com/google/re2j/issues/17">Sliceという別のライブラリに依存した形で同じような事をやっていた</a>。</p>
+<p>Sliceはunsafeバリバリで低レベルにバイト列を効率的に扱うようなライブラリなので、
+あまりJava的にお行儀が良い物では無い。
+そんなものに依存したコード持っていっても取り込むのは嫌がる、というのはFacebookの人たちも分かっていたと思うけれど、
+まず自分たちの問題を解決する事を優先したのだと思う。
+そしてそれをどうやったか示すだけに留める、という姿勢。
+手元の問題を解決する事を最優先とするハッカー気質を感じて、なかなかいいな、と思った。</p>
+<p>このissueでGoogle側がなんのかんのと理由をつけて取り込まないくせに代替案も実現せず、結局公式ではbyte列は扱えないままなのが対照的で面白い。</p>
+<p>なお自分は同じような機能が欲しかったが、AndroidにSlice持っていくのも大変だったので、<a href="https://github.com/karino2/ZipSourceCodeReading/tree/master/app/src/main/java/com/google/re2j">このslice版をforkして機能削ってsliceとガワを揃えたbyte arrayの実装をでっちあげて使った</a>。RE2Jのフルの機能は実現出来ないが、自分が使う分には問題無かったので、まぁいいか、と。Facebookとは友達になれそうなアプローチである。</p>
+<p>Facebookのオープンソースは、使ってみると、要らない所は手を抜きつつ頑張って欲しい所は頑張っていて、こいつら分かってるなぁ、と思った。
+プログラマの為のライブラリって感じがするんですよね、素人のお客様の為じゃなくて。我々の為にコードを公開している、という仲間意識を感じる。</p>
+<p>そしてFacebookいいな、と思ったものでここで特に取り上げたいのはFollyです（<a href="https://messagepassing.github.io/004-whatiread/02-karino2/">今年読んだもの</a>でちょっと話しましたが)。</p>
+<h3 id="follyにみるfacebookのハッカー的姿勢">FollyにみるFacebookのハッカー的姿勢</h3>
+<p><a href="https://github.com/facebook/folly">Folly</a>とは何かというと、Facebookが公開しているC++の基礎ライブラリ、と言えるだろうか。
+FutureやBatonなどのちゃんとした並列プリミティブや、Arenaなどのデータ構造とかが全部ごちゃっと入っている。</p>
+<p>一部だけ使うとかは出来なくて、全部入れる、という前提な所がモノレポカルチャーだなぁ、と思う。
+また、例えばQtなどの他のフレームワークと混ぜよう、とかいうと、いろいろ困る所がある。
+でも「サーバーサイドで使っている自分たちはそういう事は無かった」という姿勢なのだろう、と勝手に思っている。</p>
+<p>使う人の視点からすると一部だけ欲しい、という事は結構あるのだけれど、そういう対応はしない。
+必要な物だけ切り出して、不要な依存は排除して、thread poolはプラットフォームのものも使えるようにして…とかそういう事はしない。
+自分たちの問題に最短でアプローチして、解決して、そしてそのノウハウを分かる人には分かる形で共有する。
+かっこいい。</p>
+<h3 id="facebookのfuture周辺の凄さ">FacebookのFuture周辺の凄さ</h3>
+<p>現在C++以外の世界では、future-promiseという概念は広く使われていて、futureライブラリに期待される性質というのも、ほとんどコンセンサスが得られる段階にあると思う。（むしろちょっと今更感があるかもしれない）</p>
+<p>昨今の多数のコアを使い切るには、小さな粒度で大量のfutureを作るスタイルが望ましい。
+だから、大量のfutureを作ってもスレッド数がHWスレッド数以上に増えてしまわず、適当なスレッドプールで個々のfutureは低コストに実行される必要がある。
+スレッドプールを使う為、ブロッキングで待ってスレッドを消費するのはまずいから、
+全てノンブロッキングに結果を受け取って次のタスクをつなげていくスタイルで書く必要がある。
+そして必要な時には特定の、例えばGUIスレッドなどで結果を受け取る必要もある。</p>
+<p>信じがたい事だが、C++のfutureライブラリの多くは、この基本的な要求を満たしていない。
+例えばSTLにはスレッドプールが無くて、executor的な概念も無いから、GUIスレッドで受け取る、みたいな事もうまく抽象化出来ていない。
+futureが結果を受け取るのはwaitとか言ってブロックしてしまう。
+当然スレッドを消費してしまうし、現代的なコア数がたくさんある環境でコア使い切るのにこれでは全然ダメだ。</p>
+<p><a href="https://github.com/facebook/folly/blob/master/folly/docs/Futures.md">Follyのfuture</a>はGUIスレッドという実装は無いけれど、Executorとスレッドプール自体はあって、
+どのExecutorで動かすか、という事がちゃんと指定出来る。
+だからGUIスレッドのある環境で動かしたいとなれば、GUIスレッドのExecutorを書けば、GUIスレッドで結果を受け取る事もたぶん問題無い。
+ちゃんと結果はノンブロッキングで待てて、
+受け取るExecutorもちゃんと選べる。
+こいつらちゃんとコア全部使ってんなぁ、というのが伝わってくるAPIになっている。</p>
+<p>さらに実装を見るとスレッドプールもfutureも、
+手抜きでロックしたくなるような所もatomicとかで頑張っていて、
+メモリモデルの指定も細かい。
+自分レベルでは全てが正しいのかは判断出来ないが、
+すごい専門家っぽい人が頑張って書いたな〜って感じの実装になってて、いかにも早そう。
+APIも分かっているが実装も分かっている。こいつら只者じゃない。
+少なくとも私よりは大分腕が良い。やるなぁ。</p>
+<p>Batonなどの並列primitiveも現代的で、エラーが少なく効率良く使えるような物がいろいろ用意されている。
+彼らは本当にモダンな言語での現代の並列プログラムを良く分かってて、それをただ持ってくるだけでは無く、C++ではこうすべき、というアレンジもしつつ書いているように見える。
+現代的な便利な発明をいろいろ理解しつつ、専門的なメモリモデルとかも最適な物で実装している。
+Follyの並列すごい。</p>
+<p>なお、並列以外も非常にC++14的な模範的なC++のコードになっていて勉強になるので、
+C++を勉強するならFollyのコードを読むのは凄くオススメです。APIだけで無く実装も良い。
+自分はまだ17使えない環境なので、14である事も嬉しい。</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+これを読んで Folly の Future は <a href="https://instagram-engineering.com/c-futures-at-instagram-9628ff634f49">Instagram のバックエンドも使っている</a> というのを思い出しました。
+なおこの話はまったく盛り上がらなかったため、これでおしまいです。
+</div>
+</div>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Facebook オープンソースのかっこよさ</title>
+      <link>https://messagepassing.github.io/013-fboss/01-morrita/</link>
+      <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://messagepassing.github.io/013-fboss/01-morrita/</guid>
+      <description>Facebook のオープンソースプロジェクトには、妙にかっこいいものが多い。 企業発 OSS の中でもかっこよさが突出している。 有名どころでは React (2013) と PyTorch (2016) があるけれども、 他にも MySQL のストレージエンジンをとりかえた MyRocks/RocksDB, Microsoft も使い始めた静的解析ツール Infer (これは買収だな), AWS が managed service をはじめるに至った OLAP DB の Presto, Rust で書いてしまった Marcurial Backend の Eden などなど枚挙に暇がない。
+プロジェクトの数だけなら他にも数多く公開している会社はあるし、 プロジェクトの規模(つっこまれている人員)が特別多い感じでもない。 が、かっこよさは企業発オープンソースの中で一歩先を行っている、気がする。
+昔の Facebook は、それほどオープンソースが得意な印象ではなかった。 Hive なんかは割と古い (2010) ヒット作だけれど、 Cassandra (2008) は他の会社に引き取られてしまったし（それはある意味ではヒットしているが）、 Thrift (2007) に至っては自分ではじめたオープンソースなのに なぜか自らフォークしている。意味不明。
+それがいまやこのかっこよさ。 かっこよさを感じる理由はいくつかある。
+一つはプロジェクトの小粋さ。 React は全部入りのフレームワークでないし、 PyTorch は（当初は）割と小さく、API もきちんとレイヤリングされているし、 MyRocks はデータベースをフルスクラッチでなく MySQL を再利用してるし、などなど。
+プログラミング言語選択のリベラルさも良い。Infer に限らず妙に OCaml が幅を利かせていたり、 一時期は Haskell や D もまじっていたし、 最近は Rust まである。 ハック精神を感じる。そういえば言語作ってたな: Hack.</description>
+      <content:encoded><![CDATA[<p><a href="https://opensource.facebook.com/projects">Facebook のオープンソースプロジェクト</a>には、妙にかっこいいものが多い。
+企業発 OSS の中でもかっこよさが突出している。
+有名どころでは React (2013) と PyTorch (2016) があるけれども、
+他にも MySQL のストレージエンジンをとりかえた <a href="http://myrocks.io/">MyRocks</a>/<a href="https://rocksdb.org/">RocksDB</a>,
+<a href="https://devblogs.microsoft.com/dotnet/infer-interprocedural-memory-safety-analysis-for-c/">Microsoft も使い始めた</a>静的解析ツール <a href="https://github.com/facebook/infer">Infer</a> (これは<a href="https://techcrunch.com/2013/07/18/facebook-monoidics/">買収</a>だな),
+AWS が <a href="https://aws.amazon.com/athena/">managed service</a> をはじめるに至った OLAP DB の <a href="https://prestodb.io/">Presto</a>,
+Rust で書いてしまった Marcurial Backend の <a href="https://github.com/facebookexperimental/eden">Eden</a> などなど枚挙に暇がない。</p>
+<p>プロジェクトの数だけなら他にも数多く公開している会社はあるし、
+プロジェクトの規模(つっこまれている人員)が特別多い感じでもない。
+が、かっこよさは企業発オープンソースの中で一歩先を行っている、気がする。</p>
+<p>昔の Facebook は、それほどオープンソースが得意な印象ではなかった。
+<a href="https://hive.apache.org/">Hive</a> なんかは割と古い (2010) ヒット作だけれど、
+<a href="https://cassandra.apache.org/">Cassandra</a> (2008) は他の会社に引き取られてしまったし（それはある意味ではヒットしているが）、
+<a href="https://thrift.apache.org/">Thrift</a> (2007) に至っては自分ではじめたオープンソースなのに
+なぜか<a href="https://github.com/facebook/fbthrift">自らフォークしている</a>。意味不明。</p>
+<p>それがいまやこのかっこよさ。
+かっこよさを感じる理由はいくつかある。</p>
+<p>一つはプロジェクトの小粋さ。
+React は全部入りのフレームワークでないし、
+PyTorch は（当初は）割と小さく、API もきちんとレイヤリングされているし、
+MyRocks はデータベースをフルスクラッチでなく MySQL を再利用してるし、などなど。</p>
+<p>プログラミング言語選択のリベラルさも良い。Infer に限らず妙に OCaml が幅を利かせていたり、
+一時期は <a href="https://engineering.fb.com/2015/06/26/security/fighting-spam-with-haskell/">Haskell</a>
+や <a href="https://forum.dlang.org/post/l37h5s$2gd8$1@digitalmars.com">D</a> もまじっていたし、
+最近は <a href="https://github.com/facebookexperimental?language=rust">Rust</a> まである。
+ハック精神を感じる。そういえば言語作ってたな: <a href="https://hacklang.org/">Hack</a>.</p>
+<p>もう一つ感じるのはコミュニティづくりを含めた見せ方のうまさ。
+これはなぜなのだろうとウェブを眺めていたら Facebook の OSS 担当者が一時期やっていた The Diff という Podcast の
+<a href="https://thediffpodcast.com/docs/episode-1">最初のエピソード</a> が社内のオープンソースの取り組みを紹介していた。</p>
+<p>これによれば彼らはオープンソースプロジェクトの活発さのメトリクスを監視し、関係者を ping したりしているらしい。
+たとえば PR の数、その対応時間、フォークの数などをトラックしている。
+オープンソースプロジェクト公開のバーも高い。担当者がきちんとコミュニティ対応にコミットできる確約がないと公開させてもらえない。
+プロジェクト自身の新規性なども加味される。
+こうした企業としての Facebook の取り組みは、企業オープンソース支援団体 TODO Group の
+<a href="https://todogroup.org/guides/measuring/">ガイド</a>　でも紹介されている。</p>
+<p>もっともこうした「オープンソースの見せ方の上手さ」は新しい世代の企業なら多かれ少なかれ持っている。
+やはり見せるに値するプロジェクトを持っているのが重要。
+たとえば Netflix とか<a href="https://netflixtechblog.com/">企業ブログ</a>は割とかっこいい話が多いけれど、
+<a href="https://github.com/Netflix">GitHub</a> をみると（自分がクラウド素人である事実を差し引いても）そんなにピンこない。</p>
+<h2 id="profilo">Profilo</h2>
+<p>自分が Android アプリで性能関係の仕事をしている関係もありその手のライブラリをたまにひやかす。
+そんな中ででくわしたのが <a href="https://github.com/facebookincubator/profilo">Facebok Profilo</a>.
+機能豊富なのもそうだけど、実装のえげつなさが Facebook 的でとてもよい。
+息をするように <a href="https://github.com/facebookincubator/profilo/blob/master/cpp/atrace/Atrace.cpp">libc の関数を置き換えたりする</a>。
+ここでは Android の <a href="https://developer.android.com/reference/android/os/Trace">Trace</a> の実装をフックし、
+本来ならアプリケーション内からは見えないはずの Android Framework からのトレースをアプリケーション側で採取している。
+普通ならかったるくて遠ざけがちな <a href="https://developer.android.com/guide/components/aidl">AIDL</a> も<a href="https://github.com/facebookincubator/profilo/tree/master/aidl/java/com/facebook/profilo/ipc">さらっと使っており</a>、練度が高い。</p>
+<p>こういう低レイヤのコードは傾向としてぐちゃっとしがちなのに、極めて淡麗。こういう C++ なら書いて良いかもと思わせる品質。
+気のせいだと思うけど。</p>
+<p>最近 C++ 書いてる karino2 も Facebook のコードを褒めてた気がしますが、読みどころのおすすめはありますか。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+（なお「オープンソースの見せ方の上手さ」がぜんぜんダメなのが Google で、この <a href="https://opensource.google/projects/list/featured">feaured project list</a> とか割と救いようがない。その <a href="https://opensource.google/projects/science-journal">Open Science Journal</a> とかいうのと <a href="https://opensource.google/projects/android">Android</a>
+を同列にならべちゃっていいの？ <a href="https://github.com/google">GitHub org</a> には 2000 個ぐらいプロジェクトがあって探索不能だし、
+オープンソースというものにかけているコストを考えるとまったく見せる気を感じない。
+</div>
+</div>
+]]></content:encoded>
+    </item>
+    
+    <item>
       <title>ちゃんとやりすぎた Chainer</title>
       <link>https://messagepassing.github.io/008-justright/05-shinh/</link>
       <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>

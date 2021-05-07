@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Facebook オープンソースのかっこよさ&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/013-fboss/01-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Facebook オープンソースのかっこよさ&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='Facebook から出てくるオープンソースプロジェクト、どれも妙にかっこよくない？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Facebook オープンソースのかっこよさ&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='Facebook から出てくるオープンソースプロジェクト、どれも妙にかっこよくない？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Facebook オープンソースのかっこよさ</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-02-07</td></tr>
+      </table>
+      <article class='content'><p><a href="https://opensource.facebook.com/projects">Facebook のオープンソースプロジェクト</a>には、妙にかっこいいものが多い。
+企業発 OSS の中でもかっこよさが突出している。
+有名どころでは React (2013) と PyTorch (2016) があるけれども、
+他にも MySQL のストレージエンジンをとりかえた <a href="http://myrocks.io/">MyRocks</a>/<a href="https://rocksdb.org/">RocksDB</a>,
+<a href="https://devblogs.microsoft.com/dotnet/infer-interprocedural-memory-safety-analysis-for-c/">Microsoft も使い始めた</a>静的解析ツール <a href="https://github.com/facebook/infer">Infer</a> (これは<a href="https://techcrunch.com/2013/07/18/facebook-monoidics/">買収</a>だな),
+AWS が <a href="https://aws.amazon.com/athena/">managed service</a> をはじめるに至った OLAP DB の <a href="https://prestodb.io/">Presto</a>,
+Rust で書いてしまった Marcurial Backend の <a href="https://github.com/facebookexperimental/eden">Eden</a> などなど枚挙に暇がない。</p>
+<p>プロジェクトの数だけなら他にも数多く公開している会社はあるし、
+プロジェクトの規模(つっこまれている人員)が特別多い感じでもない。
+が、かっこよさは企業発オープンソースの中で一歩先を行っている、気がする。</p>
+<p>昔の Facebook は、それほどオープンソースが得意な印象ではなかった。
+<a href="https://hive.apache.org/">Hive</a> なんかは割と古い (2010) ヒット作だけれど、
+<a href="https://cassandra.apache.org/">Cassandra</a> (2008) は他の会社に引き取られてしまったし（それはある意味ではヒットしているが）、
+<a href="https://thrift.apache.org/">Thrift</a> (2007) に至っては自分ではじめたオープンソースなのに
+なぜか<a href="https://github.com/facebook/fbthrift">自らフォークしている</a>。意味不明。</p>
+<p>それがいまやこのかっこよさ。
+かっこよさを感じる理由はいくつかある。</p>
+<p>一つはプロジェクトの小粋さ。
+React は全部入りのフレームワークでないし、
+PyTorch は（当初は）割と小さく、API もきちんとレイヤリングされているし、
+MyRocks はデータベースをフルスクラッチでなく MySQL を再利用してるし、などなど。</p>
+<p>プログラミング言語選択のリベラルさも良い。Infer に限らず妙に OCaml が幅を利かせていたり、
+一時期は <a href="https://engineering.fb.com/2015/06/26/security/fighting-spam-with-haskell/">Haskell</a>
+や <a href="https://forum.dlang.org/post/l37h5s$2gd8$1@digitalmars.com">D</a> もまじっていたし、
+最近は <a href="https://github.com/facebookexperimental?language=rust">Rust</a> まである。
+ハック精神を感じる。そういえば言語作ってたな: <a href="https://hacklang.org/">Hack</a>.</p>
+<p>もう一つ感じるのはコミュニティづくりを含めた見せ方のうまさ。
+これはなぜなのだろうとウェブを眺めていたら Facebook の OSS 担当者が一時期やっていた The Diff という Podcast の
+<a href="https://thediffpodcast.com/docs/episode-1">最初のエピソード</a> が社内のオープンソースの取り組みを紹介していた。</p>
+<p>これによれば彼らはオープンソースプロジェクトの活発さのメトリクスを監視し、関係者を ping したりしているらしい。
+たとえば PR の数、その対応時間、フォークの数などをトラックしている。
+オープンソースプロジェクト公開のバーも高い。担当者がきちんとコミュニティ対応にコミットできる確約がないと公開させてもらえない。
+プロジェクト自身の新規性なども加味される。
+こうした企業としての Facebook の取り組みは、企業オープンソース支援団体 TODO Group の
+<a href="https://todogroup.org/guides/measuring/">ガイド</a>　でも紹介されている。</p>
+<p>もっともこうした「オープンソースの見せ方の上手さ」は新しい世代の企業なら多かれ少なかれ持っている。
+やはり見せるに値するプロジェクトを持っているのが重要。
+たとえば Netflix とか<a href="https://netflixtechblog.com/">企業ブログ</a>は割とかっこいい話が多いけれど、
+<a href="https://github.com/Netflix">GitHub</a> をみると（自分がクラウド素人である事実を差し引いても）そんなにピンこない。</p>
+<h2 id="profilo">Profilo</h2>
+<p>自分が Android アプリで性能関係の仕事をしている関係もありその手のライブラリをたまにひやかす。
+そんな中ででくわしたのが <a href="https://github.com/facebookincubator/profilo">Facebok Profilo</a>.
+機能豊富なのもそうだけど、実装のえげつなさが Facebook 的でとてもよい。
+息をするように <a href="https://github.com/facebookincubator/profilo/blob/master/cpp/atrace/Atrace.cpp">libc の関数を置き換えたりする</a>。
+ここでは Android の <a href="https://developer.android.com/reference/android/os/Trace">Trace</a> の実装をフックし、
+本来ならアプリケーション内からは見えないはずの Android Framework からのトレースをアプリケーション側で採取している。
+普通ならかったるくて遠ざけがちな <a href="https://developer.android.com/guide/components/aidl">AIDL</a> も<a href="https://github.com/facebookincubator/profilo/tree/master/aidl/java/com/facebook/profilo/ipc">さらっと使っており</a>、練度が高い。</p>
+<p>こういう低レイヤのコードは傾向としてぐちゃっとしがちなのに、極めて淡麗。こういう C++ なら書いて良いかもと思わせる品質。
+気のせいだと思うけど。</p>
+<p>最近 C++ 書いてる karino2 も Facebook のコードを褒めてた気がしますが、読みどころのおすすめはありますか。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+（なお「オープンソースの見せ方の上手さ」がぜんぜんダメなのが Google で、この <a href="https://opensource.google/projects/list/featured">feaured project list</a> とか割と救いようがない。その <a href="https://opensource.google/projects/science-journal">Open Science Journal</a> とかいうのと <a href="https://opensource.google/projects/android">Android</a>
+を同列にならべちゃっていいの？ <a href="https://github.com/google">GitHub org</a> には 2000 個ぐらいプロジェクトがあって探索不能だし、
+オープンソースというものにかけているコストを考えるとまったく見せる気を感じない。
+</div>
+</div>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/013-fboss/'>Facebook のオープンソース</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/013-fboss/02-karino2/'>karino2</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/' class='is-active'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
