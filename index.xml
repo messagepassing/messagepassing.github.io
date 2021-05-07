@@ -1793,7 +1793,7 @@ FollyのfutureはGUIスレッドという実装は無いけれど、Executorと�
 さらに実装を見るとスレッドプールもfutureも、 手抜きでロックしたくなるような所もatomicとかで頑張っていて、 メモリモデルの指定も細かい。 自分レベルでは全てが正しいのかは判断出来ないが、 すごい専門家っぽい人が頑張って書いたな〜って感じの実装になってて、いかにも早そう。 APIも分かっているが実装も分かっている。こいつら只者じゃない。 少なくとも私よりは大分腕が良い。やるなぁ。
 Batonなどの並列primitiveも現代的で、エラーが少なく効率良く使えるような物がいろいろ用意されている。 彼らは本当にモダンな言語での現代の並列プログラムを良く分かってて、それをただ持ってくるだけでは無く、C++ではこうすべき、というアレンジもしつつ書いているように見える。 現代的な便利な発明をいろいろ理解しつつ、専門的なメモリモデルとかも最適な物で実装している。 Follyの並列すごい。
 なお、並列以外も非常にC++14的な模範的なC++のコードになっていて勉強になるので、 C++を勉強するならFollyのコードを読むのは凄くオススメです。APIだけで無く実装も良い。 自分はまだ17使えない環境なので、14である事も嬉しい。
- morrita これを読んで Folly の Future は Instagram のバックエンドも使っている というのを思い出しました。 なおこの話はまったく盛り上がらなかったため、これでおしまいです。   </description>
+ morrita これを読んで Folly の Future は Instagram のバックエンドも使っている というのを思い出しました。 なおこの話はまったく盛り上がらなかったため、これでおしまいです。   karino2 FBのOSS、なかなか面白いの多いと思うんだが、このトピックは全然盛り上がらんかったねぇ。</description>
       <content:encoded><![CDATA[<h3 id="re2jのfacebookからのissue">RE2JのFacebookからのissue</h3>
 <p>Facebookのオープンソース活動で、最初にこいつらなかなかいい奴らだな、と自分が思ったのは、<a href="https://github.com/google/re2j">RE2J</a>で見かけた時の事だったと思う。
 RE2Jでbyte array使えないかなぁ、と思ってissueを眺めていたら、
@@ -1851,13 +1851,19 @@ Follyの並列すごい。</p>
 C++を勉強するならFollyのコードを読むのは凄くオススメです。APIだけで無く実装も良い。
 自分はまだ17使えない環境なので、14である事も嬉しい。</p>
 <hr>
-<div class='message is-medium  is-size-6-touch comment'>
+<p><div class='message is-medium  is-size-6-touch comment'>
 <div class='message-header'>morrita</div>
 <div class='message-body'>
 これを読んで Folly の Future は <a href="https://instagram-engineering.com/c-futures-at-instagram-9628ff634f49">Instagram のバックエンドも使っている</a> というのを思い出しました。
 なおこの話はまったく盛り上がらなかったため、これでおしまいです。
 </div>
 </div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+FBのOSS、なかなか面白いの多いと思うんだが、このトピックは全然盛り上がらんかったねぇ。
+</div>
+</div></p>
 ]]></content:encoded>
     </item>
     
