@@ -626,6 +626,12 @@ Rails を皮切りに何をするにもまずはフレームワーク探しか�
 オープンソースプロジェクトの持続可能性はいつだって心配。</p>
 <p>とはいえもう時代が逆戻りするとも思えない。
 15 年後に振り返って「いやー当時は他人のコードに依存しすぎだったねワッハッハ」とか言うこと、なさそうだよねえ。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+RUP といえば、最近に読んだ <a href="https://buttondown.email/hillelwayne/archive/why-uml-really-died">Why UML &ldquo;Really&rdquo; Died</a> が面白かったので、そちらもどうぞ。
+</div>
+</div>
 ]]></content:encoded>
     </item>
     
