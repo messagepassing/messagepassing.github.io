@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html><head>
+    <title>パッケージマネージャー世代&nbsp;/ kzys&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/014-reuse/02-kzys/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='パッケージマネージャー世代&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="og:description"        content='むかしソフトウェアの再利用って難しいことになってた気がするけど、あれどうなったっけ？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='パッケージマネージャー世代&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='むかしソフトウェアの再利用って難しいことになってた気がするけど、あれどうなったっけ？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>パッケージマネージャー世代</td></tr>
+        <tr><th>From</th><td><a href="https://8-p.info/">kzys</a></td></tr>
+        <tr><th>Date</th><td>2021-03-04</td></tr>
+      </table>
+      <article class='content'><blockquote>
+<p>何故プログラムの再利用というのが難しかったのか、という話をしていたら、「えっ？別に難しくないですよね？」とkzysに言われて、ちょっとその辺の話をしてみたくなった。</p>
+</blockquote>
+<p>我ながら若者らしい発言。</p>
+<p>ただ C/C++ でも、Linux だと pkg-config　や so ファイルの名前づけルール、apt-get とかのパッケージマネージャーのおかげである程度ビルド周りの話は解決していて、結果として他ライブラリを色々使うソフトウェアがあった気がする。GNOME なアプリを入れたら依存で色々入ったりしませんか? クロスプラットフォームだと確かに大変そう。</p>
+<p>私は、アルバイトじゃない最初の仕事が<a href="https://mixi.jp/">ミクシィ</a>で、ソーシャルネットワーキングサービスのミクシィはいわゆる LAMP (Linux + Apache + MySQL + Perl) スタック、そのあとも全体的に C/C++ とかは使わず、Linux だけを気にするサーバーサイド仕事が多かったので「再利用できない」という感覚はあまりない。MySQL や memcached みたいなオープンソースなミドルウェアと、<a href="https://www.cpan.org/">CPAN</a> ないし、その言語についてるパッケージマネージャーからダウンロードできるライブラリを組み合わせてソフトウェアを作るのが普通。</p>
+<h3 id="ライブラリの再利用とフレームワークの再利用">ライブラリの再利用と、フレームワークの再利用</h3>
+<p>ミクシィ世代の会社には、それでも自社 Web アプリケーションフレームワークというものを見かける機会がまだあって、オープンソースになっているものだと、例えばライブドアには <a href="https://github.com/livedoor/Sledge">Sledge</a>, はてなには <a href="https://github.com/hatena/Ridge">Ridge</a>, GREE には、これは <a href="https://japan.cnet.com/article/20088792/">CTO の藤本さんがもともと開発していたものなので</a>、自社フレームワークと呼ぶのは語弊があるけれど、<a href="http://ethna.jp/doc/">Ethna</a> があった。</p>
+<p>その後のクックパッド世代になると、Rails や Django といった既製のフルスタックなフレームワークを使うのが普通になってしまって、Web アプリケーションフレームワークを自作するのは、よっぽどわかっているか、よっぽどわかっていないか、どちらかじゃないとやらない、普通じゃない選択肢になってしまったという感がある。</p>
+<p>とはいえこれも一昔前の話で、最近のモバイルアプリとシングルページアプリケーション世代の「サーバーで生成するのは JSON だけでいいですよ」という人々が何を使っているのかというと、うーん、なんなんだろう。私はここらへんの仕事をしたことがないのでコメントは控えます。</p>
+<h3 id="最近にみかけた再利用">最近にみかけた再利用</h3>
+<p>自分のいまの仕事の周辺でいうと、例えば <a href="https://github.com/containerd/containerd">containerd</a> には <a href="https://github.com/containerd/ttrpc">ttrpc</a> というオレオレ RPC を使っているんだけど、これはセマンティクスは gRPC で、IDL もそのまま proto3 を再利用している。<a href="https://github.com/firecracker-microvm/firecracker">Firecracker</a> の API は RPC ではなく REST だけど、<a href="https://github.com/firecracker-microvm/firecracker/blob/master/src/api_server/swagger/firecracker.yaml">IDL</a> は OpenAPI で定義されている。みんな色々と再利用できていてえらいなーという感じ。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>自分の所でちょっと触れてるけれど、CMake+conanはもっといい線行ってる感じですよ＞apt-getとかより</p>
+<p>VS+vcpkgの組み合わせではvcpkgも結構使われている。世の中は進んではいるのだけれど…</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+C++ が解決していると言われると、「ウッ現在進行形で苦労している俺達って……」という感じに。まあ「お願いだから .so 作る時は <code>-fvisibility=hidden</code> つけてくれ！」「グローバルコンストラクタで難しいことすんな！」「libtorch は <code>_GLIBCXX_USE_CXX_ABI=0</code> つけるのいい加減やめてくれ！」と叫ばせてください
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+この話題で C と C++ をひとまとめにして扱うのは雑すぎました。<a href="https://github.com/itanium-cxx-abi/cxx-abi">C++ ABI</a> はいつ来るんだろう&hellip;
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/014-reuse/'>再利用のはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/01-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/03-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/04-jmuk/'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/' class='is-active'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

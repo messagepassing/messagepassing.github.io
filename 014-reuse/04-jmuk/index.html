@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html><head>
+    <title>あんまり考えてないよね&nbsp;/ jmuk&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/014-reuse/04-jmuk/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='あんまり考えてないよね&nbsp;/ jmuk&nbsp;- Message Passing' />
+    <meta property="og:description"        content='むかしソフトウェアの再利用って難しいことになってた気がするけど、あれどうなったっけ？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='あんまり考えてないよね&nbsp;/ jmuk&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='むかしソフトウェアの再利用って難しいことになってた気がするけど、あれどうなったっけ？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>あんまり考えてないよね</td></tr>
+        <tr><th>From</th><td><a href="https://jmuk.org/">jmuk</a></td></tr>
+        <tr><th>Date</th><td>2021-04-30</td></tr>
+      </table>
+      <article class='content'><blockquote>
+<p>オープンソースなのにわりかし再発明しがち勢として @jmuk どうですか。</p>
+</blockquote>
+<p>というふうに（内部的に）話題をふられてしまった。再利用ねえ。あんまり考えてないよね。</p>
+<p>Chromiumはモノリシックなコードベースだけど、もちろんいろんな他のライブラリを再利用している。だいたい <a href="https://chromium.googlesource.com/chromium/src.git/+/refs/heads/master/third_party/">third_party</a> というところに、そういうのは押し込められている。再利用のためには、ソースコードをもってきて、自分たち用にビルドするという立場。システムに入っているライブラリ（DLL）を再利用する、みたいなことはやらない。バージョンの互換性とかABIの互換性とかがしんどすぎるから。まぁこれは普通か。</p>
+<p>Chromiumは<a href="https://gn.googlesource.com/gn/">GN</a>という独自のビルドシステムでビルドするが（ここがすでに独自なのかよ、というツッコミがあるかもしれませんがスルーしてください）、独自なのでこれをあらかじめサポートしている外部ライブラリというものは、事実上存在しない。なので外部ライブラリを利用するときは誰かがChromium用にGNを書かないといけない。誰かというか、だいたいはそのライブラリを使いたくてthird_partyに足したい人が自分で書くことになる。めんどうくさい。外部ライブラリはgit submodule的なものでリビジョンが指定されていて、uprevするときはGNファイルも微調整する必要がある。細かいビルドフラグの話などもあり、たまに妙な問題を引き起こしたりする（が、昔使われていたGYPよりはだいぶマシになった）。というように細々とした苦労があり、そこは別に乗り越えられていない。たんにたくさんの人がChromiumプロジェクトに雇用されているので、そのうちの誰かに頑張ってもらっているというだけ。</p>
+<p>フレームワークという点でいうと、そういえば Chrome / ChromeOS は既存のGUIフレームワーク（gtk+とかWxとか）を使っていない。viewsという独自のGUIフレームワークが内部にあり、これを使ってUIは書かれている。viewsはバックエンドとして「ネイティブ」のUIとやりとりする部分があるが、ネイティブUIのことはあんまり使わず、たとえば全部描画するし入力イベントも自分でハンドルしている（あとChromeOSは「ネイティブ」レイヤが基本的には存在しないので、viewsのバックエンドのようなものを全部作っている）。viewsは、正直にいうとあんまり出来がよくなく、ChromeのUIで動くところしかきちんとできてなかったりということがよくある。が、自分としては一通りわかっていて（頻繁に変わるのでいつでも再確認しないといけないのだが）それなりに読んだり細かい修正をしてきたので愛着もある。内製なので好き勝手に変更できるのはメリットではある。そんなメリットは喧伝すべきかどうかわからないけど。</p>
+<p>逆側の話、つまりChromiumそのものやその一部をライブラリ化したり再利用したい、みたいな話もあるけど、こちらもそうそう再利用していない。Chromiumのレンダリングエンジンであるblinkは、その前身であるWebKitと大きく異なり、ライブラリ化されていない。Chromiumについているcontent/というレイヤを介さない限りは使えない。結果として、WebKitベースのブラウザはありうるけど、blinkベースのブラウザというものはほとんどなく、Chromiumをベースにしたブラウザというものになっている。</p>
+<p>また、Chromiumのbase/というディレクトリはなかなかいいように思うけど外部で利用できないか、というリクエストはたまにあったのだが、毎回にべもなく断っていた。Chromiumプロジェクトとしては自分たちの都合で好き勝手にいろいろ足したいし、後方互換性のこととかを考えたりしたくない、Chromiumのためのものなので他では勘弁な、という話になっている。これははっきりいって感じが良くないのだが、そういうことをしたくないという気持ちはよくわかる。汎用のライブラリを作ってるわけじゃないのにそんなことを要求されても困る、という話でもある。が、abseilができてからは、こういうリクエストはほぼなくなった気がする。C++も発展が進んだので、いまどきChromiumのbaseがほしい人間なんていやしないのだった。よかったよかった（？）</p>
+<p>なおChromeOS側のサービスなどの実装のためにChromiumのbase相当のものがほしいという話が根強くあり、baseを勝手にコピーしてライブラリ化して使っている。一見再利用っぽく聞こえるかもしれないけれど、別にそういうわけでもない。勝手にコピーしてるだけだし。たまにChromiumの最新のものに更新するたびに大変な作業になっているつらさとかを垣間見るに、再利用を避けるポリシーを徹底したことの弊害が感じられないでもない。</p>
+<p>というわけで、仕事のほうではあんまりちゃんと再利用していない昔ながらのプロジェクトをやっているので、それがどんな感じなのかを書いてみた。</p>
+<p>この状況は、再利用がごくふつうな他の言語と比べるとかなり乖離があるが、そうなっていることにはそれなりに理由があるときもある。たとえばbaseが一般化されたライブラリになっていないのは、そういうことを指向していないからだ。専用のGUIフレームワークは、ChromeのUIで必要になりそうなところだけがよく書けていて、それ以外の部分は意外に雑なつくりになっていたりする。そういうものを使おうとすると、けっきょくそういう雑な部分を自分で書く必要が出てきたり、ということがよくある。これは残念なライブラリという見方もできるけれど、視点を変えれば、汎用のものは目指さない指向という意味では一貫している。</p>
+<p>が……よく考えてみると、けっきょくこれは「C/C++では再利用が大変だ」という話の言い換えでしかないような気もする。再利用が大変であるがゆえに内製もしがちだし、パッケージとして公開するのもかんたんじゃないから公開しない。 後方互換性とかもべつに考えたくないけどそのための解決策もとくになかった。</p>
+<p>他の言語だと、再利用が難しいとかできないっていうことは、みんなあんま考えてる気がしない。が、これはなんというか、パッケージシステムとかビルドシステムによって解決されてきた問題なような気がする。だいたいnpm installすればいいでしょ、go getすればいいでしょ、nuget&hellip;cargo&hellip;みたいな。C/C++にはこのレイヤの（デファクト）スタンダードがなんにもないから解決していない。しかしいまさらそんなのは望むべくもない。残念ですね、という話なような気がしてきた。</p>
+<p>ところで逆な例でいえば、Node.js (NPM)とかを見ると「さすがに他人のコードに依存しすぎでしょ」という揺り戻しはたまに起きてる気がするし（たとえば<a href="https://qz.com/646467/how-one-programmer-broke-the-internet-by-deleting-a-tiny-piece-of-code/">文字列に空白を埋めるだけのライブラリが破綻を引き起こした事件</a>とか）、<a href="https://medium.com/@madhankumar028/dont-depend-on-lodash-when-javascript-has-the-same-part-1-52719420ee43">lodashに依存するな問題</a>とか、そういうのはある。もちろんこういうのは程度問題でしかなくて、再利用を一切しないっていうことはさすがに考えていないだろうけど、再利用しすぎの問題ってのも、それはそれで顕在化はしてると思う。</p>
+<hr>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<blockquote>
+<p>ここがすでに独自なのかよ、というツッコミがあるかもしれませんがスルーしてください</p>
+</blockquote>
+<p>でもビルドシステムの揃っていなさはコミュニティとしての合意の無さのあらわれという気はする・・・。
+Chromium はオープンソースでありながらあんなに再利用に不親切で、
+その一方で互換ブラウザや Electron みたいのが沢山あって、興味深いですね。</p>
+<p>あと Chrome/Chromium コードベース本体はともかく、Chrome 製品の一環として開発されているライブラリたちは割と広く使われているので、
+捨てたものではない、かもしれない。(V8, Skia, Webp, PDFium&hellip;)</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>Electronなんかを見ていると、再利用をしてもらうのに一番大切なのは再利用をするに値する価値ある物を作る、という事なんだろうなぁ、と思う。</p>
+<p>ネイティブのweb viewを使ったもっと小さなelectron alternativesの試み、いっぱいあっていろいろ評価してみたのだけれど、評価すればするほどChromium良く出来てるな、という思いを強くしただけだった。</p>
+
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/014-reuse/'>再利用のはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/01-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/03-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/' class='is-active'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html><head>
+    <title>再利用のはなし&nbsp;/ karino2&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/014-reuse/01-karino2/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='再利用のはなし&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="og:description"        content='むかしソフトウェアの再利用って難しいことになってた気がするけど、あれどうなったっけ？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='再利用のはなし&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='むかしソフトウェアの再利用って難しいことになってた気がするけど、あれどうなったっけ？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>再利用のはなし</td></tr>
+        <tr><th>From</th><td><a href="https://karino2.github.io/">karino2</a></td></tr>
+        <tr><th>Date</th><td>2021-03-03</td></tr>
+      </table>
+      <article class='content'><p>何故プログラムの再利用というのが難しかったのか、という話をしていたら、「えっ？別に難しくないですよね？」とkzysに言われて、ちょっとその辺の話をしてみたくなった。</p>
+<p>個人的にソフトウェアの再利用が一般的と感じられるようになったのは、JavaでJakartaが有用なライブラリを揃え始めた頃からだ。
+再利用される方の話は現代の普通の話なので良いと思う。
+ではそれ以前の何が難しかったのか、と思うと、CやC++の難しさが多い気がしてきた。</p>
+<p>C++の再利用が何故難しいのか、という話をすると長くなる上に今更なので、
+今のプロジェクトでさしあたってうまく行かないと感じる、今、目の前の問題だけを書いてみたい。</p>
+<h3 id="共通のプリミティブが無い難しさ">共通のプリミティブが無い難しさ</h3>
+<p>例えばスレッド周りの何かのライブラリを再利用したい、と考えたとする。
+この時、Win32 APIの同期プリミティブとQtの同期プリミティブとSTLの同期プリミティブとpthreadの同期プリミティブは、同じ機能を提供するが、相互に取り替えて動く保証が無い（あるかもしれないし幾つかの組み合わせはある事も知っているが、一般にあるか無いかを判定するのはかなり難しいし、幾つかの組み合わせは怪しいのも知っている）。
+QtでGUIとタイトに相互作用するような所で使いたい場合、
+Qtの並列プリミティブで無いと困ってしまう。</p>
+<p>その結果、いろいろな環境で動く、スレッドプールを前提としたノンブロッキングなFuture、
+みたいなライブラリを作るのは、なかなか難しい。STLのスレッド前提のものは作れるのだけれど。</p>
+<p>Win32 APIやQtが、現在のSTLを元に作られていれば、こういう問題はなかったとは思う。
+でもどちらもSTLのスレッドより以前から作られていた物だし、そういう物はまだまだ世の中多い。</p>
+<p>STLにまだ入ってない物も多い。今更filesystem周りが入った、という事からもそれがわかる。</p>
+<p>Javaや.NETなどの環境や、pythonなどの普通のLLには、
+ベースと出来る範囲がずっと広く、それらに依存した物は普通にどこでも動く。
+言語の標準となる機能の範囲がC++は狭い。特にどの環境でも使えるC++のバージョンに限定すると、さらに狭い。</p>
+<h3 id="歴史をなかなか無かった事に出来ない">歴史をなかなか無かった事に出来ない</h3>
+<p>そろそろVSもXcodeもNDKもQtもすべての環境がCMakeになって、
+最初からconanをサポートして、
+最新のSTLにあるものはSTLを、boostにあるものはboostを使ってくれて、
+STLのスレッドや並列周りもfollyの奴くらいにいい感じのになってくれればいいのでは、
+という気はするのだけれど、今からそうはなってくれない。（なってくれていいのよ？）</p>
+<p>過去の歴史はそのままに、CMakeでもプロジェクトファイルが生成出来ます、
+みたいなのだと、どうしてもバージョンアップなどのトラブルで後手に回ってしまう。
+残念な事にC++が相手にするような環境のうちの幾つかは十分なサポートがされてなく、
+自分たちでどうにかせざるをえない事も多い。
+こういう時に何かが一段その環境のネイティブな仕組みの間に挟まってると、
+メンテがすごく大変になる。
+公式の側がCMakeになってくれればそういう問題も無いのだが…</p>
+<p>手元のコードベースの側も、過去のいろいろなプラットフォーム上での様々な固有事情を踏まえたプロジェクトファイルやらビルドの仕組みを内包していて、全てを新しい仕組みに移動するのもなかなか大変。</p>
+<p>本来は最新版だけがきっちりサポートされてればいいはずなのだけど、メジャーバージョンアップをするとめちゃくちゃ不安定になって特定のバージョンで止めなきゃいけないみたいなくされ環境があり、
+その環境がサポートしているコンパイラはちょっと古くて最新のC++機能が使えなかったりとかがあり、
+いろいろな事情でVC2008もサポートしないと駄目とかがあり、
+内輪の事情で特定のRHELでビルド出来ないと駄目とかもあり…
+みたいな、プロジェクト固有の事情からもなかなか脱却出来ず、
+「本来はこうあるべき」という姿になかなか出来ない。</p>
+<h3 id="他への依存をみんなしたがらない">他への依存をみんなしたがらない</h3>
+<p>おのおのが歴史を持ったプロジェクトに使ってもらう事を考えると、ライブラリ作者は使う側のビルド環境などを想定出来ないので、他のライブラリへの依存の仕方も難しい。
+「このライブラリを動かす為には、ライブラリAとライブラリBとライブラリCを適切に設定してパスをXXXで通るようにしてください」
+みたいな事をお願いすると、使ってもらうのもきびしい。</p>
+<p>なので複数のライブラリに依存したライブラリを使ってもらうのはすごく大変。</p>
+<p>結果として、STLとboostのヘッダオンリーな物あたりだけに依存したライブラリくらいしか使いたくない。</p>
+<p>コデックとかflatbuffersとか他への依存が少ない小粋なライブラリは使えるのだけれど、
+ノンブロッキングなfutureを返すhttpのライブラリ、
+とか、ノンブロッキングなfutureを返すノンブロッキングioなファイル周りのライブラリ、
+のように、他の結構大きな物に依存するライブラリは全然ない。</p>
+<h3 id="そもそもライブラリが言うほど無い">そもそもライブラリが言うほど無い</h3>
+<p>「iOSならGCD、WindowsやQtならシステムのスレッドプール、
+AndroidならSTLあたりで書かれた自前実装のスレッドプールを使ったExecutor」程度のライブラリも存在しない。</p>
+<p>Windowsのフルな機能にアクセス出来る、Direct2DあたりをベースにしたモダンなGUIライブラリ、程度のものも無い（<a href="https://raphlinus.github.io/xi/2020/06/27/xi-retrospective.html">xi-editor retrospective</a>でも、There is no such thing as native GUIと言っている）。WTLをforkして自前で作るか？と思うくらい無い。</p>
+<p>WindowsのAsync IOとOS XのDispatch SourceとLinuxのepoll周りを吸収してよ、くらいでも普通に無い（このくらいなら頑張って探せばあるかもしれない、自分は見つけられなかったが）。</p>
+<p>「インテリセンスを壊さない」UnitTestライブラリ、程度でも見つけられなかった（仕方ないので<a href="https://karino2.github.io/2020/04/15/nfiftest.html">自作した</a>）。</p>
+<p>みんな似たような物作っているくせに、全然再利用出来るものが無い。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+<blockquote>
+<p>WindowsのAsync IOとOS XのDispatch SourceとLinuxのepoll周りを吸収してよ、くらいでも普通に無い（このくらいなら頑張って探せばあるかもしれない、自分は見つけられなかったが）。</p>
+</blockquote>
+<p><a href="https://libuv.org/">libuv</a> どうですか?</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>ネットワークのライブラリというイメージだったがFileもあるんですね。
+どうなんですかね？</p>
+<p>ぱっと見GCDにすら依存してないような姿勢に見えるしgetenvとか呼び始めるコードがちょこちょこあるのでLinux以外ではあんまり使う気にならなさそうだけど、外部のスレッドプールと混ぜるのとかどのくらい出来るのかなぁ。
+iOSとかQtのスレッドプールと混ぜて使えないと「共通のプリミティブが無い難しさ」の結果として再利用が出来ない実例になってしまいそうだけど。</p>
+<p>こういうのは結構ちゃんと調べてみないと良く分からなくて、それがまさに再利用のコストが他より高い事を表している気もしますな。</p>
+<p>興味はあるので、次Fileまわりを書き直す時にはもうちょっと真面目に調べてみます。</p>
+
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/014-reuse/'>再利用のはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/03-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/04-jmuk/'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/' class='is-active'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

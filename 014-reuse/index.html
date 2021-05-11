@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html><head>
-    <title>Design Docs の逡巡- Message Passing</title>
+    <title>再利用のはなし- Message Passing</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
     <link rel='stylesheet' href='/css/style.css'>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
 
-    <meta property="og:url"                content='https://messagepassing.github.io/011-designdocs/' />
+    <meta property="og:url"                content='https://messagepassing.github.io/014-reuse/' />
     <meta property="og:type"               content='website' />
-    <meta property="og:title"              content='Design Docs の逡巡- Message Passing' />
-    <meta property="og:description"        content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+    <meta property="og:title"              content='再利用のはなし- Message Passing' />
+    <meta property="og:description"        content='むかしソフトウェアの再利用って難しいことになってた気がするけど、あれどうなったっけ？
 ' />
     <meta property="og:locale"             content='ja_JP' />
     <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
 
     <meta property="twitter:card"        content='summary' />
-    <meta property="twitter:title"       content='Design Docs の逡巡- Message Passing' />
-    <meta property="twitter:description" content='ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？
+    <meta property="twitter:title"       content='再利用のはなし- Message Passing' />
+    <meta property="twitter:description" content='むかしソフトウェアの再利用って難しいことになってた気がするけど、あれどうなったっけ？
 ' />
     <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
 
@@ -42,8 +42,8 @@
 
 <div class='article-container section is-size-5 is-size-6-touch pt-0'>
   <table class="table">
-    <tr><th>Thread</th><td>Design Docs の逡巡</td></tr>
-    <tr><th>Asking</th><td><p>ソフトウェアのデザイン、事前になんか書いて相談しないとダメなの？</p>
+    <tr><th>Thread</th><td>再利用のはなし</td></tr>
+    <tr><th>Asking</th><td><p>むかしソフトウェアの再利用って難しいことになってた気がするけど、あれどうなったっけ？</p>
 </td></tr>
   </table>
 </div>
@@ -52,53 +52,32 @@
 <p class='menu-label'>もくじ</p>
 <ul class='menu-list'>
 
-  <li class='menu-item'><a href='https://messagepassing.github.io/011-designdocs/01-morrita/'>
-    Design Docs のいけすかなさ
+  <li class='menu-item'><a href='https://messagepassing.github.io/014-reuse/01-karino2/'>
+    再利用のはなし
     <br class='is-hidden-desktop' />
-    <span class='tag'>morrita</span>
+    <span class='tag'>karino2</span>
+    <span class='tag'>2021-03-03</span>
+  </a></li>
+
+  <li class='menu-item'><a href='https://messagepassing.github.io/014-reuse/02-kzys/'>
+    パッケージマネージャー世代
+    <br class='is-hidden-desktop' />
+    <span class='tag'>kzys</span>
     <span class='tag'>2021-03-04</span>
   </a></li>
 
-  <li class='menu-item'><a href='https://messagepassing.github.io/011-designdocs/02-karino2/'>
-    曖昧な立場
-    <br class='is-hidden-desktop' />
-    <span class='tag'>karino2</span>
-    <span class='tag'>2021-03-05</span>
-  </a></li>
-
-  <li class='menu-item'><a href='https://messagepassing.github.io/011-designdocs/03-kzys/'>
-    半分くらいわかる
-    <br class='is-hidden-desktop' />
-    <span class='tag'>kzys</span>
-    <span class='tag'>2021-03-11</span>
-  </a></li>
-
-  <li class='menu-item'><a href='https://messagepassing.github.io/011-designdocs/04-shinh/'>
-    あまり感情を持ってない
-    <br class='is-hidden-desktop' />
-    <span class='tag'>shinh</span>
-    <span class='tag'>2021-03-13</span>
-  </a></li>
-
-  <li class='menu-item'><a href='https://messagepassing.github.io/011-designdocs/05-jmuk/'>
-    そんないろいろ言うもんかな
-    <br class='is-hidden-desktop' />
-    <span class='tag'>jmuk</span>
-    <span class='tag'>2021-03-20</span>
-  </a></li>
-
-  <li class='menu-item'><a href='https://messagepassing.github.io/011-designdocs/06-morrita/'>
-    いけすかなさの出処
+  <li class='menu-item'><a href='https://messagepassing.github.io/014-reuse/03-morrita/'>
+    再利用の 15 年くらい
     <br class='is-hidden-desktop' />
     <span class='tag'>morrita</span>
-    <span class='tag'>2021-03-24</span>
+    <span class='tag'>2021-03-31</span>
   </a></li>
 
-  <li class='menu-item'><a href='https://messagepassing.github.io/011-designdocs/07-internet/'>
-    インターネットの声
+  <li class='menu-item'><a href='https://messagepassing.github.io/014-reuse/04-jmuk/'>
+    あんまり考えてないよね
     <br class='is-hidden-desktop' />
-    <span class='tag'>internet</span>
-    <span class='tag'>2021-04-03</span>
+    <span class='tag'>jmuk</span>
+    <span class='tag'>2021-04-30</span>
   </a></li>
 
 </ul>
@@ -109,7 +88,7 @@
   <ul class='menu-list'>
     
       <li class='menu-item'>
-        <a href='https://messagepassing.github.io/014-reuse/'>
+        <a href='https://messagepassing.github.io/014-reuse/' class='is-active'>
         再利用のはなし
       </a></li>
     
@@ -124,7 +103,7 @@
       </a></li>
     
       <li class='menu-item'>
-        <a href='https://messagepassing.github.io/011-designdocs/' class='is-active'>
+        <a href='https://messagepassing.github.io/011-designdocs/'>
         Design Docs の逡巡
       </a></li>
     

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html><head>
+    <title>再利用の 15 年くらい&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/014-reuse/03-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='再利用の 15 年くらい&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='むかしソフトウェアの再利用って難しいことになってた気がするけど、あれどうなったっけ？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='再利用の 15 年くらい&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='むかしソフトウェアの再利用って難しいことになってた気がするけど、あれどうなったっけ？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>再利用の 15 年くらい</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-03-31</td></tr>
+      </table>
+      <article class='content'><p>ソフトウェアの再利用が難しい・・・というか難しかったというのは歴史的には事実で,
+たとえば <a href="https://dblp.org/db/conf/icsr/index.html">ICSR / International Conference on Software Reuse</a> とかいう学会がある。
+どんな論文が書かれていたのか検索すると 2005 年の <a href="https://scholar.google.com/scholar?cluster=16619599721629954424&amp;hl=en&amp;as_sdt=2005&amp;sciodt=0,5">Software Reuse Research: Status and Future</a>
+という論文が 950 citation くらい。もっと引用されている同系統の論文も<a href="https://scholar.google.com/scholar?q=software+reuse">ないではない</a>けど古すぎるので割愛し、
+この論文をざっと眺めてみると・・・そういうのあったわーという単語がいっぱい出てくる。<a href="https://docs.microsoft.com/en-us/windows/win32/com/component-object-model--com--portal">COM</a> とかね。
+(知らない人向けに補足すると COM というのは C++ で Java みたいなことをしたくて色々苦し紛れにがんばったテクノロジだとご理解ください。）</p>
+<p>この頃のソフトウェア再利用、色々厳しい雰囲気が論文をチラ見するだけで伝わってくる。
+今から考えるとムリっぽい暗黙の前提があると思う。三つくらいに分けて雑に整理してみたい。</p>
+<h2 id="ひとつ目の前提-ソースコードが非公開">ひとつ目の前提: ソースコードが非公開。</h2>
+<p>この頃はまだコードは出さないのが普通。</p>
+<p>コードが見られなかったらそりゃ再利用大変でしょ。
+エラーがおきても原因を調べられないし、ワークアラウンドもできないじゃん。</p>
+<p>しかも形態が共有ライブラリだったりする。HTTP でプロセス境界を切ったりしない。
+いちおう分散コンピューティングはあったが EJB とか CORBA とか DCOM とかの分散オブジェクトがマインドシェアを持っていた。
+こいつらはマジ密結合で厳しく、SOAP だなんだと退化して結局 REST くらいに落ち着いたのを我々は事後的に知っている。</p>
+<h2 id="ふたつ目の前提-再利用に課金したい">ふたつ目の前提: 再利用に課金したい。</h2>
+<p>ソフトウェア、仕事で書いてるので再利用したらちゃんと現金で対価をで払ってほしいと思っていた。</p>
+<p>でもね、ライブラリでカネとるとか相当大変。現代でも数少ない例外を除き基本的にはできていない。
+金をとりたいからひとつ目のソースコード非公開が必要なのだけれど、
+使う側からするとそんなブラックボックスにわざわざ金払ってロックインされたくない。悪循環。
+(じっさい成功しているライブラリ業者はソースコードも提供していることが多い。)</p>
+<p>しかも昔はライブラリを作る側も使う側もソフトウェアのリリース・デプロイが頻繁じゃなかったので、
+課金も subscription based ではなく買い切りだった。なので質が高いほど継続的な集金が難しい。
+純粋な技術的障壁だけでなく、ビジネスモデルが辛い。</p>
+<h2 id="みっつ目の前提-方法論があればなんとかなる">みっつ目の前提: 方法論があればなんとかなる。</h2>
+<p>2000 年代前半って、ソフトウェア工学といえばプロセス、開発方法論というような雰囲気があった(例: <a href="https://en.wikipedia.org/wiki/Rational_Unified_Process">RUP</a>)。
+方法論というとちょっと限定的すぎで、たとえば形式化手法とか標準化とか、そういうやつね。
+良い方法論と、そのためのツールを整備すれば再利用含め色々なことが上手くいく・・・といいな・・・と人々は期待していた。
+先の論文でも chapter 6 によくわかんない methodology が列挙されている。(著者のバイアスな気もするが・・・)</p>
+<p>しかしなかなかヒット作は生まれなかった。
+Scrum とか良くも悪くもヒット作だけど、ソフトウェアの再利用は助けてくれそうにない。</p>
+<h2 id="オープンソースの台頭">オープンソースの台頭</h2>
+<p>こういう問題を解決したのがオープンソースである。
+というか先の ICSR 論文が書かれた 2005 年の時点で UNIX の上ではオープンソースの C 言語のライブラリが割と再利用されたいた。
+C 言語での再利用、現代の水準からみると大したことなく見えるけれど、C という言語の圧倒的しょぼさを考えるとめちゃ再利用されている。</p>
+<p>オープンソースは先に書いたような伝統的再利用願望に潜む前提をぜんぶひっくりかえしている。</p>
+<p>まず by definition でソースコードにアクセスできる。
+だからドキュメントが多少しょぼくてもなんとかなるし、手元で自分の都合にあわせて直すことも、やりたくはないができる。</p>
+<p>課金も、基本的にはしない。
+オープンソースのソフトウェアを売って仕事にしようという個人/企業は Red Hat をはじめ今も昔も一定数いるけれど、
+総体としてはオープンソース開発者のうちコードから直接の収益を挙げているのは少数派だと思う。
+それでも色々な時代の力でコードが書かれ、使われている。</p>
+<p>C 言語の最利用はさすがにだいぶ原始的で厳しかった。
+でもかずよしさんのいうように後発のモダン言語では CPAN のようなパッケージマネージャが当たり前になり、
+ソースコードあり・基本無料というオープンソースの強さをひきだすインフラができた。</p>
+<p>しばらくは「ライブラリの最利用はできてもフレームワークは難しいですよね」とか言う人もいたが、
+Rails を皮切りに何をするにもまずはフレームワーク探しから、みたいに風向きが変わった。
+ウェブ以外ではここまで極端じゃないけれど、そうはいってもフレームワークだって再利用できるよね。コードが読めれば。</p>
+<h3 id="github-の台頭">GitHub の台頭</h3>
+<p>オープンソースすばらしいけど現実には報酬がないと続かないですよね <a href="https://www.amazon.com/Just-Fun-Story-Accidental-Revolutionary/dp/0066620732">just for fun</a> とはいえ・・・という問題も、段階的に解消された。</p>
+<p>一つの解決は、企業が <a href="https://www.gwern.net/Complement">補完材をコモディティ化</a> するためにオープンソースをやる事例。
+つまりハードウェア企業がそのハードウェアを上手に使うためのソフトウェアをオープンソースにするだとか、
+広告企業がトラフィックの入り口をオープンソースにするとか、
+広く使ってもらうことで間接的に利益があるソフトウェアをオープンソースで開発する企業が現れた。
+もともとは草の根だったプロジェクトも、それを補完材にできる企業がスポンサーしてくれたりする。
+これがゼロ年代。</p>
+<p>もう一つの解決は、プログラマや企業の名声をオープンソースに紐付けること。
+つまりオープンソースで書いたソフトウェアが有名になれば開発者の実力は広く知れ渡り、
+会社員やフリーランスであれば雇用や契約につながるし、企業であればプログラマ採用の糧になる。</p>
+<p>名声や関心をソフトウェアの対価にするこうした流れはゼロ年代から少しはあったけれど、
+2010 年代以降 GitHub によって大きく後押しされた。
+今では GitHub のアカウントがレジュメにないとかっこ悪いみたいな水準に至っている。
+(なお森田の GitHub は今年に入ってからちょっと緑っぽくなってきたけどぜんぶ Message Passing なのだった。プログラマとしての成果ゼロ。リクルータよ騙されるな！)</p>
+<h2 id="クラウドの台頭">クラウドの台頭</h2>
+<p>オープンソース以外にもソフトウェアの再利用を推し進めたものがある。それはクラウド。
+クラウド、最初は VM やストレージなど仮想化されたハードウェアを貸し出すビジネスという触れ込みで始まった。
+人々はハードウェアに金を払うのは当たり前だと思っているので、
+本来なら一括で大金を払わないと買えないハードウェアを従量課金で借りられるクラウドには大喜びで金を払った。</p>
+<p>その後クラウド業者は VM やストレージのように比較的プリミティブな部品の上に段々と付加価値のあるサービスを積み増して行った。
+今はもうサーバーレスとか言ってる。
+(このレイヤリングが圧倒的に見事な AWS については <a href="https://queue.acm.org/detail.cfm?id=3434573">CTO のありがたいお言葉</a>を読んでみんなで感心しよう。)</p>
+<p>ソフトウェアの再利用という視点で見ると、
+クラウド業者は再利用可能なソフトウェアをハードウェアと抱き合わせて売ることに成功した。
+純粋なソフトウェアには金を払わない人々も、ハードウェアと抱き合わせるとそれなりに納得して買ってくれる。
+しかも買い切りじゃなくて毎月金を払ってくれる。</p>
+<p>クラウドにはハードウェアだけでなく運用もついてくる。
+というか現代的な価値観だとクラウドからは運用を買っている感覚のほうが強い気がする。
+ソフトウェアやシステムの運用は昔から重要ではあったけれど、
+ほぼ全てのソフトウェアに運用が伴うようになったのはインターネット以降。
+だから「再利用可能なソフトウェアと運用を抱き合わせて売る」というモデルも、それなりに新しい現象だと言える。</p>
+<p>そして運用が必要で再利用可能なソフトウェア、いわゆるインフラのソフトウェアはライブラリでもフレームワークでもないことが多い。
+データベース&hellip;は昔からあるとして、CI, CDN, キュー、Functions&hellip;
+これらを「再利用する」感覚は、2005 年にはそんなになかったんじゃないかな。</p>
+<p>冒頭の残念な三つの前提に立ち戻ると、クラウドは主に三個目の前提「方法論がなんとかしてくれる」に答えをくれた。
+必要だったのは形式化手法でも標準でもなく、売る側も買う側もソフトウェアをインターネットに載せることだった。</p>
+<p>まあインターネットは技術標準なので TCP/IP/HTTP/TLS/JSON が偉かったと言ってもそんなに間違ってはいないかもしれない。</p>
+<h2 id="積み残し">積み残し</h2>
+<p>こうしてみると、ソフトウェア開発は随分遠くまで来たなと思う。
+「ソフトウェアは再利用できない」とはもう誰も思ってないからね。</p>
+<p>もちろん再利用が常に簡単とは言えず、
+たとばバージョニングのような構成管理の問題もあるし、
+クラウド業者へのロックインも場合によっては気になる。
+オープンソースプロジェクトの持続可能性はいつだって心配。</p>
+<p>とはいえもう時代が逆戻りするとも思えない。
+15 年後に振り返って「いやー当時は他人のコードに依存しすぎだったねワッハッハ」とか言うこと、なさそうだよねえ。</p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/014-reuse/'>再利用のはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/01-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/014-reuse/04-jmuk/'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/' class='is-active'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
