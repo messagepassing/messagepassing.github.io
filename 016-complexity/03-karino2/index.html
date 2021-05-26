@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Re^2: 複雑さのはなし（から定番本について）&nbsp;/ karino2&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/016-complexity/03-karino2/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Re^2: 複雑さのはなし（から定番本について）&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="og:description"        content='ロックスターの発言に便乗して与太話とか。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Re^2: 複雑さのはなし（から定番本について）&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='ロックスターの発言に便乗して与太話とか。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Re^2: 複雑さのはなし（から定番本について）</td></tr>
+        <tr><th>From</th><td><a href="https://karino2.github.io/">karino2</a></td></tr>
+        <tr><th>Date</th><td>2021-05-08</td></tr>
+      </table>
+      <article class='content'><p>自分の最近の仕事はC++でアプリを書く、というものなので、Brooksの主張にかなり近い事をやっていますね。
+C++はいろいろな事情でライブラリが使えない事が多いので、スクラッチから作るのが正当化される事もままある。
+それがまさに時代遅れでもあるのだけれど。</p>
+<p>そのまま複雑さの話を続けてもいいのだけれど、
+自分がDan Luuのブログで面白いと思ったのは、複雑さよりも古典を批判する、という部分。なのでその話をしてみる。</p>
+<h2 id="持ち上げられ過ぎる古典">持ち上げられ過ぎる古典</h2>
+<p>人月の神話は非常に良い本で、そこから引き出すべき教訓も多いと思う。
+だが、さすがにコンピューティング事情は随分と変わっているので、現代には当てはまらない事も多い。
+そしてそれは当たり前と思う。今となっては誤りになってしまった記述があったところで、Brooksの知性を疑わせるものでは無い。</p>
+<p>問題なのは、その当たり前の事をわざわざ言わないといけない状況だ。
+それは過去の本の引用で物を語る人が多く、それが間違っている事が多く、それを否定するのにいちいち通常よりもsolidな理論武装を要求されるせいだと思う。
+持ち上げる方は空っぽでも問題無いのに。</p>
+<p>そういう事にうんざりしているのは私だけじゃなくて、きっとDan Luuもそうだったのだろう。だから今更No Silver Bulletの批判をブログにしたのだろう。
+それを読んで我々が痛快に思うのも、まさに日々そういう鬱陶しさを味わっているからでは無かろうか。</p>
+<p>以前、達人プログラマーの新装版が出た時に、自分は同じような事を感じた事がある。(<a href="https://karino2.livejournal.com/424526.html">当時のブログ</a>)</p>
+<h2 id="代わりとなる新しい定番本が出ない">代わりとなる新しい定番本が出ない！</h2>
+<p>何故古い本がこうも持ち上げられ続けてしまうのか？
+一つの理由として、新しい定番本が生まれていないせい、というのがあると思っている。</p>
+<p>まず、プログラムという仕事の多様性が増したので、一般論は言いにくくなった。クラウドとC++アプリとAndroidアプリとwebフロントエンドはだいぶ違う。
+業界ごとの特定のプロジェクトや企業の様子を語る書籍は今でもあるが、一般的な事を主張するのは昔より難しくなっている気がする。
+現実は多様でケースバイケースです、では盛り上がらない。</p>
+<p>それに付随して、そもそも最近技術書があまり読まれなくなった、という事情もあるかもしれない。
+例えば先日の<a href="https://messagepassing-drafts.netlify.app/004-whatiread/01-morrita/">今年読んだもの</a>を見ても、
+皆があまり本を読んでいない、と言っている。単にCovid-19のせいかもしれないけど。
+読まれてないから書かれてない、という事もあるのでは。
+技術書が読まれていないせいかは分からないけれど、自分の周りの有能なプログラマは、本を書いていない。コードを書いている方が明らかに報われる気がするから、さもありなん。</p>
+<p>別の視点として、Brooksほど凄い奴はなかなか居ない、とう事もあるかもしれない。</p>
+<p>やばいプロジェクトに巻き込まれた経験は、ここで文章を書いている人なら大なり小なりあるだろう。
+かくいう自分も、やばいプロジェクトに巻き込まれた経験ならなかなかのレベルと言える。自慢にならない。</p>
+<p>だが、やばいプロジェクトに巻き込まれた後に、それをちゃんと分析して、その場に居なかった人にも分かるように説明する、というのは、なかなか出来る事では無い。自分には無理そうだ。</p>
+<p>会社がちゃんとそれを支援するのも、なかなか難しい。ちゃんとやったIBMは偉い。
+プロジェクトが失敗したらその位当然やるだろう、と思うかもしれないが、残念ながらやらない会社の方がずっと多い。喉元過ぎれば熱さを忘れがち。</p>
+<h2 id="かっこよく怒りたいものだ">かっこよく怒りたいものだ</h2>
+<p>何故あたらしい定番本が生まれないのかはおいといて、それを所与とするなら。</p>
+<p>古い本が持ち上げられ続けてしまうのは、誰かがたまにしっかりと反論していけば、それで防げるかもしれない。今回のDan Luuみたいに。
+でも自分が何か思っても、なかなかああかっこよくビシッと反論するのは難しいんだよなぁ。</p>
+<p>くだんのブログがかっこいいのは、出てくるのがPrestoでrustでggplotでビッグデータだからという事もあると思う（それだけでは無いだろうが）。
+同じようにかっこよくやるには、かっこいい仕事をしている必要があるのかも。</p>
+<p>などととりとめも無く書いて来ましたが、古典とか神話化してるが古くなった事とか、最近は結構ある気はするんですよね。どう思います？＞jmuk</p>
+<hr>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>自分はあるとき良い本がないと感じるのをどちらかというと<a href="https://anemone.dodgson.org/2019/05/14/falsely-blaming/">自分の問題のように感じていた</a>のですが、
+一方で推薦図書の世代交代の無さもそれはそれで事実な気がする。</p>
+<p>古い本に反論するのもさておき、書籍に頼らない新しい学びのパスについて考えるのも有意義かなと思いました。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>それは自分も思ったけど、少し話が逸れるかな、と思って書かなかった＞実は自分の問題<br>
+実際の所は自分の問題と本が出てない問題のどちらなんですかね。両方な気もするけれど。</p>
+<p>あと本に頼らない学びのパスは面白いかもしれない。公式文書はだいたいすでに他の技術を知っている前提で自身の技術を説明するので、新規に学ぶ人が難しくなっている気もしている。</p>
+
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/016-complexity/'>複雑さのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/016-complexity/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/016-complexity/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>karino2</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/' class='is-active'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html><head>
+    <title>複雑さのはなし&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/016-complexity/01-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='複雑さのはなし&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='ロックスターの発言に便乗して与太話とか。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='複雑さのはなし&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='ロックスターの発言に便乗して与太話とか。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>複雑さのはなし</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-05-03</td></tr>
+      </table>
+      <article class='content'><h2 id="本質的な複雑さ批判">本質的な複雑さ批判</h2>
+<p>森田が大ファンであるところの Dan Luu が「人月の神話」の <a href="https://danluu.com/essential-complexity/">Fred Brooks をディスる</a> 記事を書いており、
+痛快なのでみんなでこれ読んで与太話しようぜ、という回。(Dan Luu のページは <a href="https://getpocket.com/">Pocket</a> か <a href="https://www.instapaper.com/">Instapaper</a> 必須なのでみなインストールされたし。)</p>
+<p>ここで批判されているのは Brook の Essential Complexity / Accidental complexity に関する記述。
+極めて雑に復習すると、Brooks は「問題には &ldquo;essential complexity&rdquo; すなわち &ldquo;本質的な複雑さ&rdquo; というのがあるから、
+プログラミング言語とかツールとか計算機性能の改善とかで &ldquo;accidental complexity&rdquo; / &ldquo;偶発的な複雑さ&rdquo; を減らしていっても限度があるよね、
+ソフトウェア開発って難しいですね・・・という話だった。</p>
+<p>Dan Luu はそんなわけねーとこの主張を一蹴し、自身の仕事から反例を二つ引き合いに出す。
+森田に馴染みある方の例はこんなかんじ: オープンソースの分散 OLAP DB <a href="https://prestodb.io/">Presto</a> に保存されている
+モニタリングのデータ相手に SQL を書き、結果を R で <a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a> する。
+Presto の性能、SQL の宣言的な簡潔さと ggplot の表現力は明らかに仕事を桁違いに簡単にして、問題の偶発的な複雑さを粉砕している。</p>
+<p>一方で、と話は続く: Presto と ggplot が吹っ飛ばいた偶発的複雑さの量はすごいけど、一方でいま更に速いコンピュータがあったら
+俺が遭遇した残りの偶発的複雑さも消し飛ばせるんだけどなーと愚痴タイムに突入し、
+字数が足りないといいつつ Presto と ggplot の残念バグを次々に列挙してしていく（ここが一番楽しい）。</p>
+<p>話の肝はこうだ: Brooks は偶発的な複雑さを倒しても本質的な複雑さが立ちふさがるから無駄といったけど、
+この問題なんてちょろい SQL を書く本質的な複雑さは皆無にも関わらず
+Brooks 現役時代の 1986 年には偶発的な複雑さが桁違い過ぎて解こうとすら思われない類の問題でしょ、
+テクノロジの進歩で解ける問題変わってるじゃん。</p>
+<p>本質的な複雑さの占める割合ゆえに計算機が速くなって偶発的な複雑さを倒しても有り難みは薄いという Brooks は想像力を欠いていた。
+1986 年の計算機は桁違いに遅かった。スクリプト言語も GC もメインストリームではなかった。
+Brooks は計算機の遅さやテクノロジの未熟さに伴う偶発的な複雑さによって誰も解こうとしない類の問題が無限にある事実に目を向けるべきだった。
+Brooks に限らず昔の人の話は想像力が足りてことがよくある。眉唾せよ。Dan Luu はそんなかんじで話を締めくくっている。</p>
+<h2 id="複雑さの属性">複雑さの属性</h2>
+<p>「人月の神話」の知名度を「本質的な複雑さ」なるフレーズが持つミームの強さが手伝い、
+これを引き合いに出して偉そうなことを言う人はいまでも少しはいるだろう。
+だから今更でも釘を差しておく Dan Luu はいい仕事をしたと思う。</p>
+<p>とはいえ「人月の神話」とかさすがに大昔すぎて、この「本質的」「偶発的」の二項対立に付き合って話を続けるのも忍びない。
+Dan Luu も脚注で「本質的と偶発的の区別とかあんまし意味ないよね」と Michael Feathers の Tweet を紹介している。
+(最近 <a href="https://michaelfeathers.silvrback.com/">blog</a> 書いてないと思ったらソーシャルメディアで時間を溶かしていたのか Feathers! それより <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052">本</a>書いて！)</p>
+<p>ここで一歩下がって考える:「本質的/偶発的」という切り口はいまいちだけれど、
+眼の前の複雑さが持つ「属性」に目を向けて打ち手を選ぶのはそれなりに意味のあるヒューリスティクスに思える。</p>
+<p>たとえば自分は複雑さの「局所性」について気にすることが多い。
+局所的な複雑さ・・・たとえばこのアルゴリズムが難しい、このコンポーネントのコードがゴミすぎる・・・みたいのは、
+割と個人の努力でやっつけられる。仕事で成果を出したいなら、
+目についた複雑を局所性でソートして個人に力量で倒せそうないちばんでかいやつ、
+つまりいちばん局所的でないやつ、に取り掛かるのが良い。</p>
+<p>局所性の高い（同時に濃度も高い）複雑さは、少人数でやっつけられる割にやっつけるとかっこいい。なので Enginering blog などで華やかに語られがちである。局所性の低い複雑さはしんどい割に解決への道筋が地味なので、表舞台に現れない。放置も多い。</p>
+<p>別の言い方をすると: 局所性の高い複雑さは目立つので、みな熱心に取り組む。だからただ指摘すればよい。誰かがやってくれる。
+局所性の低すぎる、つまりコードベース全体にベローンと薄く広がっている複雑さは、組織の力がないと倒せない。下っ端には荷が重い。</p>
+<p>だから局所性の両端は他人に譲り、自分は中間くらいにある仕事を探したい。</p>
+<p>局所性の低い複雑さの例: 昔 C++ なブラウザの仕事をしていた頃、コードベースのスレッドの扱いにはいつも苦しめられていた。Controller ぽいクラスが複数のスレッドから参照されるのだが、いまいちどのメソッドがどのスレッドから呼ばれうるのかわからない。オブジェクトを <a href="https://source.chromium.org/chromium/chromium/src/+/master:base/bind.h">bind</a> して thread pool に投げるイディオムが、このマルチスレッドの壊れやすさを助長していた。もうちょっと message passing ぽく実装するなり immutable なオブジェクトを増やすなり手堅いマルチスレッドのコードを書くパターンは色々あるわけだが、少なくとも当時はそういう配慮はみられなかった。結果として森田はいつも race condition で苦しんでいた。(<a href="https://anemone.dodgson.org/2017/09/11/20150307-chrome-threading/">当時の愚痴</a>.)</p>
+<p>今の仕事である Android アプリの Java コードはマルチスレッドだが、もうちょっと安全に書かれておりそこまで race の辛さはない。一方、何かとブロッキングの API を呼んだりロックを待ったりするので、同期にともなう性能劣化に苦しめられている。先のブラウザのコードは non-blocking なコードが支配的なのでこうした問題は起きにくい。</p>
+<p>こういうプロジェクトに染み渡ったコーディングのパターンみたいのは局所性が低い。C++ でも Java でも非同期かつスレッドセーフなコードを書く方法は定番が広く知られているので、この問題を解決しても特にかっこよくはない。一方でこの複雑さを倒すにはコードをくまなく書き換え同時に新しいダメコードの発生を抑制する必要がある。しんどい。個人で戦える範囲を超えている。だからこういう問題には近づかず、心を無にしてやりすごすと決めている。大局的だと思っていた問題がクールな発明で局所的に解決できるケースも稀にあるが、加齢にともないそういう博打はしなくなった。こいつらを <a href="https://github.com/scylladb/seastar">ScyllaDB の Seastar</a> で書き直すぞ！スレッドセーフでノンブロッキングだ！とか言えればかっこいいんだけどさー。</p>
+<p>というわけで「複雑さの局所性」を森田は割と気にしている。そういう empirical(与太話的) な複雑性の指標は誰もが持ってると思うんですけど、
+<a href="/016-complexity/02-kzys/">和良さん</a>とかどうですか。</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+事務連絡: 日付は 5 月になっていますが、一連の記事は 1 月に書かれたまま忘れ去られていたものです。
+</div>
+</div>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/016-complexity/'>複雑さのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/016-complexity/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/016-complexity/03-karino2/'>karino2</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/' class='is-active'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
