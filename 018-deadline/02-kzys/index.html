@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html><head>
+    <title>締切ありますよ&nbsp;/ kzys&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/018-deadline/02-kzys/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='締切ありますよ&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="og:description"        content='みんな締切守ってる？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='締切ありますよ&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='みんな締切守ってる？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>締切ありますよ</td></tr>
+        <tr><th>From</th><td><a href="https://8-p.info/">kzys</a></td></tr>
+        <tr><th>Date</th><td>2021-06-08</td></tr>
+      </table>
+      <article class='content'><p>締切ないのはすごいなあ。私の仕事は締切があることが多々あって、そのための見積もりもよくやっている。</p>
+<p>自社が持っているわけではないオープンソースソフトウェア、例えば <a href="https://github.com/containerd/containerd/">containerd</a> とかで締切が決めにくいというのは、確かに一理あって、そこに関しては細かい締切はたてていない、でも今週中に実装おわって最初のプルリクエスト出せますよ、くらいは話すかな。</p>
+<p>自社が持っているオープンソースソフトウェアとか、表側に出るサービスとかでは、普通に締切もあることが多くて、規模の大きいものだと、関係者各位を集めた定期進捗報告ミーティングに出たりもする。</p>
+<p>会社全体だと <a href="http://highscalability.com/blog/2019/3/4/how-is-software-developed-at-amazon.html">How is software developed at Amazon?</a> (2019) にある、OP1 / OP2 も、締切 + 見積もりという面がる。</p>
+<blockquote>
+<p>Every year there are two docs OP1 and OP2 (Operating Plan). Every organization level writes a 6 page document about what they want to do next year. In the plan you say what you would do if you had flat resources and incremental resources.</p>
+</blockquote>
+<p>あとは「今回のスプリントではここまで作ります」みたいな、チームの中に人工的に発生させる締切もある。</p>
+<h2 id="締切がある-vs-締切を守る">締切がある vs. 締切を守る</h2>
+<p>ただ、締切があるのとそれを守るのはちょっと別で「締切は死守! 残業と休日出勤で間に合わせます!」という真摯さがあるかというと、うーん、もちろん真面目に働いてベストをつくしてはいるけれど、一方で、無理なものは無理という諦めはどこかにある。</p>
+<p>これは私の個人的な環境の変化 (独身 -&gt; 結婚子持ち) もあるし、大企業への転職にともなう変化もある。結局のところ大企業には、投資家向けのデモに間に合わせないといけない機能とか、株主総会の資料になぜか記載されるリリース予定日とかは、あまりない。</p>
+<p>歴史的には、ソフトウェア産業の変化による、要するに CD-ROM を箱詰めして出荷しなくなったものもあるんだろうけど、私はそもそも最初の仕事から Web 2.0 時代だったので、正直ここには実感がない。</p>
+<p>もうちょっとマシな理由としては、昔にチームにいたシニアなエンジニアが「顧客は社内の締切なんて知る由もないが、可用性や速度についてはわかる。社内の締切のために品質を妥協するべきではない。」といったことを言っていて、私がそれを信じているから、というのもある。締切も品質もチーム全体で守るものだけど、締切をずらすことのまずさはマネージャーが、品質を妥協することのまずさ、例えば「この変更がどのくらいハックか」はエンジニアがよりよくわかっているはずで、私は締切と品質だったらまずは品質のほうを守りたいなあと思っている。</p>
+<h2 id="見積もり">見積もり</h2>
+<p>そういったわけで、私の世界には締切はあって、見積もりしていて、するからには、可能であれば正確でありたいと思っている。</p>
+<p>ただ、個人的にはプランニングポーカーも、ストーリーポイントで見積もってポイントの時間換算をいじる相対見積もりも、いまひとつ成功経験がない。結果として、小さめのタスクに分割して、それぞれにかかりそうな日数をえいやで決めて、チームの皆さんからのツッコミを待つ、という非常に雑な見積もりをしてしまっている。でもこれは雑なだけで現代的とは言い難い。</p>
+<p>スコープの調整はできる。できるのだけど、一方でエンドユーザー向けのアプリケーションに比べると、私の関わるような製品には依存関係が色々とあって「この API めっちゃ遅いですね」「これは 2021 Q2 に X という機能が追加されて、そっちの API を叩くと速くなる予定です」「じゃあ速くなる前提で、2021 Q4 に出るサービスから使いますから&hellip;」みたいなことをしていると、結構自由度はさがってしまう。まあそれでも無理なものは無理なんですが&hellip;</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>締切あるんだ！あたりまえか。見積もりはどんなかんじでやってるんですか？スプリントということは Scrum みたいなかんじなのかな。チームに見せてフィードバックを待つというのは、みんなそれなりに真面目にやってる感じはするな。</p>
+<p>OP1/OP2 とかは <a href="https://www.amazon.com/Measure-What-Matters-Simple-Drives/dp/024134848X/">OKR</a> と似てそうだけど、それよりは現実的というか見積もり的側面が多そうですね。(そして自分のチームは OKR すらないのだった。)</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+だいたい Scrum みたいな感じです。ただ、全部のタスクをチーム全員で順に見積もったりしないので (以前のチームはしていた) 他人様のまえで Scrum というのは憚られる感じ。
+</div>
+</div>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/018-deadline/'>締切のはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/03-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/04-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/05-jmuk/'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/' class='is-active'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

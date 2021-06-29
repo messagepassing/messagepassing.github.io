@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html><head>
+    <title>締切こわい&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/018-deadline/01-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='締切こわい&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='みんな締切守ってる？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='締切こわい&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='みんな締切守ってる？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>締切こわい</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-06-07</td></tr>
+      </table>
+      <article class='content'><p>いいかげん性能改善の仕事にも飽きてきたのでクールな新機能とかやってみたいなーと思ったりもするけれど、いまいち勇気が出ない。というのもクールな新機能ってだいたい締切あるじゃない？</p>
+<h2 id="締切のない世界">締切のない世界</h2>
+<p>自分は今の会社に入ってこのから 10 年以上、締切のある大仕事をしたことがない。最初にやっていた新しいAPIをウェブ標準に入れる仕事はろくに仕様もわからないまま一年くらい過ぎていたし（仕様を決めるのも仕事と言えば仕事だったんだけど）、標準化団体にせよ呉越同舟のオープンソースにせよ制御不能な要素が多すぎて誰にも締切なんて決められなかった。</p>
+<p>そのあとやっていた巨大リファクタリングみたいなやつも、やはり締切はなかった。今思うとこれは締切があっても良かった気がするが、まわりに締切という文化がなかった気がする。この頃の自分は「この会社には締切ないんだな」と理解していた。これは若干主語が大きすぎだけど、そういう人が沢山いたのもまた事実だと思う。</p>
+<h2 id="隣の締切">隣の締切</h2>
+<p>そのあとスマホの電子書籍アプリのチームに移ってみたら割と締切が幅を利かせていてすっかりビビってしまい、全力で新機能の仕事から遠ざかった末にたどり着いたのが性能改善だった。性能バグ、まあすごいヤバイ遅さは直さないと出荷できないけれどそういうのは稀（当時だと年に一回とか）で、基本的にはあるリリースに間に合わなかったら次のリリースで出せばいい。</p>
+<p>以前はどんな機能も「リリースに間に合わなかったら次のリリースで出せばいい」と思っていたし今も理想的にはそうあるべきだと思うけれど、
+世の中には年末商戦だったり広告出稿のタイミングだったりパートナーとの契約だったり、色々と融通の効かない都合もある。だから締切があるのは仕方ないなと考えを改めた。あたりまえだとおもったあなたは正しい。</p>
+<p>ただチームのどこかに締切があるのと自分に締切があるのは別。何らかの都合で誰かに締切があるのはまったく構わないが、自分の締切は困る。Not in my back-yard ならぬ Not in my bug-tracker みたいな。</p>
+<p>自分がいまいるチームは特定電話機付属のソフトウェアを開発しており、これは電子書籍とか目じゃないレベルで締切が難しい。ハードウェアの締切、ハードウェアに載せる OS の締切、電話機出荷初日 OTA の締切。こういうのは自分の都合では全く動かない。そして出荷ブロッキングな性能バグの量も、これまでの仕事に比べると随分多い。だからそこそこ忙しい。</p>
+<p>ただ性能バグというのは基本的に自分以外の誰かがやらかしたことなので、こちらにできる予防措置は必ずしも多くない。（監視の強化とかあるにはあるけど。）修正自体もできることは限られており、性能担当にできるのは小細工ばかり。大きな書き換えは開発者本人がやらざるをえない。だから仕事は悪く言えば受け身で、個々の仕事に使う時間も短い。性能問題解決の手が大変更以外にない新機能は次のリリースに見送られて、自分以外の誰かががんばって直すことになる。</p>
+<p>結果として締切がいっぱいある割には残業して睡眠削ってデスマ、みたいな経験をしていない・・・少なくとも自分は。自分以外の誰かがデスマしている可能性はあるんだけど 17 時に退社してるとその後何が起きたか知るよしもないし、自宅勤務ではなおさら他人の事情はわからない。</p>
+<h2 id="締切の遠い記憶">締切の遠い記憶</h2>
+<p>これは締切との戦いと聞いてかつて自分が想像したものとは違う: 厳しい締切と戦おうと思ったら、きちんと計画を立て、見積もりをして、更には生産性を測定し進捗を調整しつつ前に進む・・・というものだと理解している。これはトップダウンなプロジェクトでもアジャイルでも大まかには変わらない。</p>
+<p>残業して睡眠と精神衛生を削ってデスマな仕事をしていた十年以上前は、締切と戦う計画と見積もりのスキルはすごく重要なものに思えた。自分はマメさが足りず計測や予測はヘタクソだったけれど、それでも下手なりに <a href="https://www.amazon.com/Software-Estimation-Demystifying-Developer-Practices/dp/0735605351/">こういう本</a>とか<a href="https://www.amazon.com/Agile-Estimating-Planning-Mike-Cohn/dp/0131479415/">あるいはこれとか</a>を読んで勉強し、planning poker で story point みたいなことをしていた。</p>
+<p>そういうの、今は一ミリもしていない。</p>
+<p>「締切無いとか会社員としてダメなのでは」という罪悪感から過去に何度か真面目に見積もりをしようとしたことがあるが、あまりに報われない、つまり見積もりを活用する機会がないので、いずれも長続きしなかった。最近は (T)PM がちゃんとした人なので「仕事だいじょぶ？ spreadsheet の見積もり埋めてね？間に合わなそうだったら助けを探すとかするから」などとチームに声がけをしてくれるが、これにしても何かを間に合わせるためにやっているというより、ムリに間に合わせようと締切間際に生焼けのコードを突っ込む人がいないよう睨みを効かせている色が濃い。</p>
+<h2 id="今日の締切">今日の締切</h2>
+<p>でもさ、見積もり真面目にやってないの自分だけじゃないと思うんですよ。ここ十年、ソフトウェアエンジニアが見積もりについて（たとえばデザインとかと同程度に）真面目に議論してるの見たことない。Design doc に書かれた見積もりにしたって勘としか思えない数字がバンと書いてあればまだマシで、レイテンシとかメモリ使用量の見積もりに見られる rigor のカケラもない。最近ちょっと巻き込まれている新機能関係ミーティングでの会話も「間に合いそう？」「ムリかも」「じゃあ次にしますか・・・」みたいなかんじ。</p>
+<p>かわりにどうするかというと、新機能を N 個企画してき、そのうち半分くらいは間に合うでしょ、みたいにしておく。N 個の半分くらいは以前からの持ち越しで、ある程度見通しが立っている。一番のウリの機能みたいのはさすがに沢山は用意できないけど、かわりに適用範囲を絞って着地させたり、電話機発売には間に合わないけど年末までには出るよ、と言ったりする。つまり締切は変わらないが締切に出ていくものが変わる。</p>
+<p>別の言い方をすると、ソフトウェア開発の制約 <a href="https://www.pmi.org/learning/library/triple-constraint-erroneous-useless-value-8024">Scope, Time, Cost</a> のうち Scope を割と大胆に調整している。もっというと Scope を調整する文化の上に製品が作られている。Timing にしても先にリンクした 10 年以上前の本が想定するよりはリリース頻度が高いので、辻褄が合わせやすくなった。</p>
+<p>そういう世界だとソフトウェアエンジニアの見積もりが雑でいまいち締切を守れなくてもなんとなるのではないか。つまり締切にビビらず新機能の仕事をやっても案外大丈夫なのではないか。一方で、締切が怖くないという概念をいまいち信じられない自分もいる。</p>
+<p>というわけで: みんな締切どうなの？あるの？ないの？大変なの？守ってるの？</p>
+<p>チームの人に聞いてみてもいいけどなんとなく藪蛇の恐れがあるのでここで聞いてみたい。</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+時間の見積りって、なんかそれしちゃうと、「あと1日かけてもう少し良い実装をしておくとあとあと良さそう、でももう見積った期間は経過しちゃったしな」みたいな時に、より良いムーブを制限する方向に心理が働きませんかね？ Scope を調整している、てのはかなりしっくり来る表現で、やってみたらわかることっていっぱいあるんだから、 adaptive に scope を調整する方が良い、ということはないですかねえ
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+「心理」というのは良いポイントですね。プロセスの類を評価する時、表面的な柔軟性だけでなくどう感じるか、どういう心理的バイアスをもたらすかというのも議論されてしかるべきなのでしょう。
+</div>
+</div>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/018-deadline/'>締切のはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/03-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/04-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/05-jmuk/'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/' class='is-active'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

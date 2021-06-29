@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html><head>
+    <title>シャクトリムシの話&nbsp;/ shinh&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/018-deadline/04-shinh/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='シャクトリムシの話&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="og:description"        content='みんな締切守ってる？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='シャクトリムシの話&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='みんな締切守ってる？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>シャクトリムシの話</td></tr>
+        <tr><th>From</th><td><a href="http://shinh.hatenablog.com/">shinh</a></td></tr>
+        <tr><th>Date</th><td>2021-06-20</td></tr>
+      </table>
+      <article class='content'><h2 id="最近の締め切り">最近の締め切り</h2>
+<p>ちょうど最近、<a href="https://tech.preferred.jp/ja/blog/mncore-compiler-1/">締め切り</a>があって、それに向けてちょっと頑張っていた。外部から見たら「なんだかあやしい比較だなあ」と思うであろう内容であるが、内部でちょっとでも恥ずかしくない数字を出そうとやってた僕としては、それなりに誠実にやったという感もあって、まあそれなりに満足している。</p>
+<p>これは学会発表と同時に、今までの成果を「続きはブログで！」式に公開しようという趣旨で、どちらかというと、 kzys さんの言う「人工的に発生させた締め切り」だと思う。特にこのタイミングで数字を発表しないといけない、という必然性は特にない。</p>
+<p>個人的にはこういう、締め切りのために焦ってなんかをする、というの、必ずしも悪くはないと思っている。今回でいうと、「今あるもので、どのへんまでいけるか見てみましょう」的に、現在ある各コンポーネントのポテンシャルの限界を確かめることができた。その際に、締め切りがあるので、ポテンシャルを引き出してる最中に発見された中期的な問題は見て見ぬふりをされているのだけど、この中期的な問題ってある程度切迫した状況を作らないと発見されなかったりするので、有意義だったりする。具体的には、今回だと、限界までパフォーマンス出そうとすると、モデルをコンパイルする時間がすごく伸びて、かなり苦痛だということがわかったので、次はちょっと全体を見直して、コンパイル時間を改善しましょう、みたいな課題を得た。</p>
+<h2 id="締め切りが連続すると辛いと思う">締め切りが連続すると辛いと思う</h2>
+<p>今回の締め切りは、なかなか良いものだったように思っているのだけど、この種の締め切りが連続するのは、あまり良くないと思う。まず第一に、 karino さんが言っているように、楽しくない。プレッシャーがかかりすぎるとつらい。</p>
+<p>次に、締め切りが連続すると、どうしても急いでやらなくて良いような改善、典型的にはリファクタリングなどが後回しになって、結局開発効率の面でも悪くなってくる、ということがあるように思う。</p>
+<p>例えば新機能をリリースするための締め切りのためにうわーと頑張ったのであれば、ちょっとサボって英気を養ったり、後回しにしたリファクタリングをしたり、今後のために全体の構成を変えられないか検討したり、 CI を改善したり、そういうことに時間を使えると、中長期的に良いように思う。</p>
+<h2 id="シャクトリムシスタイルは色んなとこで良い">シャクトリムシスタイルは色んなとこで良い</h2>
+<p>こううわーと背伸びして機能実装などをした後に、ちょっと時間を取って足もとを固める、みたいなの、シャクトリムシぽいなって思ってるのだけど、このスタイルは結構いろんなところで使える働き方なんじゃないかな、とか思っている。</p>
+<p>すごいミクロな点では、 PR を一個作る時なんかでも、割とみんなよくやってるんじゃないかな、と思う。「とりあえずたぶんこんな感じ……？」とコードが汚なくなることはお構いなしで、場合によってはそこらじゅうに printf デバッグとか埋めまくりながら、コミットログとかも無茶苦茶で、とりあえずテストが通るところまで書いて、そこから頭を整理して、コミット履歴綺麗にしたり、関数を切って、コメントとかも書いて、いらないコードは消して、みたいなのはよくやることだと思う。これ、最初から PR にできるような綺麗な形でやろうとすると、方針が間違っていた場合とかに、すごく時間がムダになったりする。</p>
+<p>マクロな話に戻ると、前職では、昇進戦術として、このスタイルが有用なんじゃないかという話をよくしていた。昇進するか否かのレビューって、だいたい1年くらいの成果を見て行なわれるので、昇進する気が無いタイミングであれば、あまりマジメに仕事をする意味がないので、適当にサボって英気を養っておけば良い。そうこうしているうちに、昇進しやすそうなプロジェクトが始まったりすると、溜めておいた力でたくさん仕事をして昇進を狙う、みたいな。あとプロジェクトの最初でなるべく活躍する、とかも良いよね。後になって多少サボっていても、「最近見ないけど、なんか有益なことをしているだろう」みたいな印象を持たれていれば勝ち、みたいな。なんかずるい話ではあるけど、この手のシステムはハックされるもんですしね……</p>
+<p>なんかこういうの、既に名前がついてるライフハックな気がするけど、なんかあるのかな。</p>
+<hr>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>あら、締切おつかれさまでした。</p>
+<p>昇進狙いの前だけがんばるのは <a href="https://en.wikipedia.org/wiki/Recency_bias">Recency Bias</a>, プロジェクトの序盤だけがんばるのはポップカルチャー解釈による<a href="https://ja.wikipedia.org/wiki/%E3%83%AC%E3%83%90%E3%83%AC%E3%83%83%E3%82%B8">リバレッジ</a>ですかねえ。</p>
+<p>でかい締切のあとにバーンと英気を養う期間があるのは、昔のゲーム開発とかそういう感じだったと伝え聞いています。今は永遠のオンラインアップデートがあるので事情は違うでしょうが。締切の粒度でいうと、人類を大きな締切から救ってくれるはずだったアジャイルが一時期 <a href="https://www.infoq.com/news/2009/11/agile-micromanagement/">Micromanagement よわばり</a>されていて、わからんでもないなと思った記憶が蘇りました。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+<p>Recency Bias はなるほどですね。色々利用悪用できそう。自分があまり言いたくないようなことを真ん中に持っていったりしますよね。</p>
+<p>リバレッジは最初ピンと来なかったけど、将来の自分の労働力を前借りするイメージですかね。</p>
+<p>アジャイルはともかく、スクラムはちょっと見て、これはチームにマイクロマネージされてる感じで、面白くないなあ、と思いましたね。もりたさんに言うのもなんですが、あまり XP/アジャイル/スクラムあたりピンと来ないのですよね。あの人達ソフトウェア作るよりプロセス作る方が好きそう、みたいな偏見があります。ずいぶん昔に、「世の UML ツールはロクでもないものばかりだ。これって XP が有効でないということの証左なのでは……」みたいな雑談をしてた時の偏見が残ってるだけかもしれませんが</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>序盤がんばるのがリバレッジなのは、序盤って基盤的なものを作ることが多いですね。そういうのをおくと他の人がその基盤にのって仕事をしてくれる。
+そして自分は「皆が使える大事な基盤を作ったぞ」と主張できるという。そういうのは「シニアな仕事」とされがちだけど、
+新しいプロジェクトの序盤に立ち会えたなら出来はさておき割と誰でも出来てしまう面はあるかなと。リスクの対価とも言えますけど。</p>
+<p>アジャイルは、そういうものではないと当人はたちは主張しているし UML とアジャイルは関係ない（というかむしろアンチテーゼ）です。
+が、やっている当人とやらされている側にはだいぶ温度差があるんじゃないかとは思います。
+「アジャイルでうちのチームはよくなった！」という主導者は多いけど「入ったチームがアジャイルで嬉しい！」という下っ端はあまり見かけないよね、みたいな。
+<a href="https://anemone.dodgson.org/2019/01/20/agile-and-micromanagement/">そんな話を前に書きました</a>。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>ミクロな尺取虫スタイルはTDDの red green refactor と似ている気はした。</p>
+<p>前の仕事で『「大きなアップデートを入れる＞バグを取ったりコードを整理したり最適化したりする」のサイクルを繰り返している』みたいな事を同僚と雑談で話した事がありました。締切は無かったけれど。
+たまにゆるめる時期がある方がいい、というのは思っている人は多そう。
+あと無制約なのもダメなんですよね。自分は締切でなくても構わないと最近は思うようになったけど、なにかの制約は必要とも思う。制約とゆるめるのは交互にやるのがシャクトリ流として良いのかもしれない。</p>
+<p>さらにマクロな話として、最近ジョブズの本を読んでて、黎明期の起業家と今の時代に求められるものは全然違うよなぁ、と考えてて、
+自分にあってない時代では低空飛行でやり過ごして時代が変わるのを待ち、自分の時代が来たと思ったら本気出す（NEET的発言）のがいいんじゃないか、とか思っていたりもします。
+自分にあった時代は来ないかもしれないけれど。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+<p>あ、 XP とアジャイルごっちゃにするのは良くなかったのですね。なんか「プロセス重視な人達」みたいな印象で、適当に同じ箱に入れて分類していました、すいません。あれ、ていうか、 XP て UML を含んでいないの……？よくわかってないものを適当にけなすのは良くないですね。ごめんなさい</p>
+<p>そう、調子のいい時にあわせて緩急つけるの良いですよね。逆の話なんですが、最近僕はたぶん人生で一番よく働いてて、給料泥棒を旨とする僕としては良くないなあ……と思ってもいるんですが、「まあたまにはよく頑張る時があってもいいよね〜」的に気軽に捉えています</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+UML といえば Hillel Wayne のニュースレターの、<a href="https://buttondown.email/hillelwayne/archive/why-uml-really-died/">Why UML &ldquo;Really&rdquo; Died</a> は面白かったです。
+</div>
+</div></p>
+</article>
+    </div>
+  </div>
+
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/018-deadline/'>締切のはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/03-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/018-deadline/05-jmuk/'>jmuk</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/' class='is-active'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
