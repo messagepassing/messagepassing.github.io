@@ -11,7 +11,7 @@
       <title>ハッカーと画家</title>
       <link>https://messagepassing.github.io/019-advice/04-jmuk/</link>
       <pubDate>Sat, 07 Aug 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/019-advice/04-jmuk/</guid>
       <description>そもそもあんまりそういう助言というものをもらった記憶がないなあ。人の話を聞かないタチで聞き流していたのかもしれないが。
 英語で書くか、日本語で書いてから翻訳するか 英語よりも日本語……という話で思い出したけど、大学院生のとき、英語で文章（論文とか）を書くときの指導として「なるべく最初から英語で書いてなれたほうがいい」という指導と、「日本語でまず書いてみて論理構成を検証するべし。それから英語に訳すといい」という指導があるようにおもう。で、自分はわりと後者を聞かされていたが、これは誤りだった……というと語弊があるが、自分には合わなかったな、という結論をえた。
@@ -89,7 +89,7 @@ Lispをなぜ学ぶか もうちょっと技術者っぽいネタも入れてお
       <title>助言と向き不向き</title>
       <link>https://messagepassing.github.io/019-advice/03-morrita/</link>
       <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/019-advice/03-morrita/</guid>
       <description>自分もかずよしさんと同じで、助言とか説教とかあんまり覚えていない。たぶん中二病で天邪鬼だから他のひとのいうことを聞きたくないのだと思う。好みにあわない説教は目がスルーする修正があるので記憶に残らない。アドバイスに一応従ってみている有野さん（若いバージョン）偉いね。
 などといいつつ割と権威主義な人間でもあるので、本とかは割と真に受けたり影響を受けたものもある気がする。たとえば「スーパーエンジニアへの道」という古い本がある。 原題は Becoming a Technical Leader で、1986 年版。どういうきっかけでよんだのか忘れたけど(古の記録によると会社に置いてあったらしい)、二十台とかの若い頃に読んで、少しは影響をうけたか、少なくとも印象には残っておいる。その後も何度か繰り返し読んだ。（なお別に本書をお勧めしているわけではない。似たような題材のモダンな本も色々あるだろうし。）
@@ -210,7 +210,7 @@ Lispをなぜ学ぶか もうちょっと技術者っぽいネタも入れてお
       <title>自分が信じていたけれどそうでもないもの</title>
       <link>https://messagepassing.github.io/019-advice/02-kzys/</link>
       <pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/019-advice/02-kzys/</guid>
       <description>人に言われたことはあんまり覚えていないんですが、自分で信じていたけれど、振り返ってみるとそうでもないものは結構あるかもしれない。
 35才定年説: ないわけでもない 日本のプログラマ業界には「35才定年説」というのがあって、という話は昔に morrita さんが書いていたけれど
@@ -292,7 +292,7 @@ web上でプログラムの発信をする同世代の人は随分減ったよ�
       <title>若い頃言われたけど今考えてみると間違ってたあれこれ</title>
       <link>https://messagepassing.github.io/019-advice/01-karino2/</link>
       <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/019-advice/01-karino2/</guid>
       <description>新卒の頃、英語よりもまず日本語を勉強すべき、とか良く言われていた。
 ふーん、そんなもんか？と勧められた「理科系の作文技術」や「日本語の作文技術」を読んでみたが 別段なにかを学びとる事も出来ず、日本語の勉強って良くわからんなと結論づけていた。
@@ -482,7 +482,7 @@ XXはコミュニケーション能力だったり人脈だったりが多いか
       <title>意識されていない</title>
       <link>https://messagepassing.github.io/018-deadline/05-jmuk/</link>
       <pubDate>Fri, 25 Jun 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/018-deadline/05-jmuk/</guid>
       <description>締め切り……。いや、締切じたいはわりとあるでしょ。あるけど、ふだんはあんまり意識されていないというぐらいな気はする。
 具体的に言うと、さまざまな新機能開発については、いちおうこのバージョンで出しましょう、というターゲット設定はあって、それはいちおう締め切りっぽくはなってる気がする。ただし、締め切りに間に合わなかったら、あきらめて次のバージョンまで待つ、といったことになる。Chrome / ChromeOS は6週間ごとにアップデートすることになっているので（最近4週間サイクルになる発表がありましたが）、締切に失敗したといっても次のバージョンはせいぜい6週間後ということになる。
@@ -515,7 +515,7 @@ kzysさんも書いていたが、昨今のソフトウェアはリリースサ�
       <title>シャクトリムシの話</title>
       <link>https://messagepassing.github.io/018-deadline/04-shinh/</link>
       <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
-      
+      <author>shinh</author>
       <guid>https://messagepassing.github.io/018-deadline/04-shinh/</guid>
       <description>最近の締め切り ちょうど最近、締め切りがあって、それに向けてちょっと頑張っていた。外部から見たら「なんだかあやしい比較だなあ」と思うであろう内容であるが、内部でちょっとでも恥ずかしくない数字を出そうとやってた僕としては、それなりに誠実にやったという感もあって、まあそれなりに満足している。
 これは学会発表と同時に、今までの成果を「続きはブログで！」式に公開しようという趣旨で、どちらかというと、 kzys さんの言う「人工的に発生させた締め切り」だと思う。特にこのタイミングで数字を発表しないといけない、という必然性は特にない。
@@ -616,7 +616,7 @@ UML といえば Hillel Wayne のニュースレターの、<a href="https://but
       <title>ないに越した事は無い</title>
       <link>https://messagepassing.github.io/018-deadline/03-karino2/</link>
       <pubDate>Wed, 09 Jun 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/018-deadline/03-karino2/</guid>
       <description>締切の話、森田さんの言っている事と同じ事を違う言い方で言う感じになりそうではあるけれど、自分の考えなどを。 締切といいつつ見積もりの話だったりもするかもしれない。
 昔は締切もあって見積もりもしてた 自分は15年くらい前にやってた仕事は3年とか掛けてパッケージソフトを作るめちゃくちゃ長いプロジェクトで、 きちんと計画を建てて、かなりいろいろ定量的に進めるプロジェクト管理が行われていた。 ウォーターフォールを基礎にアジャイル的な要素を一部取り入れて欠点を修正したような進め方だった。
@@ -731,7 +731,7 @@ GoogleやAmazonは質の高いプログラマを良い待遇で集めて大規�
       <title>締切ありますよ</title>
       <link>https://messagepassing.github.io/018-deadline/02-kzys/</link>
       <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/018-deadline/02-kzys/</guid>
       <description>締切ないのはすごいなあ。私の仕事は締切があることが多々あって、そのための見積もりもよくやっている。
 自社が持っているわけではないオープンソースソフトウェア、例えば containerd とかで締切が決めにくいというのは、確かに一理あって、そこに関しては細かい締切はたてていない、でも今週中に実装おわって最初のプルリクエスト出せますよ、くらいは話すかな。
@@ -779,7 +779,7 @@ GoogleやAmazonは質の高いプログラマを良い待遇で集めて大規�
       <title>締切こわい</title>
       <link>https://messagepassing.github.io/018-deadline/01-morrita/</link>
       <pubDate>Mon, 07 Jun 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/018-deadline/01-morrita/</guid>
       <description>いいかげん性能改善の仕事にも飽きてきたのでクールな新機能とかやってみたいなーと思ったりもするけれど、いまいち勇気が出ない。というのもクールな新機能ってだいたい締切あるじゃない？
 締切のない世界 自分は今の会社に入ってこのから 10 年以上、締切のある大仕事をしたことがない。最初にやっていた新しいAPIをウェブ標準に入れる仕事はろくに仕様もわからないまま一年くらい過ぎていたし（仕様を決めるのも仕事と言えば仕事だったんだけど）、標準化団体にせよ呉越同舟のオープンソースにせよ制御不能な要素が多すぎて誰にも締切なんて決められなかった。
@@ -843,7 +843,7 @@ GoogleやAmazonは質の高いプログラマを良い待遇で集めて大規�
       <title>サワードウは育成ゲーム</title>
       <link>https://messagepassing.github.io/017-food/04-jmuk/</link>
       <pubDate>Wed, 26 May 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/017-food/04-jmuk/</guid>
       <description>自宅勤務になっても食生活には正直たいした変化はないなと思う。ふつうに自炊をしている（夫婦では自分のほうが料理を多くするほうなので、今もわたしがよく料理している）。昼食は追加要素だしかったるいけど、適当にこなしている。たまにデリバリーも頼んでいる。間食類は……まぁ食べてるけど、会社にいたときよりは減った気がする。会社にいると無尽蔵にストックがあるからよくない（責任転嫁）。なお間食をたべるときは適当に既製品のスナックが多いが、たまにクッキーとか焼いたりとかもしている。
 飲料でいえば、お茶とかを飲んでいたりするが、それすらだんだん面倒になってきてたまに白湯を飲んでたりしている。白湯はけっこういける。もちろんコーヒーはよく飲んでいるけれど、どちらかといえば、淹れる手続きも楽しんで休憩時間にしている系の飲み物になってるので、そんなに頻度は高くない。それから、これは妻の妊娠が契機だったのだが、さいきんはデカフェがメインになってる。デカフェのコーヒーは飲んでみたらとても美味しいものが多くて、これで別によかったことがわかった。といっても理由が理由なので、カフェインを本気で排除したいというほどでもない。適当にやっている。
@@ -886,7 +886,7 @@ GoogleやAmazonは質の高いプログラマを良い待遇で集めて大規�
       <title>はなれて考えるオフィスのこと</title>
       <link>https://messagepassing.github.io/017-food/03-kzys/</link>
       <pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/017-food/03-kzys/</guid>
       <description>私はそこまで大きなイノベーションないなあ。朝にコーヒーをいれて、昼はパスタとか一皿で完結するもので、夜はご飯とおかずとか。
 コーヒー / 飲みもの コーヒーは近所のカフェでローストされた豆を買って、朝にいれたものを蓋の閉まる保温マグにいれて、少しづつ飲んでいる。といっても午前中には大体なくなってしまうので、そうしたら別の飲み物に移行する。出勤していたころは会社の無料インスタントコーヒーでよしとしていたことを考えると、この自宅勤務期間中にコーヒー偏差値は上がったかもしれない。
@@ -926,7 +926,7 @@ GoogleやAmazonは質の高いプログラマを良い待遇で集めて大規�
       <title>Food 2.0</title>
       <link>https://messagepassing.github.io/017-food/02-karino2/</link>
       <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/017-food/02-karino2/</guid>
       <description>ほー、ポップコーン、良さそう。自分も試そうかなぁ。
 食事は自分的にはここ一年で一番大きく変わった所で、在宅なのと買い物にあまり行かないで済むように、という事の２つに最適化している。 たぶんここで書いている人の中では自分が圧倒的に一番生活水準が低いと思うので、その辺も多様性的な観点でいいんじゃないか。
@@ -1056,7 +1056,7 @@ GoogleやAmazonは質の高いプログラマを良い待遇で集めて大規�
       <title>ポップコーンの話</title>
       <link>https://messagepassing.github.io/017-food/01-morrita/</link>
       <pubDate>Sun, 23 May 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/017-food/01-morrita/</guid>
       <description>自宅勤務開始から一年以上がたち、もはや会社に行く気がおきない昨今ですが皆様いかがお過ごしでしょうか。 自宅勤務になると食事やらおやつやらも自前調達になるので、それなりに工夫してることがあると思うのだよね。 そういうのなんかあるかしら、というスレです。
 ポップコーン というかポップコーンが素晴らしいという話をしたいのだよ！
@@ -1112,7 +1112,7 @@ GoogleやAmazonは質の高いプログラマを良い待遇で集めて大規�
       <title>Re^2: 複雑さのはなし（から定番本について）</title>
       <link>https://messagepassing.github.io/016-complexity/03-karino2/</link>
       <pubDate>Sat, 08 May 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/016-complexity/03-karino2/</guid>
       <description>自分の最近の仕事はC++でアプリを書く、というものなので、Brooksの主張にかなり近い事をやっていますね。 C++はいろいろな事情でライブラリが使えない事が多いので、スクラッチから作るのが正当化される事もままある。 それがまさに時代遅れでもあるのだけれど。
 そのまま複雑さの話を続けてもいいのだけれど、 自分がDan Luuのブログで面白いと思ったのは、複雑さよりも古典を批判する、という部分。なのでその話をしてみる。
@@ -1201,7 +1201,7 @@ C++はいろいろな事情でライブラリが使えない事が多いので�
       <title>インターネットの声</title>
       <link>https://messagepassing.github.io/012-manycore/07-internet/</link>
       <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
-      
+      <author>internet</author>
       <guid>https://messagepassing.github.io/012-manycore/07-internet/</guid>
       <description>インターネットで反応してくれた声を紹介します (morrita)
  OkHttp の HTTP/2 並列性 - 2021/05/02 – kanejaku.org
@@ -1237,7 +1237,7 @@ C++はいろいろな事情でライブラリが使えない事が多いので�
       <title>Re: 複雑さのはなし</title>
       <link>https://messagepassing.github.io/016-complexity/02-kzys/</link>
       <pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/016-complexity/02-kzys/</guid>
       <description>昔に『人月の神話』は本を買って読んだはずだけど、手元には残っていないので、該当部分だけ O&amp;rsquo;Reilly Online Learning で読み直してみました。&amp;ldquo;Hopes for the Silver&amp;rdquo; という節に、世の中では銀の弾丸と目されているけれど、Brooks 自身はそこまでは思わない近年の技術的進歩が列挙されているんですが、Ada とその他の高級言語の発達、オブジェクト指向プログラミング、と時代を感じさせる並びの後に来るのがなんと人工知能! でもここで
  The techniques used for speech recognition seem to have little in common with those used for image recognition, &amp;hellip;
@@ -1269,7 +1269,7 @@ C++はいろいろな事情でライブラリが使えない事が多いので�
       <title>複雑さのはなし</title>
       <link>https://messagepassing.github.io/016-complexity/01-morrita/</link>
       <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/016-complexity/01-morrita/</guid>
       <description>本質的な複雑さ批判 森田が大ファンであるところの Dan Luu が「人月の神話」の Fred Brooks をディスる 記事を書いており、 痛快なのでみんなでこれ読んで与太話しようぜ、という回。(Dan Luu のページは Pocket か Instapaper 必須なのでみなインストールされたし。)
 ここで批判されているのは Brook の Essential Complexity / Accidental complexity に関する記述。 極めて雑に復習すると、Brooks は「問題には &amp;ldquo;essential complexity&amp;rdquo; すなわち &amp;ldquo;本質的な複雑さ&amp;rdquo; というのがあるから、 プログラミング言語とかツールとか計算機性能の改善とかで &amp;ldquo;accidental complexity&amp;rdquo; / &amp;ldquo;偶発的な複雑さ&amp;rdquo; を減らしていっても限度があるよね、 ソフトウェア開発って難しいですね・・・という話だった。
@@ -1334,7 +1334,7 @@ Dan Luu も脚注で「本質的と偶発的の区別とかあんまし意味な
       <title>インフォーマルな文章を書く楽しさ</title>
       <link>https://messagepassing.github.io/015-poems/06-secondlife/</link>
       <pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate>
-      
+      <author>secondlife</author>
       <guid>https://messagepassing.github.io/015-poems/06-secondlife/</guid>
       <description>皆さんはじめまして。ゲストとして呼ばれた、secondlife です。Tateno Culture といった形で以前森田さんが書いていたが、あれは Tateno Culture というよりは Hatena Culture の話だと思っています。なので、今回はインフォーマルな文章という主題とはずれるかもしれませんが、自分はなぜそんな感じの文章を書いていたのか、というのを当時のはてな時代を振り返り書いてみようと思います。
  はてな社に居た当時、これが皆さんの想定するインフォーマルな文章かはさておき、さまざまな社内向け文章を社内の全員、とは言わないまでも、7-8割の人がけっこう書いていた。
@@ -1410,7 +1410,7 @@ Facebook も社内バージョンが活況で、たまに <a href="https://oneze
       <title>あんまり考えてないよね</title>
       <link>https://messagepassing.github.io/014-reuse/04-jmuk/</link>
       <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/014-reuse/04-jmuk/</guid>
       <description>オープンソースなのにわりかし再発明しがち勢として @jmuk どうですか。
  というふうに（内部的に）話題をふられてしまった。再利用ねえ。あんまり考えてないよね。
@@ -1475,7 +1475,7 @@ Chromium はオープンソースでありながらあんなに再利用に不�
       <title>社内の情報共有とか社内ソーシャルメディア</title>
       <link>https://messagepassing.github.io/015-poems/05-jmuk/</link>
       <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/015-poems/05-jmuk/</guid>
       <description>グーグル社内の情報共有とか社内ソーシャルメディアは、たぶんHow Google WorksとかWork Rules!といった本で軽く触れられていると思う。ちゃんと読み返してないけど、だいたい似たようなことが書かれていただろうと思う。
 大昔の話をすると、wikiがあってそこで雑にいろいろ書かれていた時代というのがあった。そういうところで、仕事の情報も、そうじゃないカジュアルな情報共有も行われていたような気がする。ただ、wikiはだんだん使われなくなてきたような気がする。社員数の急増に対してスケールしなくなっていったのだろう。可視性の細かい制御とかができないのも、組織が大きくなってくると難しい話になってくるからかもしれない。
@@ -1525,7 +1525,7 @@ Google Workplaces けっきょくのところ、いわゆるgSuite / Google Work
       <title>もはや書く気おきない</title>
       <link>https://messagepassing.github.io/015-poems/04-morrita/</link>
       <pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/015-poems/04-morrita/</guid>
       <description>全然書いてないですね。
 書いてない理由は色々だけれど、ポエム/お気持ち表明系の話と技術的な度合いの高いメモでは空気が違うと思う。 かずよしさんの話 は主に前者という認識。 なので二つ別々に議論してみたい。
@@ -1654,7 +1654,7 @@ Monorepo GitHub Pages みたいなツールがそれなりに使えるように�
       <title>コアを使い切るとかあんまり考えたことない</title>
       <link>https://messagepassing.github.io/012-manycore/06-jmuk/</link>
       <pubDate>Tue, 20 Apr 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/012-manycore/06-jmuk/</guid>
       <description>コア、使い切るとか考えたことないなぁ。
 仕事ではOSのウィンドウマネージャとか、デスクトップUIとかを作る仕事をしているが、こういう部分のコードというのは、コアは使い切らないほうが良い。ユーザの主たる感心はアプリケーションであって、コアみたいなリソースはそっちに割り振られるべき。だから考えるべきなのは、所望するエフェクトを実現しつつ、きびきびと動作しつつコアのようなものは使わないようなやり方はどうなのか、っていうことだ。
@@ -1716,7 +1716,7 @@ OS の話はコンテナランタイムの話に近いなあ。脇役/裏方仲�
       <title>書いていないなあ</title>
       <link>https://messagepassing.github.io/015-poems/03-kzys/</link>
       <pubDate>Mon, 19 Apr 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/015-poems/03-kzys/</guid>
       <description>インフォーマルなもの、書いていないなあ。
 Design Docs の話のあとだと自分の書いているものを &amp;ldquo;Design Docs&amp;rdquo; とは言いにくいのですが、そういうフォーマルなものはそこそこ書いている。チケットが起点の調べものはチケットに書いていて、「これ読んでおいて」的なものはコードレビューでリンクを貼ることが多い。自分専用の雑多なメモとか TODO は、Quip という Google Docs みたいなものが社内で使えるので、それに書いたり、ローカルのテキストファイルに書いたりしている。エッセイは全然書いていない。
@@ -1778,7 +1778,7 @@ Design Doc でない短めのフォーマルな書き物、N-pager みたいの�
       <title>インターネットの声</title>
       <link>https://messagepassing.github.io/011-designdocs/07-internet/</link>
       <pubDate>Sat, 03 Apr 2021 00:00:00 +0000</pubDate>
-      
+      <author>internet</author>
       <guid>https://messagepassing.github.io/011-designdocs/07-internet/</guid>
       <description>エゴサーチをしていたら反応を書いてくれた人がいたのでみつけた順に紹介します (morrita)
  Message Passing 11 感想 - 2021/03/26 – kanejaku.org:
@@ -1809,7 +1809,7 @@ Design Doc でない短めのフォーマルな書き物、N-pager みたいの�
       <title>誰かがどこかで使ってる</title>
       <link>https://messagepassing.github.io/012-manycore/05-morrita/</link>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/012-manycore/05-morrita/</guid>
       <description>自分は仕事で電話機のカメラアプリ開発を手伝っている。 なのでカメラアプリから見るとどうかを中心に議論してみたい。
 電話機の CPU はどのくらい使われているのか 電話機の CPU, 最近だと 8 コアくらいある。こいつらを活用したい。
@@ -2124,7 +2124,7 @@ Java は伝統的にはブロッキング言語だというのをよく伝える
       <title>再利用の 15 年くらい</title>
       <link>https://messagepassing.github.io/014-reuse/03-morrita/</link>
       <pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/014-reuse/03-morrita/</guid>
       <description>ソフトウェアの再利用が難しい・・・というか難しかったというのは歴史的には事実で, たとえば ICSR / International Conference on Software Reuse とかいう学会がある。 どんな論文が書かれていたのか検索すると 2005 年の Software Reuse Research: Status and Future という論文が 950 citation くらい。もっと引用されている同系統の論文もないではないけど古すぎるので割愛し、 この論文をざっと眺めてみると・・・そういうのあったわーという単語がいっぱい出てくる。COM とかね。 (知らない人向けに補足すると COM というのは C++ で Java みたいなことをしたくて色々苦し紛れにがんばったテクノロジだとご理解ください。）
 この頃のソフトウェア再利用、色々厳しい雰囲気が論文をチラ見するだけで伝わってくる。 今から考えるとムリっぽい暗黙の前提があると思う。三つくらいに分けて雑に整理してみたい。
@@ -2243,7 +2243,7 @@ RUP といえば、最近に読んだ <a href="https://buttondown.email/hillelwa
       <title>なんとかなってる</title>
       <link>https://messagepassing.github.io/012-manycore/04-shinh/</link>
       <pubDate>Tue, 30 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>shinh</author>
       <guid>https://messagepassing.github.io/012-manycore/04-shinh/</guid>
       <description>たぶん WebKit のミーティングに行った時に、 GPU rendering のトピックがとても盛り上がっていて、 morita さんが「GPUとか「ちょっとオレも一言言わせろ」って感じで盛り上がっちゃうテーマだよね」と言っていて、不思議なくらいなるほどーと思った記憶があります。何が言いたいかというと、並列とかそういうテーマですよね、と。ということで、一言というか、色々と言いたいことがあるのです。
 バカパラサイコーという話 Embarassingly parallel をバカパラと訳したの、どなたが考えたのか知らないけど、とても好き。ほぼ独立したタスク群であれば自明にコアを使い切れるし、その数だけ速度がスケールする、という話。 MapReduce の mapper 、ピクセルシェーダ、並列ビルド、深層学習モデルのデータパラレルもそう。普通同じタスクが違うデータに対して動く時にバカパラと言う気もするけど、独立しているから並列化可能、という意味で並列ビルドも同じ箱に入れて考えている。 kzys さんの話しているようなクラウドのケースも、そもそも物理 CPU を切り売りしていて、コンテナごとに完全に独立なので、これも僕はバカパラ、くらいの認識でいる。
@@ -2297,7 +2297,7 @@ iPad Proが16、32コアと増やしてくか、それともシリコンの面�
       <title>意識したことない</title>
       <link>https://messagepassing.github.io/012-manycore/03-kzys/</link>
       <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/012-manycore/03-kzys/</guid>
       <description>私はあんまりコアを意識したことないなあ。
 これは、どのくらい CPU がボトルネックになる処理を行うかという、ソフトウェアの中身によるところと、karino2 さんが作っているような、デスクトップやモバイルで前面に出てくるようなソフトウェアと、私が作っているような、いわゆるサーバーサイドかつクラウド上のソフトウェアという環境の違いからきているところがあると思う。
@@ -2336,7 +2336,7 @@ CPUをどれだけ有効活用するかとCPUリソースにどれくらい余�
       <title>Coreを使い切る苦労</title>
       <link>https://messagepassing.github.io/012-manycore/02-karino2/</link>
       <pubDate>Sun, 28 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/012-manycore/02-karino2/</guid>
       <description>前の記事がめっちゃ良くまとまっていて、 自分の動画（以後「並列プログラムの動画」と呼ぶ）なのに自分が語る資格があるのだろうか、とか考えてしまう。 相対的に一発撮りで何も考えずに作った自分の動画の粗が目立ってしまったが、メッセージ自体には価値はあると思いたい所。 なお、なんでいまさらC++？は、おっさんだからです…
 歴史的な事とかコンテキストの説明には特に訂正したり付け足す事も無いので、自身の話をしてみます。
@@ -2487,7 +2487,7 @@ iPadとMacBookがプロフェッショナルユース、
       <title>ポエム</title>
       <link>https://messagepassing.github.io/015-poems/02-shinh/</link>
       <pubDate>Sat, 27 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>shinh</author>
       <guid>https://messagepassing.github.io/015-poems/02-shinh/</guid>
       <description>ちょくちょくポエムと呼ぶようなインフォーマル書きものするので、よく僕がやる通りの形式で、よく書くような感じのメモを殴り書きしてみました。 karino2 さんが大作感があったので、箸休めにどうぞ。
  スタートアップの社内プロジェクトの場合、読み手が少ないのでフォーマルなドキュメントを書くコストはペイしにくいと思っています どういう種類があるかなと考えてみると、以下のようなものを思いつきました  新しいことやる人にこういうの考慮に入れるのではという思いつきを共有する種類のメモ 自分がやった作業を引き継ぐ人に、現状の課題を説明して、何をすれば再現できるか、本当はどうあった方が良いと思っているか、などを共有するメモ ちょっと複雑なものを書いた時に、自分の備忘録も兼ねて、ざっくりとした実装の説明 問題だと思っていることの報告   1 と 2 は、口頭のミーティングの前に準備しておいて、それでトピック思い出して口頭で情報を補いつつ、補った有用と思われる情報はミーティング中にメモに追記していったりします コンポーネントのからみあいとかの説明は、口頭では伝わりにくいので、文章を細かめにしておいて、わからないところあれば slack でお願いします、とかでいいのかなと 1 は思想の共有というか、こういうコンポーネントがあると良いのでは、みたいな、アイデアの共有みたいな話をする時にも似たようなスタイルになるかも 3 は本当に読み手が存在するか謎なので、未来の自分が読める程度にしていて、他の人から見れば謎の文章かもです 4 は自分のよく知らない領域に問題が起きていて、込みいった相談がしたい時ですね 書いてる時間がもったいないので、なんというか雑ですね なぜか箇条書き使うことが多いですね。意味的には &amp;lt;li&amp;gt; が適切ではない使いかたなのだけど  後からこういう感じでメモを追加できるのは良さではある   英語の reading/writing は苦手だがそんなに苦でない、と思ってたんですけど、最近しみじみ思うのは、やっぱこういうの日本語でできるとむっちゃラクですね  ちょっとした調整で良くなったり悪くなったりするアルゴリズムがあって、「なんかこの PR で速くなってるんですが、この PR のおかげではなく、桶屋だと思います」とか言っていたりして、この桶屋みたいなのが気軽に使えて通じるのがね   これ草稿の段階で美文章滅すべし を kzys さんに教えてもらったのですが、これ僕がこのスタイル好きな理由をとても良く説明してくれていますね。  英語のことちょっと書きましたが、グーグル時代はこういうのはあまり書かなかったですね。でも、全く書かなかったかというと、メールに長めの返事をする時は結構これ的な箇条書きも多かったな、と思いました。 &amp;ldquo;Interesting idea! My random thoughts:&amp;rdquo; みたいな感じで始めて、あとは箇条書き、というような。むしろ英語だから美文章書けない苦肉の策として、自分の中で定着していった定石なのかもです。
@@ -2545,7 +2545,7 @@ iPadとMacBookがプロフェッショナルユース、
       <title>インフォーマルなドキュメント</title>
       <link>https://messagepassing.github.io/015-poems/01-karino2/</link>
       <pubDate>Fri, 26 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/015-poems/01-karino2/</guid>
       <description>Design Docの話を書いていて思ったが、自分はそれよりもWikiとかインフォーマルなドキュメントを書く方が好きなんですよね。 という事でその辺の話を書いてみる。
 Wikiに何書いているの？ Wikiはインフォーマルにいろいろ書いていて、インフォーマルゆえに「これ」というのは難しいのだけれど、 皆が何書いているかを知りたいので自分のやっている事もなんとなく言語化してみる。
@@ -2771,7 +2771,7 @@ Tracくらいでいいのでは…という思いはちょっとある。</p>
       <title>非同期と並列</title>
       <link>https://messagepassing.github.io/012-manycore/01-morrita/</link>
       <pubDate>Fri, 26 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/012-manycore/01-morrita/</guid>
       <description>karino2 が 並列プログラムから見たFuture というビデオを作って公開していたので、引っ越しの荷造りをしながら眺めた。
  長いのでここにざっくりとした主張をまとめると:
@@ -2931,7 +2931,7 @@ AI 人材は暗号通貨人材と GPU を奪い合っている。</p>
       <title>いけすかなさの出処</title>
       <link>https://messagepassing.github.io/011-designdocs/06-morrita/</link>
       <pubDate>Wed, 24 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/011-designdocs/06-morrita/</guid>
       <description>Design docs への温度感も、design docs といって想定するものも、けっこう個人差があるのがわかった。
 自分は Google がもてはやされていた時代に会社の外からさぞかし良いものに違いないと眺めていた時間が長く、 そのときの印象を拭いきれていないのかもしれない。 会社カルチャーの宣伝を真に受けない大人になったのは、もうちょっとあとなのだった。
@@ -3012,7 +3012,7 @@ Design docs は、もういいです。みんなすきにしてちょうだい�
       <title>そんないろいろ言うもんかな</title>
       <link>https://messagepassing.github.io/011-designdocs/05-jmuk/</link>
       <pubDate>Sat, 20 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/011-designdocs/05-jmuk/</guid>
       <description>わたしはかずよしさんと近いところがある。design doc、あると便利なときもたくさんあると思っていて、そんないろいろ言うもんかな、という気がする。ただ自分が書くのは苦手。書くのは正直気が重いが、他の誰かがなにかしてるなら「おいおい軽くでいいからdesign doc書いてくれよ」などと思う。うーん身勝手。
 実際のところ、自分が書いたものは mini design doc という程度の規模が多いと思う。クライアント側の機能としてそこまで複雑化はしなかったり、テンプレートのなかに意味のない項目がたくさんあったりということはままある。でもalternativesをいろいろ並べてみて検討してみて、自分がそこまで詳しくないエリアの人から「ここは実はこうなんだけど、それだとうまくいかないんじゃない？」みたいなツッコミを受けられることには意味があるように思う。
@@ -3072,7 +3072,7 @@ design docは大規模開発のためのものか いろいろ検討するとか
       <title>あまり感情を持ってない</title>
       <link>https://messagepassing.github.io/011-designdocs/04-shinh/</link>
       <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>shinh</author>
       <guid>https://messagepassing.github.io/011-designdocs/04-shinh/</guid>
       <description>僕は Design Doc に対して、あまり感情を持ってない。「Design Doc は最高です！」みたいな話を聞くと鼻白むものもあるけど、有用なケースもあると思う。ただ好悪は置いておいて、めんどくさいから書きたくない。実際のところ、ほぼ書いたことがない。
 よりよい未来のため Design Doc は未来の失敗を回避するために有用なのはわかる。特にグーグルのサーバサイドの文化という気がするんだよなあ。グーグルは共有のインフラがすごく多くて、共有のライブラリもものすごく多くて、全てを把握してから開発に入るのは不可能。ひょっとしたら同じものあるかも、と思いつつも Design を書いたら、それは XX でできるよ、ということはありそう。
@@ -3124,7 +3124,7 @@ Ukai-san といえば、自分が Design doc という名前を初めて耳に�
       <title>不安とコード</title>
       <link>https://messagepassing.github.io/010-wced/05-morrita/</link>
       <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/010-wced/05-morrita/</guid>
       <description>皆の話を読んで、 自分の「仕事の成果を出すためにいつもコードを書く」論は現実というより願望なのだと気づいた。 仕事で成果を出したいならコードを書く以外にもやるべきことは色々あって、 そういうのはさぼらずやったほうが成果はでる。調査とか説得とか協議とか。ただやりたくない。
 同じように「よく考える」みたいな曖昧で前の見えない時間の使い方にも不安を感じ、 コードという tangible な存在に頼ってしまう。 コードを頼りに考えを進められるからコードを書く・・・と言えればかっこいいけれど、 自分は必ずしもそういう類のコードを優先しているとは言えない。
@@ -3166,7 +3166,7 @@ Ukai-san といえば、自分が Design doc という名前を初めて耳に�
       <title>毎日は書いてないが、言わんとする事は分かる</title>
       <link>https://messagepassing.github.io/010-wced/04-karino2/</link>
       <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/010-wced/04-karino2/</guid>
       <description>WCEDという物自体を今回初めて知ったし、 毎日コードを書く事は意識していなかったし、WCEDしてない。
 自分の仕事でのコード書きはどんな感じか オリジナルのWCEDとmorritaさんの話は既に結構違う所なので、 仕事でどうなの？という事だと思うのだけれど、 自分は毎日は書いていないと思う。 そもそも毎日働いてはいないのもあるが（今は60%稼働の契約なので週休4日）、 稼働日も毎日はコードを書いてはいない。
@@ -3261,7 +3261,7 @@ Senior engineer だと「一人前の平社員」でそれより偉いと「で�
       <title>半分くらいわかる</title>
       <link>https://messagepassing.github.io/011-designdocs/03-kzys/</link>
       <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/011-designdocs/03-kzys/</guid>
       <description>morrita さん、karino2 さんのいう嫌さは半分くらいわかるかなあ。
 「Design Doc 書いてください」というのが、設計が終わったあとに実装がはじまる直線的なソフトウェア開発や、設計が難しい/偉くて実装はそうでもないという、上流工程偏重な職業感を想起させるというのはわかる。無駄な Design Doc が書かれがちなのもわかる。文章がないことに文句を言う人は多いけれど、文章があることに文句を言う人は少ない。でもまあ、無駄な実装よりは無駄な Design Doc の方がマシかなあ。
@@ -3318,7 +3318,7 @@ Is it that Design Doc? morrita さんのテンプレートの話や、karino2 �
       <title>毎日コードを書く理由</title>
       <link>https://messagepassing.github.io/010-wced/03-jmuk/</link>
       <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/010-wced/03-jmuk/</guid>
       <description>わたしはコードはわりと毎日書いている気がする……仕事では（趣味ではとても毎日は続かない）。といってもべつにgithubを使っているわけじゃないから草が生えるわけでもないし、そういう可視化を励みにしているというわけでもない（むかし、Chromiumコードベース全体のコミット数ランキングの社内ダッシュボードみたいのがあったことがあり、そこではそこそこ上位になっていて嬉しかったということはある）。ただ、どっちかというと自分の趣味嗜好のようなものとして、結果的にそうなっているという方が近い気がする。
 もちろんコードを書く＝コミットをマージするというわけでもない（コードレビューなどのプロセスもるから）し、実際には本当に文字通り毎日というわけでもないだろう。ずーっとデバッグだけして何も成果がないときもあるし。でも実際に自分のコードレビュー履歴 を見てみると、まあまあそれなりにちょこちょこ書いていることが多い気がする。
@@ -3347,7 +3347,7 @@ Is it that Design Doc? morrita さんのテンプレートの話や、karino2 �
       <title>曖昧な立場</title>
       <link>https://messagepassing.github.io/011-designdocs/02-karino2/</link>
       <pubDate>Fri, 05 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/011-designdocs/02-karino2/</guid>
       <description>Design Doc、自分は無駄なケースが多いと思っているけれど、書いて欲しい場合もある、 という曖昧な立場で、読んでもスッキリしない感じになるかもしれないが、 そういう立場の人も多いと思うので書いてみる。
 コミュニケーションの手段としてのDesign Docの有用性は高い（事がある） 設計について相手が考えている事を知りたい時に、Design Docを見せて欲しいと思う事がある。
@@ -3443,7 +3443,7 @@ morrita氏の欠点3の「不確実性の軽視」も同じような話に見え
       <title>Design Docs のいけすかなさ</title>
       <link>https://messagepassing.github.io/011-designdocs/01-morrita/</link>
       <pubDate>Thu, 04 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/011-designdocs/01-morrita/</guid>
       <description>Design docs というのが昔からあまり好きでない。読むのも書くのも好きでない。 仕事で文書を書くのはやぶさかではないけど Design docs はなんとなくいや。 せっかくなのでこのイヤさを言語化してみたい。
 Design Docs とはなにか 自分が想定している Design docs は この文章が説明しているようなものだ。 なにかそれなりの規模があるものを作る時に設計やそのトレードオフをざっと文書化する文書。 もっというと一般名詞の design docs ではなく、リンク先に書いてあるような自分の勤務先固有の The Design Docs 文化が好きでない。
@@ -3560,7 +3560,7 @@ Chrome の <a href="http://bit.ly/lifeofapixel">Life of A Pixel</a> (<a href="ht
       <title>パッケージマネージャー世代</title>
       <link>https://messagepassing.github.io/014-reuse/02-kzys/</link>
       <pubDate>Thu, 04 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/014-reuse/02-kzys/</guid>
       <description>何故プログラムの再利用というのが難しかったのか、という話をしていたら、「えっ？別に難しくないですよね？」とkzysに言われて、ちょっとその辺の話をしてみたくなった。
  我ながら若者らしい発言。
@@ -3609,7 +3609,7 @@ C++ が解決していると言われると、「ウッ現在進行形で苦労�
       <title>再利用のはなし</title>
       <link>https://messagepassing.github.io/014-reuse/01-karino2/</link>
       <pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/014-reuse/01-karino2/</guid>
       <description>何故プログラムの再利用というのが難しかったのか、という話をしていたら、「えっ？別に難しくないですよね？」とkzysに言われて、ちょっとその辺の話をしてみたくなった。
 個人的にソフトウェアの再利用が一般的と感じられるようになったのは、JavaでJakartaが有用なライブラリを揃え始めた頃からだ。 再利用される方の話は現代の普通の話なので良いと思う。 ではそれ以前の何が難しかったのか、と思うと、CやC++の難しさが多い気がしてきた。
@@ -3718,7 +3718,7 @@ iOSとかQtのスレッドプールと混ぜて使えないと「共通のプリ
       <title>毎日を細切れにされるのはきつい</title>
       <link>https://messagepassing.github.io/010-wced/02-kzys/</link>
       <pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/010-wced/02-kzys/</guid>
       <description>仕事に WCED は無理があったのか、それとも自分の仕事の仕方がよくないのか。 みんな仕事で毎日コードかいてんの？どうなの？
  Write Code Every Day してないなあ。毎週はなにか書いていると思うけれど、毎日といわれると怪しい。
@@ -3746,7 +3746,7 @@ iOSとかQtのスレッドプールと混ぜて使えないと「共通のプリ
       <title>Write Code Every Day At Work</title>
       <link>https://messagepassing.github.io/010-wced/01-morrita/</link>
       <pubDate>Tue, 02 Mar 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/010-wced/01-morrita/</guid>
       <description>去年一年の仕事を振り返っていて、いまいちコードを書いていないことに気づいてしまった。
 プログラマの下っ端がコードを書かずに何をしているかというと、 バグのたらい回し、バグレポートの解析、コードレビュー、メールとか報告とかの自然言語書き、バグのたらい回しとか。 下っ端には下っ端の雑用があり、特に性能問題の分析は無限に時間を溶かしがち。去年はだいぶ溶かしてしまった。
@@ -3792,7 +3792,7 @@ WCED はもともと課外活動のためのアイデアなので、それなら
       <title>Re^3: 読むものさがし</title>
       <link>https://messagepassing.github.io/009-feed/04-karino2/</link>
       <pubDate>Sat, 20 Feb 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/009-feed/04-karino2/</guid>
       <description>皆の話を見て、自分はどうしているかなぁ、と今BooxのInstapaperとPocketを眺めてみたのだが、なかなか雑多な経路から入っていて端的に言うのがなんか難しい。 とりあえず個別に話してから雑感的な事を述べてみよう。
 RSS関連 RSSは長らく既読にするだけという感じだったのだけれど、Booxを買ってから最近また活用するようになった。
@@ -3918,7 +3918,7 @@ Message Passing でもそういう書物ができるといいんだけど、ど�
       <title>Re: Re: 読むものさがし</title>
       <link>https://messagepassing.github.io/009-feed/03-kzys/</link>
       <pubDate>Wed, 17 Feb 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/009-feed/03-kzys/</guid>
       <description>自分は morrita さんと jmuk さんの間だと、morrita さんよりかなあ。ソーシャル少なめ。RSS 多め。
 読みはじめたもの: ニュースレター 近頃流行りのニュースレター。私は Cindy Sridharan さんがニュースレターをはじめるというので、彼女のものを皮切りにいくつか購読している。いまのところ楽しみに読んでいるのは、Nelson Elhage の Musing in Computer Systems と、Hillel Wayne の Computer Things。
@@ -3965,7 +3965,7 @@ HN にある「ニュース」の類は、昔は一定程度読んでた気が�
       <title>Re: 読むものさがし</title>
       <link>https://messagepassing.github.io/009-feed/02-jmuk/</link>
       <pubDate>Tue, 16 Feb 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/009-feed/02-jmuk/</guid>
       <description>うーん、そんなにいろいろ読んでいるかなぁ。
 RSSフィードは私も情報収集にはあんまり使っていない。Feedlyを無料枠で使っているけど、使い方はけっこう雑。一日一回眺めるぐらいで、フォローしているのもたいがい知り合いか、そうでなくても比較的生活感の強いブログが多い。技術系の記事はフィードに入れてるやつもあるんだけど、雰囲気がミスマッチしているからか、あんまり読めていない気がする。
@@ -4005,7 +4005,7 @@ Google のあれは今でも Discover でいいんじゃないかな。 自分�
       <title>Facebok のハッカー的姿勢</title>
       <link>https://messagepassing.github.io/013-fboss/02-karino2/</link>
       <pubDate>Mon, 08 Feb 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/013-fboss/02-karino2/</guid>
       <description>RE2JのFacebookからのissue Facebookのオープンソース活動で、最初にこいつらなかなかいい奴らだな、と自分が思ったのは、RE2Jで見かけた時の事だったと思う。 RE2Jでbyte array使えないかなぁ、と思ってissueを眺めていたら、 Sliceという別のライブラリに依存した形で同じような事をやっていた。
 Sliceはunsafeバリバリで低レベルにバイト列を効率的に扱うようなライブラリなので、 あまりJava的にお行儀が良い物では無い。 そんなものに依存したコード持っていっても取り込むのは嫌がる、というのはFacebookの人たちも分かっていたと思うけれど、 まず自分たちの問題を解決する事を優先したのだと思う。 そしてそれをどうやったか示すだけに留める、という姿勢。 手元の問題を解決する事を最優先とするハッカー気質を感じて、なかなかいいな、と思った。
@@ -4101,7 +4101,7 @@ FBのOSS、なかなか面白いの多いと思うんだが、このトピック
       <title>Facebook オープンソースのかっこよさ</title>
       <link>https://messagepassing.github.io/013-fboss/01-morrita/</link>
       <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/013-fboss/01-morrita/</guid>
       <description>Facebook のオープンソースプロジェクトには、妙にかっこいいものが多い。 企業発 OSS の中でもかっこよさが突出している。 有名どころでは React (2013) と PyTorch (2016) があるけれども、 他にも MySQL のストレージエンジンをとりかえた MyRocks/RocksDB, Microsoft も使い始めた静的解析ツール Infer (これは買収だな), AWS が managed service をはじめるに至った OLAP DB の Presto, Rust で書いてしまった Marcurial Backend の Eden などなど枚挙に暇がない。
 プロジェクトの数だけなら他にも数多く公開している会社はあるし、 プロジェクトの規模(つっこまれている人員)が特別多い感じでもない。 が、かっこよさは企業発オープンソースの中で一歩先を行っている、気がする。
@@ -4174,7 +4174,7 @@ MyRocks はデータベースをフルスクラッチでなく MySQL を再利�
       <title>ちゃんとやりすぎた Chainer</title>
       <link>https://messagepassing.github.io/008-justright/05-shinh/</link>
       <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>shinh</author>
       <guid>https://messagepassing.github.io/008-justright/05-shinh/</guid>
       <description>Worse is better といえば、 Chainer ってちゃんとやりすぎていたのでは、て話をよくするんですよね。まあうまくさぼってたら競争に勝ち残れてたかというと別の話なんですけど。 Chainer の開発終了する時の PyTorch への移行ドキュメントとか、 PyTorch の人が感心してたりしたけど、ホント丁寧だなあと感心する。
 一方で、 TensorFlow はともかく、 PyTorch はかなりわちゃわちゃしてて、こんなんでいいんだ……とよくなる。例えば、「LogSoftmax て exp に渡すの負にしないとすぐふっとぶから定義通りではダメで、なんかするけど、なにするんだっけ……」みたいなこと調べる時に、 PyTorch のリポジトリの下で git grep して、「さっぱりわからんな……」となってから Chainer 見てすぐわかる、みたいなことがよく起きる。ちなみに log(sum(exp(x))) を max(x) + log(sum(exp(x - max(x)))) で計算すると良いという話。
@@ -4203,7 +4203,7 @@ TensorFlow に限らずグーグルは、ちゃんとやりすぎててもなん
       <title>Go言語のちょうどよさ</title>
       <link>https://messagepassing.github.io/008-justright/04-jmuk/</link>
       <pubDate>Wed, 27 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/008-justright/04-jmuk/</guid>
       <description>Go言語は、なんというか「ちょうどいい」言語だな、と思っている。異論は認める。
 Go言語の登場時、なんせGoogleが大々的に発表した新しいプログラミング言語であるし、Rob PikeやKen Thompsonといった有名人の関わりもあり、華々しかった。そして、その登場を眺めたプログラミング言語マニアは、そのダサい仕様にわりとすぐがっかりして、興味をなくした。ということがあったと思う。今はGoはけっこう広く使われていて人気もあるけど、ここに至るまでには紆余曲折があった。
@@ -4289,7 +4289,7 @@ worse is betterとは言ってないが似たような事を言っている気�
       <title>ちょうどいいシリアライザ、FlatBuffers</title>
       <link>https://messagepassing.github.io/008-justright/03-karino2/</link>
       <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/008-justright/03-karino2/</guid>
       <description>ちょうどいいテクノロジ、というのは確かにあって、誰でもぱっとJSON、Markdownまでは思いつくと思うのだけど、その次が意外と難しい。 morritaさんはdataframeを挙げていて、これは確かに何かの基盤になっているとは思うのだけれど、なんとなく自分的にはjsonと並べるとしっくり来ない。
 ちょうど良いでしばらく考えて思いついたものとしては、SQLiteがある。PostgreSQLやMySQLがすでにある所で登場したSQLiteは、 そのちょうど良さゆえに普及した気がする。だけれど、そこから特に語る所が無い。ふーむ。
@@ -4364,7 +4364,7 @@ Apache Arrows が<a href="https://arrow.apache.org/faq/#how-does-arrow-relate-to
       <title>モノレポやったことない</title>
       <link>https://messagepassing.github.io/007-repo/04-kzys/</link>
       <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/007-repo/04-kzys/</guid>
       <description>私が仕事で開発している firecracker-containerd は、
  自分たちのチームが開発している Firecracker Go SDK 同じ会社だけど時差もある別チームの開発している Firecracker Cloud Native Computing Foundation の containerd Open Container Initiative の runc  を使っていて、これらは当然のように別のレポジトリに入っている。オープンソースでない社内のコードも、2019年の Interconnecting Code Workshop のショートペーパー、The Issue Of Source Code Repository Management In Large Enterprises で触れられているように、基本的にはモノレポではない。
@@ -4430,7 +4430,7 @@ Monorepo を褒めるのに atomic change を持ち出すやつはモグリだ�
       <title>モノレポ好きじゃない</title>
       <link>https://messagepassing.github.io/007-repo/03-morrita/</link>
       <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/007-repo/03-morrita/</guid>
       <description>自分は今は社内 Monorepo での作業がメインで、たまに Android とかさわってる。 レポジトリの壁というか、レポジトリの違いを含むインフラの違いの壁は、組織の壁より厚い。 この話は前にも書いたことがある。 だから向井さんの言っていることはよくわかる。 Monorepo が強制するインフラ共通化が押し下げた組織の壁の低さを、しばしば実感する。
 たとえば最近だと、仕事でやっている Android アプリの APK のビルド方法が変わった際にビルドツールチェインにあるマイナーなバグにあたってしまい、 そのツールのバグを直したことがあった。そんなツールがあるとは知らなかったというくらい降って湧いた話。 でもビルドシステムが統一されているおかげでコードをビルドするのもテストするのも簡単で、 IDE も普段の設定そのまま。コードレビューもいつもと同じ。 はじめてのコードベース、レビュー相手のこともそのチームのこともなにもしらないが、つつがなくしごとが片付いた。
@@ -4531,7 +4531,7 @@ Monorepo 勢であるはずの <a href="https://github.com/facebook">Facebook �
       <title>ちょうどいいインターネット、Gemini</title>
       <link>https://messagepassing.github.io/008-justright/02-kzys/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/008-justright/02-kzys/</guid>
       <description>個人的には TOML は「ちょうどいい」かなあ。YAML の大変さがなくて、Dhall ほど野心的ではない。言われてみると、TOML の作者も GitHub の共同創業者の一人なので、だいぶ有名人ですね。
 ちょうどいいインターネット、Gemini 私がここ一年くらい気になっているプロジェクトに Gemini がある。Gemini は Gopher と Web (HTML + HTTP) のいいとこどりを目指すプロジェクトで、行志向のワイヤープロトコルと、その上にのる、これまた行志向の text/gemini フォーマットで構成されている。
@@ -4583,7 +4583,7 @@ Web の複雑さがなぜ問題なのか? Project Gemini FAQ では、こう説�
       <title>モノレポは良いもの</title>
       <link>https://messagepassing.github.io/007-repo/02-jmuk/</link>
       <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/007-repo/02-jmuk/</guid>
       <description>参加する会社ごとにレポジトリが分かれたり、チーム単位で別のレポジトリになるのって、コンウェイの法則っぽいですね。わたしはモノレポは良いものだと思っているので、どういうふうになっているかという話をざっと概観したい。
 広く知られているようにGoogle社内はモノレポになってて、だいたいのプロジェクトはこのレポジトリにすべて入っている（例外はあるけれど）。で、実際どんなもんですか、という話についての雑感でいえば、モノレポはわたしのような末端の従業員にはけっこういいものだと思っている。
@@ -4638,7 +4638,7 @@ Rustでバックエンド、C++でFuseってすごいね。Facebookはいろい�
       <title>ハイテクないので昔話を</title>
       <link>https://messagepassing.github.io/006-hitech/04-kzys/</link>
       <pubDate>Fri, 15 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/006-hitech/04-kzys/</guid>
       <description>私もみなさんと同じで、自分でハイテクを書く機会というのはほとんどない。隣のチームの Firecracker はハイテク感があるけれど、QEMU の Tiny Code Generator の話 なんかに比べるとずっと平和で、別のアーキテクチャのエミュレーションをがんばったりはしない。
 社内を見渡すと、EBS の Physalia なんかは、自分のチームとの距離の遠さも手伝って、だいぶハイテク感がある。これは morrita さんの書いていた「巨大製品の中で使われる、ドメインに特化したものを作る、組織戦のハイテク」だと思う。
@@ -4684,7 +4684,7 @@ Go の FFI は遅いので、Berkeley DB とかを関数ごとにラップする
       <title>ちょうどよさのはなし</title>
       <link>https://messagepassing.github.io/008-justright/01-morrita/</link>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/008-justright/01-morrita/</guid>
       <description>その「ちょうどよさ」ゆえに普及したテクノロジ - アイデアや標準があると思う。 そういうのは、科学や工学でなく匠としてのプログラミングを表している気がして成功が嬉しい。
 自分にとって「ちょうどいいテクノロジ」の代表は JSON (2002) と Markdown (2004). どちらも技術的にはさほど大したことはないけれど、どちらも広く使われている。
@@ -4728,7 +4728,7 @@ Python(Pandas) や Scala(Spark) に移植されているし、<a href="https://a
       <title>案外やってないなという感じ</title>
       <link>https://messagepassing.github.io/006-hitech/03-shinh/</link>
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>shinh</author>
       <guid>https://messagepassing.github.io/006-hitech/03-shinh/</guid>
       <description>ハイテク @Google ハイテク、グーグルにいた時の感覚は morrita さんに近い。「面接の時はアルゴリズム問題とか聞くけど、実際仕事で難しいアルゴリズムとか書いてないよね、簡単な再帰すら書かねーよな」みたいな雑談をよくしていた。11年くらい勤めて、あれはハイテクだったなーと思う自分の作業は 2,3 くらいで、期間としては合計半年から一年くらいじゃないかな。
 割と、それで良いのだと思っている。5割の力で、余力を残して働くのがプロじゃないかと。余力があるくらいでできたプロダクトの方が、完成度が高い。持てる技術ギリギリを使って書いたコードは、たぶんバグってるか、開発に時間を使いすぎているか、悪いとその両方。
@@ -4784,7 +4784,7 @@ Python(Pandas) や Scala(Spark) に移植されているし、<a href="https://a
       <title>モノレポのはなし</title>
       <link>https://messagepassing.github.io/007-repo/01-karino2/</link>
       <pubDate>Sun, 10 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/007-repo/01-karino2/</guid>
       <description>モノレポについて経験豊富そうな皆さんの話を聞きたい。 まずはその背景から。
 会社で分かれるレポジトリ フリーランスをやっていると、たまにいろんな零細企業を集めて一つのサービスを作る場に遭遇する。 人を集める時に、一つの会社だけじゃなくて複数の会社が集まることがよくある。 たとえばマーケティングが強みの会社が自社ではエンジニアを持っていなくて、開発は外部の人たちを集めてやるみたいな。 しかもそれぞれの会社からは一人とか二人だけしか来ないので、 6人の小規模なチームなのに会社は4つあるとかいう状況になったりもする。
@@ -4902,7 +4902,7 @@ MSもGoogleもFacebookも何か作っていてみんなバラバラってちょ�
       <title>ブックマークしたい</title>
       <link>https://messagepassing.github.io/005-bookmark/04-kzys/</link>
       <pubDate>Sat, 09 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/005-bookmark/04-kzys/</guid>
       <description>みなさんありがとうございます。
 自分も jmuk さんと同じ「虚無」に落ち着いてしまったのですが、昔はもうちょっとちゃんとしてたんですよね。どこからこうなったんだっけ。
@@ -4938,7 +4938,7 @@ karino2 さんと morrita さんと同じように、仕事だと雑多なノー
       <title>読むものさがし</title>
       <link>https://messagepassing.github.io/009-feed/01-morrita/</link>
       <pubDate>Fri, 08 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/009-feed/01-morrita/</guid>
       <description>時間および精神的余裕のなさもあり、ここ数年あまりオンラインの技術読みものを読んでいない。というか真面目に探してない。 オンライン読みもの流通の場は時とともに移り変わるので、置いていかれている感がある。 わかってはいたけれど、みんな何読んでるのかなと気になりはする。
 というわけで、皆様が何を読んでるのかきいて周るターンです。 手始めに自分の話をちょっと書いてみたい。
@@ -5028,7 +5028,7 @@ PL の学会である <a href="https://blog.sigplan.org/">SIGPLAN の blog</a> �
       <title>読んだ本はBlog、Webの記事は適当</title>
       <link>https://messagepassing.github.io/005-bookmark/03-karino2/</link>
       <pubDate>Fri, 08 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/005-bookmark/03-karino2/</guid>
       <description>向井さんのお察しの通り、全公開上等でブログですね。 ブログせずに読んだ本も少しはあるけれど。
 このトピックの元だった2020年に読んだ本の話を書いた時は、過去のブログを眺めて、 あとはKindleアプリで他に買ったの無いかなぁ、と軽く確認したぐらいですね。 そういう点ではmorritaさんと似ている。
@@ -5079,7 +5079,7 @@ Pocket経由で送っています。Pocketは一応あとで以前読んだの�
       <title>ブックマークはしない</title>
       <link>https://messagepassing.github.io/005-bookmark/02-jmuk/</link>
       <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/005-bookmark/02-jmuk/</guid>
       <description>みんな記録とかどうしてるんだろうっていうのは私も疑問に思ってたところがある（笑）。管理、一切してないというのが一番近いな。管理したほうがいいんだけど……。
 紙の本については、書棚の量が今のところたかが知れているので眺めるぐらいでだいたいわかるようになっている。内容についてはだいたい見れば思い出す……というか思い出せないぐらいの本は自分にとって重要ではないっていうことだと思う。
@@ -5104,7 +5104,7 @@ twitterはヘビーに使っているけれど、こういう用途には使っ�
       <title>Re: Re: Re: 今年読んだもの</title>
       <link>https://messagepassing.github.io/004-whatiread/04-kzys/</link>
       <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/004-whatiread/04-kzys/</guid>
       <description>ここ数年ずっと技術書は O&amp;rsquo;Reilly Online Learning (もう Safari と呼ばないんですね) で読んでいる。ACM の年会費を払うだけで、ちょっとだけ興味があるトピックに関してでも、本を複数冊パラパラと読めるし、O&amp;rsquo;Reilly の本だけではないので、本屋気分で新着を冷やかすのも楽しい。
 ただ、高い技術書を買って値段分の価値をとるべく読み切る、という動機が弱くなるという問題があって、ここまでが長い言い訳なんですが、2020年は通読して印象に残っている技術書がありません。2021年はがんばります。
@@ -5152,7 +5152,7 @@ Stripe やめてヒマしてそうだし、また更新してほしいなあ。
       <title>ブックマークのはなし</title>
       <link>https://messagepassing.github.io/005-bookmark/01-morrita/</link>
       <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/005-bookmark/01-morrita/</guid>
       <description>From kzys:
  みなさんがするすると読んだものを列挙できるのにちょっとびっくりしているんですが、 ブックマークというか、PDF もふくんだ読んだものの管理ってどうしてます?
@@ -5209,7 +5209,7 @@ Twitter や Facebook でダメなのかは個人によると思うけれど、�
       <title>Re: Re: 今年読んだもの</title>
       <link>https://messagepassing.github.io/004-whatiread/03-jmuk/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/004-whatiread/03-jmuk/</guid>
       <description>いろいろ忙しかったのと、私事などもあり、2020年はあんまりいろいろ読んだりはしない年になった。のであんまり書くことなかったりするんだよなぁ。
 reMarkable2 話をふられたのでまずそこから書くと、reMarkable2を買った。e-inkのタブレットデバイス。なかみは独自のOSで、基本的には文書や本を読むためのものというくくり。見かけてすぐ予約したけど、パンデミックの影響もあり、入手したのは10月。まだそんなに使いこなしているわけでもない。
@@ -5257,7 +5257,7 @@ Systems Performance もそうですが、
       <title>Re: ハイテクしごと</title>
       <link>https://messagepassing.github.io/006-hitech/02-morrita/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/006-hitech/02-morrita/</guid>
       <description>大企業におけるハイテク私感 大企業下っ端なので全然ハイテクとかしてない。 ここでいうハイテクは、それなりに (CS 的な) 難しさのある、それなりの規模のコードという風に解釈している。
 ある程度成熟した大企業だと、インフラ部門とかリサーチ部門とかがあってハイテクなものを専業で作っている。 なのでハイテク指向な人はそういう部門ではたらく傾向がある。
@@ -5400,7 +5400,7 @@ Linusなら山にこもってgitが出来る訳だが、なかなかLinusには�
       <title>ハイテクしごと</title>
       <link>https://messagepassing.github.io/006-hitech/01-karino2/</link>
       <pubDate>Sat, 02 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/006-hitech/01-karino2/</guid>
       <description>お仕事で計算グラフなコードを書いた 先日、仕事で計算グラフを構築して変形して実行するようなコードを書く必要があって、 そんな類のライブラリを書いて機能を実装した。コアの部分で1万行くらい。まぁまぁ大変で三ヶ月くらい掛かった。
 DSLで計算グラフを構築し、 それをいろいろと操作し、最後に生成されたIRをなんらかの形で実行する。 ここ数年、こうした形で新しいものがいろいろ生まれているように思う。 古くはLINQ、より最近だとTensorFlowとかHalideとか。 あまり詳しくないが分散ビルドなどもこうした形式だとか。
@@ -5472,7 +5472,7 @@ Futureにハイテク感を感じないのはいまさらに感じるからか�
       <title>Re: 今年読んだもの</title>
       <link>https://messagepassing.github.io/004-whatiread/02-karino2/</link>
       <pubDate>Wed, 30 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/004-whatiread/02-karino2/</guid>
       <description>今年はあんまり読んでないかと思っていたが、見直してみると数は多いので代表的なのだけ。
 System Performance Brendan Greggの本、これは仕事をはじめる前の無職の頃に買って読んでいた本。 森田さんが良くBrendan Greggの言及をするので自分もdtraceって奴をちゃんと勉強しておくか〜、と思って買った。能書きが多くて同じようなことを延々と繰り返してて辛い本だが、レシピ集的には素晴らしい、という二面性のある、評価の難しい本。当時の読書記録はこちら。 読書記録: System Performance
@@ -5561,7 +5561,7 @@ reMarkable 2買った <a href="/004-whatiread/03-jmuk/">jmuk</a> 的には時代
       <title>Re^3: テキストエディタのはなし</title>
       <link>https://messagepassing.github.io/003-editors/04-karino2/</link>
       <pubDate>Wed, 30 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/003-editors/04-karino2/</guid>
       <description>自分もjmukに似てて、VS Codeです。 以前のように自分でいじったエディタを使ったりはしてないですね。 あまり面白みは無いですが、それが何かの結論を表している気もする。
 現在のエディタ環境 メインはVS Codeでエディタ作業はプログラム以外もこれでやっている。 Cloudとかターミナル上の作業ではvimも使っている。カスタマイズ無し。
@@ -5655,7 +5655,7 @@ IDEにもかなり思い入れはあるので、これはこれで自分らし�
       <title>Re: Re: テキストエディタのはなし</title>
       <link>https://messagepassing.github.io/003-editors/03-morrita/</link>
       <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/003-editors/03-morrita/</guid>
       <description>自分の状況は 向井さんと似てる。つまり Emacs は使ってない。 ただ VS Code もそんなに使ってない。VS Code は他のものがないときの fallback というかんじ。カスタマイズもしてない。 仕事が Andoid アプリなのでそこは必然的に Android Studio. 一時期サーバ側の C++ を書いていた頃は CLion に金を払っていた。 これらは今はリモートデスクトップ越しに使っている。きびしい。
 Git のコミットログとかは vim だけれど、それはエディタというより Git の機能みたいな気分で使ってる。まったく使いこなしてない。 2020 になってようやくコピーアンドペーストのキーバインドを覚えた。なにこれ革命的に便利。
@@ -5719,7 +5719,7 @@ Emacs にべったりな暮らしをしていた 20 年前はメモをとるの�
       <title>今年読んだもの</title>
       <link>https://messagepassing.github.io/004-whatiread/01-morrita/</link>
       <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/004-whatiread/01-morrita/</guid>
       <description>年の瀬なので振り返りもかねて今年読んだものでも紹介してみたい。 (草稿を書いたのは年末だけど、ぼんやりしてるうちに年が明けてしまった！)
 といっても森田は今年は他人に勧められるほど良い読み物との出会いはなかった。 世が不作なわけではなく、パンデミックのせいで可処分時間や心の余裕がなかった。 なので他の人のおすすめに従って失われた一年をちょっとでも取り戻したい下心がある。
@@ -5787,7 +5787,7 @@ Google BigQuery: The Definitive Guide: Data Warehousing, Analytics, and Machine 
       <title>Re: テキストエディタのはなし</title>
       <link>https://messagepassing.github.io/003-editors/02-jmuk/</link>
       <pubDate>Mon, 28 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/003-editors/02-jmuk/</guid>
       <description>エディタ、いまはもうだいたいVScodeだけでやっている。昔はEmacsだったけど、完全に脱却してしまった。もう一切使っていない。
 VScodeへの移行 あれは2016年のことだったか。それとも2017年？　そのころにVScodeに移行したのだと思う。それまではずっとEmacs使いだったけれど、同時にもう何年も、いいかげんやめようと思っていたのだった。正直自分はEmacsを使いこなしていなかったし、Emacsラブということもとくにない。手に馴染むから使っていただけのことだった。それまで、たとえばIntelliJやEclipseを試したこともあったが、重さが気になったり、しっくりこなかった。社内C++業だとなかなかうまく動かないという事情もあるけれど。そういえば一瞬だけちょっとAndroidのことをやったことがあったときはIntelliJを使ったと思う。
@@ -5820,7 +5820,7 @@ Chromium規模のC++だと標準のモードはけっきょくあまり役に立
       <title>テキストエディタのはなし</title>
       <link>https://messagepassing.github.io/003-editors/01-kzys/</link>
       <pubDate>Sat, 26 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/003-editors/01-kzys/</guid>
       <description>morrita 我々みな Emacs 世代だと思うけど、最近つかってるエディタなんかあります？ (内輪のスレッドより引用)   GoLand 仕事で IntelliJ を使っていたこともあって、仕事の Go は GoLand で書いている。定義元に飛ぶとか、シンボルのリネームとか、IDE っぽい機能が一通り動いて便利。
 IDE を使うのは Emacs に無い機能が嬉しいからで、つまり Emacs のキーボードショートカットと IDE のそれは一対一対応にならないので、それなら IDE のキーボードショートカットをちゃんと覚えたほうがいいのでは、と思っているけれど、結局カーソルを動かすとかは Emacs の C-f/n/b/p に慣れすぎていて変えられず、デフォルトのものをちょっとだけ Emacs 風にしている。
@@ -5850,7 +5850,7 @@ Emacs でも Emacs もまだ使っている。用途は、Magit:ファイル1枚
       <title>Re: Re: Re: 言語のはなし</title>
       <link>https://messagepassing.github.io/002-pl/04-morrita/</link>
       <pubDate>Tue, 22 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/002-pl/04-morrita/</guid>
       <description>F# を日用する karino2, Scala にパッチを書いていた kzys, Haskell の本を書いてしまった jmuk のあとに 日々 for 文を書いて暮らしている自分になにか言うことがあるのか疑問だが、賑やかし程度になんか書く。
 Arrow まず冒頭に出てきた F# の bind に相当するのは Kotlin には無いという話。 Kotlin には Arrow という FP 愛好家向けのマイナーライブラリがある。 そして Kotlin には coroutine がある。その二つは一緒に使われて Monad Comprehension という機能になっている。（らしい。）これがどのくらい F# の bind に近いのか自分はよくわからないけれど、そういうのが好きな人はいることはわかる。
@@ -5933,7 +5933,7 @@ SwiftとKotlinの両方が同じ姿勢だと、なんか正しそうな気もす
       <title>Re: Re: 言語のはなし</title>
       <link>https://messagepassing.github.io/002-pl/03-kzys/</link>
       <pubDate>Mon, 21 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/002-pl/03-kzys/</guid>
       <description>私はむかし Scala が好きだったので、あんまり流行らなかったのは残念です。いや、Scala 3 が Developer Preview に入る年の瀬に過去形で語るのもよくないけれど。
 ランタイムが同じ言語を売り込むのは難しい C# と F#, Java と Scala みたいなランタイムが同じ言語は、既存のライブラリなどを使えるという利点はあるけれど、客観的な性能指標とかで明確に「勝つ」ことはなくて、チーム全員を説得するのが大変だと最近は思う。
@@ -5979,7 +5979,7 @@ C#の存在感が減ってきた結果F#が見えるようになってきた気�
       <title>Re: 言語のはなし</title>
       <link>https://messagepassing.github.io/002-pl/02-jmuk/</link>
       <pubDate>Sun, 20 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/002-pl/02-jmuk/</guid>
       <description>話をふられてなんなんだけど、最近あんまりML系の言語を使ってみたりしていないんだよな。最後になにかやったのは、min-camlがwasmを吐けるようにしたことで、あれはOCamlで書いたのだったか（min-camlはセルフホストではなく、OCamlで書かれている）。公開もしていない……自分で書いた部分がかなりmessyで気が滅入る感じになってしまったので放置している。
 Haskellの型クラス そういえばポッドキャストで最近、Haskellの歴史の論文を読んだのを紹介した。2カラムで50ページ以上という長大なる論文なので仕方なくかなりの部分を割愛したが、なかでも型クラスの話はほとんど触れずに飛ばしたように思う。ところがあの論文は &amp;ldquo;being lazy with class&amp;rdquo; という副題がついてるくらい、なにかと型クラスの話をする論文なのだった。論文著者の気持ちとしては、型クラスこそがHaskellの最大の発明であり、特徴であるという気持ちなのかもしれない。
@@ -6010,7 +6010,7 @@ F#なんだか面白そうだな、よさそうだな、という感じも、.NE
       <title>Re: Re: バグのはなし</title>
       <link>https://messagepassing.github.io/001-bug/04-karino2/</link>
       <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/001-bug/04-karino2/</guid>
       <description>ここまでのかっこいいバグの話を見て、少し考えてみたが、自分の場合は10年以上前のものが多い。 最近はあんまりそういうバグが無いのだが、なんでかと考えてみる。
  長く使われるコードを書いていない 多くのユーザーに使われるコードを書いていない  という事かなぁ、と思った。
@@ -6095,7 +6095,7 @@ Microsoftが迷走していてもあまり関係無いたたずまいに、あ�
       <title>言語のはなし</title>
       <link>https://messagepassing.github.io/002-pl/01-karino2/</link>
       <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>karino2</author>
       <guid>https://messagepassing.github.io/002-pl/01-karino2/</guid>
       <description>F#とかML系言語の話 最近どこでもF#いいよしか言ってない気もするけれど、なかなかいいですよ、F#。 Microsoftエコシステムの外の人間の方が使いみちが多いというのが面白いところに思う。 Windows使ってる人じゃなくてMacとかLinux上でコマンドラインでなにかやりたい人にマッチしているのが盲点になりがち。 自分がまさにその盲点にはまってたんですが。
 MacとかUnixでも動いて、ファイルのmoveとかcopyとかのシステム周りが一通り揃っていて、 新しい圧縮だとか通信だとかにもちゃんと大企業が対応してくれて（.NETがだけど）、 VSCodeのextentionも良く出来ていて、なおかつML系言語。 Unix系コンソールでのML系言語の時代来たな！
@@ -6195,7 +6195,7 @@ Mini OCaml動かしたりしていた<a href="/002-pl/02-jmuk/">jmuk</a>的に�
       <title>Re: Re: バグのはなし</title>
       <link>https://messagepassing.github.io/001-bug/03-jmuk/</link>
       <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>jmuk</author>
       <guid>https://messagepassing.github.io/001-bug/03-jmuk/</guid>
       <description>あんまりかっこいいバグというわけでもないが、解決が楽しかったのでここに書いて供養しておこう。
 最近はOSの性能テストをよく書いて計測している。Go言語で書いたテストコードがコンパイルされた上で実機上で動いてOSをいろいろ操作させるというものだが、こういうend-to-endなテストの性質上、壊れることもよくある。ある日のテストの失敗レポートもそういうよくあるやつに見えた。
@@ -6237,7 +6237,7 @@ cdpというのはChrome devtools protocolの略だ。OSやブラウザをテス
       <title>Re: バグのはなし</title>
       <link>https://messagepassing.github.io/001-bug/02-kzys/</link>
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>kzys</author>
       <guid>https://messagepassing.github.io/001-bug/02-kzys/</guid>
       <description>他人にバグ修正を頼むのはよくないという反省から、このあと森田は OS ツリーのビルド、インストール方法を調べ 手元で OS のコードをいじれるようにしたのだった。ただしその成果を発揮する日は今の所きていない。来なくていいです
 サーバサイドのかっこいいバグの話なんかないですか &amp;gt; 和良
@@ -6280,7 +6280,7 @@ seccomp Firecracker では Linux の seccomp という仕組みを使って、Fi
       <title>バグのはなし</title>
       <link>https://messagepassing.github.io/001-bug/01-morrita/</link>
       <pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
-      
+      <author>morrita</author>
       <guid>https://messagepassing.github.io/001-bug/01-morrita/</guid>
       <description>なにか話すことはないかと Hacker News をみていたら（ろくでもない）、 Youtube や Gmail など Google のサービスが一時間落ちていたというニュースで 盛り上がっていた。担当者の想像するだけで胃が痛い。
 森田はクライアントサイドで仕事をしているので、この手の outage は起きない。 けれど自分のところに担当したくないイヤなバグが回ってくることはたまにある。 そういうのを精神衛生を害さない程度で思い出してみたい。
