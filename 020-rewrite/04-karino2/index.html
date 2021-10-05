@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html><head>
+    <title>失敗する書き直し、成功する書き直し&nbsp;/ karino2&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/020-rewrite/04-karino2/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='失敗する書き直し、成功する書き直し&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="og:description"        content='いま目の前にあるこのコード、ついカッとなって書き直しちゃダメ？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='失敗する書き直し、成功する書き直し&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='いま目の前にあるこのコード、ついカッとなって書き直しちゃダメ？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>失敗する書き直し、成功する書き直し</td></tr>
+        <tr><th>From</th><td><a href="https://karino2.github.io/">karino2</a></td></tr>
+        <tr><th>Date</th><td>2021-09-15</td></tr>
+      </table>
+      <article class='content'><p>全体的な事を言えば、自分は書き直し反対派と思う。
+morritaさんの言う20年前の意見をほぼそのまま現代まで持っている。
+頭の硬い古い老人という事だろう。</p>
+<p>そういう訳で、そんな古い側の人間が書き直しについてどんな事を思っているのかを書いてみたい。</p>
+<h2 id="失敗するケースは割と限定されている">失敗するケースは割と限定されている</h2>
+<p>ソフトウェアの書き直しには、成功するものと失敗するものがある。
+失敗する条件を厳密に挙げるのは難しいけれど、失敗する書き直しは、自分は見れば分かる、と思っている（本当に分かるかは議論の余地があるけれど）。</p>
+<p>まずshinhさんの言っている半分素人が挑戦するケースは良く見かける。これはまぁいい。全然良く無いけれど。</p>
+<p>それ以外で良く失敗するのは、ある程度の規模、だいたい10万行以上のソフトウェアで、
+その時点で多くのユーザーを持っていて、
+書き直しにかなりの時間と人がかかる奴が多いと思う。
+そしてデスクトップ、iOS、Androidなどのアプリで作りがモノリシックである必要がある類の物と思う。</p>
+<p>書き直し、という場合、自分が想定するのは、スクラッチからの書き直しで、途中でやめられないもの。
+ある程度まで進めないと全く価値が無いソフトウェアコンストラクションを書き直し、と思っている。
+パーツずつ置き換えていって最終的に全部が置き換わる、というのは、
+上記の10万行以上の書き直し、とは思わない。
+というのは、ある程度規模のソフトウェアについてパーツずつ置き換えていく場合、ほぼすべてのケースにおいて、
+最初は全部置き換えようと思っていても、
+10万行以上のかなりの部分は書き換わらず残るからだ。それは書き直しという言葉とは合わないと思っている。</p>
+<p>また、それらの条件を満たしていても、書き直す元が何らかの理由で使えないものは比較的うまくいく。
+例えば昔書いた事があるがそれは別の会社でそのソースは手元に無い、みたいな場合とか。
+書いている人間にとっては書き直しだけれど、その会社にとっては新規開発。こういうのは割とうまくいく。
+会社が同じでも、例えばWindows版があるがweb版が必要になった、みたいな、
+大きく環境が変わるケースでも書き直しはうまくいく事が多い。
+この場合も新規開発に近い。</p>
+<p>うまく行かないのは現行ユーザーがいて、メンテナンスもしていて、
+それをいじるとたくさんバグが出たり多くの案件に影響を与えてしまうから、別途ゼロから書き直す、みたいなもの。
+書き直さないという選択肢がある状態で書き直しを選ぶものが、良く失敗する。</p>
+<p>逆に言えば、失敗するケースというのは結構限られている。
+規模が小さければそもそもそんなに失敗しないので、構造的に小さく置き換えていけるなら失敗はしない。
+kzysさんの言っているのもこれに近いと思う。</p>
+<p>規模が大きくても、手元に開発を続けているものが無い書き直し、
+例えばkzysさんのcontainerdとかshinhさんのkatiとかも上記の条件とは合わない。</p>
+<p>そう考えれば書き直しで失敗しないものは多い。
+ではなぜ自分は書き直し反対原理主義なのか？</p>
+<h2 id="失敗するパターンの書き直しに失敗する時の被害はすごく大きい">失敗するパターンの書き直しに失敗する時の被害は、すごく大きい</h2>
+<p>失敗するパターンは結構限られていて成功するパターンが多いのだけれど、
+失敗パターンは失敗すると、被害が凄く大きい。そして成功パターンのメリットは大してない。この非対称性が、失敗の方を誇張したくなる理由の一つ目。</p>
+<p>失敗するパターンは既にユーザーがたくさんついていて、しかも書き直したくなるほどにアクティブに変更が加えられている、という話をした。</p>
+<p>そういう状況で書き直しという選択をすると、しばらく更新が無くなる。
+その間に業界の状況は変わり、たくさんいたユーザーを失う、という事が良く起こる。
+そして一旦失われたユーザーは、元の開発に戻しても取り戻す事は出来ない。</p>
+<p>失敗するパターンは、被害が大きいパターンでもあると言える。</p>
+<p>一方でスクラッチから書き直してもうまく行くケースで、書き直さずにインクリメンタルに変更していっても、実際デメリットはあまりない（メリット、デメリットは後述）。</p>
+<h2 id="失敗パターンに巻き込まれるのはすごく辛い">失敗パターンに巻き込まれるのは、すごく辛い</h2>
+<p>失敗パターンでは、「自分はこのケースは失敗するという確信を持っている」が、回りは「自分は今回はうまくいくことが分かっている」と思っているケースは良くある。
+そういうケースでは自分は早々に撤退するので当事者として被害を受ける程では無いけれど、
+本当に多くの物を失うのを割と近くで見る事になるのでとてもつらい。
+しかも何度も同じような事を言って同じように失敗していくのを見ると、何やっても結末の変わらないループ物を見せられているような気分になる。辛い。</p>
+<p>割とベテランで普段はまともな判断をしているプログラマでも、書き直しの失敗パターンは全然分かってない事がある。
+プロジェクトのステークホルダーの多数派がイケると思っていると、書き直しを止めるのは難しい。</p>
+<p>こういう辛い思いを何度かすると、もっと書き直しには失敗するパターンがあるというのを広く皆に知らしめて、
+もう同じような不幸な出来事が二度と起こらないようにしよう、という気分になる。
+長々と失敗するケースとかをいろいろ説明するのも大変なので、
+原則書き直しは全部無しって事にしておこうよ、と言いたくなる。</p>
+<p>この失敗するケースが他のプログラムのプラクティスに比べると広くは共有されていない所が、失敗の方を誇張したくなる理由の２つ目。
+特に共有されてないせいで止められなかった苦い経験を何度か持つと、書き直し反対側に大きく振れがちなんじゃないかと自己分析する。</p>
+<p>以下ではこの共有されてないと自分が思っている事について、いくつか書いてみたい。</p>
+<h2 id="変更出来ないから書き直すという間違い">変更出来ないから書き直すという間違い</h2>
+<p>多くのユーザーがついたり多くのプロジェクトで使われたりして、
+大きく育ったソフトウェアには、良くバグる複雑な所、というのが出来上がる事がある。
+これは少しいじると様々にバグったり、自分が把握していないようなプロジェクトで意外な影響が出たりして、
+ここをいじるのはすごくリスクが高く、難しい、と感じる。
+何度かいじっては痛い目にあって、だんだんとそこをいじる事に臆病になる。</p>
+<p>こういう時に、もう変更は出来ないのでゼロから書き直したい、というのが良くある誤りのパターン1に思う。</p>
+<p>多くのプロジェクトやユーザーで使われ続ける状態で大きくいじるのが難しいからといって、
+多くのプロジェクトやユーザーで使われないようにしていじる事はできる。</p>
+<p>つまり、良くある誤りとして、選択肢は以下の２つと勘違いしているが、</p>
+<ol>
+<li>ユーザーやプロジェクトで使われてる状態でいじって大きな被害を出す</li>
+<li>新しく書き直す</li>
+</ol>
+<p>本当は選択肢は３つある、という事だ。</p>
+<ol>
+<li>ユーザーやプロジェクトで使われてる状態でいじって大きな被害を出す</li>
+<li>新しく書き直す</li>
+<li>ユーザーやプロジェクトで使われないようにしていじる</li>
+</ol>
+<p>この三番目がベストな選択肢の時に2を選ぶのが失敗パターンとも言える。</p>
+<p>この三番目は、二番目と変わらないじゃないか、とか、むしろ二番目の書き直すの方が早い、
+という主張は良くなされるが、
+実力者がやればいじっていく方が絶対に早い。</p>
+<p>こうした大きな書き直しをインクリメンタルにうまくやる技術は、
+morritaさんの言うJoelが書き直しがダメだと言った時代から大きく進展した。
+そうした進歩を習得出来ていない人ほど「新しく書き直さないと書き換えられない」と主張してきた過去があり、
+それにいちいち反発して来たために、自分は現在では頭の固い原理主義的な反書き直しの主張をするようになったのだと思う。</p>
+<p>また、この3のやり方には、次に述べる状況の変化に対応しやすい、というメリットもある。</p>
+<h2 id="不確定な人的リソースやスケジュールを所与の条件と勘違いする間違い">不確定な人的リソースやスケジュールを所与の条件と勘違いする間違い</h2>
+<p>多くのユーザーやプロジェクトで使われているようなソフトウェアで、しかも書き直したいと思うほどにメンテナンスとかで日常的にいじってるものであるなら、
+そこには多くのマーケット的な事情が付随していて、しかもそれはコントロール下には無い。
+その派生的な条件というのは、マーケット的な状況の変化に大きく影響を受ける。</p>
+<p>例えば7人のプログラマで12ヶ月かけて書き直す、という事が決まったとする。
+7人のプログラマで12ヶ月かけて書くなら書き直しも終わるな、と思ったとする。
+でもこういう、スケジュールとかアサインされている人間とかの事情は、
+マーケットの変化に影響を受けて変わる要素だ。</p>
+<p>だから「こうした要素が固定であれば書き直しはうまくいく」という仮定にはあまり意味が無い。
+それは「仕様に一切の問題が無ければ仕様を決める人とは連絡が取れない状態で開発しても構わない」というのと同じような、プログラマが責任を持って止めないといけない類の誤りだろう。</p>
+<p>けれど仕様というのが本質的に最初の時点では不確定ということほどには、書き直しでのこれらの条件が想定と大きく変わる、という事情はコンセンサスが取れていない気もする。
+例えば以下のようなやりとりがあったとしよう。</p>
+<p>マネージャ「Aさんが、競合と同じくらいの速さを実現するにはいろいろな事情で書き溜められてしまった良くない構造を抜本から直す必要があって、スクラッチから書き直したいと言っているけど、出来ると思う？」<br>
+プログラマB「どのくらいの期間で何人くらいの想定ですか？」<br>
+マネージャ「7人で12ヶ月くらいかなぁ」<br>
+プログラマB「そのくらいなら完成すると思いますよ」</p>
+<p>こういうやり取りは凄く良くなくて、プログラマBは書き直しの場合にこの「7人で12ヶ月」というのはおそらく維持されないという事が分かりきっているがマネージャーは分かっていない、という事が多い。
+これは仕様が最初に完璧なら〜と同じく、プログラマBがそういう事は実際には起こらないのが普通だ、とちゃんと説得する必要があると自分は思う。</p>
+<p>こうしたケースでの書き直しの失敗は壊滅的な被害を生む。これを止められるのも止めるべきだと分かっているのもプログラマBしか居ないと思うのだけれど、
+プログラマBは実際は聞かれた事に答えただけで、しかも答え自体が間違っているという訳では無い（事が多い）ので、自分の責任では無い、と思っていたりする。
+実際プログラマBの責任では無いかもしれないけれど、だいたいこういうシチュエーションで自分が止めようとすると、たくさんのプログラマBに阻まれて止められないのですよね…<br>
+まぁカリスマCTOがバシっと止めるべきケースなのかもしれない。</p>
+<p>ユーザーがついているようなソフトウェアで頻繁にいじる必要があるくらい要求がいろいろあるソフトウェアで書き直しを選択すると、しばらく更新が無くなる。
+そういった時に競合や市場の変化で状況が変わるのは、例外というよりはむしろ当然の事で、プログラマなら当然予想すべき事だ。</p>
+<h2 id="書き直しのメリットメリットと誤解されがちな事">書き直しのメリット、メリットと誤解されがちな事</h2>
+<p>最後にちょっと毛色は違うが、書き直しのメリットや、メリットと誤解されているが実際にはそんなメリットは無いんじゃないか、
+と思う事について、簡単に自分の考えを書いてみたい。</p>
+<p>書き直しのメリット、書いてて楽しい。
+特に日々いじってはバグがでてうんざりしている時には「ひゃっほーい、全部捨ててやりなおしてやったぜ！」という開放感は素晴らしい。
+日々の楽しさは非常に重要だが仕事では過小評価されがちな要素に思う。</p>
+<p>書き直すのは、設計に関する学習効果が高い。
+一回目書いたものより二回目書いたものの方がずっと良い設計になる。
+二回目よりも三回目に書いた方が良い設計になるが、一回目と二回目ほどの差は無い。
+三回目と四回目はそれほど変わらない。
+書き直しは三回くらいまでは良くはなるから、
+書き直さざるを得ない理由があるなら、三回くらいまでは書き直しても良いと思う。</p>
+<p>書き直した方が早い、というのは書き直す理由で良く言われるが、書き直す方が早いという事は無いと思う。
+もともとのコードで多くのバグが出ていじるのが大変な時は、書き直しても安定化させるのに長い（だいたいは当初の想定よりも長い）時間が掛かる。</p>
+<p>上でも述べたけれど、書き直すしかない、というのも良く言われるけれど、別に変更していって同じ事はだいたい出来るので事実では無い事が多い。だから書き直す事でしか実現出来ない事が実現出来る、というメリットは良く期待されるが、気のせいな事の方が多いと思う。</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+書き直しの当事者はうまくいくと思っているの、本当にそうなので不思議ですよね。
+でも一定以上経験があるベテランの場合、結論先にありでしらばっくれていたり自分で自分を騙したりしているケースもあるんじゃないかな。
+書き直したくなるようなコードを毎日相手にしてると、ほんとにイヤになっちゃうときあるからね。
+</div>
+</div>
+</article>
+    </div>
+
+    <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a href="https://messagepassing.github.io/020-rewrite/05-jmuk/"  class="pagination-next">
+      書き直しイクナイ
+      <span class='tag'>jmuk</span>
+    </a>
+    
+    
+    <a href="https://messagepassing.github.io/020-rewrite/03-kzys/"  class="pagination-previous">
+      二周目ならば俺 TUEEEE がしたい
+      <span class='tag'>kzys</span>
+    </a>
+    
+    </nav>
+  </div>
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/020-rewrite/'>書き直しのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/02-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/05-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/06-morrita/'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/020-rewrite/' class='is-active'>
+          書き直しのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/019-advice/'>
+          助言のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

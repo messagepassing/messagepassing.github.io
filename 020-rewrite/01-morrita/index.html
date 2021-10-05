@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Rewrite Obsession&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/020-rewrite/01-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='Rewrite Obsession&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='いま目の前にあるこのコード、ついカッとなって書き直しちゃダメ？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='Rewrite Obsession&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='いま目の前にあるこのコード、ついカッとなって書き直しちゃダメ？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>Rewrite Obsession</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-08-17</td></tr>
+      </table>
+      <article class='content'><p>「ソフトウェア書き直し」の是非はなぜか目の離せない話題(<a href="https://anemone.dodgson.org/2015/04/09/probablistically-sacrificial/">1</a>, <a href="https://anemone.dodgson.org/2015/04/13/age-of-non-rewrite/">2</a>, <a href="https://anemone.dodgson.org/2015/06/11/cover-songs/">3</a>)で、その手の話があるとつい読んでしまう。自分は仕事では別に書き直しを決断できる立場ではないし、余暇でも特に書き直すソフトウェアがない。他人事。なのに目が離せない。オブセッションと言っていい。なので数年に一度は心の中のリライト話を吐き出して精神の平安を取り戻したい。今日はそんな日です。</p>
+<h2 id="things-you-should-never-do">Things You Should Never Do</h2>
+<p>インターネットのプログラミング・サブカルチャーに「書き直し・ダメ・絶対」というミームを持ち込んだのは、今からおよそ 20 年前の 2000 年に Joel Spolsky が書いた <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/">Things You Should Never Do, Part I – Joel on Software</a> だと思う。(日本語訳は<a href="https://www.amazon.co.jp/exec/obidos/ASIN/4274066304/">本になっている</a>。昔はインターネットでも読めた気がするんだけど。) これは <a href="https://en.wikipedia.org/wiki/Netscape">Netscape</a> という会社が書き直した主要製品 Netscape Navigator に関する話である。同社はブラウザをフルスクラッチで書き直し、でもその出荷が遅れに遅れ、競合の Internet Explorer に市場を明け渡すことになった。結果として Netscape という会社は傾いて、数年後には買収され、なくなってしまった。残念でしたね。やっぱり書き直し良くないですよね。やめといた方がいいですよ、書き直さなくてもアーキテクチャとか直せますから・・・とまあそんな話だ。</p>
+<p>当時の人々はこれを読んでわりと説得され、書き直し良くないな・・・とか思ったりしていた。時代の流れもあった。書き直しの主要な代替であるリファクタリングを世に広めた Martin Fowler の書籍 <a href="https://martinfowler.com/books/refactoring.html">Refactoring</a> の出版が 1999 年。ちょうと世の中のプログラマが「クソコードを書き直さなくても心を病まずに済む方法があるかもしれない・・・」と気づきはじめた頃だった。</p>
+<p>逆に言うと「リファクタリング」という行為は今ほど当たり前ではなかった。だから Joel の主張にも新鮮味があった。</p>
+<p>先の要約は実はちょっとウソがあった: &ldquo;Things You Should Never Do&rdquo; は Netscape が Netscape Navigator のベータ版配布をはじめた時に書かれている。つまり Netscape が潰れる前に書かれ、期待の新バージョンにめっちゃ水を差している。世の中（サンプル数 1, つまりわたくし) はこの新バージョン Netscape Navigator をすごく楽しみにしていた。なんか UI もかっこよくなったりして、こいつはすごいことが起こりそうだぞ今のところバグだけでクソ遅いけど・・・みたいな気分だった。そこに Joel は「クソ遅くてバグだらけなのは書き直しだからだよ」と数年後の崩壊を予言したわけで、先見の明ある慧眼記事として人々はそのあとしばらく読み継いだわけ。</p>
+<p>けれど 20 年後の我々はもっと色々なことを知っている。Netscape の中の人はその後に買収元の AOL を説得し、Netscape Navigator 5 をオープンソース化した。これは史上初といってよいガチな企業発 OSS だった。コードをオープンソースしたのみならず、中の人は Mozilla という新会社/非営利団体をスピンアウトして開発を続け、Netscape Navigator も Firefox という超人気ブラウザとして蘇り、Web 2.0 とかを後押しして Microsoft の脅威となった。つまり書き直しは Netscape (会社) を潰したけれど Firefox (製品) を生み出した。これじゃダメなの？</p>
+<h2 id="go-from-c-to-go">Go, from C to Go</h2>
+<p>一方のリファクタリングも 20 年の間にずいぶん進化した。IDE のリファクタリングサポートやプログラミング言語の AST アクセス容易化のような技術革新もあったし、<a href="https://www.martinfowler.com/microservices/">Microservices</a> のような大規模インターネットソフトウェアのリファクタリング・パターンも広く知られるようになった。バーンと書き直さなくても、書き直したいところをリファクタリングで切り出して、そこだけ書き直せばいいじゃん。そんな考えが普通になった。</p>
+<p>自分はある時期までリファクタリング原理主義者だったので、イチからソフトウェアを書き直すのはプログラマがザコだから・・・というのは煽りすぎだけど、眼の前の問題に対して実力が足りないからだと思っていた。この主張を裏付ける世の中のハイテクリファクタリングも、オープンソースやエンジニアリング・ブログの隆盛に伴い色々と目にした。たとえば従来難しいとされていたデータベースの<a href="https://stripe.com/blog/online-migrations">オンラインスキーマ変更</a>や移行も、人々は普通にやってのけるようになった。&ldquo;database migration dual write &lt;新し目のデータベース&gt;&rdquo; とか<a href="https://www.google.com/search?q=database+migration+%22dual+write%22+spanner">検索する</a>と簡単に事例が見つかる。</p>
+<p>ハイテク・リファクタリングの金字塔の一つは <a href="https://talks.golang.org/2014/c2go.slide#1">Golang コンパイラの C から Go への書き換え</a> だと思う。従来はイチからの書き直しの口実になりがちなプログラミング言語の乗り換えを、<a href="https://github.com/rsc/c2go">コード翻訳ツール</a> を併用することで安全に乗り切っている。ほらね、眼の前の問題に対して十分な実力があれば書き直しとか必要ないでしょ？</p>
+<p>この例のいいところは「そんな実力あるわけねーだろ！」心置きなくつっこめるところ。<a href="https://swtch.com/~rsc/">Russ Cox</a> より実力なくてもまったく困らない。いや困るかもしれないけど、それは人類プログラマ数名を除きだいたいみんな困ってる。</p>
+<p>こうして、リファクタリング・・・より一般化していうと安全で漸近的なレガシー殺しは、かっこいいものになった。少なくとも森田の中では。</p>
+<h2 id="showstopper">Showstopper!</h2>
+<p>書き直しの方はというと、まあ色々あると思うけど自分の印象にのこっているものをちょこっと紹介する。</p>
+<p>「リファクタリング」が常識になる前の 20 世紀、書き直しは自殺行為ではなく、時にかっこいい英雄的行為だった。その象徴が Windows NT という Windows 10 の祖先の開発を描いた書籍 &ldquo;<a href="https://www.amazon.co.jp/dp/4822247570">闘うプログラマー</a>&rdquo; だと思う。原初 <a href="https://www.amazon.com/Show-Stopper-Breakneck-Generation-Microsoft/dp/0029356717">Showstopper!</a> の出版は 1993 年。Windows NT では、何年も書けて Windows という OS をまあまあイチから書き直している。このやばいデスマぶりを描いたのが「闘うプログラマ」。とはいえ商業的にみると（そしてたぶんテクニカルにも）Windows NT は大成功した。デスマに巻き込まれた当時の Microsoft 社員も家の一つくらいは建ったことだろう。デスマにしても、自分はこのプロジェクトでは絶対に働きたくないけれど友人の中には「俺も<a href="https://en.wikipedia.org/wiki/Dave_Cutler">カトラー</a>の下で一つ偉業を成し遂げたいもんだわ」という猛者もいて、そこにある種の魅力はあった。つまり Joel Spolsky がかつて働いていた Netscape 殺しの Microsoft も、なんだかんだで書き直しをしていた。</p>
+<p>時の流れを比べるため、最近読んだリライト・デスマ・ストーリーを一つ紹介したい: &ldquo;<a href="https://blog.pragmaticengineer.com/uber-app-rewrite-yolo/">Uber&rsquo;s Crazy YOLO App Rewrite, From the Front Seat</a>&rdquo; は 2016 年に行われた Uber のスマホアプリ書き直しの様子を当事者が伝えている。イベント登壇中の社長の発言によって決まる根拠レスな締切。ダークローンチ無し、段階的ロールアウト無しの博打リリース。ホテルに缶詰のオールナイター。燃え尽きていく人々。モバイル固有の厳しさを差し引いても四半世紀の技術的進展を感じさせない荒々しさがすごい。これがユニコーンってやつか・・・。</p>
+<p>当時の Uber を包んでいた時代の風によってこのリライトは奇跡の成功を収める。しかし Windows NT と違って時代の風は長く続かず、翌年 2017 年の<a href="https://www.susanjfowler.com/blog/2017/2/19/reflecting-on-one-very-strange-year-at-uber">内部告発</a> (スマホデスマとは無関係) によって件の社長は職を追われたのであった。<a href="https://www.google.com/finance/quote/UBER:NYSE">株価を見る限り</a>今も業績はぱっとしなげ。</p>
+<p>そういえば Showstopper! の Microsoft でも, Windows の書き直し的プロジェクトだった Longhorn (2006) は失敗とみなされているな。いわゆる書き直しとはちょっと違う気もするけど。</p>
+<h2 id="servo">Servo</h2>
+<p>まあデスマの話は置いておこう。自分にとってここ 10 年くらいで一番印象的だった書き直しは、なんといっても <a href="https://servo.org/">Servo</a> だな。</p>
+<p>Servo は Mozilla によるウェブブラウザの書き直しである。プログラミング言語 (<a href="https://www.rust-lang.org/">Rust</a>) から作っているので、正真正銘のイチからの書き直しと言える。JavaScript の処理系は再利用しているけどそれはまあ、いいじゃん。プロジェクトの開始は 2012 年らしい。Netscape Navigator 5 以来 10 年ぶりのリライトと見ることもできる。NN は C から C++ に移行したけれど、今度は C++ から特製言語の Rust. そして Firefox の次バージョンではなく research という位置づけを選んだ。つまり Firefox は並列に開発を続けている。</p>
+<p>その後 Servo の CSS パーサ Stylo や GPU ベースのレンダラ WebRender など、いくつかの成果は <a href="https://wiki.mozilla.org/Quantum">Quantum</a> というプロジェクトとして Firefox に持ち込まれ、一定の成果を挙げた。けれど Servo は成功した&hellip;と素直に言うのはちょっと難しい。なにしろ去年の<a href="https://blog.mozilla.org/en/mozilla/changing-world-changing-mozilla/">レイオフ</a>で　Mozilla は Servo や Rust の開発者をばっさり解雇してしまった。Servo はオープンソースなので開発は一応続いているが、<a href="https://github.com/servo/servo/graphs/contributors">減速は著しい</a>。NN のときとちがって Servo の開発の遅れがレイオフの主因ではないとおもうけど、(たぶん <a href="https://en.wikipedia.org/wiki/Firefox_OS">Firefox OS</a> のようがよっぽど人と金をつっこまれていたと思うし。) それでも開発者がクビになってしまったプロジェクトを成功と呼ぶのは憚られる。</p>
+<p>やはり Servo は書き直しの失敗で、Joel Spolsky は正しかったのだろうか。</p>
+<h2 id="flutter">Flutter</h2>
+<p>リライトでもリファクタリングでもないソフトウェアの大改造手法にフォーク、あるいは「魔改造」がある。元のコードを、互換性を気にせずバンバン書き換えていく。互換性を意図的に捨てる点で、魔改造はリファクタリングと対照的である。一方でコードの連続性はリファクタリングに通じる部分がある。この連続性はリライトと似ても似つかない一方、リファクタリングでは辿り着けないゴールを目指すショートカットとしてリライトと魔改造には似通ったところがある。リファクタリングとリライトを混ぜ合わせてひっくり返すと魔改造になる。</p>
+<p>興味深い魔改造の事例として、<a href="https://dart.dev/">Dart</a> という言語向けの クロス OS モバイル SDK <a href="https://flutter.dev/">Flutter</a> を挙げたい。</p>
+<p>Flutter はもともと Chrome (Blink) の魔改造プロジェクトとして始まった。2014 年に push された<a href="https://github.com/flutter/engine/tree/ae72930937b1a1522d1919a82ddc21da7d953229">最初のコミット</a>をみるとまだ <a href="https://github.com/flutter/engine/blob/ae72930937b1a1522d1919a82ddc21da7d953229/engine/core/html/HTMLElement.h">Blink の姿</a>を見ることができる。当時は Sky と呼ばれていたこのプロジェクト、なにがしたいのかは多分誰にもわかっていなかった。README にも &ldquo;We&rsquo;re experimenting with different ideas and exploring various approaches, many of which won&rsquo;t work and will need to be discarded, but, if we&rsquo;re lucky, some of which might turn out to be useful.&rdquo; と書いてある。その後プロジェクトからは HTML とかが取り去られ、JS は Dart に差し替えられ、やがてスマホのクロス OS な UI フレームワークとして収束していく。<a href="https://github.com/flutter/engine">今日のコード</a>にその出自を伝える要素は無い。</p>
+<p>魔改造をリライトやリファクタリングと同列に語るのにはやや無理がある。でも自分はどうしても Servo との対照を考えてしまう。Flutter はもともと、当時の Chrome (Blink) をどうにかして劇的に速くしたいという動機で始まった。たぶん Servo も Firefox に対して同じような思いがあって始まったと思う。だからスタート地点は、少なくともハイレベルには似ている。Flutter は Web 標準 &hellip; つまり仕様が複雑すぎるとみなし、それを捨ててみることにした。Servo は <a href="https://en.wikipedia.org/wiki/Gecko_(software)">Gecko</a> &hellip; つまり実装が複雑すぎるとみなし、それを捨ててみることにした。そんな双対がある。</p>
+<p>個人的に Dart はまったく好きでないし Android アプリ開発者としてクロス OS のフレームワークにも興味がないけれど、傍目から見たプロジェクトとしての Flutter はまあまあ成功したと言えるんじゃないだろうか。同じ用途だとたぶん React Native の方が人気とはいえ、二番手くらいにはつけている。インターネットのレビューとかを読む限りでは採用した開発者は概ね満足しているようだし。なにより Flutter の開発チームはクビになっていない（と思う。Google でプロジェクト失敗に伴うクビがあるのかよくわからないが）。</p>
+<h2 id="リライトの引力">リライトの引力</h2>
+<p>とはいえこう比べてみると Servo を失敗と呼ぶことへの抵抗も強くなる。Servo は Rust を生み出した。ソフトウェア産業への Rust のインパクトは Flutter よりずっと大きい。Rust に問題があるとすれば当初のスポンサーである Mozilla の助けにならなかったことだが &hellip; まあそういうこともあるじゃん。そういえば Netscape Navigator の書き直しも似たようなもので、会社 (Netscape) は潰れたけどその遺産 (Firefox) は人類に貢献した。もっというと Mozilla をクビになった Rust / Servo の開発者達は、プロジェクトに参加した自分の判断を後悔しているだろうか? 当時の Netscape 社員たちは? とてもそうは思えない。巨大ソフトウェアのリライトという野心的なプロジェクトは失敗の可能性も織り込んでいたはず。だから大局的には、星が揃わず博打が外れた、ただそれだけの話じゃないんだろうか。「ただそれだけ」で失業はちょっとイヤだけど。</p>
+<p>こうして古き良きリライトのかっこよさが自分の中のリファクタリングの正しさに影を落としている今日この頃ですが、皆様いかがお過ごしでしょうか。</p>
+</article>
+    </div>
+
+    <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a href="https://messagepassing.github.io/020-rewrite/02-shinh/"  class="pagination-next">
+      書き直しの記憶
+      <span class='tag'>shinh</span>
+    </a>
+    
+    
+    <a href="https://messagepassing.github.io/020-rewrite/01-morrita/"  class="pagination-previous" disabled>
+      はなしのはじまり
+    </a>
+    
+    </nav>
+  </div>
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/020-rewrite/'>書き直しのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/02-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/04-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/05-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/06-morrita/'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/020-rewrite/' class='is-active'>
+          書き直しのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/019-advice/'>
+          助言のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

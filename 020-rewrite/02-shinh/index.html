@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html><head>
+    <title>書き直しの記憶&nbsp;/ shinh&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/020-rewrite/02-shinh/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='書き直しの記憶&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="og:description"        content='いま目の前にあるこのコード、ついカッとなって書き直しちゃダメ？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='書き直しの記憶&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='いま目の前にあるこのコード、ついカッとなって書き直しちゃダメ？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>書き直しの記憶</td></tr>
+        <tr><th>From</th><td><a href="http://shinh.hatenablog.com/">shinh</a></td></tr>
+        <tr><th>Date</th><td>2021-08-29</td></tr>
+      </table>
+      <article class='content'><h2 id="書き直しの記憶">書き直しの記憶</h2>
+<p>書き直し、痛快な成功例も、なんだかなあな失敗例も見たような気がする。失敗例はこう、オリジナルの複雑さが何故存在してるかを理解せず、「現状のものはややこしすぎる、書き直してシンプルにする！」と半分素人みたいな人が挑戦したケースであることが多いように思う。オリジナルの複雑さは長年の実用にさらされて育ってきた、意味のある複雑性であることも多く、シンプルさを売りにして作ってみたものの、機能も性能もいまいち……などとなるパターン。</p>
+<p>森田さんも触れていた、 Netscape, Mozilla, Firefox, WebKit, Chrome などのブラウザ群は、苦しみはありつつも、ある程度以上にうまくいった、非常に大きな規模の書き直しだと思う。これらは中心になってるメンバーに、ブラウザ界のヌシ的な、なんだかずっとブラウザやってる人みたいな人達がいて、その人達が過去のプロジェクトの理解を元に、シンプルにできるところはしつつも、複雑性を受け入れるべきところは適切に受け入れるような、適切な設計をしたという面があるのではないかな、と思っている。</p>
+<p>コード量で言うと 1/1000 以下の、はるかに小規模な例だけど、僕が書き直しをやってみた例として、 GNU make をある程度再実装した、 <a href="https://github.com/google/kati">kati</a> というのがある。これは始めてみると想像していたよりはるかに GNU make の仕様がヤバかったというのがあり、まさに「現状の複雑性をまるで理解していない素人」だったので、蛮勇の類だったように思う。 kati はある程度うまくいったのだけど、これはなんというかラッキーで、現状の複雑な仕様をある程度捨てても、それなりに実用的なラインまで持っていけるプロダクトだった、ということなのかな、と思っている。</p>
+<h2 id="自分が過去に作ったものを書き直す話">自分が過去に作ったものを書き直す話</h2>
+<p>書き直し、いろいろな対立軸があるのかな、と思う。小さい書き直しと大きな書き直し、うまくいくケースとうまくいかないケース、森田さんが書いていたようなリファクタリングが良いケースと書き直しが良いケース、など。このへんも面白いトピックだと思うんだけど、個人的に気になる軸として、他の人が作ったものを書き直す場合と、自分の作ったものを書き直す場合があると思う。</p>
+<p>僕としては、あまり自分が過去に書いたものを書き直す、というところにモチベーションを持ちにくい。なんかもう一回やればもうちょっとうまくやれるだろうな、などとは思うんだけど。ざっと思い返すと、プログラム言語を学ぶ時の小規模だけど非自明な習作として、オセロを4回くらい書いたくらいかな。あとダイナミックローダは名目や規模がそれぞれバラバラなので、あまり書き直しという感じもしないけど、4回くらいいじったことがある気がする</p>
+<p>得意なことをさらに得意にして、より良いプロダクトを作る、という動きの方が、おおげさな言いかたをすると人類に貢献している気がしている。僕としては、あまり人類に貢献したいみたいな気持ちはないんだけど、なんとなく一つのことを極める方がカッコ良いような気がする気持ちがある。ブラウザ界のヌシみたいな人のエピソードで記憶に残っているのが一つある。その人はすっごい有能で、みんな意見を欲しがっている。だけど、ブラウザ標準カンファレンスであるところの、 w3c になんか来ていない。来るって言ってたはず、らしい。とはいえ彼の意見がないと結論に自信が持てないから、 skype かなんかでつないで、むっちゃ音質悪いのを、みんなで必死に何を言ってるか聞きとっている、みたい状況になった。いや偉い人だからってその態度はどうなんだ……ともちろん思うんだけど、現場に来てなくてロクに議論を聞いてないにも関わらず、みんなが意見を求めざるを得ない圧倒的専門性には、こう、いやすげーなと</p>
+<p>そういう、一つのことを極める系の動きにモチベーションがわかないの、ちょっとコンプレックスだったんだけど、ここ5年くらいは、まあなんか違う種類の人間だよなってことで気にならなくなっている。なんかでも、一つのこと極められる系の人たちは、どういう気持ちの持ち方なんだろうな、ってのは結構気になる。 ruby のなかださんとか、もう生活の一部なんだろうけど、何食べたらああいうことが可能になるんだろうか……とか。それ以外だと同じく ruby ずっといじってるささださんとか、リンカ書き直し回数が <a href="https://www.airs.com/blog/archives/38">Ian Lance Taylor の 3 回</a> と並んで人類最多になってそうなうえやまさんとか。</p>
+<h2 id="他人が作ったものを書き直す話">他人が作ったものを書き直す話</h2>
+<p>一方で、僕も、他の人の書いたものを書き直すのは、それなりに食指が動く。ただなんか、あまり現実的にやりたいネタがないのが今日この頃。いや、デバッガ、 C++ コンパイラ、エディタ、あたり自分で書いてみたいな……と思ってるんだけど、これらは規模が大きすぎて、現実的に完成する気がないし、すごくパッションがあるわけでもない</p>
+<p>というわけで、個人的な趣味嗜好を中心に書いてみました。ところで、森田さんはこのトピックを提案した時の最初の発言で</p>
+<blockquote>
+<p>仕事でも趣味でも、書いたりかかわったりしたコードのなかに書き直したいなーというものはありますか。
+自分は昔はあって、今はなくて、合ったほうが良いなーとおもっている（野心として）。</p>
+</blockquote>
+<p>と話をふってたんですけど、森田さんの話は森田さん自身のパッションの話がないなーと思った。そのへんどんなもんですかね？というのを聞きたい気がする。ブラウザ作りなおしたいとか、ないものですかね</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+Kati は Android ビルド用 Makefile をターゲットにしていたわけですが、その Android は <a href="https://blog.bazel.build/2020/11/12/aosp_migrating_to_bazel.html">Bazel への移行計画を表明しており</a>、おまえら正気かい・・・ <a href="https://source.android.com/setup/build">Soong</a> は <a href="http://tools.android.com/tech-docs/jackandjill">Jack/Jill</a> に続いて失敗したわけだがまだやるのかい・・・みたいな気分になりました。それはさておき <a href="/020-rewrite/06-morrita/">お返事は別に書きました</a>のでご笑覧ください。
+</div>
+</div>
+</article>
+    </div>
+
+    <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a href="https://messagepassing.github.io/020-rewrite/03-kzys/"  class="pagination-next">
+      二周目ならば俺 TUEEEE がしたい
+      <span class='tag'>kzys</span>
+    </a>
+    
+    
+    <a href="https://messagepassing.github.io/020-rewrite/01-morrita/"  class="pagination-previous">
+      Rewrite Obsession
+      <span class='tag'>morrita</span>
+    </a>
+    
+    </nav>
+  </div>
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/020-rewrite/'>書き直しのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/04-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/05-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/06-morrita/'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/020-rewrite/' class='is-active'>
+          書き直しのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/019-advice/'>
+          助言のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

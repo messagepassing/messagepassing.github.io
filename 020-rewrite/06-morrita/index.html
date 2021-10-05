@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html><head>
+    <title>書き直しという夢&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/020-rewrite/06-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='書き直しという夢&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='いま目の前にあるこのコード、ついカッとなって書き直しちゃダメ？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='書き直しという夢&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='いま目の前にあるこのコード、ついカッとなって書き直しちゃダメ？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>書き直しという夢</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-09-29</td></tr>
+      </table>
+      <article class='content'><h2 id="個人的な体験">個人的な体験</h2>
+<p>書き直し。カッとなってバーンのやるのは悪手で、リファクタリングのように漸近的とは行かないまでも境界のはっきりした小さな部分問題を上手に切り出してシュッとやるのが良い。皆が書いたのを読んでそんなコンセンサスを確認できました。それができるコードベースならカッとならない気もするけれど。</p>
+<p>そういえば個人的な話を書いていなかったと<a href="/020-rewrite/02-shinh/">はまじさんに言われて</a>気付いた。</p>
+<p>自分は新卒入社した会社でカッとなって書き直しをした結果ひどいデスマをやらかした体験があり、そのトラウマからアンチ書き直し派になった。<a href="%7B/020-rewrite/05-jmuk/">向井さん</a>の体験と似ていなくもないけれど、自分でやらかしてしまった。ちなみに同じ会社ではより大規模な失敗書き直しが進行中だったし、その後転職した中小零細二社でもやはり書き直し失敗事例を目にした。書き直しの失敗は珍しくないし、そこからリファクタリングの価値を見出すのも自分たちの年代の同時代性かなと思う。書籍 <a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code-dp-0201485672/dp/0201485672/">&ldquo;Refactoring&rdquo;</a> の初版は、自分が学生だった 1999 年に出ている。</p>
+<p>一方、今まで一番熱心に仕事のコードを書いたのもその失敗書き直しだった。自分は当時ガラケー組み込み向けブラウザの SVG レンダラを開発していて、前任者から引き取ったコードがあんまりだったので書き直しを決めたのだった。（上司が阻止しなかったのは今思うと不思議。）オブジェクトモデルからラスタライザまで全部書き直し。朝から晩まで新しいデザインについて考えて、晩から朝までコードを書いていた。若かったのもあるし働きすぎて精神衛生を損ねたりもしたけれど、自分でぜんぶやる万能感は熱意に繋がっていたと思う。</p>
+<p>今の会社でやっている仕事に、そういう熱意や責任感はない。真面目に働いてるけれど、他人のコードへの達観が根にある。例えば TL になって自分に責任が降ってきたらどうかというと・・・あんまり嬉しくないな。世の中の後任 TL はちゃんと責任とってて偉い。</p>
+<h2 id="板につく妥協">板につく妥協</h2>
+<p>仕事への責任感とかは選択の問題でもあるので置いておくとしても、リファクタリングような連続的、漸近的なソフトウェア開発の様式をメンタルモデルのデフォルトとして受け入れることで失われるもあると思う。具体的にいうと、自分は理想のコードのデザインを考えなくなってしまった。</p>
+<p>漸近的な改善は、デザインを現状との差分として考える。そうである必然性はないが、少なくとも圧力はある。あるべき理想を考え、その理想に至る長い差分の連鎖を探求するには実力が必要。実力がないとカッとなって書き直しというショートカットをするか、遠くの理想を諦め手近な改善で妥協する。後者は局所最適になってしまう。</p>
+<p>漸近的な改善ばかりやっていると、アーキテクチャ全体への理解もさぼりがち。目につく範囲の不便を解決していくだけで仕事になるので、end-to-end のアーキテクチャをわざわざ学ばない。こうして理想への距離がまた一歩遠のく。</p>
+<p>たとえば自分がある時期まで専門家みたいな顔をしていたウェブブラウザ、その全貌を理解していたかというと、してない。WebKit/Blink というレンダリングエンジンのレベルですら理解は曖昧だった。今のカメラアプリに至っては現像パイプラインのコードなんてほぼブラックボックスで、ぜんぜんわかってない。読んですらいない。（<a href="https://www.hdrplusdata.org/">論文</a>だけ読みました。) それでも仕事になる。むしろさっさと成果を出したいなら悠長に他人のコードとか読んでられない。</p>
+<p>書き直しは逆だ。アーキテクチャの探求や E2E での理解を強制される。もちろんこちらにも限界があって、つまり俯瞰はできたが解像度が低いなんてことはよくある。書き直して無駄な複雑さをぶっとばそうとする素人書き直しは概ねこの低解像度に起因している。とはいえ漸近志向では目をそらしがちな視座を持てるのもまた事実だと思う。</p>
+<p>理想的にはこんな風にできるとよい: 眼の前にある問題から数歩さがって全体を俯瞰し、ソフトウェアのあるべき姿についてよく考える。その理想に近づける現実的で漸近的な道筋を描いて仮説をたて、その仮説を検証するようにコードを一歩づつ書き換えていく。&ldquo;Think big, act small&rdquo; ってやつ。</p>
+<p>これが難しいのは理想までの距離の長さだけでなく、その道程に山や谷があるからだと思う。理想に近づく過程ではしばしば局所最適から外れる必要がある。道から外れて暗闇を歩く苦しさや見通しの悪さに怖気づき、心やテストが挫ける。あるいは周囲を説得しきれない。</p>
+<h2 id="夢のある書き直し">夢のある書き直し</h2>
+<p>自分の勤務先、前代の無茶振り社長がいなくなってから <a href="https://www.wired.com/2013/01/ff-qa-larry-page/">Moonshot</a> という言葉をあまり使わなくなった気がする。代わりに最近、チームの PM が <a href="https://rework.withgoogle.com/blog/the-roofshot-manifesto/">Roofshot</a> というのを聞いた。月にいかなくてもいいから屋根には登ろう、みたいな。「書き直しではなく正しいエンジニアリングの力で漸近的変更を通じ谷と山を越えて行こう」という主張とも理解できる。でも谷には狼、山には熊がいるのを自分たちは知っている。何も考えず空に向かってポンコツロケットを飛ばしていたかつての無謀さが少し恋しい。</p>
+<p>自分が仕事で手伝ってきた製品は今のところ消滅していないので、結果としてポンコツではなかったロケットたちだと言える。そして、よく考えてみるとこいつらはどれも書き直しである。Chrome というブラウザは<a href="https://arstechnica.com/uncategorized/2005/01/4549-2/">転職してきた Firefox 関係者たち</a>がはじめた書き直しだし、今やってる Pixel Camera は<a href="http://graphics.stanford.edu/~levoy/">スタンフォードの教授</a>が乗り込んできてはじめた書き直し。電子書籍リーダーは<a href="https://techcrunch.com/2011/01/12/google-acquires-ebook-technologies/">買収された電子書籍会社</a>の面々による書き直しだった。</p>
+<p>激しい生存者バイアスをスルーしつつこいつらがうまくいった理由を考えると、まず彼らは<a href="/020-rewrite/03-kzys/">和良氏のいう</a>俺 TUEEE 二周目勢だった。つまり一周目をきちんと走り、問題を理解していた。</p>
+<p>そして、一周目で叶えられなかった大きい野望を持っていた。ブラウザではプロセス分離による高性能化、強力なセキュリティや切り離せるタブなど。カメラでは RAW にアクセスできる API の上に載せた compuational photography による超高画質の現像パイプライン。電子書籍はそういうテクニカルな超越は特にないと思うけど、それでも電話機に最適化した電子書籍アプリのビジネス的な需要はあっただろう。そういえばたびたび話に出てくる <a href="https://github.com/rui314/mold">Rui-san のリンカ</a>も、単に書き直すだけでじゃなくて毎回バーンと速くなっている。</p>
+<p>振り返ると今の自分は「一周目をちゃんとやる」を全然できていないし、昔の自分にしても大きな野望はなかった。自分にとっての書き直しは、「コードのデザインからゴミをなくしてメンタルモデルと表現を一致させること」に過ぎず、野望の礎ではなかった。コードの綺麗さは当時の自分にとってすごく重要なものだったので正当化していたが、説得力が足りない。コードのミタメばかりを気にして、そのコードで何を成し遂げるかを全然考えていなかった。それが自分の限界だったのだと思う。</p>
+<p>こういうバーンとした書き直し、表面的には古典的 <a href="https://en.wikipedia.org/wiki/Second-system_effect">Second System Effect</a> そのものにも思えるけれど、何か違いはあるのだろうか。Feature creep 的に機能を増やすのではなく根本的なアーキテクチャを刷新するところが違う・・・のかな？あるいは結局、単なる生存者バイアスなのかもしれない。自分はバーンとやった人たちが生き延びたあとからノコノコ参加しただけなので、本当のところはよくわからない。</p>
+<h2 id="漸近主義の壁">漸近主義の壁</h2>
+<p>自分のバーンとやる力の無さ、漸近志向の限界は、五年くらい前から強く感じるようになった。</p>
+<p>あるとき、自分は <a href="https://chromium.googlesource.com/chromium/src/+/refs/heads/main/mojo/README.md">Mojo</a> という Chrome IPC の置き換えを手伝っていた。 Mojo 自体は比較的よく理解された小さな部分問題の書き直し。置き換えはそこそこインクリメンタルで、データベースのマイグレーションみたいな雰囲気のプロジェクトだった。Mojo は今は完全に Chrome ツリーの一部だけれど当時はなぜか GitHub で開発しており、なぜか SDK まであった。そのくらい境界もはっきりしていた。</p>
+<p>Mojo の手伝いが一段落した自分は、後に Flutter となる Sky という Blink フォークプロジェクトの手伝いをすることになっていた。けれど Sky は言語処理系を JS から Dart に入れ替えており、Dart 嫌いな自分はあーやだやだとグズグズしていた。</p>
+<p>自分にとっての Mojo は、将来 Chrome OS と Android を統合するかもしれない Unified IPC Framework だった。自分にとっての Sky は HTML から不要な機能を取り除いて速いブラウザのサブセットをつくる HTML 版 <a href="https://en.wikipedia.org/wiki/Asm.js">ASM.JS</a> みたいなプロジェクトだった。つまりどちらもドラスティックとはいえ漸近的なリアーキテクチャのプロジェクトだと思っていた。</p>
+<p>Sky の言語が Dart になったとき、後者の期待は消え去った。自分はひどくがっかりしたし、同じくらいがっかりしてプロジェクトを去る人もいた。</p>
+<p>さて、ある日上司がやってきて「あたらしいマネージャがくるからその下についてね、明日挨拶に来るからね」という。その新しいマネージャ、挨拶の席につくなり「よお、俺達 Mojo 使って新しい OS 作るから一緒にやろうな、とりあえずこれ最初のターゲットな」とそこらへんで売ってる AOSP 互換のスマホを手渡してきた。はあ？翌週、隣の机に新しいエンジニアがやってきた。「ブートローダー作りに来たっす。」</p>
+<p>自分は Android と Chrome OS だけで十分にカオスだと思っていたから、そこに新しい OS を作るなんてあり得ない話だった。Sky が Dart になった上にこんな追い打ちを受けて嫌気が差し、社内求人を探してさっさと他のチームに逃げ出した。</p>
+<p>この新しい OS はその後 <a href="https://fuchsia.dev/">Fuchsia</a> という名前になり、Mojo はフォークされて <a href="https://fuchsia.dev/fuchsia-src/development/languages/fidl">FIDL</a> になり、UI は Flutter で書かれていて、最近 <a href="https://www.theverge.com/2021/5/25/22452620/google-fuchsia-os-nest-hub-smart-display-update-operating-system-linux-kernal">初代 Nest Hub の OS を置き換えたらしい</a>。</p>
+<p>自分は未だにこの OS の必要性には説得されていないし逃げ出した判断に後悔はないけれど、こうした体験はリファクタリング信仰に影を落とした。結局、漸近的リアーキテクチャの大きな達成になると信じていた高速レンダラも統一 IPC フレームワークも消えてしまった・・・というか、そもそも存在すらしない自分の妄想に過ぎなかったわけだから。アタマが漸近志向に染まりすぎているんじゃないか。</p>
+<p>それ以来、リファクタリングやクリーンアップは極力やらないよう意識している。まず目に見える結果を出せるコードを書く。まあ生理的な限界もあるのでぼちぼちリファクタリングしちゃうんだけど。</p>
+<p>これは「一周目をちゃんとやる」小さな一歩のつもりだった。でも振り返ってみると、全然そうなってないね。漸近志向はコードのクリーンさのような内部品質だけでなく機能や性能といったソフトウェアの本質的な価値にも当てはまる概念なので、リファクタリングをやめればよいというものではなかった。</p>
+<p>一周目をちゃんとやるには、新しいプロジェクトをはじめたり、せめて新しく始まったプロジェクトに参加する方が良いのだろう。でも自分は腰抜けすぎて、そんなリスキーな仕事はできない。それどころか腰抜け的な態度が体に染み渡っており、余暇ですら新しい野心的プロジェクトをやる気が起きない。アイデアも実力も足りてない。そもそも一周目をちゃんと走れるくらいなら、それで満足しそうなものじゃん。<a href="/020-rewrite/02-shinh/">はまじさん</a> の書き直しへの興味のなさはこれじゃないかな。</p>
+<h2 id="夢に加担する">夢に加担する</h2>
+<p>イチから何か作る気力もないし気分転換にオープンソースごっこでもやろうかと、最近 <a href="https://github.com/duckdb/duckdb">DuckDB</a> というプロジェクトにしょぼい PR を書いている。DuckDB は BigQuery, RedShit や Presto のような columnar storage の OLAP データベースを SQLite みたいなライブラリにしようという試みで、二年前くらいに開発が始まっている。SQL とか作るのに時間がかかるので、二歳はそこそこ若い部類。たとえば SQLite は 20 歳で MySQL や PostgreSQL は 25 歳くらい。もともとはデータベースをいじれたら面白いかもとはじめたパッチ修行、触ってみると実際コードベースの若さを感じる。</p>
+<p>このプロジェクト、調べてみるとまあまあ野心的な書き直しだった。DuckDB の中の人たちは <a href="https://www.cwi.nl/research/groups/database-architectures">CWI</a> というオランダの大学から spin-off したアカデミア。 CWI は <a href="https://www.monetdb.org/">MonetDB</a> という最古の columnar storage の一つ (<a href="https://scholar.google.com/scholar?cites=12479198919720198863&amp;as_sdt=2005&amp;sciodt=0,5&amp;hl=en">よく引用されている</a>)を開発した由緒ある大学で、DuckDB の中の人たちも MonetDB を触っていたらしい。あるとき MonetDB をライブラリ化する <a href="https://dl.acm.org/doi/abs/10.1145/3183713.3183722">MonetDB Lite</a> というプロジェクトをはじめたもののサーバをライブラリにリファクタリングするのはさすがに厳しく、コードベースも古臭いしいっちょ新しく書くかと DuckDB は始まった(<a href="https://scholar.google.com/scholar?cluster=9509938533374865333&amp;hl=en&amp;as_sdt=0,5">論文</a>)。ちゃんと一周目をやっている。</p>
+<p>二周目の野心は色々あるっぽいけれど、個人的には Python のデータ分析ライブラリ Pandas の DataFrame オブジェクトに<a href="https://duckdb.org/docs/api/python">直接 SQL を書ける</a>機能が好き。Pandas 便利だけれど、時々 SQL でズバっと整形できた方がラクだなと思うでしょ。</p>
+<p>とはいえ自分はデータベースの素人で、コアの難しいところには手が出せない。個人的には二周目、書き直しの要素はない。でもきちんと一周目をやった人たちが二周目を走る手助けができたら楽しいかなと思い、しょぼいバグとかを直している。</p>
+<p>自分自身で一周目や二周目を走る日が当分来なそうなのは少し悲しいけれど、今は身の丈と受け入れている。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+<blockquote>
+<p>自分自身で一周目や二周目を走る日が当分来なそうなのは少し悲しい</p>
+</blockquote>
+<p>転職しましょう！</p>
+<hr>
+<p>それはそうと、一周目をちゃんと走ってるという気は全くしないですね……テスト走行というか、 minimal viable 的なやつをさっくり作るのが、自分の比較的得意な分野なんだろうな、という自己認識（これは僕が書き散らかしたものを二度も書き直してくださった<a href="https://twitter.com/mayahjp">@mayahjp氏</a>に指摘いただいて自覚したものです、ゴメンナサイありがとう……）</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>書き直しをしたくなる面倒なフェーズに入る前に move on するというのは、正しい気がしますね。自分はだいたいそういう面倒が起こるちょっと前くらいにノコノコ入ってしまうのだった。</p>
+<p>なお mayajp 氏は Google 在籍時、入社時期がちょっと早かった森田がメンターするはずだったがいつの間にかメンターされていた過去をもつコード書け過ぎ系プログラマであることを読者にお知らせしておきます。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<blockquote>
+<p>（上司が阻止しなかったのは今思うと不思議。）</p>
+</blockquote>
+<p>私、上記のSVGレンダラの書き直しが予定通りに進んでなかった時に、たぶんこの上司に「いやぁ、書き直し許可したの失敗だったかな〜？」とこっそりと質問された記憶がありますよ。
+なんて答えたかはあんまり覚えてないけれど「酷いコードだったんで書き直しは仕方ないんじゃないですかね〜」的な回答をしたような気がする。
+どうでも良い裏話ですが。懐かしいね。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>失敗すぎる！</p>
+<p>実はちゃんと許可を得ていたのか記憶に自信がなかったですが、会社員として必要な義理を通していたことがわかってよかったです。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+公平を期すために告白しておくと、私も自分でのやらかしありますよ。あれは今思うと Promotion-driven Development のきらいがあったなあ。自分の成果をプロモート (宣伝) してプロモート (昇進) するアメリカっぽい人事の仕組み、インクリメントにリファクタリングするよりもバーンとやる方向を後押ししてしまう嫌いがありますよね。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+出世はさておきやらかしは上司のせいにして楽しくやればいいというのがこのスレの結論ではないかな&hellip;
+</div>
+</div>
+</article>
+    </div>
+
+    <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a href="https://messagepassing.github.io/020-rewrite/06-morrita/"  class="pagination-next" disabled>
+      はなしのおわり
+    </a>
+    
+    
+    <a href="https://messagepassing.github.io/020-rewrite/05-jmuk/"  class="pagination-previous">
+      書き直しイクナイ
+      <span class='tag'>jmuk</span>
+    </a>
+    
+    </nav>
+  </div>
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/020-rewrite/'>書き直しのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/02-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/04-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/05-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/020-rewrite/' class='is-active'>
+          書き直しのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/019-advice/'>
+          助言のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

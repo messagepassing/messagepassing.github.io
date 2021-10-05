@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html><head>
+    <title>二周目ならば俺 TUEEEE がしたい&nbsp;/ kzys&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/020-rewrite/03-kzys/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='二周目ならば俺 TUEEEE がしたい&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="og:description"        content='いま目の前にあるこのコード、ついカッとなって書き直しちゃダメ？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='二周目ならば俺 TUEEEE がしたい&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='いま目の前にあるこのコード、ついカッとなって書き直しちゃダメ？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>二周目ならば俺 TUEEEE がしたい</td></tr>
+        <tr><th>From</th><td><a href="https://8-p.info/">kzys</a></td></tr>
+        <tr><th>Date</th><td>2021-08-30</td></tr>
+      </table>
+      <article class='content'><p>Joel Spolsky の <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/">Things You Should Never Do, Part I</a> はデスクトップソフトウェアの文脈を感じるなー。とはいえ最近 Janna Dogan が <a href="https://twitter.com/rakyll/status/1413996396814823431">Twitter でその記事を枕に</a>、</p>
+<blockquote>
+<p>We do tens of thousands if not not hundreds of thousands successful rewrites at this scale as an industry every year. Requirements change, tech stack change, dependencies change, our understanding of the problems change. Rewrites are not just inevitable, it&rsquo;s the part of the job.</p>
+</blockquote>
+<p>という話をしていたので、やっぱりまだ影響力はあるのかな。</p>
+<p>手元のマシンで動かすデスクトップむけのソフトウェアと違って、サーバーサイドだと、新旧のバージョンを混在させて、ランダムに出し分けしながら、段階的に新しいバージョンの割合を増やしていく、とかが簡単なので、書き直しのリスクはそれなりに下げられる。その結果か、社内では色々な書き直しを見かける。新旧のバージョンが一つのサービス小さく混在していることもあれば、新バージョンが新しい別のサービスを呼び出すこともある。morrita さんは</p>
+<blockquote>
+<p>Microservices のような大規模インターネットソフトウェアのリファクタリング・パターンも広く知られるようになった。</p>
+</blockquote>
+<p>なんて書いているけれど、新バージョンが新サービスだったりすると、そのサービスを受け持つチームからすると、それはリファクタリングというよりは書き直しに近い。</p>
+<p>リファクタリングの &ldquo;without changing its external behavior” というのは、どこからみた外部の振る舞いかに依存している。社外に出ているインターフェースがバチっと変わったりするのは少ないはずだけど、社内でそこまで互換性を保つ努力をしているかというと、うーん、<a href="https://www.youtube.com/watch?v=y8OnoxKotPQ">大体こんな感じ</a>だと思っていただければ…。</p>
+<h2 id="再挑戦">再挑戦</h2>
+<p>私がレビュアーをやっている containerd は、必ずしも Docker を置き換えるわけではないのだけど、Docker の書き直し的な側面があって、細かいデザインが良くなっている。</p>
+<p>例えば、containerd では「コンテナのログを CloudWatch みたいな外部のサービスに書き出す」という実装部分を外部のプロセスに追い出せるのだけど、Docker では本体のデーモン自体に繋ぎ込みのコードが入っている。Google Cloud Platform と AWS 両方に対応するために、Docker は両者の SDK をリンクしているし、パブリッククラウド固有のバグを直しても、Docker 本体の次のリリースを待たなくてはいけない。私は containerd に詳しくなってから、トラブルシューティングで Docker の該当部分を読んだので、正直だいぶびっくりした。</p>
+<p>もっと大きいところだと、コンテナイメージのレイヤーをファイルシステムにマップする部分は、Docker では graphdriver, containerd では snapshotter と呼ばれている。この二つの違いについて、containerd メンテナの一人、Michael Crosby の <a href="https://blog.mobyproject.org/where-are-containerds-graph-drivers-145fc9b7255">Where are containerd’s graph drivers?</a> では</p>
+<blockquote>
+<p>The short answer is that containerd does not have graph drivers, but it does have snapshotters. We didn’t make this change because we wanted to invent something new or had a severe case of NiH (not invented here). We set out to fix a few long standing issues that are caused by the design of graph drivers.</p>
+</blockquote>
+<p>graphdriver の反省をベースに snapshotter をデザインしたぞ、ということが説明されている。</p>
+<p>あるいは、Stripe の Ruby 静的型検査チェッカー <a href="https://github.com/sorbet/sorbet">Sorbet</a> の開発者の一人、 Dmitry Petrashko は、Scala 3 となる Scala コンパイラ Dotty の開発者でもある。プログラミング言語畑は、そういう複数のプログラミング言語にまたがって活躍している人が多いように思う。TypeScript の Anders Hejlsberg は Turbo Pascal からの伝説のプログラマだし、V8 と Dart の人々も、いつのまにか<a href="https://toit.io/company/about">プログラミング言語スタートアップ</a> をやっている。</p>
+<p>shinh さんも書いているけれど、こういう、同じ問題を複数回解いている人の得られる洞察ないし知識みたいなものに、私は漠然とした憧れがある。karino さんのモバイル OS 語りとか、morrita さんの Web ブラウザ語りにとかも、そういう気持ちがちょっとあります。</p>
+<p>そういえば、最近 <a href="https://github.com/containerd/ttrpc/issues/92">ttrpc という containerd の変種 gRPC のコードジェネレーターを書き換えるべく頑張っていて</a>、なにか既視感があると思ったら、私のアルバイトの最初の仕事の一つが、会社の RPC コードジェネレーターの ActionScript プロトタイプ作成だったのを思い出した。</p>
+<h2 id="二周目ならば俺-tueeee-がしたい">二周目ならば俺 TUEEEE がしたい</h2>
+<p>一方で、自分が書いたもので書き直したいものはあまりない。仕事で書いたもので、今やり直したらもっと上手くできるものは色々とあるけれど、一方でそれが社運というか、自分や周りの昇進以上の大きな成果を生むかというと、そうは信じきれないところがある。レイオフ語りも、Google と Mozilla を比べるのはだいぶ無理があると思うんですよ。</p>
+<p>まあ、実際に過去に戻って書き直しができるわけではないので、そんな「もしも」の話をしても仕方がないといえばそうなんだけど。</p>
+<hr>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+<p>サーバサイドでマイクロサービスを順番にリライトして置き換えてくような話、うまくいきそうで案外事故りポイントがあったりして、ああいうのをうまくやれるというのは、なかなかテクだよなあ、とか思ったりします。印象に残ってる事案として、 protobuf 3 が unknown field を捨てるってのが、良いような気がしたけど大失敗だった、てのがあります。 frontend =&gt; proxy =&gt; backend みたいな構成になってる時に、 frontend と backend アップデートしておけば proxy はそのままで動作するでしょ、と思ってたけど、 proxy が知らないフィールドをしれっと落としちゃって破滅する、みたいな。<a href="https://github.com/protocolbuffers/protobuf/issues/272">これ</a>かな？</p>
+<p>chrome とかはなんかデカいので、割と内部でコンポーネント単位のリライトしてて、それは割とマイクロサービスの置き換えぽさがあったかもですね。密結合度の高さゆえの難しさがあって、大変だったように思いますが…… (<a href="https://chromium.googlesource.com/chromium/src/+/refs/heads/main/mojo/README.md">Mojo</a> とかどうなったのだろう)</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+Chrome は、独自のバイナリ差分アルゴリズムを発明するレベルで<a href="https://blog.chromium.org/2009/07/smaller-is-faster-and-safer-too.html">自動アップデートをがんばってみたり</a>、サーバーの人々がデスクトップアプリを書いている感があるなあと思っていました。プロセスを分けて権限を下げるのも、デスクトップアプリというよりは、マイクロカーネルとか qmail っぽいし。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>omo</div>
+<div class='message-body'>
+<p>限りなくどうでもいい話ですが、kzys 氏のバイト先でわたくし社員として C++ や Python の RPC コードジェネレータを書いており、
+はまじさんの言及した Mojo という Chrome IPC の仕事をしていた 5 年くらい前は既視感を覚えたものでした。</p>
+<p>言語処理系は問題がめちゃよく理解されており、コードの中も外からのインターフェイスも割とはっきり区切られていることが多いので書き直しが成功しやすい分野なのかなと思ってます。</p>
+
+</div>
+</div>
+</article>
+    </div>
+
+    <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a href="https://messagepassing.github.io/020-rewrite/04-karino2/"  class="pagination-next">
+      失敗する書き直し、成功する書き直し
+      <span class='tag'>karino2</span>
+    </a>
+    
+    
+    <a href="https://messagepassing.github.io/020-rewrite/02-shinh/"  class="pagination-previous">
+      書き直しの記憶
+      <span class='tag'>shinh</span>
+    </a>
+    
+    </nav>
+  </div>
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/020-rewrite/'>書き直しのはなし</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/02-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/04-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/05-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/020-rewrite/06-morrita/'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/020-rewrite/' class='is-active'>
+          書き直しのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/019-advice/'>
+          助言のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
