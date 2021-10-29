@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html><head>
+    <title>強い言葉にまつわる話&nbsp;/ karino2&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/021-push/01-karino2/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='強い言葉にまつわる話&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="og:description"        content='ダメなものをダメってはっきり言うと、なんでみんな黙ってしまうん？
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='強い言葉にまつわる話&nbsp;/ karino2&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='ダメなものをダメってはっきり言うと、なんでみんな黙ってしまうん？
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>強い言葉にまつわる話</td></tr>
+        <tr><th>From</th><td><a href="https://karino2.github.io/">karino2</a></td></tr>
+        <tr><th>Date</th><td>2021-08-25</td></tr>
+      </table>
+      <article class='content'><p>前回、若い頃はおっさんに説教されて大変だよね〜、という感じの話をした所、「いや、別に…」って感じの反応だった。
+まったくここの人たちはもう日本人らしさを失ってしまっていて、普通の日本人と言えそうなのは自分しか居ないな、やれやれ、と思うのだった。</p>
+<p>そういえば以前仕事で、強い調子で確認をすると本来反論があるべき所で通ってしまう、という事があって、
+同時期にMessage Passing内で締め切りルールをどうするか、を話し合ってた時は割とすぐ押し返してくれるというか、
+あまり押しの強さとか気にしなくても良い気軽さがあって良いな、と思った事があった。
+その時もここの人はなんか普通の日本人らしさに欠ける気がするな、と思った気がする。</p>
+<p>今回は強く押す、とその反発の強さ的な事を少し話してみたい。</p>
+<h2 id="強く押す具体例">強く押す、具体例</h2>
+<p>強く押すにもいろいろあってその違いで大違いなので具体例を出したい所だけれど、だいたいそうしたケースは込み入った状況なので説明が難しい。
+いくつか端的に記してみると、</p>
+<ul>
+<li>一つのUnitTestのテストケースになんだか良くわからない引数がたくさんで実行してassertまでするような関数を引数を変えて何度か呼び出していて、何のテストをしているか良くわからないのがあったので、setupやexecuteの部分をメソッドにして共有して、複数のテストに分けてくれ</li>
+<li>CIを導入したとの事なので、結果の確認方法やfailした時の修正の仕方、修正の確認方法をWikiに書いてくれ</li>
+</ul>
+<p>これらは実際にはこちらが誤解していて、そのままが良かったり根本的に全然違う所に問題があったりした。
+実際はもっと良く問題を理解するために質問を重ねなくてはいけなかったのだが、
+こちらは問題を理解したと勘違いして間違った結論を提示している。</p>
+<p>強くなにかを思い込んでいて、推奨の行動を正しいと（この場合は誤って）確信していて、それを通そうとしている、
+みたいなケースをイメージしている。</p>
+<p>これだけだと「強い」というのは処方箋が不当に具体的すぎる、という意味で、それだけだと「強く押す」という感じもしない。
+けれど、なにかを間違って強く思い込んでいて答えに確信を持っている時は、
+言葉や態度も強くなっている場合は多く、そうした「考えを押し通そうとしている」時の強さみたいなのをなんとなく「強く押す」と言っている。</p>
+<h2 id="ソフトウェア開発では勘違いをはっきりさせる必要が高い">ソフトウェア開発では、勘違いをはっきりさせる必要が高い</h2>
+<p>ソフトウェア開発は、日常生活よりも勘違いや間違いというのを明確にする必要があるシチュエーションが多い気がする。
+物理とか数学の大学の研究室とかもそういうものなのでプログラムだけの特別な事、という訳では無いと思うのだけれど、
+やはり論理に属するものは、普通の日常的な事よりも明確に正解とか間違いが出てくるもので、しかもその違いをはっきりさせる必要がある事が多いのでは無いか。</p>
+<p>日常会話においても相手がなにかを理解していない、と思う事は多い。
+例えばサーフィンしてて、もっとショルダー側で乗ったほうがいい、という話をしている時に、それはつまりもっと左側に行けという意味で言っているのに波を選ぶ話と勘違いしている、とかそういう事はある。
+ただそういう時はだいたいすぐに次の波が来てみんな移動を開始してうやむやになる。</p>
+<p>サーフィンに限らず、そんなに重要な話で無ければ勘違いをしてるな、と思ってもはっきりさせないでも別に構わない事は多い。
+そもそもに「勘違いをしているな」と思っても、実際は勘違いじゃないかもしれない。
+そうした事をいちいちはっきりさせる必要は無いし、普通の日常的なコミュニケーションにおいては、
+そういうのをはっきりさせるのはかえって問題を引き起こすだけの場合もある。</p>
+<p>一方、ソフトウェア開発に関する事は、はっきりさせる必要がある事が日常の事柄よりも多いと思う。
+ある処理をそこでやっている理由、ある関数に引数がある理由、そうした議論対象の個々の選択は背後に多くの込み入った事情があって、
+そうした事に誤解や勘違いが良く入り込む。
+そうした勘違いはなぁなぁにして済ますと問題を起こすので、いちいちはっきりさせる必要がある。
+そうしたはっきりさせる、という事は、非人間的というか、
+相手を追い詰めてしまうような側面を持つと思う。</p>
+<p>そういうした勘違いに直面する機会が凄く多いというのは、ソフトウェア開発の特徴なのでは無いか。</p>
+<h2 id="強く押す事と押し返してもらう事">強く押す事と押し返してもらう事</h2>
+<p>勘違いしている状態というのは、なにか間違った思い込みがある状態なので、
+普通に話すだけでそれに気づくのは難しい。
+より断定的で、より強く主張する方が思い込みを正すのには向いている場合もある。</p>
+<p>一方で相手が勘違いしている、と思っているが、実際は自分の側が勘違いしている事も良くある。
+その場合も強く主張してくれる方が自分の勘違いに気づきやすい。
+だから相手が勘違いしていると思った時にはこちらは強い調子で押して、こちらが間違っている時には強く押し返してくれると話は早い。
+自分としては強く押して、相手も必要に応じて強く押し返してきてくれる事を期待したい。</p>
+<p>でもこういうのって適性があって、自分は違う、と思う事でも、強く言うのが苦手な人というのが居る。
+そういう人が多いチームで自分がなにかを強く押してしまうと、本来自分が間違っている事でも通ってしまったりする。
+通したい訳では無いので自分の側の問題とも思うが、一方で適性としてそういうチームに自分が向いてないという話のような気もするので、
+反省すべきかよそに移るべきかは良くわからない所。</p>
+<p>message passingで記事を書いている人は、傾向として自分が正しいと思う事に関しては押し返すのが得意な人ばかりと思うがどうだろう？
+それはUS企業適性なのか？主語が大きすぎ？</p>
+<p>US企業でもアジア系はどちらかといえば喋りが不十分な事が多いというのが自分の印象で、そんなに押しが強いとは思わないのだけれど、
+日本企業の環境の中に置くと違って見えるというか、強く押しても押し返してくれる人が多い気がする。
+日本企業でもそういうカルチャーの会社はあるので日本とか米国って問題じゃないかもしれないけれど、そういう傾向はあるような？</p>
+<h2 id="そもそも強く押すのはどうなのか">そもそも強く押すのはどうなのか？</h2>
+<p>自分は強く押したら押し返して欲しい、と思う方だけれど、そもそも強く押す事自体どうなの？という話は皆が思う所だろう。</p>
+<p>単に表面だけ見れば「同じ事でももっとソフトに言う事は出来る」みたいなのが正しい答えのようにも聞こえるし、
+最近は<a href="https://www.brendangregg.com/blog/2017-11-13/brilliant-jerks.html">No brilliant jerks</a>みたいなのが流行ってもいたので、強く押すのが間違いという気もする。Brilliant jerkというのとはちょっと違う気もするけれど。</p>
+<p>爽やかな一日の始めにissue trackerとかメールで喧嘩腰でやりとりが続いているのを目にすると、その日一日が台無しになる気分にもなる。
+そういうのは嫌だよなぁ。
+そういうチームは自分はすぐ辞めてしまう気がする。</p>
+<p>一方で皆が無駄だと思いながらひたすら無駄な毎週の定例ミーティングをしている、
+みたいなシチュエーションでは、そうした物を無くそうと強く押さないと、そうした無駄は無くせない気もする。
+間違った方向に進んでいる時にそれを正す時には強さは必要なんじゃ無いか。</p>
+<p>理論上は強い態度では無くても同じ主張は出来るとか言えると思うのだけれど、
+実際問題として、主張と態度をそんな綺麗に分離出来るのか。</p>
+<p>実際、自分がこれまで経験してきたチームでは、
+ある程度強く押して強く返すようなチームの方が、ソフトウェア開発にまつわる問題をうまく対処出来ていたような気もする。
+ただこれは自分の好みとか程度問題とか微妙な要素もいろいろある気もするので、気のせいかもしれない。</p>
+<p>いかにも強く押すとかけしからん、とか言いそうな@kzysさんとかどう思いますか？</p>
+</article>
+    </div>
+
+    <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a href="https://messagepassing.github.io/021-push/02-kzys/"  class="pagination-next">
+      強さの程度
+      <span class='tag'>kzys</span>
+    </a>
+    
+    
+    <a href="https://messagepassing.github.io/021-push/01-karino2/"  class="pagination-previous" disabled>
+      はなしのはじまり
+    </a>
+    
+    </nav>
+  </div>
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/021-push/'>強く押す話</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/021-push/02-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/021-push/03-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/021-push/04-karino2/'>karino2</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/021-push/' class='is-active'>
+          強く押す話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/020-rewrite/'>
+          書き直しのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/019-advice/'>
+          助言のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
