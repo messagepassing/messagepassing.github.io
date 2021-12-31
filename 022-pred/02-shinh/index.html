@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html><head>
+    <title>僕たちの将来&nbsp;/ shinh&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/022-pred/02-shinh/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='僕たちの将来&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="og:description"        content='当たるも八卦当たらぬも八卦。十年後のプログラマ生活をなんとなく予想するスレ。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='僕たちの将来&nbsp;/ shinh&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='当たるも八卦当たらぬも八卦。十年後のプログラマ生活をなんとなく予想するスレ。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>僕たちの将来</td></tr>
+        <tr><th>From</th><td><a href="http://shinh.hatenablog.com/">shinh</a></td></tr>
+        <tr><th>Date</th><td>2021-12-04</td></tr>
+      </table>
+      <article class='content'><h2 id="序文">序文</h2>
+<p>つねづね「俺の未来予想の当たらなさぷりには自信がある」と自負しています。特に「XX とか当たるわけないでしょ」と思ったのも関わらず、後になってそれに仕事で関わる、ということが数回起きていて、グーグルで社内オンリー情報だった時代の Chrome や Android を見て、「なんじゃこれ、グーグルがサーバサイド以外やってどうすんの？」と思った二年後に Chrome チームで働いていましたし(その後 Android 関係の仕事もした)、「ニューラルネットの復権！」みたいな話を見て「ワロタ、 C マガかよ」と思ってた二年後にはグーグル翻訳チームに入れてもらっていました。 <a href="http://shinh.skr.jp/h/?FutureGuessing">5年前に書いた未来予想</a> によると GPGPU は永遠にニッチ、みたいなことが書かれていますが、 CUDA 使ったり、それを倒すべく頑張ったりしているのが最近であります</p>
+<p>逆に僕が夢中になったテクノロジーを3つほど挙げていってみると、 <a href="https://en.wikipedia.org/wiki/Google_Native_Client">Native Client</a> 、 <a href="https://en.wikipedia.org/wiki/Transactional_Synchronization_Extensions">Intel TSX</a> 、 <a href="https://www.tensorflow.org/swift/guide/overview">Swift for TensorFlow</a> 。なかなか見事な予想ではないでしょうか</p>
+<p>というわけで逆張り推奨な予想をやっていきます。本人はいたってマジメなやつと、あとは単なる願望というものがあります</p>
+<h2 id="predictions">Predictions</h2>
+<h3 id="1-gpu-はグラフィックプロセッサに戻る">1. GPU はグラフィックプロセッサに戻る</h3>
+<p>ドメイン特化なアクセラレータの特需が今しばらく続くと、 CUDA はアクセラレータ用途としては特化度が低すぎて、没落するように思う。「SIMD 使うくらいなら GPU でいいよなあ」が「GPGPU やるくらいならアクセラレータ使えばいいよなあ」となるはず、という話です</p>
+<p>一応書いておくと、最近のメインの仕事が<a href="https://tech.preferred.jp/ja/blog/mncore-compiler-1/">アクセラレータで GPU を倒す</a>というものなので、ポジショントーク的というか、個人的な意気ごみです</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+強い GPU を買って足せないモバイルとかは既に割とそういうかんじですよね。NVIDIA の株価は下がりそうだけど、中の人はもともとグラフィクス業界人なのでむしろ喜ぶかも知れない・・・。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+モバイルはそうですね。クラウドおよび HPC で V100/A100 祭りになっている状況は終わるのでは、という予想ということにしておきます
+</div>
+</div></p>
+<h3 id="2-深層学習の自然科学応用でノーベル賞">2. 深層学習の自然科学応用でノーベル賞</h3>
+<p>ノーベル賞は成果出てから受賞までに時間がかかると思うので、受賞自体はしないとして、 2030 年までの深層学習を使って得た成果がノーベル賞を取ると思う。たぶんふたつくらい</p>
+<p><a href="https://www.nishina-mf.or.jp/wp/wp-content/uploads/2020/12/Hashimoto_compressed.pdf">このスライド</a>の最後の</p>
+<blockquote>
+<p>物理学における機械学習は「第３の実験」</p>
+</blockquote>
+<p>とか、<a href="https://www.jps.or.jp/books/gakkaishi/2019/09/74-09seriesAIphys2.pdf">この文章</a>の</p>
+<blockquote>
+<p>ランダウの理論物理学教程に入ってないものは物理じゃないなんてケチなこと言ってはいけない．だって，もし，ランダウがまだ生きていたら，嬉々として「機械学習」をランダウの理論物理学教程の最後の一巻として付け加えるに違いないから</p>
+</blockquote>
+<p>とか、なかなかわくわくするのです</p>
+<h3 id="3-演繹的な-ai-が復権し深層学習を補完する">3. 演繹的な AI が復権し、深層学習を補完する</h3>
+<p>もうずっと期待している、完全に願望枠。さすがの僕でもこれは当たらないとわかる</p>
+<p>第五世代的なやつというか、知識溜めていって演繹するようなやつを、深層学習とくっつけることができるようになる。なってほしい。例えば総理大臣が変わったら「新しい総理大臣は XX ですよ」と言えば挙動が変わるとか、深層学習モデルを説明可能にするには、どうしてもそういうのが必要なんじゃないの、って妄想しているのですよね……</p>
+<p>ついでに書いておくと、 <a href="https://blog.google/technology/ai/introducing-pathways-next-generation-ai-architecture/">Jeff Dean のバカデカマルチタスク AI で知性に近付きますよ的な野望</a> はあまり信用していない</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+Pathways の文章はあまりにふんわりしたお気持ち表明だけでコードもなければ論文もなく、ちょっとがっかりですねえ。この話をなぜ今しているのか不思議。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+僕がこの思想を始めて知ったのは 2017 年に Jeff Dean が来日した Machine Learning Developer Meetup Tokyo でした。<a href="https://youtu.be/xU5_T9IU4t8?t=2171">動画はこのへん</a>。グーグルだけが非同期トレーニング/モデルパラレルを重視して、どうもこのせいでグーグルの進捗を損なっていた、ということに全社的に気付き始めた時期だったという認識なので、こういう思想があってのことだったんだなあ、と強く印象に残っています。少なくとも4年間進捗がないようでは、なかなか茨の道なのはそうぽいですね
+</div>
+</div></p>
+<h3 id="4-教育系の会社が-gafa-る">4. 教育系の会社が GAFA る</h3>
+<p>これも願望枠</p>
+<p>ここ5年くらい、世の検索エンジンの品質が上がっている、と感じる人はあまりいないのではないかと思う。これは寡占は悪という話とかもあるのだろうけど、機械的に情報を整理する、というアプローチに限界が来ているのでは、という気もしている。10年くらい前までは、インターネットに新しく現われる有用な情報、というのが指数的に増えていっていて、機械で分類するしかない状況だったと思う。ただ、なんかそろそろスパムはともかく、有益な情報の増加は落ちついてるのではないか</p>
+<p>で、そういう情報をうまく処理して整理できるのってどういう会社かなーというと、マジメに人手で情報を整理して教育をやってる会社だったりしないのかな、と。例えば試しに今思いついた「太陽」「なぜ白い」でぐぐってみて、イマイチな結果だなあと思ったのだけど、こういうので30分くらい学べる教材が出てくると良いなぁ、と</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+そういえば Coursera も Udemy も今年 IPO でしたね。コースというほどでもない短い説明ビデオだと、<a href="https://www.youtube.com/c/Vox">Vox</a> とか良くできていてすごいなあと思います。
+</div>
+</div>
+<h3 id="5-vr-が職人技術の高速道路になる">5. VR が職人技術の高速道路になる</h3>
+<p>インターネットが知識のハイウェイになって、若者の知識が人間離れしたのと同様に、 VR が職人技術のハイウェイになる。手術ゲームにドハマリした小学生が、本職の医者より手術がうまい、とか</p>
+<p>Web サイト見て学ぶ時代から YouTube 見て学ぶ時代になったんだなあ、と思ったのはたぶん10年くらい前なのだけど、次の10年くらいだと VR になってていいんじゃないの、と</p>
+<p>僕自身は VR ほとんど遊んだことないのだけど、 2021 年こそが VR 元年だったと言えるような展開を期待している</p>
+<h3 id="6-rust-は普通にそれなりに流行る">6. Rust は普通にそれなりに流行る</h3>
+<p>今ごろ「これからは Rust！」とかいうのちょっと恥ずかしいものがありますね……まあでも C++ が置き換えられる、とまでは思ってない。 C++ の延命策は十分に発明されてしまった</p>
+<p>プログラム言語まわり、この5年の大きな変化というと Rust と TypeScript などの型書けるスクリプト言語かなあと思う。このうち、 Rust は順調に増えてくんでないかなあ、と。型書けるスクリプト言語は、なんかやってみると意外と微妙な気持ちになることが多くて……既存のスクリプト言語が置き変えられるというほどのシェアの変化は起きないんじゃないかなあ、などと思っている</p>
+<p>それ以外でも Rust 以外の勢力図が大きく変化してそうという気があまりしないかなあ、という気持ち。「変化しない」「うまくいかない」系の予想は面白みを感じないので微妙な気持ちなのだけど、プログラム言語について何か書きたかったのと、「ここ10年なんやかんやと変わってきたけど、次の10年では変化が減るのでは」という予想なので入れても良いかな、となった</p>
+<p>Zig も流行ってほしいけど、厳しいのだろうな</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+ここ 5 年だと Go のメインストリームへの普及は目覚ましいと思いますね。Go が Java を倒す・・・まではいかないにせよだいぶ陣地を広げた程度に
+Rust は C++ の陣地を取るのでしょうね。<a href="https://security.googleblog.com/2021/04/rust-in-android-platform.html">Android でも使えるようになりました</a>。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+これ書く時に Go の存在、完全に忘れてました。新しいパラダイム広げたりしてなくて、単に母体の強さぽい気がして、あまり語ることがないと思っているのかも。あとなんか、 Go て5年くらい前には既に強かったみたいな印象がありましたが、認知が歪んでいるかも
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+Docker とか Kubernetes とかは 5 年前くらいには登場してるので、強かったという認識の方が正しそう。この 10 年の言語だったということかな。
+</div>
+</div></p>
+<h3 id="7-セキュリティ研究やバグハントが下火になる">7. セキュリティ研究やバグハントが下火になる</h3>
+<p>ここ10年はセキュリティはアツい分野で、なんともたくさんの面白バグが世間を騒がせていた。でも、この先 10 年もすれば状況は良くなってるのではないか。気のせいでなければ、既にだいぶ減ってきているような気もする。例えば CTF で言うところの pwn 的なやつ(C/C++ のクラッシュバグとかをセキュリティの突破に使う系)とかも、 sandbox とかで根本的に対処されつつあるような気するし、 XSS とか SQL injection とかも聞く頻度が減ってきているような</p>
+<p>ソフトウェアは良くなったけど Row hammer 地獄、とか、 IoT ハック全盛時代とか来てないと思いたい</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+少し前に <a href="https://www.amazon.com/This-They-Tell-World-Ends/dp/1635576059/">This Is How They Tell Me the World Ends</a> という本を読んで、民間人は手出しできない国家予算でやる軍事分野になる（もうなってる）のかな・・・と思いました。そういう意味でひと目にはつかなくなるのかも知れない。Lockheed Martin や三菱みたいに、金額はデカイけど世間では目に付かないみたいな。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+この10年ほどはセキュリティが広く注目されたけど、元の地味な感じに戻る、ということなのかも、と思いました。 GPGPU とこれは、今はこの世の春を謳歌しているけど、元のポジションに戻るという予想、という分類ができるのかも
+</div>
+</div></p>
+<h3 id="8-クラウドストレージが普通の-fs-ぽく見えるようになり-nfs-が死ぬ">8. クラウドストレージが普通の FS ぽく見えるようになり NFS が死ぬ</h3>
+<p>クラウドぽいのもなんか書いてみようと入れてみた。みんな欲しいと思ってると思うけど、地味に大変というのもわかるのだけど、でもさすがに10年もあればいいかげん使えていてほしい……</p>
+<p>FUSE でそれっぽいものを作るのは、まあできるはずだけど、システムコール界面そのままでクラウドを見せるのは、それはそれほど便利でないかもしれなくて(例えばNFS内のファイルをタブ補完するのが好きな人はいないと思う)、 GNU fileutils や shell 自体がクラウドストレージ対応する、みたいなのが楽しそうかな、とか思っている。 rsync 的なツールがクラウドからクラウドのコピーとかを、手元介さず高速にやってほしいよね、とか</p>
+<p>ただそれだと多言語対応ができないのだよなあ。なんか次の項目が実現すると Unix の CLI での見た目とかどうでもよくなっているのかも</p>
+<h3 id="9-みんなブラウザでプログラム書いてる">9. みんなブラウザでプログラム書いてる</h3>
+<p>github.dev みたいなやつで、実行なんかも含めて全部やってる、という時代になってそう。 Web ベースの IDE やコンテナで、要素技術はおおむねそろっていそう</p>
+<p>ただ僕は未だに Emacs で作業してそう……という気もする</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+自分は最近仕事だと半分くらいはブラウザで書いてますね。それに感化されて家でも <a href="https://github.com/coder/code-server">code-server</a> (poorman&rsquo;s GitHub Codespaces) を使い始めました。ただ個人用途だと VM 代が高く感じるので、開発環境がもうちょっと serverless になってほしいなと思います。それこそクラウドストレージが普通の FS ぽく開発ツールフレンドリになり、分散ビルドが pay-per-use になれば解決するんだけど。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+退職時点でグーグルサーバサイドの人半分くらいはブラウザでコード書いてそうな印象でしたが、アプリの人もブラウザでいけるようになってるんですね。極めてダイバーシティの低いグーグル社内環境はともかく、一般に広がるには、環境の差異を吸収するプロトコルのデファクトみたいなのが定まる必要があるんでしょうねえ。 code-server 面白そうですね。遊んでみます
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+アプリのコード (Java/Kotlin) はさすがにまだダメかな。Python とかそういう系。世の中 CI とかは普通にクラウドでやってるので、クラウド開発は後一歩だと思うんですけどね。
+</div>
+</div></p>
+<h3 id="10-論文は-tex-で書かれて-pdf-で公開されている">10. 論文は TeX で書かれて PDF で公開されている</h3>
+<p>残念ながらこれは変わらない。前職の上司の受け売り。インターフェイスがサイアクでも、正しい機能がそろっているものはなかなか死なないね……という。 cmake とかも、そういう機能としては正しいけど文法すごい、みたいなやつだと思っていて、 10 年後も「なんで俺たちこんなもの使ってるの……？」となりつつも使われていそうと思っている</p>
+<h2 id="その他">その他</h2>
+<p>面白みに欠けたり、色んな理由で挙げなかったものの供養</p>
+<ul>
+<li>脳波で操作するようになる (来る気がしない)</li>
+<li>5G で十分なので光回線ひく家庭が電話回線並に減る</li>
+<li>アニメやゲームのモブは基本 GAN で作るようになる</li>
+<li>あと AI 系で言うと動画処理に期待しています</li>
+<li>エッジでトレーニングも来ない (ベンチマークが作れないのがキツい)</li>
+<li>やたら家電が喋るようになるが不評</li>
+<li>量子コンピュータは来ない</li>
+<li>プロセスルールの数字に意味はないらしいけど、それにしても 1Å とかになってるのだろうか……</li>
+</ul>
+<p>全体通じての感想として、「それ既に流行ってるよ」は普通にありそうだなあとビクビクしながら書いていました</p>
+</article>
+    </div>
+
+    <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a href="https://messagepassing.github.io/022-pred/03-kzys/"  class="pagination-next">
+      全体的に希望的予測です
+      <span class='tag'>kzys</span>
+    </a>
+    
+    
+    <a href="https://messagepassing.github.io/022-pred/01-morrita/"  class="pagination-previous">
+      未来予想
+      <span class='tag'>morrita</span>
+    </a>
+    
+    </nav>
+  </div>
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/022-pred/'>未来予想</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/022-pred/01-morrita/'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/022-pred/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/022-pred/04-karino2/'>karino2</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/022-pred/' class='is-active'>
+          未来予想
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/021-push/'>
+          強く押す話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/020-rewrite/'>
+          書き直しのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/019-advice/'>
+          助言のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>

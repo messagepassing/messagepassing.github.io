@@ -6,7 +6,512 @@
     <description>Recent content on Message Passing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://messagepassing.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://messagepassing.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>次はバイオ！（今度こそ）</title>
+      <link>https://messagepassing.github.io/022-pred/04-karino2/</link>
+      <pubDate>Sat, 18 Dec 2021 00:00:00 +0000</pubDate>
+      <author>karino2</author>
+      <guid>https://messagepassing.github.io/022-pred/04-karino2/</guid>
+      <description>前の10年がびっくりするほど大した事無かったので、次の10年が同じノリなのか、それとも次の10年は違うぜ、と思うかで大きく分かれそうですね。 せっかくなので自分はすごい違うぜ、という方向で行ってみる。
+1. 「独自の動作メカニズム」を持ったタンパク質を合成するようになる 最近生物の勉強がマイブームだったので、まずは生物とプログラムの融合的な分野から。
+プロセッサはナノスケールでいろいろやれるようになってきたので、 次はタンパク質まわりだろう、と思っている。が、10年では汎用のマシンが出来る所までは行かないと思う。
+遠い将来では合成したタンパク質を動かす「ソフトウェア」を作る日が来るんじゃないか、と思っているが、 10年ではそのだいぶ手前の、ハードウェア屋が望む動作を元にタンパク質の設計をしてそれを作る、くらいの段階なのでは無いか。
+タンパク質自体は別に現時点でも合成出来ているけれど、現状はメカニズム自体は自然界にある物を少し修正したくらいで、 例えばキネシンのような「歩く」仕組みやミトコンドリアのF型ATPaseなどのように「回転する」というような構造と同じようなレベルで、 新たな動作のメカニズムを設計して実装する事は出来ていない、という認識でいる。
+10年後はいくつかの人間がいろいろな用途に使いやすい駆動メカニズムが開発されて、 ハードウェアの設計のような形で、ナノスケールの動作について設計をして実装するようなあたりまで行くんじゃないか。 ただしその動きはハードコードされた性質の動きとなる。
+そして今後の10年で作れるようになった動くハードを、その次の10年で「動かす」ソフトウェアをプログラミングしていっていろいろやれるようになる！
+2. タンパク質合成のプログラム言語が生まれてその上のソフトウェアが書かれる 1番目はハードウェアで2番目はソフトウェアの進歩の話。
+制限酵素などの条件指定や、既存のタンパク質のアクティブサイトの組み合わせなどが複雑化していき、 一段上の抽象度で制約を記述してコドン配列に落とすようなプログラム言語が生まれて、 その上のプログラミングが実用化される。
+10年では完全に自由にタンパク質を設計する所までは行かないので、1と2は別々の道を歩む。 ソフトウェアは既存の構成要素の組み合わせの複雑化からプログラム言語が生まれる、という流れを予想。 あくまで既存の構成要素を組み合わせるだけなので1のような新しい機構を作るという所は行えない。
+現時点でも簡単な組み合わせなどをcDNAライブラリから組み合わせて手動で作る事は行われているが、 次の10年ではこの組み合わせが複雑になりすぎて、 一番下のレベルで全てを人間が把握するのが困難になっていく結果、 「高級言語」に相当するなにかが生まれて、その上でのプログラミングが実用化されて、 目的のタンパク質を生み出すのに一般的な手法となる、と予想。
+shinh なにも知らないのですがバイオ楽しそうですよねえ。キラーアプリはどういうものになるんでしょうか？   karino2 最初は月並みに転移しているガンの治療じゃないですかね。 血液とかからガンになっている配列を特定して、それを探して倒すようなタンパク質を施療として現場で設計してそれをmRNAで打ち込む、みたいな。 あとはLDLコレステロールとか探して排出するようにまとめて移動したり化学的にまとめて排出出来る形にしたりする、とか、その辺じゃないかなぁ。   morrita まったく畑違いすぎてプロテインソフトウェアが実現されても気づかなそうだけど、 そういうキラーな成果が出ればポピュラーサイエンス的に知ることになるのかもしれないなあ。  
+3. ディスプレイのないコイン型のデバイスがスマホの30%くらいのシェアになる 画面がある路線ではスマホから大きく変わらないかな、と思うので、画面が無い系が発展するんじゃないかなぁ、と予想。
+音と振動くらいでいろいろな事をさせられるデバイスで、今のスマホアプリ開発のように一般の開発者がユーザーとしてアプリ作って入れてなにかやれるような。 今の車の鍵みたいな感じのデバイス。
+インターフェースは音声にしたい所だけど、バッテリはそれほど大きな革新は無いと予想するので、 スピーカー等は入れられないかなぁ。 という事で音声や画面は必要に応じて外部接続するような感じを想定。
+ただ完全にすべてのデバイスが音声インターフェースにはならずに、既存のスマホやPCなどはそのまま残る。 個人利用としては結局スマホの方が主流で役割分担がされる程度。
+morrita Apple Watch は電話の 10% 以下くらいの台数が出ているっぽいから、それより売れるとなるとなかなかですね。 ただ製品寿命が長くなると仮定すると所持割合は iPhone の 30% くらいあるかもしれない。 つまり時計くらい売れる画面無しポータブルデバイスが登場すると予言達成というかんじかな。10 年かければ何かはありそう。 次世代デバイスとして業界の人々はメガネ的な AR デバイスを推しているなか、画面ナシが勝ったら痛快ですね。   karino2 へー、Apple Watchが思ったより売れてて驚いた。 ただ画面があるのはいまいちだと思うんですよね。腕につけたくも無いし。 やはりキーホルダーにつけるプログラマブルな何かが欲しいなぁ。</description>
+      <content:encoded><![CDATA[<p>前の10年がびっくりするほど大した事無かったので、次の10年が同じノリなのか、それとも次の10年は違うぜ、と思うかで大きく分かれそうですね。
+せっかくなので自分はすごい違うぜ、という方向で行ってみる。</p>
+<h2 id="1-独自の動作メカニズムを持ったタンパク質を合成するようになる">1. 「独自の動作メカニズム」を持ったタンパク質を合成するようになる</h2>
+<p>最近生物の勉強がマイブームだったので、まずは生物とプログラムの融合的な分野から。</p>
+<p>プロセッサはナノスケールでいろいろやれるようになってきたので、
+次はタンパク質まわりだろう、と思っている。が、10年では汎用のマシンが出来る所までは行かないと思う。</p>
+<p>遠い将来では合成したタンパク質を動かす「ソフトウェア」を作る日が来るんじゃないか、と思っているが、
+10年ではそのだいぶ手前の、ハードウェア屋が望む動作を元にタンパク質の設計をしてそれを作る、くらいの段階なのでは無いか。</p>
+<p>タンパク質自体は別に現時点でも合成出来ているけれど、現状はメカニズム自体は自然界にある物を少し修正したくらいで、
+例えばキネシンのような「歩く」仕組みやミトコンドリアのF型ATPaseなどのように「回転する」というような構造と同じようなレベルで、
+新たな動作のメカニズムを設計して実装する事は出来ていない、という認識でいる。</p>
+<p>10年後はいくつかの人間がいろいろな用途に使いやすい駆動メカニズムが開発されて、
+ハードウェアの設計のような形で、ナノスケールの動作について設計をして実装するようなあたりまで行くんじゃないか。
+ただしその動きはハードコードされた性質の動きとなる。</p>
+<p>そして今後の10年で作れるようになった動くハードを、その次の10年で「動かす」ソフトウェアをプログラミングしていっていろいろやれるようになる！</p>
+<h2 id="2-タンパク質合成のプログラム言語が生まれてその上のソフトウェアが書かれる">2. タンパク質合成のプログラム言語が生まれてその上のソフトウェアが書かれる</h2>
+<p>1番目はハードウェアで2番目はソフトウェアの進歩の話。</p>
+<p>制限酵素などの条件指定や、既存のタンパク質のアクティブサイトの組み合わせなどが複雑化していき、
+一段上の抽象度で制約を記述してコドン配列に落とすようなプログラム言語が生まれて、
+その上のプログラミングが実用化される。</p>
+<p>10年では完全に自由にタンパク質を設計する所までは行かないので、1と2は別々の道を歩む。
+ソフトウェアは既存の構成要素の組み合わせの複雑化からプログラム言語が生まれる、という流れを予想。
+あくまで既存の構成要素を組み合わせるだけなので1のような新しい機構を作るという所は行えない。</p>
+<p>現時点でも簡単な組み合わせなどをcDNAライブラリから組み合わせて手動で作る事は行われているが、
+次の10年ではこの組み合わせが複雑になりすぎて、
+一番下のレベルで全てを人間が把握するのが困難になっていく結果、
+「高級言語」に相当するなにかが生まれて、その上でのプログラミングが実用化されて、
+目的のタンパク質を生み出すのに一般的な手法となる、と予想。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+なにも知らないのですがバイオ楽しそうですよねえ。キラーアプリはどういうものになるんでしょうか？
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+最初は月並みに転移しているガンの治療じゃないですかね。
+血液とかからガンになっている配列を特定して、それを探して倒すようなタンパク質を施療として現場で設計してそれをmRNAで打ち込む、みたいな。
+あとはLDLコレステロールとか探して排出するようにまとめて移動したり化学的にまとめて排出出来る形にしたりする、とか、その辺じゃないかなぁ。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+まったく畑違いすぎてプロテインソフトウェアが実現されても気づかなそうだけど、
+そういうキラーな成果が出ればポピュラーサイエンス的に知ることになるのかもしれないなあ。
+</div>
+</div></p>
+<h2 id="3-ディスプレイのないコイン型のデバイスがスマホの30くらいのシェアになる">3. ディスプレイのないコイン型のデバイスがスマホの30%くらいのシェアになる</h2>
+<p>画面がある路線ではスマホから大きく変わらないかな、と思うので、画面が無い系が発展するんじゃないかなぁ、と予想。</p>
+<p>音と振動くらいでいろいろな事をさせられるデバイスで、今のスマホアプリ開発のように一般の開発者がユーザーとしてアプリ作って入れてなにかやれるような。
+今の車の鍵みたいな感じのデバイス。</p>
+<p>インターフェースは音声にしたい所だけど、バッテリはそれほど大きな革新は無いと予想するので、
+スピーカー等は入れられないかなぁ。
+という事で音声や画面は必要に応じて外部接続するような感じを想定。</p>
+<p>ただ完全にすべてのデバイスが音声インターフェースにはならずに、既存のスマホやPCなどはそのまま残る。
+個人利用としては結局スマホの方が主流で役割分担がされる程度。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+Apple Watch は電話の 10% 以下くらいの台数が出ているっぽいから、それより売れるとなるとなかなかですね。
+ただ製品寿命が長くなると仮定すると所持割合は iPhone の 30% くらいあるかもしれない。
+つまり時計くらい売れる画面無しポータブルデバイスが登場すると予言達成というかんじかな。10 年かければ何かはありそう。
+次世代デバイスとして業界の人々はメガネ的な AR デバイスを推しているなか、画面ナシが勝ったら痛快ですね。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+へー、Apple Watchが思ったより売れてて驚いた。
+ただ画面があるのはいまいちだと思うんですよね。腕につけたくも無いし。
+やはりキーホルダーにつけるプログラマブルな何かが欲しいなぁ。
+</div>
+</div></p>
+<h2 id="4-プラットフォームになるバージョン管理システムが登場して主流になる">4. プラットフォームになるバージョン管理システムが登場して主流になる</h2>
+<p>gitを発展させたような物として、画像だとか動画だとかのバイナリデータをもっといろいろ扱えるような基盤となるソフトウェアが生まれて、
+その上で組織やユーザーに合わせた対応をするようなプログラミングが生まれて普及する。</p>
+<p>バージョン管理は次の10年で、全く新しい物が出うる気がするけれど、どうでしょう？</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+CVS が 1990, Subvesion が 2000, Git は 2005 登場。確かにそろそろかもしれない。
+構造化データのバージョン管理 / Diff というのは kzys 予想に出てきた話に近いですかね。
+</div>
+</div>
+<h2 id="5-spec的な制約条件の記述が流行る">5. Spec#的な制約条件の記述が流行る</h2>
+<p>プログラム言語としては、APIの制約条件を記述する事が出来る機能が流行ると予想。
+IDEは制約条件を解釈して賢く振る舞う。</p>
+<p>型に対する制約を記述する言語が多くの言語に組み込まれると予想。</p>
+<p>IDEの発展が行き詰まって、それを乗り越える為にプログラマ側がIDEに情報を提供するような作業が増えるんじゃないかなぁ、と。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+そういえば Eclipse が登場した 2000-2009 に比べると この 10 年は IDE に大きな変化がなかった気がしますね。
+VS Code に牽引された軽量エディタが Language server を通じて IDE 的な機能にキャッチアプする 10 年だったような。
+そういう意味では Microsoft が推している TypeScript に頑張ってほしい。
+</div>
+</div>
+<h2 id="6-ネット上のお絵かき人口の80がペン付きタブレットで絵を描くようになる">6. ネット上のお絵かき人口の80%がペン付きタブレットで絵を描くようになる</h2>
+<p>ペンはすべての人が使うデバイスでは無いままだが、
+お絵かきなどの分野ではタブレットが主流になる。</p>
+<p>お絵かきはいまだにWindowsのPCとかが強いのだけど、この状況が早く終わってくれないかなぁ、と思い始めてはや10年弱。
+次の10年こそは！</p>
+<p>これは他の項目に比べると穏当ですね。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+完全な門外漢からすると、もうみんな iPad を使っているような漠然としたイメージでした。何が足りてないんですかねえ。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>いやぁ、なんか部外者的な感覚からするとびっくりするほどWindowsのシェアが大きいんですよねぇ。
+若者とかWindowsのPCとか買ってタブレットとかつなげてるの！？と驚きなのだが…</p>
+<p>ただ大きなメモリを使いたいドメインではあるので、一つのアプリが使えるメモリ量の少ないモバイル環境が不足と感じる理由は一応あるようで。</p>
+
+</div>
+</div></p>
+<h2 id="7-msがlinuxの上のgui環境を作ってそれがwindowsの後継になると宣言">7. MSがLinuxの上のGUI環境を作ってそれがWindowsの後継になると宣言</h2>
+<p>よりクラウドとの親和性を高めるためにさらにLinuxに投資する結果、waylandとは違うWin32と類似のAPIを持つGUI環境を作る、という事が起きないかなぁ。
+10年だと今のWindows 11はまだ現役だろうからもし作ったとしても完全に移行という感じでは無く、
+今後移行すると宣言するくらいの段階じゃないか。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+これが起こると kzys 予想にあった Linux のメインストリーム化が達成されるわけか。
+.NET も GUI 以外は既に Linux 対応しているから、その延長としてありそう。
+でも予想は .NET や WPF じゃなくて Win32 類似なのですね・・・。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+.NETとかWPF的な物よりももっとUnixネイティブ的ななにか、という事を言いたくてWin32類似という言い方をしましたが、
+もっとモダンなネイティブインターフェースですね。
+.NETとかWPFを持っていくよりも、Unixの上にMSが本気でネイティブGUI環境を作ったらどうなるか、的なものを期待したい。
+</div>
+</div></p>
+<h2 id="8-コード生成が主体のプログラム環境が生まれて主要なプログラム言語の一つになる">8. コード生成が主体のプログラム環境が生まれて、主要なプログラム言語の一つになる</h2>
+<p>インテリセンスの延長で関数生成くらいされるような環境で、
+プログラマは生成された関数を変更したり、複数の生成候補から選んだり、という事をする、
+というのがプログラミングであるというようなものが出来るんじゃないか。</p>
+<p>何をヒントに関数を生成するのかは分からないけれど、
+とにかくコーディングというのが生成した物をどうこうする、というふうに変わるようなプログラム環境が生まれると予想。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+翻訳も機械翻訳を修正するみたいな感じになったりしてるらしいですが、そんな感じになるんですかねえ
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+10年だと今のプログラム環境が消える事は無さそうなので、今のswiftとかkotlinくらいの存在感でそういう環境も使われる感じになるんじゃないかなぁ、
+と思うけどどうですかねぇ。
+自動生成系は制御化にあると思える形じゃないとあまり使い物にならないので、今のインテリセンスのように制御化にある感じに使えるかが鍵になると思うけれど…
+</div>
+</div></p>
+<h2 id="9-web上の個人の投稿が特定企業のサービスでなく個人の所有の度合いが増える">9. web上の個人の投稿が、特定企業のサービスでなく個人の所有の度合いが増える</h2>
+<p>現状のSNSなどの投稿はサービスを運営している会社が所有しているが、
+そうした各サービスが囲い込む事の問題が表面化していき、
+揺り戻しとして各自がデータを持つものが個人発信の主流になる。</p>
+<p>SNSの次のなにかは、現在のgithub pagesなどのように、データ自体は企業が持ち続けるけれど、
+そのデータはプレーンなファイルでよそに持っていくのも簡単、という形の物になるんじゃないか。
+あくまで個人が所有するデータを企業がホストするだけ、という形で実現されるなにかが個人の発信の中心となる。</p>
+<p>完全にただの私の願望です。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+これは来てほしいなあ。Ink &amp; Switch の <a href="https://www.inkandswitch.com/local-first/">Local-first software</a> を思い出しました。
+</div>
+</div>
+<h2 id="10-なぜかcのシェアがあまり落ちない">10. なぜかC++のシェアがあまり落ちない</h2>
+<p>なんとなく人類は次の10年でもC++を使っているんじゃないか…</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>雇用という意味で希望のある予想が最後に来た！
+レガシーソフトウェアの保守はあるでしょうが、新しいソフトウェアは登場するんですかねえ。</p>
+<p>なお、つい先日 <a href="https://www.informit.com/store/beautiful-c-plus-plus-30-core-guidelines-for-writing-9780137647910">Beautiful C++</a> という本が出版されていたのを見つけたのでお知らせします・・・</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+Rust勢およびまだ見ぬ新言語勢の皆様にはこの予想が外れる未来を作っていただき、この予想をあざ笑っていただけたら幸いでございます・・・
+</div>
+</div></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>全体的に希望的予測です</title>
+      <link>https://messagepassing.github.io/022-pred/03-kzys/</link>
+      <pubDate>Wed, 15 Dec 2021 00:00:00 +0000</pubDate>
+      <author>kzys</author>
+      <guid>https://messagepassing.github.io/022-pred/03-kzys/</guid>
+      <description>普段はあんまり未来のこと考えていないので難しいですね。暗いことを予測してあたっても嬉しくないので、こうなるといいな、というものを中心に書きました。
+予測 1. 静的型のあるスクリプト言語が人気になり、Python, Ruby に続く第三の選択肢になる この10年で Python や Ruby に型が入ったのはすごいのですが、私が Perl をみて「bless ってなんだよ。普通に class は予約語でいいし、標準ライブラリももっとオブジェクト指向になっていてほしいなあ。」と思っていたように、未来の人々は最初から型があるスクリプト言語を求めるんじゃないか、と思う。
+このスマートフォン時代に、人々が最初に作りたいのはスマートフォンアプリのはずで、そこで Kotlin, Swift, Dart (Flutter) あたりを学んだ人にとって、Python や Ruby の実行時エラーってあんまり納得いかないもののはず。
+shinh 型つきスクリプトそんなに流行らない、て書いたけど、なんか説得されるものがありました。 TypeScript は既に Ruby あたりのシェア倒したりは……してないか。今の Python/JS の位置まで来るのかは楽しみです   morrita 二千年代初頭に C++ や Java から Python や Ruby に行った人も似たような気分でしたが, 当時と違って昨今のモダン静的型言語はシュッとしているので Ruby, Python, Node だと差別化は不十分かもしれない。個人的には別に Kotlin でスクリプト書いても別に良いんじゃないかと思う時があるけれど、言語の文法よりはパッケージ揃えたりとかがめんどくさいですね。十年後に向けて Deno とかを試してみるべきなのだろうか。   karino2 F#はまぁまぁ必要なものは備えていると思うけれど、第三の選択肢は遠い…  
+2. 開発環境としての macOS の人気が落ちて、Linux が普通の選択肢になる macOS の iOS 化、巨大テック企業ってあんまりかっこよくないよねという気分、地球温暖化の懸念と修理する権利、学校指定の Chromebook をハックして遊んでいた世代の台頭、などなどが相まって、今の猫も杓子も macOS 時代が終わって、開発者は Linux を使うのが普通の選択肢になる。</description>
+      <content:encoded><![CDATA[<p>普段はあんまり未来のこと考えていないので難しいですね。暗いことを予測してあたっても嬉しくないので、こうなるといいな、というものを中心に書きました。</p>
+<h2 id="予測">予測</h2>
+<h3 id="1-静的型のあるスクリプト言語が人気になりpython-ruby-に続く第三の選択肢になる">1. 静的型のあるスクリプト言語が人気になり、Python, Ruby に続く第三の選択肢になる</h3>
+<p>この10年で Python や Ruby に型が入ったのはすごいのですが、私が Perl をみて「bless ってなんだよ。普通に class は予約語でいいし、標準ライブラリももっとオブジェクト指向になっていてほしいなあ。」と思っていたように、未来の人々は最初から型があるスクリプト言語を求めるんじゃないか、と思う。</p>
+<p>このスマートフォン時代に、人々が最初に作りたいのはスマートフォンアプリのはずで、そこで Kotlin, Swift, Dart (Flutter) あたりを学んだ人にとって、Python や Ruby の実行時エラーってあんまり納得いかないもののはず。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+型つきスクリプトそんなに流行らない、て書いたけど、なんか説得されるものがありました。 TypeScript は既に Ruby あたりのシェア倒したりは……してないか。今の Python/JS の位置まで来るのかは楽しみです
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+二千年代初頭に C++ や Java から Python や Ruby に行った人も似たような気分でしたが, 当時と違って昨今のモダン静的型言語はシュッとしているので Ruby, Python, Node だと差別化は不十分かもしれない。個人的には別に Kotlin でスクリプト書いても別に良いんじゃないかと思う時があるけれど、言語の文法よりはパッケージ揃えたりとかがめんどくさいですね。十年後に向けて Deno とかを試してみるべきなのだろうか。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+F#はまぁまぁ必要なものは備えていると思うけれど、第三の選択肢は遠い…
+</div>
+</div></p>
+<h3 id="2-開発環境としての-macos-の人気が落ちてlinux-が普通の選択肢になる">2. 開発環境としての macOS の人気が落ちて、Linux が普通の選択肢になる</h3>
+<p>macOS の iOS 化、巨大テック企業ってあんまりかっこよくないよねという気分、地球温暖化の懸念と修理する権利、学校指定の Chromebook をハックして遊んでいた世代の台頭、などなどが相まって、今の猫も杓子も macOS 時代が終わって、開発者は Linux を使うのが普通の選択肢になる。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+なんか最近は回りの若い人が普通に Linux 使ってて、既にそういう時代が来つつあるような気がしていました。がまあ僕が見ている人たちの傾向がかなり偏っているかも
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+長らく Linux を使いながらそろそろ嫌気がさして次は Mac でいいかとおもってるわたくしですが、Linux の時代がきちゃうならもう数年辛抱したほうが良いのかな&hellip;
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+私は <a href="https://frame.work/">Framework Laptop</a> に Linux 載せるのがかっこいいかなあと思っています。潰れないでくれ!
+</div>
+</div></p>
+<h3 id="3-http--html--css--javascript-に代わる新しいプロトコルとフォーマットがコンピュータ愛好家の間で普及する">3. HTTP + HTML + CSS + JavaScript に代わる、新しいプロトコルとフォーマットが、コンピュータ愛好家の間で普及する</h3>
+<p>HTTP/3 は複雑だし、HTML + CSS + JavaScript はもっと巨大で複雑。とくに後者は、経緯を知らない人が仕様をみて、さらに React や Tailwind みたいな実装上の工夫を見たときに、あんまり納得感がない仕様になってしまったと思っている。カスケーディングするスタイルって結局ダメなアイデアだったの? みたいな。</p>
+<p>なので、<a href="https://gemini.circumlunar.space/">Gemini</a> のような別のプロトコル + フォーマットがいくつかでて、そのうちのどれかに、コンピュータ愛好家は移行するんじゃないか。</p>
+<h3 id="4-markdown-のようなみんなが納得して-git-に入れやすい図を書くためのフォーマットが制定される">4. Markdown のような、みんなが納得して Git に入れやすい図を書くためのフォーマットが制定される</h3>
+<p>突然話のスケールが小さくなるんですが、仕事で図を書くときに、PlantUML を使ってみたり Web アプリケーションを使ってみたり、いまだにしっくりくるやつが見つかっていない。Wiki 文法は Markdown という決定版が出て落ち着いたので、図に関してもそろそろ喧嘩にならない決定版が出てほしい。</p>
+<p>これは自分でやってみてもいいかもなあ。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>下のほうにでてくる Jupyter みたいなやつだとコードという形でそれなりにバージョン管理できる図(主にチャート)を描けているので、フリーハンドっぽい図まではあと一歩。</p>
+<p>仕事では GUI でぽちぽちつくったダッシュボードを protobuf text にダンプしてバージョン管理とかしてますが、
+そういう感じで手書きから編集/バージョン管理可能なテキストが生成される図があると良いですねえ。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+Git だけなら、<a href="https://github.blog/2020-12-17-commits-are-snapshots-not-diffs/">スナップショットベース</a>なので、テキスト生成しなくてもオンザフライの差分生成だけ頑張ればなんとか&hellip;。
+</div>
+</div>
+<h3 id="5-プログラミング言語の-diff-が行単位ではなく構文木をきちんと理解したものになる">5. プログラミング言語の diff が、行単位ではなく、構文木をきちんと理解したものになる</h3>
+<p>未来というか現代でも当然あるべきもの第二弾。なんで <code>git diff</code> とかコードレビューでいまだに我々は行単位の diff をみているんでしょうか。木の diff をとるのってロケットサイエンスではないはずで、そろそろもうちょっと良い差分表示ならびにマージができるようになってほしい。</p>
+<p>使ったことないけど、多分 <a href="https://www.semanticmerge.com/">SemanticMerge</a> がやってくれるんですよね。こういうのが各地に普及してほしい。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+木の diff 良いですね。構文木だけでなく、 DAG の diff を取りたいなあ、とよく思っています。構造化 grep はずっと流行らないかなあ、と思っていたのですが、 jq が来てついに来たか、って気がしているので、次は diff ですね
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+<a href="https://semgrep.dev/">semgrep</a> とか <a href="https://pkg.go.dev/rsc.io/rf">rf</a> とか、そろそろ構文木を文字列として扱うのはやめるべき、という気づきが Unix 村にも来ているような気がしています。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+semgrep 知りませんでした。構造 grep は、 <a href="https://www.cs.helsinki.fi/u/jjaakkol/sgrep.html">sgrep</a> とか、実装はいろいろ昔からあった気がするんですが、流行ってなかったという気が。まあ <a href="https://linux.slashdot.org/story/20/05/31/211211/linus-torvalds-argues-against-80-column-line-length-coding-style-as-linux-kernel-deprecates-it">Linus とかも行指向が完全に前提な発言をしている</a> 感じですしね……
+</div>
+</div>
+<h3 id="6-jupyter-notebook-のような実行できる文章というメディアがsre-や様々な場所で使われるようになる">6. Jupyter Notebook のような「実行できる文章」というメディアが、SRE や様々な場所で使われるようになる</h3>
+<p>機械学習もデータサイエンスもやっていないのですが、Jupyter Notebook って便利ですよねー、と思っていて、Qiita や README.md にあるような「まずはこのコマンドを実行して、次はこれです」みたいな文章も、サービスの運用に用意する、こういうエラーのときはこうしますマニュアル (ランブックと呼ばれたりします) も実際に実行できる文章になってほしい。</p>
+<h3 id="7-簡単なプログラムなら書けますよという人が増える">7. 簡単なプログラムなら書けますよ、という人が増える</h3>
+<p>ここから社会っぽいやつです。</p>
+<p>学校でのプログラミング教育、オンラインプログラミング学習サイトの充実、プログラマって儲かるらしいよという期待、などなどにより「職業プログラマではないですが、簡単なプログラムなら書けますよ」という人が増える。</p>
+<p>タイピストという職業が昔あって消えたみたいに、というとプログラマが絶滅してしまうのでちょっと違うのだけど、すべてのプログラムが専門職を必要とするかというとそうでもないと思っている。</p>
+<h3 id="8-営利企業ではない財団や協同組合などのソフトウェア開発組織が増える">8. 営利企業ではない、財団や協同組合などのソフトウェア開発組織が増える</h3>
+<p>ここ10年は、営利企業のソフトウェアとその限界、というのを人々が目の当たりにした10年になってしまったので、もうちょっと別の形の組織体が増えるんじゃないか。例えば Zig とかは早々と Zig Foundation とか作っていて、なんか新時代だなあと思います。</p>
+<h3 id="9-リモートワークが普通になり東京やベイエリア周辺に集中して人が住むのが終わり日本に住みながら海外の会社で働く人も増える">9. リモートワークが普通になり、東京やベイエリア周辺に集中して人が住むのが終わり、日本に住みながら海外の会社で働く人も増える</h3>
+<p>新型コロナウィルスでなし崩し的に各地で解禁されたリモートワークはこのまま続いて、東京やベイエリア周辺に集中して人が住むのは終わる。人々が非同期な働き方になれた結果、時差の重ならないところで採用もできるようになって、日本に住みながら海外で働く人も増える。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+<p>7, 8, 9 はプログラミングの民主化・分散化みたいなテーマですかねえ。そこに正しさを感じる一方で
+米国海岸沿いで大企業に勤める我々の存在は完全にその時代に逆行してしまうのを、個人としてどうやって舵切りをすれば良いでしょうね。</p>
+<p>たとえば米国だと石油、製薬、金融などこれまでにいくつか Big X はあったわけだけれど、
+それらがどうやって解体された（あるいはされてない）のかを調べるのは興味深いのかもしれない。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+<p>私は大企業でもマネージドプラットフォームを作っている側なので、<a href="https://www.youtube.com/watch?v=3n1NpmtJ5G8">そこまで逆行してはいない</a>、という認識でいます。</p>
+<p>Big X というと、Planet Money の <a href="https://www.npr.org/sections/money/2019/03/20/704426033/antitrust-in-america">Antitrust In America</a> (2019) の最初の話が石油でしたね。</p>
+
+</div>
+</div>
+<h3 id="10-日本と国外の人の行き来が増えた結果日本でも二重国籍が認められるようになる">10. 日本と国外の人の行き来が増えた結果、日本でも二重国籍が認められるようになる</h3>
+<p>コンピュータ関係ないですね。ならないかなー。</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>僕たちの将来</title>
+      <link>https://messagepassing.github.io/022-pred/02-shinh/</link>
+      <pubDate>Sat, 04 Dec 2021 00:00:00 +0000</pubDate>
+      <author>shinh</author>
+      <guid>https://messagepassing.github.io/022-pred/02-shinh/</guid>
+      <description>序文 つねづね「俺の未来予想の当たらなさぷりには自信がある」と自負しています。特に「XX とか当たるわけないでしょ」と思ったのも関わらず、後になってそれに仕事で関わる、ということが数回起きていて、グーグルで社内オンリー情報だった時代の Chrome や Android を見て、「なんじゃこれ、グーグルがサーバサイド以外やってどうすんの？」と思った二年後に Chrome チームで働いていましたし(その後 Android 関係の仕事もした)、「ニューラルネットの復権！」みたいな話を見て「ワロタ、 C マガかよ」と思ってた二年後にはグーグル翻訳チームに入れてもらっていました。 5年前に書いた未来予想 によると GPGPU は永遠にニッチ、みたいなことが書かれていますが、 CUDA 使ったり、それを倒すべく頑張ったりしているのが最近であります
+逆に僕が夢中になったテクノロジーを3つほど挙げていってみると、 Native Client 、 Intel TSX 、 Swift for TensorFlow 。なかなか見事な予想ではないでしょうか
+というわけで逆張り推奨な予想をやっていきます。本人はいたってマジメなやつと、あとは単なる願望というものがあります
+Predictions 1. GPU はグラフィックプロセッサに戻る ドメイン特化なアクセラレータの特需が今しばらく続くと、 CUDA はアクセラレータ用途としては特化度が低すぎて、没落するように思う。「SIMD 使うくらいなら GPU でいいよなあ」が「GPGPU やるくらいならアクセラレータ使えばいいよなあ」となるはず、という話です
+一応書いておくと、最近のメインの仕事がアクセラレータで GPU を倒すというものなので、ポジショントーク的というか、個人的な意気ごみです
+morrita 強い GPU を買って足せないモバイルとかは既に割とそういうかんじですよね。NVIDIA の株価は下がりそうだけど、中の人はもともとグラフィクス業界人なのでむしろ喜ぶかも知れない・・・。   shinh モバイルはそうですね。クラウドおよび HPC で V100/A100 祭りになっている状況は終わるのでは、という予想ということにしておきます  
+2. 深層学習の自然科学応用でノーベル賞 ノーベル賞は成果出てから受賞までに時間がかかると思うので、受賞自体はしないとして、 2030 年までの深層学習を使って得た成果がノーベル賞を取ると思う。たぶんふたつくらい
+このスライドの最後の
+ 物理学における機械学習は「第３の実験」
+ とか、この文章の</description>
+      <content:encoded><![CDATA[<h2 id="序文">序文</h2>
+<p>つねづね「俺の未来予想の当たらなさぷりには自信がある」と自負しています。特に「XX とか当たるわけないでしょ」と思ったのも関わらず、後になってそれに仕事で関わる、ということが数回起きていて、グーグルで社内オンリー情報だった時代の Chrome や Android を見て、「なんじゃこれ、グーグルがサーバサイド以外やってどうすんの？」と思った二年後に Chrome チームで働いていましたし(その後 Android 関係の仕事もした)、「ニューラルネットの復権！」みたいな話を見て「ワロタ、 C マガかよ」と思ってた二年後にはグーグル翻訳チームに入れてもらっていました。 <a href="http://shinh.skr.jp/h/?FutureGuessing">5年前に書いた未来予想</a> によると GPGPU は永遠にニッチ、みたいなことが書かれていますが、 CUDA 使ったり、それを倒すべく頑張ったりしているのが最近であります</p>
+<p>逆に僕が夢中になったテクノロジーを3つほど挙げていってみると、 <a href="https://en.wikipedia.org/wiki/Google_Native_Client">Native Client</a> 、 <a href="https://en.wikipedia.org/wiki/Transactional_Synchronization_Extensions">Intel TSX</a> 、 <a href="https://www.tensorflow.org/swift/guide/overview">Swift for TensorFlow</a> 。なかなか見事な予想ではないでしょうか</p>
+<p>というわけで逆張り推奨な予想をやっていきます。本人はいたってマジメなやつと、あとは単なる願望というものがあります</p>
+<h2 id="predictions">Predictions</h2>
+<h3 id="1-gpu-はグラフィックプロセッサに戻る">1. GPU はグラフィックプロセッサに戻る</h3>
+<p>ドメイン特化なアクセラレータの特需が今しばらく続くと、 CUDA はアクセラレータ用途としては特化度が低すぎて、没落するように思う。「SIMD 使うくらいなら GPU でいいよなあ」が「GPGPU やるくらいならアクセラレータ使えばいいよなあ」となるはず、という話です</p>
+<p>一応書いておくと、最近のメインの仕事が<a href="https://tech.preferred.jp/ja/blog/mncore-compiler-1/">アクセラレータで GPU を倒す</a>というものなので、ポジショントーク的というか、個人的な意気ごみです</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+強い GPU を買って足せないモバイルとかは既に割とそういうかんじですよね。NVIDIA の株価は下がりそうだけど、中の人はもともとグラフィクス業界人なのでむしろ喜ぶかも知れない・・・。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+モバイルはそうですね。クラウドおよび HPC で V100/A100 祭りになっている状況は終わるのでは、という予想ということにしておきます
+</div>
+</div></p>
+<h3 id="2-深層学習の自然科学応用でノーベル賞">2. 深層学習の自然科学応用でノーベル賞</h3>
+<p>ノーベル賞は成果出てから受賞までに時間がかかると思うので、受賞自体はしないとして、 2030 年までの深層学習を使って得た成果がノーベル賞を取ると思う。たぶんふたつくらい</p>
+<p><a href="https://www.nishina-mf.or.jp/wp/wp-content/uploads/2020/12/Hashimoto_compressed.pdf">このスライド</a>の最後の</p>
+<blockquote>
+<p>物理学における機械学習は「第３の実験」</p>
+</blockquote>
+<p>とか、<a href="https://www.jps.or.jp/books/gakkaishi/2019/09/74-09seriesAIphys2.pdf">この文章</a>の</p>
+<blockquote>
+<p>ランダウの理論物理学教程に入ってないものは物理じゃないなんてケチなこと言ってはいけない．だって，もし，ランダウがまだ生きていたら，嬉々として「機械学習」をランダウの理論物理学教程の最後の一巻として付け加えるに違いないから</p>
+</blockquote>
+<p>とか、なかなかわくわくするのです</p>
+<h3 id="3-演繹的な-ai-が復権し深層学習を補完する">3. 演繹的な AI が復権し、深層学習を補完する</h3>
+<p>もうずっと期待している、完全に願望枠。さすがの僕でもこれは当たらないとわかる</p>
+<p>第五世代的なやつというか、知識溜めていって演繹するようなやつを、深層学習とくっつけることができるようになる。なってほしい。例えば総理大臣が変わったら「新しい総理大臣は XX ですよ」と言えば挙動が変わるとか、深層学習モデルを説明可能にするには、どうしてもそういうのが必要なんじゃないの、って妄想しているのですよね……</p>
+<p>ついでに書いておくと、 <a href="https://blog.google/technology/ai/introducing-pathways-next-generation-ai-architecture/">Jeff Dean のバカデカマルチタスク AI で知性に近付きますよ的な野望</a> はあまり信用していない</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+Pathways の文章はあまりにふんわりしたお気持ち表明だけでコードもなければ論文もなく、ちょっとがっかりですねえ。この話をなぜ今しているのか不思議。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+僕がこの思想を始めて知ったのは 2017 年に Jeff Dean が来日した Machine Learning Developer Meetup Tokyo でした。<a href="https://youtu.be/xU5_T9IU4t8?t=2171">動画はこのへん</a>。グーグルだけが非同期トレーニング/モデルパラレルを重視して、どうもこのせいでグーグルの進捗を損なっていた、ということに全社的に気付き始めた時期だったという認識なので、こういう思想があってのことだったんだなあ、と強く印象に残っています。少なくとも4年間進捗がないようでは、なかなか茨の道なのはそうぽいですね
+</div>
+</div></p>
+<h3 id="4-教育系の会社が-gafa-る">4. 教育系の会社が GAFA る</h3>
+<p>これも願望枠</p>
+<p>ここ5年くらい、世の検索エンジンの品質が上がっている、と感じる人はあまりいないのではないかと思う。これは寡占は悪という話とかもあるのだろうけど、機械的に情報を整理する、というアプローチに限界が来ているのでは、という気もしている。10年くらい前までは、インターネットに新しく現われる有用な情報、というのが指数的に増えていっていて、機械で分類するしかない状況だったと思う。ただ、なんかそろそろスパムはともかく、有益な情報の増加は落ちついてるのではないか</p>
+<p>で、そういう情報をうまく処理して整理できるのってどういう会社かなーというと、マジメに人手で情報を整理して教育をやってる会社だったりしないのかな、と。例えば試しに今思いついた「太陽」「なぜ白い」でぐぐってみて、イマイチな結果だなあと思ったのだけど、こういうので30分くらい学べる教材が出てくると良いなぁ、と</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+そういえば Coursera も Udemy も今年 IPO でしたね。コースというほどでもない短い説明ビデオだと、<a href="https://www.youtube.com/c/Vox">Vox</a> とか良くできていてすごいなあと思います。
+</div>
+</div>
+<h3 id="5-vr-が職人技術の高速道路になる">5. VR が職人技術の高速道路になる</h3>
+<p>インターネットが知識のハイウェイになって、若者の知識が人間離れしたのと同様に、 VR が職人技術のハイウェイになる。手術ゲームにドハマリした小学生が、本職の医者より手術がうまい、とか</p>
+<p>Web サイト見て学ぶ時代から YouTube 見て学ぶ時代になったんだなあ、と思ったのはたぶん10年くらい前なのだけど、次の10年くらいだと VR になってていいんじゃないの、と</p>
+<p>僕自身は VR ほとんど遊んだことないのだけど、 2021 年こそが VR 元年だったと言えるような展開を期待している</p>
+<h3 id="6-rust-は普通にそれなりに流行る">6. Rust は普通にそれなりに流行る</h3>
+<p>今ごろ「これからは Rust！」とかいうのちょっと恥ずかしいものがありますね……まあでも C++ が置き換えられる、とまでは思ってない。 C++ の延命策は十分に発明されてしまった</p>
+<p>プログラム言語まわり、この5年の大きな変化というと Rust と TypeScript などの型書けるスクリプト言語かなあと思う。このうち、 Rust は順調に増えてくんでないかなあ、と。型書けるスクリプト言語は、なんかやってみると意外と微妙な気持ちになることが多くて……既存のスクリプト言語が置き変えられるというほどのシェアの変化は起きないんじゃないかなあ、などと思っている</p>
+<p>それ以外でも Rust 以外の勢力図が大きく変化してそうという気があまりしないかなあ、という気持ち。「変化しない」「うまくいかない」系の予想は面白みを感じないので微妙な気持ちなのだけど、プログラム言語について何か書きたかったのと、「ここ10年なんやかんやと変わってきたけど、次の10年では変化が減るのでは」という予想なので入れても良いかな、となった</p>
+<p>Zig も流行ってほしいけど、厳しいのだろうな</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+ここ 5 年だと Go のメインストリームへの普及は目覚ましいと思いますね。Go が Java を倒す・・・まではいかないにせよだいぶ陣地を広げた程度に
+Rust は C++ の陣地を取るのでしょうね。<a href="https://security.googleblog.com/2021/04/rust-in-android-platform.html">Android でも使えるようになりました</a>。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+これ書く時に Go の存在、完全に忘れてました。新しいパラダイム広げたりしてなくて、単に母体の強さぽい気がして、あまり語ることがないと思っているのかも。あとなんか、 Go て5年くらい前には既に強かったみたいな印象がありましたが、認知が歪んでいるかも
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+Docker とか Kubernetes とかは 5 年前くらいには登場してるので、強かったという認識の方が正しそう。この 10 年の言語だったということかな。
+</div>
+</div></p>
+<h3 id="7-セキュリティ研究やバグハントが下火になる">7. セキュリティ研究やバグハントが下火になる</h3>
+<p>ここ10年はセキュリティはアツい分野で、なんともたくさんの面白バグが世間を騒がせていた。でも、この先 10 年もすれば状況は良くなってるのではないか。気のせいでなければ、既にだいぶ減ってきているような気もする。例えば CTF で言うところの pwn 的なやつ(C/C++ のクラッシュバグとかをセキュリティの突破に使う系)とかも、 sandbox とかで根本的に対処されつつあるような気するし、 XSS とか SQL injection とかも聞く頻度が減ってきているような</p>
+<p>ソフトウェアは良くなったけど Row hammer 地獄、とか、 IoT ハック全盛時代とか来てないと思いたい</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+少し前に <a href="https://www.amazon.com/This-They-Tell-World-Ends/dp/1635576059/">This Is How They Tell Me the World Ends</a> という本を読んで、民間人は手出しできない国家予算でやる軍事分野になる（もうなってる）のかな・・・と思いました。そういう意味でひと目にはつかなくなるのかも知れない。Lockheed Martin や三菱みたいに、金額はデカイけど世間では目に付かないみたいな。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+この10年ほどはセキュリティが広く注目されたけど、元の地味な感じに戻る、ということなのかも、と思いました。 GPGPU とこれは、今はこの世の春を謳歌しているけど、元のポジションに戻るという予想、という分類ができるのかも
+</div>
+</div></p>
+<h3 id="8-クラウドストレージが普通の-fs-ぽく見えるようになり-nfs-が死ぬ">8. クラウドストレージが普通の FS ぽく見えるようになり NFS が死ぬ</h3>
+<p>クラウドぽいのもなんか書いてみようと入れてみた。みんな欲しいと思ってると思うけど、地味に大変というのもわかるのだけど、でもさすがに10年もあればいいかげん使えていてほしい……</p>
+<p>FUSE でそれっぽいものを作るのは、まあできるはずだけど、システムコール界面そのままでクラウドを見せるのは、それはそれほど便利でないかもしれなくて(例えばNFS内のファイルをタブ補完するのが好きな人はいないと思う)、 GNU fileutils や shell 自体がクラウドストレージ対応する、みたいなのが楽しそうかな、とか思っている。 rsync 的なツールがクラウドからクラウドのコピーとかを、手元介さず高速にやってほしいよね、とか</p>
+<p>ただそれだと多言語対応ができないのだよなあ。なんか次の項目が実現すると Unix の CLI での見た目とかどうでもよくなっているのかも</p>
+<h3 id="9-みんなブラウザでプログラム書いてる">9. みんなブラウザでプログラム書いてる</h3>
+<p>github.dev みたいなやつで、実行なんかも含めて全部やってる、という時代になってそう。 Web ベースの IDE やコンテナで、要素技術はおおむねそろっていそう</p>
+<p>ただ僕は未だに Emacs で作業してそう……という気もする</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+自分は最近仕事だと半分くらいはブラウザで書いてますね。それに感化されて家でも <a href="https://github.com/coder/code-server">code-server</a> (poorman&rsquo;s GitHub Codespaces) を使い始めました。ただ個人用途だと VM 代が高く感じるので、開発環境がもうちょっと serverless になってほしいなと思います。それこそクラウドストレージが普通の FS ぽく開発ツールフレンドリになり、分散ビルドが pay-per-use になれば解決するんだけど。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+退職時点でグーグルサーバサイドの人半分くらいはブラウザでコード書いてそうな印象でしたが、アプリの人もブラウザでいけるようになってるんですね。極めてダイバーシティの低いグーグル社内環境はともかく、一般に広がるには、環境の差異を吸収するプロトコルのデファクトみたいなのが定まる必要があるんでしょうねえ。 code-server 面白そうですね。遊んでみます
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+アプリのコード (Java/Kotlin) はさすがにまだダメかな。Python とかそういう系。世の中 CI とかは普通にクラウドでやってるので、クラウド開発は後一歩だと思うんですけどね。
+</div>
+</div></p>
+<h3 id="10-論文は-tex-で書かれて-pdf-で公開されている">10. 論文は TeX で書かれて PDF で公開されている</h3>
+<p>残念ながらこれは変わらない。前職の上司の受け売り。インターフェイスがサイアクでも、正しい機能がそろっているものはなかなか死なないね……という。 cmake とかも、そういう機能としては正しいけど文法すごい、みたいなやつだと思っていて、 10 年後も「なんで俺たちこんなもの使ってるの……？」となりつつも使われていそうと思っている</p>
+<h2 id="その他">その他</h2>
+<p>面白みに欠けたり、色んな理由で挙げなかったものの供養</p>
+<ul>
+<li>脳波で操作するようになる (来る気がしない)</li>
+<li>5G で十分なので光回線ひく家庭が電話回線並に減る</li>
+<li>アニメやゲームのモブは基本 GAN で作るようになる</li>
+<li>あと AI 系で言うと動画処理に期待しています</li>
+<li>エッジでトレーニングも来ない (ベンチマークが作れないのがキツい)</li>
+<li>やたら家電が喋るようになるが不評</li>
+<li>量子コンピュータは来ない</li>
+<li>プロセスルールの数字に意味はないらしいけど、それにしても 1Å とかになってるのだろうか……</li>
+</ul>
+<p>全体通じての感想として、「それ既に流行ってるよ」は普通にありそうだなあとビクビクしながら書いていました</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>代わりに必要なのは何なのか？</title>
       <link>https://messagepassing.github.io/021-push/04-karino2/</link>
@@ -129,6 +634,134 @@
 
 </div>
 </div>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>未来予想</title>
+      <link>https://messagepassing.github.io/022-pred/01-morrita/</link>
+      <pubDate>Sun, 24 Oct 2021 00:00:00 +0000</pubDate>
+      <author>morrita</author>
+      <guid>https://messagepassing.github.io/022-pred/01-morrita/</guid>
+      <description>唐突ですが未来予想をするターンです。10 年後のプログラマ事情（じゃなくてもいいけど）を予想してみたい。
+背景としては、むかしむかしの 2005 年に Steve Yegge という当時人気だった blogger が Ten Predictions という記事を書き、それを十年後の 2015 年に Dan Luu (森田が好きな blogger)が採点する、という出来事がありました。我々もいまテキトーなことを書いて 10 年後に採点したら面白いんじゃないかな。という動機。Caveat としては 2005 年の Steve Yegge はテック業界に詳しい若者ブロガーでしたが、2021 年の森田は業界動向とか真面目にウォッチしてないおっさんなのであまり面白い予想は書けない恐れがあります。が、まあそれは仕方なしということで。
+一人10件を目標に、あまり保守的でもアグレッシブ過ぎても面白くないので、半分くらいあてるつもりで行きましょう。
+FYI: 2011 年前後 本題に入る前に、10 年というタイムスパンを体感するべく 2011 (+/-1) 年くらいがどういう時代だったかを雑に振り返ってみます。 どのくらい雑かというと、2011 年前後の Hacker News の top N stories を適当にクエリしてみました。
+2011 年前後には&amp;hellip;
+ Steve Jobs が亡くなった。サブカルチャー的に解釈すると、iPhone の革命が終わり、その地位を盤石にしたのが 2011 年といえる。 Stripe ができた。現在の未上場スタートアップの筆頭株、10 年たってもまだ上場してない。上場しないで引っ張るスタートアップの時代の始まりとも読める。 Zynga のきな臭いニュース。ソシャゲ的なものに暗雲が差した時代。  いまいちプログラマっぽい話がないな・・・ランキングを適当にスキップしつつ眺めると
+ Matz が Heroku に転職。ちなみにこの前後で Heroku は Salesforce に買収されている。世間での Ruby の流行がピークだった頃とも解釈できる。Rails の新バージョンがリリースされると昨今の React リリースみたいなかんじでけっこう盛り上がる。 一方で Meteor という JS 主体の PaaS がでてきたのも 2011 周辺。なお同時期に創業された Parse という似たような PaaS は Facebook に買収された後消滅、Firebase は Google に買収されました(消滅はしていない)。PaaS が盛り上がっていた時代。今も普通に使われてますが。 JS といえば Fabrice Bellard が Linux を JS にポートする(とは一体?</description>
+      <content:encoded><![CDATA[<p>唐突ですが未来予想をするターンです。10 年後のプログラマ事情（じゃなくてもいいけど）を予想してみたい。</p>
+<p>背景としては、むかしむかしの 2005 年に Steve Yegge という当時人気だった blogger が <a href="https://sites.google.com/site/steveyegge2/ten-predictions">Ten Predictions</a> という記事を書き、それを十年後の 2015 年に <a href="https://danluu.com/yegge-predictions/">Dan Luu</a> (森田が好きな blogger)が採点する、という出来事がありました。我々もいまテキトーなことを書いて 10 年後に採点したら面白いんじゃないかな。という動機。Caveat としては 2005 年の Steve Yegge はテック業界に詳しい若者ブロガーでしたが、2021 年の森田は業界動向とか真面目にウォッチしてないおっさんなのであまり面白い予想は書けない恐れがあります。が、まあそれは仕方なしということで。</p>
+<p>一人10件を目標に、あまり保守的でもアグレッシブ過ぎても面白くないので、半分くらいあてるつもりで行きましょう。</p>
+<h2 id="fyi-2011-年前後">FYI: 2011 年前後</h2>
+<p>本題に入る前に、10 年というタイムスパンを体感するべく 2011 (+/-1) 年くらいがどういう時代だったかを雑に振り返ってみます。
+どのくらい雑かというと、2011 年前後の Hacker News の top N stories を<a href="https://colab.research.google.com/drive/1m6rKsxRKYth8Imu-XpqO1EILVT78UzIZ?usp=sharing">適当にクエリしてみました</a>。</p>
+<p>2011 年前後には&hellip;</p>
+<ul>
+<li>Steve Jobs が亡くなった。サブカルチャー的に解釈すると、iPhone の革命が終わり、その地位を盤石にしたのが 2011 年といえる。</li>
+<li>Stripe ができた。現在の未上場スタートアップの筆頭株、10 年たってもまだ上場してない。上場しないで引っ張るスタートアップの時代の始まりとも読める。</li>
+<li>Zynga のきな臭いニュース。ソシャゲ的なものに暗雲が差した時代。</li>
+</ul>
+<p>いまいちプログラマっぽい話がないな・・・ランキングを適当にスキップしつつ眺めると</p>
+<ul>
+<li>Matz が Heroku に転職。ちなみにこの前後で Heroku は Salesforce に買収されている。世間での Ruby の流行がピークだった頃とも解釈できる。Rails の新バージョンがリリースされると昨今の React リリースみたいなかんじでけっこう盛り上がる。</li>
+<li>一方で Meteor という JS 主体の PaaS がでてきたのも 2011 周辺。なお同時期に創業された <a href="https://en.wikipedia.org/wiki/Parse,_Inc.">Parse</a> という似たような PaaS は Facebook に買収された後消滅、<a href="https://en.wikipedia.org/wiki/Firebase">Firebase</a> は Google に買収されました(消滅はしていない)。PaaS が盛り上がっていた時代。今も普通に使われてますが。</li>
+<li>JS といえば Fabrice Bellard が Linux を JS にポートする(とは一体?) <a href="https://bellard.org/jslinux/">jslinux</a> をリリースした。JS で限界を攻める遊びが頂点に達した瞬間かもしれない。なお Node.js が登場したのもこの頃 (2010)。ついでに TypeScript は 2012, React.js は 2013 に登場。</li>
+<li><a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap の登場</a>。CSS フレームワークが盛り上がる機運。(Bootstrap が Twitter から独立したため、リンクは 404.)</li>
+<li><a href="http://pastebin.com/raw.php?i=FD3xe6Jt">Don&rsquo;t Use MongoDB</a> NoSQL ディスで盛り上がれる時代。RDB 陣営だと Amazon Aurora が 2014, Google Spanner (論文) が 2012 です。</li>
+<li>HP が WebOS がオープンソース化 (リンク消滅)。モバイルが iOS と Android の二強時代になった象徴・・・とかいうとその後登場する Firefox OS (2013-2016) に刺されそうだけど、モバイルというものがホットだったのは間違いない。</li>
+<li>モバイルという話題だと Adobe が Steve Jobs にディスられた (2010) モバイル Flash の正式な打ち切りを表明 (2011)。Flash そのものの打ち切りは 2017 です.</li>
+<li>GitHub の CTO (当時) が <a href="https://tom.preston-werner.com/2011/11/22/open-source-everything.html">Open Source (Almost) Everything</a> などと書いて拍手喝采されていた。GitHub は、今のように空気のような存在ではなくクールななにかだった。なおその CTO は 2014 年にセクハラだかパワハラだかで退任。この 10 年はテックの Diversity-Equitty-Inclusion が大きな論点になった時代でもある。</li>
+</ul>
+<p>というわけで、モバイルが (というか iOS と Android が) 熱い話題で、ブラウザの外の JS も盛り上がりはじめていて、GitHub はすごくクールで、会社は全然 inclusive でなかった。一方で NoSQL の盛り上がりは峠を越えつつあり、Ruby / Rails の人気もこのころが頂点っぽい感があった。</p>
+<p>HN のクエリ結果には AWS 関係が全然登場しないけれどクラウド方面がどうだったかというと、<a href="https://netflixtechblog.com/5-lessons-weve-learned-using-aws-1f2a28588e4c">Netflix が AWS 移行を発表したのが 2010</a>。まだ cutting edge というかんじ。今のようにやたら大充実なサービスがあるというより EC2 と S3 が中心で、その上で動かす Hadoop とかの big data みたいのが元気だった。コンテナとかはなかった。Cloud Native (とは?) の Kubernetes 登場は 2014 です。</p>
+<p>そんな 10 年前。自分とかおっさんなので最近のような気もするけれど、客観的にいうとまあまあ昔ではなかろうか。</p>
+<h2 id="本題-予想">本題: 予想</h2>
+<p>さて本題に戻って雑な予想をしていきましょう。半分あてるつもりで 10 個。</p>
+<h3 id="1-モバイル開発はフロントエンド開発者の片手間になる">1. モバイル開発はフロントエンド開発者の片手間になる。</h3>
+<p>2011 年には大盛り上がりだったモバイル、2021 年の今日ではだいぶ成熟産業で、すごいニッチな特製 OS 専門家以外は iOS/Andoid 両方できます人材が求められている。そんな中 React Native なり Flutter なりの需要が高まっているけれど、この流れは止まらずに行くとこまでいくのだろうなという予想。それが React Native なのかブラウザなのか他の何かなのかは知らないけれど、大半はウェブプログラマが片手間でやる仕事になってるんじゃないかな。今のデスクトップアプリを OS ベンダの中の人と Adobe 以外はみんな Electron で書いてるのと同じで。</p>
+<p>もちろんこれは企業製アプリの話で、ネイティブアプリを書く個人は引き続きいるだろうなとは思う。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+iOS/Android が html5 の隆盛に水かけた、みたいな感じでしたが、結局 web が寄り切る感じですかねえ
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+自分はクロスプラットフォームは次の10年も来ない、と思っているので、どちらが正解かは楽しみな所ですね。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+ネイティブ存続の方が個人的には助かるんだけど。Web が寄り切ったと言えるかどうかはわかりませんが、JavaScript は寄り切るのかなとなんとなく思ってます。
+</div>
+</div></p>
+<h3 id="2-js-がまともにマルチスレッド対応してサーバサイドでもめちゃ人気言語になる">2. JS がまともにマルチスレッド対応してサーバサイドでもめちゃ人気言語になる。</h3>
+<p>JS/TS って書いてる分にはだいぶ気分が良いけれど未だにスレッドは worker とか言っており、ほぼシングルスレッドのまま。そのせいもあってスケーラビリティとかを気にする方面では人気がない。でも 10 年も立てばまともにスレッド使えるようになっても不思議じゃないし、そうなったらきっと強い言語になるんじゃないかな。WASM のおかげで JS の処理系の中でのスレッド環境は整備されてきているわけだし。</p>
+<p>とか、個人的にはそんなに信じてないけど投機枠で書いておく。</p>
+<h3 id="3-分散システムが-rails-くらいサクッとつくって-heroku-くらいさくっとデプロイできるようになる">3. 分散システムが Rails くらいサクッとつくって Heroku くらいさくっとデプロイできるようになる。</h3>
+<p>いま雨後の筍のように沢山ある Kubernetes スタートアップから綺羅星のように気の利いたオープンソースの高位レイヤ決定版が現れ、そいつをベースとした PaaS が新興企業なのか大手クラウドベンダのテコ入れなのかはわかないけれど現れ、k8s Ingress だの Opeator だのわからない駆け出しプログラマでもなんとなく microservices が作れるように成る。</p>
+<p>個人的には別に Cloud Run とか App Runner くらいでいいのではとおもってるんだけど世間の専門家は説得できていないっぽいので、誰かがんばって説得力あるやつつくってくれ<a href="https://www.cloudnatix.com/">向井さんの勤務先</a>とか・・・</p>
+<p>k8s とか覚えないまま職業人生を終えたいと願っているわたくしの願望投機枠。</p>
+<h3 id="4-ちゃんとした-oltp-rdb-がちゃんと-severless-になる">4. ちゃんとした OLTP RDB がちゃんと severless になる。</h3>
+<p>世の中には DynamoDB とか Firestore とかきちんと serverless のデータストアがあって、そこそこ使われている。しかしこいつらは SQL が書けないし、トランザクションとかもよくわからない。一方 RDS Aurora とか Cloud Spanner とかのクラウド OLTP RDB は価格設定が serverless じゃない。ちゃんと serverless にしてほしい。ホビープログラマ的には切実。OLAP の RDB は BigQuery とか RedShift serverless とか Snowflake とかあるんだから、あとはトランザクションしてくれればいいんだよ？</p>
+<p>願望枠ではあるけれど、最近 <a href="https://planetscale.com/">PlanetScale</a> とか <a href="https://www.cockroachlabs.com/blog/how-we-built-cockroachdb-serverless/">Cockroachdb serveless</a> とかこの条件を満たすものは出始めているので、割と現実的な気がしている。10 年後には他のクラウドベンダも追従してくれるんじゃないかろうか。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+SQL なあ。私は結構 <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-general-nosql-design.html">NoSQL Design for DynamoDB</a> に説得されていて、SQL というか RDBMS は、情報をきれいにいれて色々な方法で取り出すためのもので、OLAP と親和性は高いけれど、OLTP に使わなくても良かったのでは、と思っています。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+自分の勤務先はなんでも SQL になりつつある様子なのでこう思いましたが、たしかにインフラの方向性は色々ですね。
+</div>
+</div></p>
+<h3 id="5-ラップトップの-cpu-はぜんぶ-arm-になる">5. ラップトップの CPU はぜんぶ ARM になる。</h3>
+<p>もう Apple がやってしまったので他も時間の問題でしょう、ということで手堅い枠。Microsoft が<a href="https://www.theverge.com/2020/10/23/21526702/microsoft-surface-pro-x-2020-review-arm-windows-10-apps-features-specs-price">頑張って切り拓いてくれる</a>と期待。
+(なお森田の勤務先もたまにラップトップ作ってますが、特にインサイダー知識はございません。)</p>
+<h3 id="6-raspberry-pi-方面の-cpu-はぜんぶ-risc-v-になる">6. Raspberry Pi 方面の CPU はぜんぶ RISC-V になる。</h3>
+<p>ラップトップの予測よりはもうちょっと投機的なのないかなと思って考えたけど、
+<a href="https://www.hackster.io/news/raspberry-pi-becomes-a-member-of-the-risc-v-foundation-11f06aecc241">ぜんぜん投機的ではない雰囲気・・・</a>。</p>
+<h3 id="7-オープンソースの-gpu-が業界の支持を得る">7. オープンソースの GPU が業界の支持を得る。</h3>
+<p>もっと投機的なやつを考えよう、ということで RISC-V の GPU 版が出て欲しいな、という願望投機枠。
+GPU, NVIDIA に足元見られてちょう高いので誰かにがんばってほしい。
+いちおう<a href="https://vortex.cc.gatech.edu/">リサーチレベルではある</a>模様なので、10 年かけて花開くといいですね。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+Vortex 、こういうのあるのですね。 RISC-V 流行るとすると iGPU も必要だろうし、グラフィック用途だと手堅いのでは？とか思いました
+</div>
+</div>
+<h3 id="8-cli-で-mldl-する開発者必須ツールが登場する">8. CLI で ML/DL する開発者必須ツールが登場する</h3>
+<p>ML 関係もなんか入れてみるかと思いつつ素人なのでハッタリは避け、エンドユーザとして起きてほしいことを考える。
+<a href="https://stedolan.github.io/jq/">JQ</a> とか <a href="https://beyondgrep.com/">ACK</a> とか, ここ 10-15 年のスパンでも CLI ツールにはたまに新顔があるので、そういうノリで登場する CLI のツールが次はきっと ML-based なのではないかなあ、と雑に予想してみる。探せばもうありそうだけど、自分は今の所使ってないので。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+shell の補完とか編集とかいい感じにやってほしい気がしますねえ
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+補完かー。なんとなくもっとファンシーな用途を想像してたけど、たしかにそういう地味なところから使われるるのかもなあ。
+</div>
+</div></p>
+<h3 id="9-cryptocurrencynftweb3-はニッチインフラ要素技術に終わる">9. Cryptocurrency/NFT/Web3 はニッチインフラ要素技術に終わる。</h3>
+<p>Crypto とか全然興味ないわたくしといたしましては、このまま流行らず終わってくれという願いを込めて negative vote.
+ただむかしの P2P とかも要素技術としてはほそぼそ使われているので、そういう直接カネにならないところでの応用はあるんじゃないかな。知らないけど。</p>
+<h3 id="10-apple-の-ar-メガネが-apple-watch-と同程度に普及している">10. Apple の AR メガネが Apple Watch と同程度に普及している。</h3>
+<p>AR/VR とか流行るのかわからないけど、きっと Apple は iPhone ユーザの心に響く何かを出すのだろうなという予想。
+投機的か手堅いかというと、間くらいかなあ。VR は・・・ 10 個にの枠に入らないのでパス。</p>
+<hr>
+<p>といったところです。
+我ながらいまいち想像力が足りてない。でも 10 年後に来るテクノロジーがわかってたらもう手を付けているはず。
+鼻が効かないなりに失業しないようがんばっていきたいものです。はい。</p>
 ]]></content:encoded>
     </item>
     

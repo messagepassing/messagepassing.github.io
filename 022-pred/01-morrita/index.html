@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html><head>
+    <title>未来予想&nbsp;/ morrita&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/022-pred/01-morrita/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='未来予想&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="og:description"        content='当たるも八卦当たらぬも八卦。十年後のプログラマ生活をなんとなく予想するスレ。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='未来予想&nbsp;/ morrita&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='当たるも八卦当たらぬも八卦。十年後のプログラマ生活をなんとなく予想するスレ。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>未来予想</td></tr>
+        <tr><th>From</th><td><a href="https://notes.dodgson.org/">morrita</a></td></tr>
+        <tr><th>Date</th><td>2021-10-24</td></tr>
+      </table>
+      <article class='content'><p>唐突ですが未来予想をするターンです。10 年後のプログラマ事情（じゃなくてもいいけど）を予想してみたい。</p>
+<p>背景としては、むかしむかしの 2005 年に Steve Yegge という当時人気だった blogger が <a href="https://sites.google.com/site/steveyegge2/ten-predictions">Ten Predictions</a> という記事を書き、それを十年後の 2015 年に <a href="https://danluu.com/yegge-predictions/">Dan Luu</a> (森田が好きな blogger)が採点する、という出来事がありました。我々もいまテキトーなことを書いて 10 年後に採点したら面白いんじゃないかな。という動機。Caveat としては 2005 年の Steve Yegge はテック業界に詳しい若者ブロガーでしたが、2021 年の森田は業界動向とか真面目にウォッチしてないおっさんなのであまり面白い予想は書けない恐れがあります。が、まあそれは仕方なしということで。</p>
+<p>一人10件を目標に、あまり保守的でもアグレッシブ過ぎても面白くないので、半分くらいあてるつもりで行きましょう。</p>
+<h2 id="fyi-2011-年前後">FYI: 2011 年前後</h2>
+<p>本題に入る前に、10 年というタイムスパンを体感するべく 2011 (+/-1) 年くらいがどういう時代だったかを雑に振り返ってみます。
+どのくらい雑かというと、2011 年前後の Hacker News の top N stories を<a href="https://colab.research.google.com/drive/1m6rKsxRKYth8Imu-XpqO1EILVT78UzIZ?usp=sharing">適当にクエリしてみました</a>。</p>
+<p>2011 年前後には&hellip;</p>
+<ul>
+<li>Steve Jobs が亡くなった。サブカルチャー的に解釈すると、iPhone の革命が終わり、その地位を盤石にしたのが 2011 年といえる。</li>
+<li>Stripe ができた。現在の未上場スタートアップの筆頭株、10 年たってもまだ上場してない。上場しないで引っ張るスタートアップの時代の始まりとも読める。</li>
+<li>Zynga のきな臭いニュース。ソシャゲ的なものに暗雲が差した時代。</li>
+</ul>
+<p>いまいちプログラマっぽい話がないな・・・ランキングを適当にスキップしつつ眺めると</p>
+<ul>
+<li>Matz が Heroku に転職。ちなみにこの前後で Heroku は Salesforce に買収されている。世間での Ruby の流行がピークだった頃とも解釈できる。Rails の新バージョンがリリースされると昨今の React リリースみたいなかんじでけっこう盛り上がる。</li>
+<li>一方で Meteor という JS 主体の PaaS がでてきたのも 2011 周辺。なお同時期に創業された <a href="https://en.wikipedia.org/wiki/Parse,_Inc.">Parse</a> という似たような PaaS は Facebook に買収された後消滅、<a href="https://en.wikipedia.org/wiki/Firebase">Firebase</a> は Google に買収されました(消滅はしていない)。PaaS が盛り上がっていた時代。今も普通に使われてますが。</li>
+<li>JS といえば Fabrice Bellard が Linux を JS にポートする(とは一体?) <a href="https://bellard.org/jslinux/">jslinux</a> をリリースした。JS で限界を攻める遊びが頂点に達した瞬間かもしれない。なお Node.js が登場したのもこの頃 (2010)。ついでに TypeScript は 2012, React.js は 2013 に登場。</li>
+<li><a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap の登場</a>。CSS フレームワークが盛り上がる機運。(Bootstrap が Twitter から独立したため、リンクは 404.)</li>
+<li><a href="http://pastebin.com/raw.php?i=FD3xe6Jt">Don&rsquo;t Use MongoDB</a> NoSQL ディスで盛り上がれる時代。RDB 陣営だと Amazon Aurora が 2014, Google Spanner (論文) が 2012 です。</li>
+<li>HP が WebOS がオープンソース化 (リンク消滅)。モバイルが iOS と Android の二強時代になった象徴・・・とかいうとその後登場する Firefox OS (2013-2016) に刺されそうだけど、モバイルというものがホットだったのは間違いない。</li>
+<li>モバイルという話題だと Adobe が Steve Jobs にディスられた (2010) モバイル Flash の正式な打ち切りを表明 (2011)。Flash そのものの打ち切りは 2017 です.</li>
+<li>GitHub の CTO (当時) が <a href="https://tom.preston-werner.com/2011/11/22/open-source-everything.html">Open Source (Almost) Everything</a> などと書いて拍手喝采されていた。GitHub は、今のように空気のような存在ではなくクールななにかだった。なおその CTO は 2014 年にセクハラだかパワハラだかで退任。この 10 年はテックの Diversity-Equitty-Inclusion が大きな論点になった時代でもある。</li>
+</ul>
+<p>というわけで、モバイルが (というか iOS と Android が) 熱い話題で、ブラウザの外の JS も盛り上がりはじめていて、GitHub はすごくクールで、会社は全然 inclusive でなかった。一方で NoSQL の盛り上がりは峠を越えつつあり、Ruby / Rails の人気もこのころが頂点っぽい感があった。</p>
+<p>HN のクエリ結果には AWS 関係が全然登場しないけれどクラウド方面がどうだったかというと、<a href="https://netflixtechblog.com/5-lessons-weve-learned-using-aws-1f2a28588e4c">Netflix が AWS 移行を発表したのが 2010</a>。まだ cutting edge というかんじ。今のようにやたら大充実なサービスがあるというより EC2 と S3 が中心で、その上で動かす Hadoop とかの big data みたいのが元気だった。コンテナとかはなかった。Cloud Native (とは?) の Kubernetes 登場は 2014 です。</p>
+<p>そんな 10 年前。自分とかおっさんなので最近のような気もするけれど、客観的にいうとまあまあ昔ではなかろうか。</p>
+<h2 id="本題-予想">本題: 予想</h2>
+<p>さて本題に戻って雑な予想をしていきましょう。半分あてるつもりで 10 個。</p>
+<h3 id="1-モバイル開発はフロントエンド開発者の片手間になる">1. モバイル開発はフロントエンド開発者の片手間になる。</h3>
+<p>2011 年には大盛り上がりだったモバイル、2021 年の今日ではだいぶ成熟産業で、すごいニッチな特製 OS 専門家以外は iOS/Andoid 両方できます人材が求められている。そんな中 React Native なり Flutter なりの需要が高まっているけれど、この流れは止まらずに行くとこまでいくのだろうなという予想。それが React Native なのかブラウザなのか他の何かなのかは知らないけれど、大半はウェブプログラマが片手間でやる仕事になってるんじゃないかな。今のデスクトップアプリを OS ベンダの中の人と Adobe 以外はみんな Electron で書いてるのと同じで。</p>
+<p>もちろんこれは企業製アプリの話で、ネイティブアプリを書く個人は引き続きいるだろうなとは思う。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+iOS/Android が html5 の隆盛に水かけた、みたいな感じでしたが、結局 web が寄り切る感じですかねえ
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+自分はクロスプラットフォームは次の10年も来ない、と思っているので、どちらが正解かは楽しみな所ですね。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+ネイティブ存続の方が個人的には助かるんだけど。Web が寄り切ったと言えるかどうかはわかりませんが、JavaScript は寄り切るのかなとなんとなく思ってます。
+</div>
+</div></p>
+<h3 id="2-js-がまともにマルチスレッド対応してサーバサイドでもめちゃ人気言語になる">2. JS がまともにマルチスレッド対応してサーバサイドでもめちゃ人気言語になる。</h3>
+<p>JS/TS って書いてる分にはだいぶ気分が良いけれど未だにスレッドは worker とか言っており、ほぼシングルスレッドのまま。そのせいもあってスケーラビリティとかを気にする方面では人気がない。でも 10 年も立てばまともにスレッド使えるようになっても不思議じゃないし、そうなったらきっと強い言語になるんじゃないかな。WASM のおかげで JS の処理系の中でのスレッド環境は整備されてきているわけだし。</p>
+<p>とか、個人的にはそんなに信じてないけど投機枠で書いておく。</p>
+<h3 id="3-分散システムが-rails-くらいサクッとつくって-heroku-くらいさくっとデプロイできるようになる">3. 分散システムが Rails くらいサクッとつくって Heroku くらいさくっとデプロイできるようになる。</h3>
+<p>いま雨後の筍のように沢山ある Kubernetes スタートアップから綺羅星のように気の利いたオープンソースの高位レイヤ決定版が現れ、そいつをベースとした PaaS が新興企業なのか大手クラウドベンダのテコ入れなのかはわかないけれど現れ、k8s Ingress だの Opeator だのわからない駆け出しプログラマでもなんとなく microservices が作れるように成る。</p>
+<p>個人的には別に Cloud Run とか App Runner くらいでいいのではとおもってるんだけど世間の専門家は説得できていないっぽいので、誰かがんばって説得力あるやつつくってくれ<a href="https://www.cloudnatix.com/">向井さんの勤務先</a>とか・・・</p>
+<p>k8s とか覚えないまま職業人生を終えたいと願っているわたくしの願望投機枠。</p>
+<h3 id="4-ちゃんとした-oltp-rdb-がちゃんと-severless-になる">4. ちゃんとした OLTP RDB がちゃんと severless になる。</h3>
+<p>世の中には DynamoDB とか Firestore とかきちんと serverless のデータストアがあって、そこそこ使われている。しかしこいつらは SQL が書けないし、トランザクションとかもよくわからない。一方 RDS Aurora とか Cloud Spanner とかのクラウド OLTP RDB は価格設定が serverless じゃない。ちゃんと serverless にしてほしい。ホビープログラマ的には切実。OLAP の RDB は BigQuery とか RedShift serverless とか Snowflake とかあるんだから、あとはトランザクションしてくれればいいんだよ？</p>
+<p>願望枠ではあるけれど、最近 <a href="https://planetscale.com/">PlanetScale</a> とか <a href="https://www.cockroachlabs.com/blog/how-we-built-cockroachdb-serverless/">Cockroachdb serveless</a> とかこの条件を満たすものは出始めているので、割と現実的な気がしている。10 年後には他のクラウドベンダも追従してくれるんじゃないかろうか。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+SQL なあ。私は結構 <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-general-nosql-design.html">NoSQL Design for DynamoDB</a> に説得されていて、SQL というか RDBMS は、情報をきれいにいれて色々な方法で取り出すためのもので、OLAP と親和性は高いけれど、OLTP に使わなくても良かったのでは、と思っています。
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+自分の勤務先はなんでも SQL になりつつある様子なのでこう思いましたが、たしかにインフラの方向性は色々ですね。
+</div>
+</div></p>
+<h3 id="5-ラップトップの-cpu-はぜんぶ-arm-になる">5. ラップトップの CPU はぜんぶ ARM になる。</h3>
+<p>もう Apple がやってしまったので他も時間の問題でしょう、ということで手堅い枠。Microsoft が<a href="https://www.theverge.com/2020/10/23/21526702/microsoft-surface-pro-x-2020-review-arm-windows-10-apps-features-specs-price">頑張って切り拓いてくれる</a>と期待。
+(なお森田の勤務先もたまにラップトップ作ってますが、特にインサイダー知識はございません。)</p>
+<h3 id="6-raspberry-pi-方面の-cpu-はぜんぶ-risc-v-になる">6. Raspberry Pi 方面の CPU はぜんぶ RISC-V になる。</h3>
+<p>ラップトップの予測よりはもうちょっと投機的なのないかなと思って考えたけど、
+<a href="https://www.hackster.io/news/raspberry-pi-becomes-a-member-of-the-risc-v-foundation-11f06aecc241">ぜんぜん投機的ではない雰囲気・・・</a>。</p>
+<h3 id="7-オープンソースの-gpu-が業界の支持を得る">7. オープンソースの GPU が業界の支持を得る。</h3>
+<p>もっと投機的なやつを考えよう、ということで RISC-V の GPU 版が出て欲しいな、という願望投機枠。
+GPU, NVIDIA に足元見られてちょう高いので誰かにがんばってほしい。
+いちおう<a href="https://vortex.cc.gatech.edu/">リサーチレベルではある</a>模様なので、10 年かけて花開くといいですね。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+Vortex 、こういうのあるのですね。 RISC-V 流行るとすると iGPU も必要だろうし、グラフィック用途だと手堅いのでは？とか思いました
+</div>
+</div>
+<h3 id="8-cli-で-mldl-する開発者必須ツールが登場する">8. CLI で ML/DL する開発者必須ツールが登場する</h3>
+<p>ML 関係もなんか入れてみるかと思いつつ素人なのでハッタリは避け、エンドユーザとして起きてほしいことを考える。
+<a href="https://stedolan.github.io/jq/">JQ</a> とか <a href="https://beyondgrep.com/">ACK</a> とか, ここ 10-15 年のスパンでも CLI ツールにはたまに新顔があるので、そういうノリで登場する CLI のツールが次はきっと ML-based なのではないかなあ、と雑に予想してみる。探せばもうありそうだけど、自分は今の所使ってないので。</p>
+<p><div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>shinh</div>
+<div class='message-body'>
+shell の補完とか編集とかいい感じにやってほしい気がしますねえ
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>morrita</div>
+<div class='message-body'>
+補完かー。なんとなくもっとファンシーな用途を想像してたけど、たしかにそういう地味なところから使われるるのかもなあ。
+</div>
+</div></p>
+<h3 id="9-cryptocurrencynftweb3-はニッチインフラ要素技術に終わる">9. Cryptocurrency/NFT/Web3 はニッチインフラ要素技術に終わる。</h3>
+<p>Crypto とか全然興味ないわたくしといたしましては、このまま流行らず終わってくれという願いを込めて negative vote.
+ただむかしの P2P とかも要素技術としてはほそぼそ使われているので、そういう直接カネにならないところでの応用はあるんじゃないかな。知らないけど。</p>
+<h3 id="10-apple-の-ar-メガネが-apple-watch-と同程度に普及している">10. Apple の AR メガネが Apple Watch と同程度に普及している。</h3>
+<p>AR/VR とか流行るのかわからないけど、きっと Apple は iPhone ユーザの心に響く何かを出すのだろうなという予想。
+投機的か手堅いかというと、間くらいかなあ。VR は・・・ 10 個にの枠に入らないのでパス。</p>
+<hr>
+<p>といったところです。
+我ながらいまいち想像力が足りてない。でも 10 年後に来るテクノロジーがわかってたらもう手を付けているはず。
+鼻が効かないなりに失業しないようがんばっていきたいものです。はい。</p>
+</article>
+    </div>
+
+    <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a href="https://messagepassing.github.io/022-pred/02-shinh/"  class="pagination-next">
+      僕たちの将来
+      <span class='tag'>shinh</span>
+    </a>
+    
+    
+    <a href="https://messagepassing.github.io/022-pred/01-morrita/"  class="pagination-previous" disabled>
+      はなしのはじまり
+    </a>
+    
+    </nav>
+  </div>
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/022-pred/'>未来予想</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a class='is-active'>morrita</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/022-pred/02-shinh/'>shinh</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/022-pred/03-kzys/'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/022-pred/04-karino2/'>karino2</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/022-pred/' class='is-active'>
+          未来予想
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/021-push/'>
+          強く押す話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/020-rewrite/'>
+          書き直しのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/019-advice/'>
+          助言のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
