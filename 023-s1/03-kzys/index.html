@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html><head>
+    <title>ふりかえりと後日談&nbsp;/ kzys&nbsp;- Message Passing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Messsage Passing Feed" href="https://messagepassing.github.io/index.xml">
+
+    <meta property="og:url"                content='https://messagepassing.github.io/023-s1/03-kzys/' />
+    <meta property="og:type"               content='article' />
+    <meta property="og:title"              content='ふりかえりと後日談&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="og:description"        content='疲労に伴い一旦終了することにして、ここまでの感想とか。
+' />
+    <meta property="og:locale"             content='ja_JP' />
+    <meta property="og:image"              content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    <meta property="twitter:card"        content='summary' />
+    <meta property="twitter:title"       content='ふりかえりと後日談&nbsp;/ kzys&nbsp;- Message Passing' />
+    <meta property="twitter:description" content='疲労に伴い一旦終了することにして、ここまでの感想とか。
+' />
+    <meta property="twitter:image"       content='https://messagepassing.github.io/ogimage.jpeg' />
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYE8K3TB2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MLYE8K3TB2');
+    </script>
+</head>
+<body><div class='site-title'><div class="container px-4">
+  <section class='p-4'>
+    <a href='https://messagepassing.github.io/'><h1 class="title">Message Passing</h1></a>
+    <p class="subtitle">はなしをふったりふられたり</p>
+  </section>
+</div></div>
+<div class='section non-footer'>
+<div class="container px-4">
+
+
+<div class='columns is-desktop'>
+  <div class='column'>
+    <div class='article-container section is-size-5 is-size-6-touch pt-0'>
+      <table class="table">
+        <tr><th>Subject</th><td>ふりかえりと後日談</td></tr>
+        <tr><th>From</th><td><a href="https://8-p.info/">kzys</a></td></tr>
+        <tr><th>Date</th><td>2022-04-01</td></tr>
+      </table>
+      <article class='content'><p>私の好きなポッドキャストである <a href="https://www.npr.org/podcasts/510289/planet-money">Planet Money</a> では、定期的に <a href="https://www.npr.org/2021/12/10/1063191243/the-rest-of-the-story-2021">The Rest of the Story</a> という振り返り回があって、Message Passing でもそういうのをやったらいいのでは、と夏頃に話していたのですが、先にシーズンが終了してしまった!</p>
+<p>なお、シーズン終了というとあらかじめシーズン制だったのかと思う人もいるかもしれませんが、これは事前に決まっていたわけではなくて、karino2 さんが、後述する GitHub のイシューで</p>
+<blockquote>
+<p>そろそろ更新も止まっているので、一旦終わりにしてもいいのではなかろうか。</p>
+</blockquote>
+<p>といったところからはじまっています。</p>
+<h2 id="システム的なはなし">システム的なはなし</h2>
+<p>Message Passing は、システムとしてはただの Hugo で動いていて、</p>
+<ol>
+<li>GitHub のイシューを使ってお題を出す</li>
+<li>盛り上がってきたら、Gist に草稿を上げて、そこにコメントをつける</li>
+<li>適当なタイミングで Gist とコメントををレポジトリに入れる</li>
+<li>Markdown ファイルを直接編集してまたちょっとコメント</li>
+<li>適当なタイミングで終わりにして公開</li>
+</ol>
+<p>というふうになっている。文通ほどではないけど、電子メールくらいの速度で、Slack よりはずっと遅い。この遅さと、一つ一つのステップの大きさが、karino2 さんや jmuk さんのいう「気合いの必要」というところにつながっていると思う。</p>
+<p>じゃあ速くすればいいかというと、それは人数の少ない Twitter であって、そこから他人が読んで面白いものが生まれるとは思えない。私は Web 2.0 世代なので、書き手を絞って質を担保するというのは、いうほど上手くいかないんじゃないかと思っている。<a href="https://messagepassing.github.io/011-designdocs/07-internet/">Design Docs の回</a>とか、<a href="https://messagepassing.github.io/012-manycore/07-internet/">コアあまりの回</a>で集まっていたインターネットの声は面白くて、これも「書き手は絞らなくていいのでは」という気持ちを後押ししている。</p>
+<h2 id="書き手の偏り">書き手の偏り</h2>
+<p>現職/前職でアメリカ大企業経験者が多いとか、マネージャー経験者がいないとか、現代のインターネットにおけるプログラミングの話題と比較したときに、React とかを使いこなす、いわゆるフロントエンドの人がいないとか、そもそも男性ばっかりとか、そういう書き手の偏りは気になる。</p>
+<p>ただ、私は物事を大きくする野心が欠けているので、Message Passing が全てに応えていくよりは、<a href="https://shishindenshin.vercel.app/">私信電信</a>みたいな共著ブログが増えていくほうが、インターネットらしくて良いかなあと思ってしまう。結局のところ、お題の設定と友達が読んでくれるという期待があれば、どこでも誰でもはじめられるんじゃないかなあ。</p>
+<h2 id="後日談-emacs-やめました">後日談: Emacs やめました</h2>
+<p>最後にひとつ後日談を足しておくと、最近ついに Emacs をやめて Visual Studio Code を真面目に使いはじめた。私にとってのキラー機能は <a href="https://code.visualstudio.com/docs/remote/ssh">Visual Studio Code Remote - SSH</a>。EC2 は使いたいけれど、21世紀にターミナルのエディタ (SSH して <code>emacs -nw</code>) は使いたくなくて、macOS のような良いウィンドウシステムのある環境まできて X11 を使うのも嫌、という私のニッチにマッチしている。</p>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>karino2</div>
+<div class='message-body'>
+<p>自分はマネージャー経験者の話なんて全然聞きたくないし、女性が居なくても別に構わないので、多様性一般は別に無くてもいいかなぁ。</p>
+<p>共著ブログが増えていく、みたいなのは、もしそうなるならそもそもブログが普通に増えていって何もこんな試み要らないのでは…という気もするけれど、
+どうなんですかねぇ。</p>
+
+</div>
+</div>
+<div class='message is-medium  is-size-6-touch comment'>
+<div class='message-header'>kzys</div>
+<div class='message-body'>
+我々も集まって書くことで続いた面はあるので、読者のみなさんも集まってみるのはどうでしょう、というつもりでした。
+</div>
+</div>
+</article>
+    </div>
+
+    <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a href="https://messagepassing.github.io/023-s1/04-morrita/"  class="pagination-next">
+      よかったこと
+      <span class='tag'>morrita</span>
+    </a>
+    
+    
+    <a href="https://messagepassing.github.io/023-s1/02-jmuk/"  class="pagination-previous">
+      大体同意だなぁ
+      <span class='tag'>jmuk</span>
+    </a>
+    
+    </nav>
+  </div>
+  <div class='column is-one-fifth-desktop sidebar'>
+    <div class='card mb-2'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'><a href='https://messagepassing.github.io/023-s1/'>ここまでの話</a></p>
+      <ul class='menu-list'>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/023-s1/01-karino2/'>karino2</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/023-s1/02-jmuk/'>jmuk</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a class='is-active'>kzys</a>
+        </li>
+      
+        <li class='menu-item'>
+            <a href='https://messagepassing.github.io/023-s1/04-morrita/'>morrita</a>
+        </li>
+      
+    </ul>
+    </aside></div></div>
+
+    <div class='card mb-2 has-background-light'><div class='card-content'><aside class='menu'>
+      <p class='menu-label'>はなし</p>
+      <ul class='menu-list'>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/023-s1/' class='is-active'>
+          ここまでの話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/022-pred/'>
+          未来予想
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/021-push/'>
+          強く押す話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/020-rewrite/'>
+          書き直しのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/019-advice/'>
+          助言のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/018-deadline/'>
+          締切のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/017-food/'>
+          たべもののはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/016-complexity/'>
+          複雑さのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/015-poems/'>
+          ポエムのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/014-reuse/'>
+          再利用のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/013-fboss/'>
+          Facebook のオープンソース
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/012-manycore/'>
+          コアあまりのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/011-designdocs/'>
+          Design Docs の逡巡
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/010-wced/'>
+          毎日コードを書く話
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/009-feed/'>
+          読むものさがし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/008-justright/'>
+          ちょうどよさのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/007-repo/'>
+          モノレポのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/006-hitech/'>
+          ハイテクしごと
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/005-bookmark/'>
+          ブックマークのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/004-whatiread/'>
+          今年読んだもの
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/003-editors/'>
+          テキストエディタのはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/002-pl/'>
+          言語のはなし
+        </a></li>
+             
+        <li class='menu-item'>
+          <a href='https://messagepassing.github.io/001-bug/'>
+          バグのはなし
+        </a></li>
+      
+      </ul>
+    </aside></div></div></div>
+</div>
+</div>
+</div>
+<footer class='footer'><div class='container has-text-centered has-text-grey'>
+    <a href='https://messagepassing.github.io/'>Message Passing</a> is licensed under 
+    <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>CC-NC-SA</a>.
+    It has a <a href='/index.xml'>feed</a> and is hosted by a
+    <a href='https://github.com/messagepassing'>GitHub organization</a>.
+    Uses <a href='https://flic.kr/p/2jtVkok'>this</a> for the OG image.
+</div></footer>
+</body>
+</html>
